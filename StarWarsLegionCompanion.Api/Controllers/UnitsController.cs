@@ -20,22 +20,24 @@ namespace StarWarsLegionCompanion.Api.Controllers
             this.context = context;
         }
         [HttpGet]
-        public IActionResult GetUnit()
+        public IActionResult GetUnits()
         {
-            //var units = context.Units.ToList();
-            //foreach (var unit in units)
-            //{
-            //    unit.Keywords = context.Keywords.Where(k => k.UnitId == unit.Id).ToList();
-            //}
-            var units = context.Units.Include(x => x.Keywords);
-            units.ToList();
+            var qeuryunits = context.Units
+                .Include(u => u.Weapons).ThenInclude(k=>k.Keywords)
+                .Include(u => u.Keywords)
+                ;
+            var units = qeuryunits.ToList();
 
             return Ok(units);
         }
         [HttpGet("{id}")]
         public IActionResult GetUnit(int id)
         {
-            var unit = context.Units.Find(id);
+            var unit = context.Units
+                 .Where(u=>u.Id == id)
+                 .Include(u => u.Weapons).ThenInclude(k => k.Keywords)
+                 .Include(u => u.Keywords)
+                 ;
 
             if (unit == null)
                 return NotFound();

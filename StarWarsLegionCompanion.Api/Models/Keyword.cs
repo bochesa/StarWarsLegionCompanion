@@ -11,7 +11,14 @@ namespace StarWarsLegionCompanion.Api.Models
         public string Name { get; set; }
         public string FullName
         {
-            get { return $"{Name} {AbilityValue}"; }
+            get 
+            {
+                if (AbilityValue != null)
+                {
+                    return $"{Name} {AbilityValue}";
+                }
+                else return Name;
+            }
         }
         public int? AbilityValue { get; set; }
         public string Text { get; set; }
@@ -19,6 +26,7 @@ namespace StarWarsLegionCompanion.Api.Models
         public bool IsCardAction { get; set; }
         //public int UnitId { get; set; } //for one to many relations
         public List<Unit> Units { get; set; } = new List<Unit>(); // For many-to-any relations
+        public List<Weapon> Weapons { get; set; } = new List<Weapon>();
 
     }
 }

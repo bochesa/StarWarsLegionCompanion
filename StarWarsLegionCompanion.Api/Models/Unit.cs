@@ -12,11 +12,14 @@ namespace StarWarsLegionCompanion.Api.Models
         public string Name { get; set; }
         public string SurName { get; set; }
         public bool IsUnique { get; set; }
+        public int FactionId { get; set; }
+        public virtual Faction Faction { get; set; }
+        public int RankId { get; set; }
+        public virtual Rank Rank { get; set; }
+        public int UnitTypeId { get; set; }
+        public virtual UnitType UnitType { get; set; }
         public int WoundThreshold { get; set; }
         public int Courage { get; set; }
-        public string Faction { get; set; }
-        public string Rank { get; set; }
-        public string UnitType { get; set; }
         public int Speed { get; set; }
         public int MinisInUnit { get; set; }
         public int PointCost { get; set; }
@@ -24,7 +27,8 @@ namespace StarWarsLegionCompanion.Api.Models
         public bool IsDefenseSurge { get; set; }
         public int AttackSurgeId { get; set; }
         public virtual AttackSurge AttackSurge { get; set; }
-        public List<Keyword> Keywords { get; set; }
+        public List<Keyword> Keywords { get; set; } = new List<Keyword>();
+        public List<Weapon> Weapons { get; set; } = new List<Weapon>();
 
     }
 }

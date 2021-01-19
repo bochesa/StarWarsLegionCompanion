@@ -15,6 +15,13 @@ namespace StarWarsLegionCompanion.Api.Models
     //public enum UnitType {Trooper, RepulsorVehicle, GroundVehicle, EmplacementTrooper, CreatureTropper, WookieTropper, DroidTrooper, CloneTrooper}
     //public enum RankType { Commander, Operative, Corps, SpecialForces, Support, Heavy}
   
+    public class AttackDie
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int Value { get; set; }
+    }
+
     public class RangeType
     {
         public int Id { get; set; }

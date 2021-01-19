@@ -14,11 +14,7 @@ namespace StarWarsLegionCompanion.Api.Models
     //public enum AttackSurge { none, hit, CriticalHit}
     //public enum UnitType {Trooper, RepulsorVehicle, GroundVehicle, EmplacementTrooper, CreatureTropper, WookieTropper, DroidTrooper, CloneTrooper}
     //public enum RankType { Commander, Operative, Corps, SpecialForces, Support, Heavy}
-    public class DefenseDie
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-    }
+  
     public class RangeType
     {
         public int Id { get; set; }
@@ -28,22 +24,8 @@ namespace StarWarsLegionCompanion.Api.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-
     }
-    public class AttackDie
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public int Value { get; set; }
-        public List<Weapon> Weapons { get; set; }
-    }
-
-    public class UpgradeCategory
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-    }
-   
+  
     public class AttackSurge
     {
         public int Id { get; set; }
@@ -54,15 +36,12 @@ namespace StarWarsLegionCompanion.Api.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+
     }
     public class Rank
     {
         public int Id { get; set; }
         public string Name { get; set; }
     }
-    public class Restriction
-    {
-        public int Id { get; set; }
-        public string Description { get; set; }
-    }
+    
 }

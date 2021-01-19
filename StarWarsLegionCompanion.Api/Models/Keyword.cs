@@ -17,10 +17,8 @@ namespace StarWarsLegionCompanion.Api.Models
         public string Text { get; set; }
         public bool IsFreeAction { get; set; }
         public bool IsCardAction { get; set; }
-        public List<Unit> Units { get; set; } = new List<Unit>();
-        public List<Weapon> Weapons { get; set; } = new List<Weapon>();
-        public List<Upgrade> Upgrades { get; set; } = new List<Upgrade>();
-
+        public int UnitId { get; set; } //for one to many relations
+        //public List<Unit> Units { get; set; } = new List<Unit>(); // For many-to-any relations
 
     }
 }

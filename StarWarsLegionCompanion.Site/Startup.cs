@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using StarWarsLegionCompanion.Site.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,11 @@ namespace StarWarsLegionCompanion.Site
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddHttpClient<ApiProxy>(client =>
+            {
+                //client.BaseAddress = new Uri("https://localhost:44302/");
+                client.BaseAddress = new Uri("https://localhost:44374/");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

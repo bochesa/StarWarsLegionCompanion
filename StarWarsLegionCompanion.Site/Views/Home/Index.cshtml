@@ -1,8 +1,26 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model IEnumerable<StarWarsLegionCompanion.Api.Models.Unit>
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <div class="container">
+        <table class="table">
+            <tr>
+                <td>Navn</td>
+                <td>Fraktion</td>
+                <td>Point Cost</td>
+            </tr>
+            @foreach (Unit u in Model)
+            {
+                <tr>
+                    <td>@u.Name</td>
+                    <td>@u.Faction.Name</td>
+                    <td>@u.PointCost</td>
+                </tr>
+            }
+
+        </table>
+    </div>
 </div>

@@ -13,6 +13,7 @@ namespace StarWarsLegionCompanion.Api.Models
         public string SurName { get; set; }
         public bool IsUnique { get; set; }
         public int FactionId { get; set; }
+        [JsonIgnore]
         public virtual Faction Faction { get; set; }
         public int RankId { get; set; }
         public virtual Rank Rank { get; set; }

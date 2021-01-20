@@ -31,6 +31,7 @@ namespace StarWarsLegionCompanion.Api.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public virtual List<Unit> Units { get; set; }
     }
   
     public class AttackSurge
@@ -49,6 +50,7 @@ namespace StarWarsLegionCompanion.Api.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public virtual List<Unit> Units { get; set; }
     }
     
 }

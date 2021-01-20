@@ -18,26 +18,30 @@ namespace StarWarsLegionCompanion.Api.Controllers
         public UnitsController(DataContext context)
         {
             this.context = context;
+            context.Database.EnsureCreated();
         }
         [HttpGet]
         public IActionResult GetUnits()
         {
             var qeuryunits = context.Units
-                .Include(u => u.Weapons).ThenInclude(k=>k.Keywords)
+                .Include(u => u.Weapons).ThenInclude(k => k.Keywords)
                 .Include(u => u.Keywords)
                 ;
             var units = qeuryunits.ToList();
 
+            FillInObjectsForList(units);
+            
             return Ok(units);
         }
         [HttpGet("{id}")]
         public IActionResult GetUnit(int id)
         {
-            var unit = context.Units
-                 .Where(u=>u.Id == id)
-                 .Include(u => u.Weapons).ThenInclude(k => k.Keywords)
-                 .Include(u => u.Keywords)
-                 ;
+            Unit unit = context.Units.Where(u=>u.Id == id)
+                .Include(u => u.Weapons).ThenInclude(k => k.Keywords)
+                .Include(u => u.Keywords).FirstOrDefault()
+                ;
+
+            FillInObjects(unit);
 
             if (unit == null)
                 return NotFound();
@@ -82,6 +86,32 @@ namespace StarWarsLegionCompanion.Api.Controllers
             context.Units.Remove(unit);
             context.SaveChanges();
             return unit;
+        }
+        void FillInObjectsForList(List<Unit> units)
+        {
+            foreach (var unit in units)
+            {
+                unit.Faction = context.Factions.FirstOrDefault(f => f.Id == unit.FactionId);
+                unit.Rank = context.Ranks.FirstOrDefault(r => r.Id == unit.RankId);
+                unit.UnitType = context.UnitTypes.FirstOrDefault(r => r.Id == unit.UnitTypeId);
+                unit.AttackSurge = context.AttackSurges.FirstOrDefault(r => r.Id == unit.AttackSurgeId);
+                foreach (var unitweap in unit.Weapons)
+                {
+                    unitweap.RangeType = context.RangeTypes.FirstOrDefault(x => x.Id == unitweap.RangeTypeId);
+                }
+
+            }
+        }
+        void FillInObjects(Unit unit)
+        {
+            unit.Faction = context.Factions.FirstOrDefault(f => f.Id == unit.FactionId);
+            unit.Rank = context.Ranks.FirstOrDefault(r => r.Id == unit.RankId);
+            unit.UnitType = context.UnitTypes.FirstOrDefault(r => r.Id == unit.UnitTypeId);
+            unit.AttackSurge = context.AttackSurges.FirstOrDefault(r => r.Id == unit.AttackSurgeId);
+            foreach (var unitweap in unit.Weapons)
+            {
+                unitweap.RangeType = context.RangeTypes.FirstOrDefault(x => x.Id == unitweap.RangeTypeId);
+            }
         }
     }
 }

@@ -12,7 +12,8 @@ namespace StarWarsLegionCompanion.Site.Models
         public List<Unit> AvailableUnits { get; set; }
         public Army Army { get; set; }
         public List<Army> ArmyList { get; set; }
-        
+        public Unit Unit { get; set; }
+
         public List<SelectListItem> Factions { get; set; } = new List<SelectListItem>();
 
     }

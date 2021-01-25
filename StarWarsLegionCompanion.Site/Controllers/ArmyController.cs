@@ -22,27 +22,38 @@ namespace StarWarsLegionCompanion.Site.Controllers
         [HttpGet]
         public async Task<ActionResult> Index()
         {
-            var armyList = await proxy.GetArmyLists();
             var units = await proxy.GetAllUnits();
-            var factions = await proxy.GetFactions();
+            var armyList = await proxy.GetArmyLists();
 
             var armyListVm = new ArmyViewModel() { AvailableUnits = units, ArmyList = armyList, };
 
             return View(armyListVm);
         }
 
-        [HttpGet("/edit")]
-        public async Task<ActionResult> Edit(ArmyViewModel model)
+        [HttpGet, Route("[controller]/[action]/{id}")]
+        public async Task<ActionResult> Edit(int id, ArmyViewModel model = null)
         {
-            
+            if (model == null)
+                model = new ArmyViewModel();
+            var armylist = await proxy.GetArmyList(id);
+            var availableUnits = await proxy.GetAllUnits(); 
+            availableUnits.Where(x => x.FactionId == armylist.FactionId).ToList();
+            model.AvailableUnits = availableUnits;
+            model.Army = armylist;
+
             return View(model);
         }
 
-        [HttpPost("/edit/{id}")]
-        public async Task<ActionResult> Edit(int id, ArmyViewModel model)
+        [HttpPost("AddUnit/{unitid}")]
+        public async Task<IActionResult> AddUnit(int armyid, int unitid)
         {
-           
-            return View(model);
+            var armyListVm = new ArmyViewModel() { AvailableUnits = await proxy.GetAllUnits(), Army = new Army { Units = new List<Unit>() } };
+            var unit = await proxy.GetUnit(unitid);
+
+            armyListVm.Army.Units.Add(unit);
+            armyListVm.AvailableUnits.Remove(unit);
+
+            return RedirectToAction("Edit", new { Id = armyid, model= armyListVm });
         }
 
         [HttpGet]

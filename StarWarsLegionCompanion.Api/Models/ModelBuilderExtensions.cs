@@ -59,99 +59,112 @@ namespace StarWarsLegionCompanion.Api.Models
             });
             #endregion
 
+            #region Seed ArmyList
+            //Premade ArmyList
+
+            var armylist1 = new ArmyList { Id = 1, Name = "Holy Molys", FactionId = 2, PlayerId = 1, PointLimit = 800 };
+            var armylist2 = new ArmyList { Id = 2, Name = "City Bois", FactionId = 3, PlayerId = 2, PointLimit = 800 };
+
+            builder.Entity<ArmyList>(d =>
+            {
+                d.HasData(armylist1);
+                d.HasData(armylist2);
+            });
+            #endregion
+
             #region Seed UpgradeCategories
-//            //premade objects for upgradecategories
-//            var armament = new UpgradeCategory { Id = 1, Name = "Armament" };
-//    var command = new UpgradeCategory { Id = 2, Name = "Command" };
-//    var comms = new UpgradeCategory { Id = 3, Name = "Comms" };
-//    var crew = new UpgradeCategory { Id = 4, Name = "Crew" };
-//    var force = new UpgradeCategory { Id = 5, Name = "Force" };
-//    var gear = new UpgradeCategory { Id = 6, Name = "Gear" };
-//    var generator = new UpgradeCategory { Id = 7, Name = "Generator" };
-//    var grenades = new UpgradeCategory { Id = 8, Name = "Grenades" };
-//    var hardpoint = new UpgradeCategory { Id = 9, Name = "Hardpoint" };
-//    var heavyWeapon = new UpgradeCategory { Id = 10, Name = "Heavy Weapon" };
-//    var ordnance = new UpgradeCategory { Id = 11, Name = "Ordnance" };
-//    var personnel = new UpgradeCategory { Id = 12, Name = "Personnel" };
-//    var pilot = new UpgradeCategory { Id = 13, Name = "Pilot" };
-//    var training = new UpgradeCategory { Id = 14, Name = "Training" };
+            //            //premade objects for upgradecategories
+            //            var armament = new UpgradeCategory { Id = 1, Name = "Armament" };
+            //    var command = new UpgradeCategory { Id = 2, Name = "Command" };
+            //    var comms = new UpgradeCategory { Id = 3, Name = "Comms" };
+            //    var crew = new UpgradeCategory { Id = 4, Name = "Crew" };
+            //    var force = new UpgradeCategory { Id = 5, Name = "Force" };
+            //    var gear = new UpgradeCategory { Id = 6, Name = "Gear" };
+            //    var generator = new UpgradeCategory { Id = 7, Name = "Generator" };
+            //    var grenades = new UpgradeCategory { Id = 8, Name = "Grenades" };
+            //    var hardpoint = new UpgradeCategory { Id = 9, Name = "Hardpoint" };
+            //    var heavyWeapon = new UpgradeCategory { Id = 10, Name = "Heavy Weapon" };
+            //    var ordnance = new UpgradeCategory { Id = 11, Name = "Ordnance" };
+            //    var personnel = new UpgradeCategory { Id = 12, Name = "Personnel" };
+            //    var pilot = new UpgradeCategory { Id = 13, Name = "Pilot" };
+            //    var training = new UpgradeCategory { Id = 14, Name = "Training" };
 
-//    var armament2 = new UpgradeCategory { Id = 15, Name = "Armament" };
-//    var command2 = new UpgradeCategory { Id = 16, Name = "Command" };
-//    var comms2 = new UpgradeCategory { Id = 17, Name = "Comms" };
-//    var crew2 = new UpgradeCategory { Id = 18, Name = "Crew" };
-//    var force2 = new UpgradeCategory { Id = 19, Name = "Force" };
-//    var gear2 = new UpgradeCategory { Id = 20, Name = "Gear" };
-//    var generator2 = new UpgradeCategory { Id = 21, Name = "Generator" };
-//    var grenades2 = new UpgradeCategory { Id = 22, Name = "Grenades" };
-//    var hardpoint2 = new UpgradeCategory { Id = 23, Name = "Hardpoint" };
-//    var heavyWeapon2 = new UpgradeCategory { Id = 24, Name = "Heavy Weapon" };
-//    var ordnance2 = new UpgradeCategory { Id = 25, Name = "Ordnance" };
-//    var personnel2 = new UpgradeCategory { Id = 26, Name = "Personnel" };
-//    var pilot2 = new UpgradeCategory { Id = 27, Name = "Pilot" };
-//    var training2 = new UpgradeCategory { Id = 28, Name = "Training" };
+            //    var armament2 = new UpgradeCategory { Id = 15, Name = "Armament" };
+            //    var command2 = new UpgradeCategory { Id = 16, Name = "Command" };
+            //    var comms2 = new UpgradeCategory { Id = 17, Name = "Comms" };
+            //    var crew2 = new UpgradeCategory { Id = 18, Name = "Crew" };
+            //    var force2 = new UpgradeCategory { Id = 19, Name = "Force" };
+            //    var gear2 = new UpgradeCategory { Id = 20, Name = "Gear" };
+            //    var generator2 = new UpgradeCategory { Id = 21, Name = "Generator" };
+            //    var grenades2 = new UpgradeCategory { Id = 22, Name = "Grenades" };
+            //    var hardpoint2 = new UpgradeCategory { Id = 23, Name = "Hardpoint" };
+            //    var heavyWeapon2 = new UpgradeCategory { Id = 24, Name = "Heavy Weapon" };
+            //    var ordnance2 = new UpgradeCategory { Id = 25, Name = "Ordnance" };
+            //    var personnel2 = new UpgradeCategory { Id = 26, Name = "Personnel" };
+            //    var pilot2 = new UpgradeCategory { Id = 27, Name = "Pilot" };
+            //    var training2 = new UpgradeCategory { Id = 28, Name = "Training" };
 
-//    var armament3 = new UpgradeCategory { Id = 29, Name = "Armament" };
-//    var command3 = new UpgradeCategory { Id = 30, Name = "Command" };
-//    var comms3 = new UpgradeCategory { Id = 31, Name = "Comms" };
-//    var crew3 = new UpgradeCategory { Id = 32, Name = "Crew" };
-//    var force3 = new UpgradeCategory { Id = 33, Name = "Force" };
-//    var gear3 = new UpgradeCategory { Id = 34, Name = "Gear" };
-//    var generator3 = new UpgradeCategory { Id = 35, Name = "Generator" };
-//    var grenades3 = new UpgradeCategory { Id = 36, Name = "Grenades" };
-//    var hardpoint3 = new UpgradeCategory { Id = 37, Name = "Hardpoint" };
-//    var heavyWeapon3 = new UpgradeCategory { Id = 38, Name = "Heavy Weapon" };
-//    var ordnance3 = new UpgradeCategory { Id = 39, Name = "Ordnance" };
-//    var personnel3 = new UpgradeCategory { Id = 40, Name = "Personnel" };
-//    var pilot3 = new UpgradeCategory { Id = 41, Name = "Pilot" };
-//    var training3 = new UpgradeCategory { Id = 42, Name = "Training" };
+            //    var armament3 = new UpgradeCategory { Id = 29, Name = "Armament" };
+            //    var command3 = new UpgradeCategory { Id = 30, Name = "Command" };
+            //    var comms3 = new UpgradeCategory { Id = 31, Name = "Comms" };
+            //    var crew3 = new UpgradeCategory { Id = 32, Name = "Crew" };
+            //    var force3 = new UpgradeCategory { Id = 33, Name = "Force" };
+            //    var gear3 = new UpgradeCategory { Id = 34, Name = "Gear" };
+            //    var generator3 = new UpgradeCategory { Id = 35, Name = "Generator" };
+            //    var grenades3 = new UpgradeCategory { Id = 36, Name = "Grenades" };
+            //    var hardpoint3 = new UpgradeCategory { Id = 37, Name = "Hardpoint" };
+            //    var heavyWeapon3 = new UpgradeCategory { Id = 38, Name = "Heavy Weapon" };
+            //    var ordnance3 = new UpgradeCategory { Id = 39, Name = "Ordnance" };
+            //    var personnel3 = new UpgradeCategory { Id = 40, Name = "Personnel" };
+            //    var pilot3 = new UpgradeCategory { Id = 41, Name = "Pilot" };
+            //    var training3 = new UpgradeCategory { Id = 42, Name = "Training" };
 
-//    builder.Entity<UpgradeCategory>(u =>
-//            {
-//                u.HasData(armament);
-//                u.HasData(command);
-//                u.HasData(comms);
-//                u.HasData(crew);
-//                u.HasData(force);
-//                u.HasData(gear);
-//                u.HasData(generator);
-//                u.HasData(grenades);
-//                u.HasData(hardpoint);
-//                u.HasData(heavyWeapon);
-//                u.HasData(ordnance);
-//                u.HasData(personnel);
-//                u.HasData(pilot);
-//                u.HasData(training);
-//                u.HasData(armament2);
-//                u.HasData(command2);
-//                u.HasData(comms2);
-//                u.HasData(crew2);
-//                u.HasData(force2);
-//                u.HasData(gear2);
-//                u.HasData(generator2);
-//                u.HasData(grenades2);
-//                u.HasData(hardpoint2);
-//                u.HasData(heavyWeapon2);
-//                u.HasData(ordnance2);
-//                u.HasData(personnel2);
-//                u.HasData(pilot2);
-//                u.HasData(training2);
-//                u.HasData(armament3);
-//                u.HasData(command3);
-//                u.HasData(comms3);
-//                u.HasData(crew3);
-//                u.HasData(force3);
-//                u.HasData(gear3);
-//                u.HasData(generator3);
-//                u.HasData(grenades3);
-//                u.HasData(hardpoint3);
-//                u.HasData(heavyWeapon3);
-//                u.HasData(ordnance3);
-//                u.HasData(personnel3);
-//                u.HasData(pilot3);
-//                u.HasData(training3);
-//            });
-#endregion
+            //    builder.Entity<UpgradeCategory>(u =>
+            //            {
+            //                u.HasData(armament);
+            //                u.HasData(command);
+            //                u.HasData(comms);
+            //                u.HasData(crew);
+            //                u.HasData(force);
+            //                u.HasData(gear);
+            //                u.HasData(generator);
+            //                u.HasData(grenades);
+            //                u.HasData(hardpoint);
+            //                u.HasData(heavyWeapon);
+            //                u.HasData(ordnance);
+            //                u.HasData(personnel);
+            //                u.HasData(pilot);
+            //                u.HasData(training);
+            //                u.HasData(armament2);
+            //                u.HasData(command2);
+            //                u.HasData(comms2);
+            //                u.HasData(crew2);
+            //                u.HasData(force2);
+            //                u.HasData(gear2);
+            //                u.HasData(generator2);
+            //                u.HasData(grenades2);
+            //                u.HasData(hardpoint2);
+            //                u.HasData(heavyWeapon2);
+            //                u.HasData(ordnance2);
+            //                u.HasData(personnel2);
+            //                u.HasData(pilot2);
+            //                u.HasData(training2);
+            //                u.HasData(armament3);
+            //                u.HasData(command3);
+            //                u.HasData(comms3);
+            //                u.HasData(crew3);
+            //                u.HasData(force3);
+            //                u.HasData(gear3);
+            //                u.HasData(generator3);
+            //                u.HasData(grenades3);
+            //                u.HasData(hardpoint3);
+            //                u.HasData(heavyWeapon3);
+            //                u.HasData(ordnance3);
+            //                u.HasData(personnel3);
+            //                u.HasData(pilot3);
+            //                u.HasData(training3);
+            //            });
+            #endregion
 
             #region Seed RangeTypes
             //premade Rangetypes
@@ -252,6 +265,19 @@ namespace StarWarsLegionCompanion.Api.Models
                 f.HasData(specialForces);
                 f.HasData(support);
                 f.HasData(heavy);
+            });
+
+            #endregion
+
+            #region Seed Player
+            //Premade Players
+            var player1 = new Player { Id = 1, Name = "Henrik" };
+            var player2 = new Player { Id = 2, Name = "Kenneth" };
+
+            builder.Entity<Player>(p =>
+            {
+                p.HasData(player1);
+                p.HasData(player2);
             });
 
             #endregion
@@ -410,10 +436,29 @@ namespace StarWarsLegionCompanion.Api.Models
                 MinisInUnit = 1,
                 UnitTypeId = 1,
             };
+            var leiaOrgana = new Unit
+            {
+                Id = 2,
+                Name = "Leia Organa",
+                SurName = "FEARLESS AND INVENTIVE",
+                AttackSurgeId = 3,
+                IsDefenseSurge = true,
+                IsDefenseRed = false,
+                Courage = 2,
+                FactionId = 2,
+                IsUnique = true,
+                PointCost = 90,
+                RankId = 1,
+                WoundThreshold = 6,
+                Speed = 2,
+                MinisInUnit = 1,
+                UnitTypeId = 1,
+            };
 
             builder.Entity<Unit>(u =>
             {
                 u.HasData(lukeSkywalker);
+                u.HasData(leiaOrgana);
             });
 
             //     modelBuilder.Entity<Category>().HasData(

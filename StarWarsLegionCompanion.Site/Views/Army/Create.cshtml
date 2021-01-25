@@ -1,0 +1,13 @@
+﻿@model ArmyViewModel
+
+
+<form asp-action="Create" asp-controller="Home">
+    
+    <input asp-for="Armylist.Name" class="form-control" placeholder="Name..." formenctype="multipart/form-data"/>
+
+    <label asp-for="Armylist.Faction"></label>
+    <select asp-for="Armylist.Faction" asp-items="Model.Factions"></select>
+    
+    <button type="submit">Create Army List</button>
+
+</form>

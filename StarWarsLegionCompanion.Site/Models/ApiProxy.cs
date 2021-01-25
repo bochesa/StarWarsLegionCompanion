@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StarWarsLegionCompanion.Api.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -20,6 +21,24 @@ namespace StarWarsLegionCompanion.Site.Models
             var response = await client.GetAsync($"{client.BaseAddress}units");
             string result = await response.Content.ReadAsStringAsync();
             return result;
+        }
+
+        public async Task<string> GetArmyLists()
+        {
+            var response = await client.GetAsync($"{client.BaseAddress}armylists");
+            string result = await response.Content.ReadAsStringAsync();
+            return result;
+        }
+        public async Task<string> GetFactions()
+        {
+            var response = await client.GetAsync($"{client.BaseAddress}factions");
+            string result = await response.Content.ReadAsStringAsync();
+            return result;
+        }
+
+        public async Task PostArmyList(HttpContent content)
+        {
+            await client.PostAsync($"{client.BaseAddress}armylist", content);
         }
 
     }

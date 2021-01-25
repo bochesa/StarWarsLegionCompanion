@@ -1,0 +1,30 @@
+﻿@model Unit
+<!-- Collapsable Card Example - AVAILABLE ITEMS -->
+
+<div class="row">
+    <div class="col-10">
+        <div class="card shadow mb-4" id="Model-card-id-@Model.Id">
+            <!-- Card Header - Accordion -->
+            <a href="#unit-card-@Model.Id" class="d-block card-header py-3 collapsed" data-toggle="collapse"
+               role="button" aria-expanded="false" aria-controls="collapseCardExample">
+                <h6 class="m-0 font-weight-bold text-primary">
+                    @Model.Name [@Model.PointCost]
+                </h6>
+            </a>
+            <!-- Card Content - Collapse -->
+            <div class="collapse" id="unit-card-@Model.Id">
+                <div class="card-body">
+                    This is a collapsable card example using Bootstrap's built in collapse
+                    functionality. <strong>Click on the card header</strong> to see the card body
+                    collapse and expand!
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-2">
+        <a href="btn-add-unit-card-@Model.Id" class="btn btn-success btn-circle align-middle">
+            <i class="fas fa-plus"></i>
+        </a>
+    </div>
+</div>

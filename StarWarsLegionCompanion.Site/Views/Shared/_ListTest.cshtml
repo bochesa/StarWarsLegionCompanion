@@ -1,0 +1,23 @@
+﻿@model UnitViewModel
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <div class="container">
+        <table class="table">
+            <tr>
+                <td>Navn</td>
+                <td>Fraktion</td>
+                <td>Point Cost</td>
+            </tr>
+            @foreach (var u in Model.AvailableUnits)
+            {
+                <tr>
+                    <td>@u.Name</td>
+                    <td>@u.Faction.Name</td>
+                    <td>@u.PointCost</td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

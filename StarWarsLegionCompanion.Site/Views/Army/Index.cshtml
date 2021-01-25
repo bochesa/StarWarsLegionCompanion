@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model ArmyViewModel
+
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <div class="container">
+        <table class="table">
+            <tr>
+                <td>Name</td>
+                <td>Faction</td>
+                <td>Point Limit</td>
+            </tr>
+            @foreach (var armylist in Model.ArmyLists)
+            {
+                <tr>
+                    <td>@armylist.Name</td>
+                    <td>@armylist.Faction.Name</td>
+                    <td>@armylist.PointLimit</td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

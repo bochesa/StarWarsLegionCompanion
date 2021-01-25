@@ -46,7 +46,7 @@ namespace StarWarsLegionCompanion.Site.Controllers
                 Text = x.Name
             }).ToList();
 
-            var armylistVm = new ArmyViewModel() { Armylist = new ArmyList()};
+            var armylistVm = new ArmyViewModel() { Army = new Army()};
             armylistVm.Factions = items;
 
             return View(armylistVm);
@@ -57,9 +57,9 @@ namespace StarWarsLegionCompanion.Site.Controllers
             if (!ModelState.IsValid)
                 return View();
             //model.Armylist.Player = new Player { Id = 3, Name = "Testi Jeff" };
-            model.Armylist.PointLimit = 800;
-            model.Armylist.FactionId = int.Parse(Request.Form["ArmyList.Faction"]);
-            string data = JsonConvert.SerializeObject(model.Armylist);
+            model.Army.PointLimit = 800;
+            model.Army.FactionId = int.Parse(Request.Form["ArmyList.Faction"]);
+            string data = JsonConvert.SerializeObject(model.Army);
             StringContent content = new StringContent(data, Encoding.UTF8, "application/json"); 
             await proxy.PostArmyList(content);
 

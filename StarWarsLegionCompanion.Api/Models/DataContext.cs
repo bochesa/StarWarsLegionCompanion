@@ -23,7 +23,7 @@ namespace StarWarsLegionCompanion.Api.Models
         public DbSet<AttackSurge> AttackSurges { get; set; }
         public DbSet<UnitType> UnitTypes{ get; set; }
         public DbSet<Rank> Ranks { get; set; }
-        public DbSet<ArmyList> ArmyLists { get; set; }
+        public DbSet<Army> ArmyLists { get; set; }
         public DbSet<Player> Players { get; set; }
 
         //public DbSet<Upgrade> Upgrades { get; set; }

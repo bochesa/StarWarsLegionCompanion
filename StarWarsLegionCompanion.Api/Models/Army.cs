@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace StarWarsLegionCompanion.Api.Models
 {
-    public class ArmyList
+    public class Army
     {
         public int Id { get; set; }
         public string Name { get; set; }

@@ -1,13 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Newtonsoft.Json;
 using StarWarsLegionCompanion.Api.Models;
 using StarWarsLegionCompanion.Site.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace StarWarsLegionCompanion.Site.Controllers
@@ -24,24 +22,23 @@ namespace StarWarsLegionCompanion.Site.Controllers
         [HttpGet]
         public async Task<ActionResult> Index()
         {
-            var apiResponseArmyList = await proxy.GetArmyLists();
-            List<ArmyList> armyList = JsonConvert.DeserializeObject<List<ArmyList>>(apiResponseArmyList);
-            var apiResponseUnits = await proxy.GetAllUnits();
-            List<Unit> units = JsonConvert.DeserializeObject<List<Unit>>(apiResponseUnits);
+            var armyList = await proxy.GetArmyLists();
+            var units = await proxy.GetAllUnits();
+            var factions = await proxy.GetFactions();
 
-            var armyListVm = new ArmyViewModel() { AvailableUnits = units, ArmyLists = armyList, };
+            var armyListVm = new ArmyViewModel() { AvailableUnits = units, ArmyList = armyList, };
 
             return View(armyListVm);
         }
 
-        [HttpGet]
+        [HttpGet("/edit")]
         public async Task<ActionResult> Edit(ArmyViewModel model)
         {
             
             return View(model);
         }
 
-        [HttpPost("{id}")]
+        [HttpPost("/edit/{id}")]
         public async Task<ActionResult> Edit(int id, ArmyViewModel model)
         {
            
@@ -52,8 +49,7 @@ namespace StarWarsLegionCompanion.Site.Controllers
         public async Task<ActionResult> Create()
         {
             var apiResponse = await proxy.GetArmyLists();
-            List<ArmyList> factions = JsonConvert.DeserializeObject<List<ArmyList>>(apiResponse);
-
+            var factions = await proxy.GetFactions();
 
             var items = factions.Where(x => x.Id >= 0).Select(x => new SelectListItem
             {
@@ -61,7 +57,7 @@ namespace StarWarsLegionCompanion.Site.Controllers
                 Text = x.Name
             }).ToList();
 
-            var armylistVm = new ArmyViewModel() { Armylist = new ArmyList() };
+            var armylistVm = new ArmyViewModel() { Army = new Army() };
             armylistVm.Factions = items;
 
             return View(armylistVm);
@@ -72,13 +68,18 @@ namespace StarWarsLegionCompanion.Site.Controllers
             if (!ModelState.IsValid)
                 return View();
             //model.Armylist.Player = new Player { Id = 3, Name = "Testi Jeff" };
-            model.Armylist.PointLimit = 800;
-            model.Armylist.FactionId = int.Parse(Request.Form["ArmyList.Faction"]);
-            string data = JsonConvert.SerializeObject(model.Armylist);
-            StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
-            await proxy.PostArmyList(content);
+            model.Army.PointLimit = 800;
+            model.Army.FactionId = int.Parse(Request.Form["ArmyList.Faction"]);
 
-            return RedirectToAction("Index");
+            await proxy.PostArmyList(model.Army);
+
+            return RedirectToAction("Edit", new { Id = model.Army.Id });
+        }
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            //IMPLEMENT DELETE LIST WITH POST CALL TO API
+            return View();
         }
     }
 }

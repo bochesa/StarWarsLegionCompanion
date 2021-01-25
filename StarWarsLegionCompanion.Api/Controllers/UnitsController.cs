@@ -87,6 +87,9 @@ namespace StarWarsLegionCompanion.Api.Controllers
             context.SaveChanges();
             return unit;
         }
+        
+        
+        
         void FillInObjectsForList(List<Unit> units)
         {
             foreach (var unit in units)

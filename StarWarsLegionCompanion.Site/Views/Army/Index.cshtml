@@ -12,13 +12,17 @@
                 <td>Name</td>
                 <td>Faction</td>
                 <td>Point Limit</td>
+                <td>Control</td>
             </tr>
-            @foreach (var armylist in Model.ArmyLists)
+            @foreach (var armylist in Model.ArmyList)
             {
                 <tr>
                     <td>@armylist.Name</td>
                     <td>@armylist.Faction.Name</td>
                     <td>@armylist.PointLimit</td>
+                    <td>
+                        <a asp-action="Edit" asp-controller="army" asp-route-Id="@armylist.Id"><i class="far fa-edit"></i></a> | <a asp-action="Delete" asp-controller="army" asp-route-Id="@armylist.Id"><i class="far fa-trash-alt"></i></a>
+                    </td>
                 </tr>
             }
 

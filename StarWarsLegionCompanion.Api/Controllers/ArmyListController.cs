@@ -22,7 +22,7 @@ namespace StarWarsLegionCompanion.Api.Controllers
         public IActionResult GetArmyList()
         {
             var armyList = context.ArmyLists.ToList();
-
+            FillInArmyLists(armyList);
             return Ok(armyList);
         }
         [HttpGet("{id}")]
@@ -38,14 +38,22 @@ namespace StarWarsLegionCompanion.Api.Controllers
 
 
         [HttpPost]
-        public IActionResult PostArmyList(ArmyList armyList)
+        public IActionResult PostArmyList(Army armyList)
         {
             context.ArmyLists.Add(armyList);
             context.SaveChanges();
             return CreatedAtAction("GetArmyList", new { id = armyList.Id }, armyList);
         }
 
-
+        //Support method for filling in objects from foreign keys.
+        void FillInArmyLists(IEnumerable<Army> list)
+        {
+            foreach (var armyList in list)
+            {
+                armyList.Player = context.Players.FirstOrDefault(x => x.Id == armyList.PlayerId);
+                armyList.Faction = context.Factions.FirstOrDefault(x => x.Id == armyList.FactionId);
+            }
+        }
     }
 }
 

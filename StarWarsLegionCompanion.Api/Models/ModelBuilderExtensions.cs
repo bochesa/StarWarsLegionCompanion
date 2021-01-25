@@ -59,18 +59,7 @@ namespace StarWarsLegionCompanion.Api.Models
             });
             #endregion
 
-            #region Seed ArmyList
-            //Premade ArmyList
-
-            var armylist1 = new ArmyList { Id = 1, Name = "Holy Molys", FactionId = 2, PlayerId = 1, PointLimit = 800 };
-            var armylist2 = new ArmyList { Id = 2, Name = "City Bois", FactionId = 3, PlayerId = 2, PointLimit = 800 };
-
-            builder.Entity<ArmyList>(d =>
-            {
-                d.HasData(armylist1);
-                d.HasData(armylist2);
-            });
-            #endregion
+           
 
             #region Seed UpgradeCategories
             //            //premade objects for upgradecategories
@@ -280,6 +269,19 @@ namespace StarWarsLegionCompanion.Api.Models
                 p.HasData(player2);
             });
 
+            #endregion
+
+            #region Seed ArmyList
+            //Premade ArmyList
+
+            var armylist1 = new Army { Id = 1, Name = "Holy Molys", FactionId = 2, PlayerId = 1, PointLimit = 800 };
+            var armylist2 = new Army { Id = 2, Name = "City Bois", FactionId = 3, PlayerId = 2, PointLimit = 800 };
+
+            builder.Entity<Army>(d =>
+            {
+                d.HasData(armylist1);
+                d.HasData(armylist2);
+            });
             #endregion
 
             #region Seed Keyword Database

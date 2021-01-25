@@ -30,7 +30,7 @@ namespace StarWarsLegionCompanion.Api.Models
         public virtual AttackSurge AttackSurge { get; set; }
         public List<Keyword> Keywords { get; set; } = new List<Keyword>();
         public List<Weapon> Weapons { get; set; } = new List<Weapon>();
-        public List<ArmyList> ArmyLists { get; set; } = new List<ArmyList>();
+        public List<Army> ArmyLists { get; set; } = new List<Army>();
 
     }
 }

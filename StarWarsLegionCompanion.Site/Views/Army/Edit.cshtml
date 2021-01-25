@@ -4,7 +4,7 @@
 
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h2 mb-0 text-gray-800">@Model.Armylist.Name</h1>
+    <h1 class="h2 mb-0 text-gray-800">@Model.Army.Name</h1>
     <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
         <i class="fas fa-download fa-sm text-white-50"></i> Generate Report
     </a>
@@ -50,7 +50,7 @@
     <!-- Column of Selected Units-->
     <div class="col-4" id="current-list">
         <h3 class="h3 mb-0 text-gray-800">Current Units</h3>
-        @foreach (var unit in Model.Armylist.Units)
+        @foreach (var unit in Model.Army.Units)
         {
             @await Html.PartialAsync("_UnitCard", unit)
         }

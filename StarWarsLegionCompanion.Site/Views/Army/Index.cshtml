@@ -1,11 +1,11 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-@model ArmyViewModel
+@model IEnumerable<Army>
 
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+    <h1 class="display-4">Your Amy Lists</h1>
     <div class="container">
         <table class="table">
             <tr>
@@ -14,7 +14,7 @@
                 <td>Point Limit</td>
                 <td>Control</td>
             </tr>
-            @foreach (var armylist in Model.ArmyList)
+            @foreach (var armylist in Model)
             {
                 <tr>
                     <td>@armylist.Name</td>

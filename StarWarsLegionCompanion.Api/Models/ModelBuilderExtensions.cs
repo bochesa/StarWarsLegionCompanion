@@ -59,8 +59,6 @@ namespace StarWarsLegionCompanion.Api.Models
             });
             #endregion
 
-           
-
             #region Seed UpgradeCategories
             //            //premade objects for upgradecategories
             //            var armament = new UpgradeCategory { Id = 1, Name = "Armament" };
@@ -371,7 +369,7 @@ namespace StarWarsLegionCompanion.Api.Models
 
             #endregion
 
-            //#region Seed Upgrade Database
+            #region Seed Upgrade Database
             ////upgrades:
             //var forcepush = new Upgrade
             //{
@@ -418,8 +416,9 @@ namespace StarWarsLegionCompanion.Api.Models
             //    u.HasData(targetingScopes);
             //});
 
-            //#endregion
+            #endregion
             
+            #region Seed Unit Database
             //units:
             var lukeSkywalker = new Unit
             {
@@ -456,12 +455,47 @@ namespace StarWarsLegionCompanion.Api.Models
                 MinisInUnit = 1,
                 UnitTypeId = 1,
             };
-
+            var rebeltrooper = new Unit
+            {
+                Id = 3,
+                Name = "Rebel Troopers",
+                AttackSurgeId = 1,
+                IsDefenseSurge = true,
+                IsDefenseRed = false,
+                Courage = 1,
+                FactionId = 2,
+                IsUnique = false,
+                PointCost = 40,
+                RankId = 3,
+                WoundThreshold = 1,
+                Speed = 2,
+                MinisInUnit = 4,
+                UnitTypeId = 1,
+            };
             builder.Entity<Unit>(u =>
             {
                 u.HasData(lukeSkywalker);
                 u.HasData(leiaOrgana);
+                u.HasData(rebeltrooper);
             });
+            #endregion
+
+            #region Seed Chosen Units
+            var chosenunit1 = new ChosenUnit { Id = 10, ArmyId = 1, UnitId = 1 };
+            var chosenunit2 = new ChosenUnit { Id = 11, ArmyId = 1, UnitId = 3 };
+            var chosenunit3 = new ChosenUnit { Id = 12, ArmyId = 1, UnitId = 3 };
+
+            builder.Entity<ChosenUnit>(u =>
+            {
+                u.HasData(chosenunit1);
+                u.HasData(chosenunit2);
+                u.HasData(chosenunit3);
+            });
+
+
+
+            #endregion
+
 
             //     modelBuilder.Entity<Category>().HasData(
             //    new Category { Id = 1, Name = "Active Wear - Men" },

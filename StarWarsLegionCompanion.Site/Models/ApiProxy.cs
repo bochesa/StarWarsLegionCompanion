@@ -18,6 +18,7 @@ namespace StarWarsLegionCompanion.Site.Models
             this.client = client;
         }
 
+        //GET UNITS
         public async Task<List<Unit>> GetAllUnits()
         {
             var response = await client.GetAsync($"{client.BaseAddress}units");
@@ -34,6 +35,24 @@ namespace StarWarsLegionCompanion.Site.Models
 
             return unit;
         }
+        //GET CHOSEN UNITS
+        public async Task<List<ChosenUnit>> GetAllChosenUnits()
+        {
+            var response = await client.GetAsync($"{client.BaseAddress}chosenunit");
+            string result = await response.Content.ReadAsStringAsync();
+            List<ChosenUnit> chosenunits = JsonConvert.DeserializeObject<List<ChosenUnit>>(result);
+
+            return chosenunits;
+        }
+        public async Task<ChosenUnit> GetChosenUnit(int id)
+        {
+            var response = await client.GetAsync($"{client.BaseAddress}chosenunit/{id}");
+            string result = await response.Content.ReadAsStringAsync();
+            ChosenUnit chosenunit = JsonConvert.DeserializeObject<ChosenUnit>(result);
+
+            return chosenunit;
+        }
+        //GET ARMY
         public async Task<Army> GetArmyList(int id)
         {
             var response = await client.GetAsync($"{client.BaseAddress}armylist/{id}");
@@ -48,6 +67,7 @@ namespace StarWarsLegionCompanion.Site.Models
             List<Army> armyLists = JsonConvert.DeserializeObject<List<Army>>(result);
             return armyLists;
         }
+        //GET OTHER
         public async Task<List<Faction>> GetFactions()
         {
             var response = await client.GetAsync($"{client.BaseAddress}factions");
@@ -57,12 +77,32 @@ namespace StarWarsLegionCompanion.Site.Models
             return factions;
         }
 
+        //POST
+        public async Task PostChosenUnit(ChosenUnit model)
+        {
+            string data = JsonConvert.SerializeObject(model);
+            StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
+            await client.PostAsync($"{client.BaseAddress}chosenunit", content);
+        }
         public async Task PostArmyList(Army model)
         {
             string data = JsonConvert.SerializeObject(model);
             StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
             await client.PostAsync($"{client.BaseAddress}armylist", content);
+        }
 
+        //PUT
+        public async Task UpdateArmyList(int id, Army model)
+        {
+            string data = JsonConvert.SerializeObject(model);
+            StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
+            await client.PutAsync($"{client.BaseAddress}armylist/{id}", content);
+        }
+
+        //DELETE
+        public async Task DeleteChosenUnit(int id)
+        {
+            await client.DeleteAsync($"{client.BaseAddress}chosenunit/{id}");
         }
 
     }

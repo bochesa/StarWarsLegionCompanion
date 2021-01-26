@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
@@ -13,11 +14,13 @@ namespace StarWarsLegionCompanion.Api.Models
         public string SurName { get; set; }
         public bool IsUnique { get; set; }
         public int FactionId { get; set; }
-        [JsonIgnore]
+        [NotMapped]
         public virtual Faction Faction { get; set; }
         public int RankId { get; set; }
+        [NotMapped]
         public virtual Rank Rank { get; set; }
         public int UnitTypeId { get; set; }
+        [NotMapped] 
         public virtual UnitType UnitType { get; set; }
         public int WoundThreshold { get; set; }
         public int Courage { get; set; }
@@ -27,10 +30,11 @@ namespace StarWarsLegionCompanion.Api.Models
         public bool IsDefenseRed { get; set; }
         public bool IsDefenseSurge { get; set; }
         public int AttackSurgeId { get; set; }
+        [NotMapped]
         public virtual AttackSurge AttackSurge { get; set; }
-        public List<Keyword> Keywords { get; set; } = new List<Keyword>();
-        public List<Weapon> Weapons { get; set; } = new List<Weapon>();
-        public List<Army> ArmyLists { get; set; } = new List<Army>();
+        public int? ArmyId { get; set; }
+        public virtual List<Keyword> Keywords { get; set; } = new List<Keyword>();
+        public virtual List<Weapon> Weapons { get; set; } = new List<Weapon>();
 
     }
 }

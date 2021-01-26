@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using StarWarsLegionCompanion.Api.Models;
 using System;
 using System.Collections.Generic;
@@ -29,7 +30,7 @@ namespace StarWarsLegionCompanion.Api.Controllers
         public IActionResult GetArmyList(int id)
         {
             var armyList = context.ArmyLists.FirstOrDefault(x => x.Id == id);
-            
+
             if (armyList == null)
                 return NotFound();
 
@@ -44,6 +45,31 @@ namespace StarWarsLegionCompanion.Api.Controllers
             context.SaveChanges();
             return CreatedAtAction("GetArmyList", new { id = armyList.Id }, armyList);
         }
+
+
+        [HttpPut("{id}")]
+        public IActionResult PutArmyList([FromRoute] int id, [FromBody] Army army)
+        {
+            if (id != army.Id)
+                return BadRequest();
+            context.Entry(army).State = EntityState.Modified;
+            try
+            {
+                context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (context.ArmyLists.Find(id) == null)
+                {
+                    return NotFound();
+                }
+
+                throw;
+            }
+
+            return Ok(army);
+        }
+
 
         //Support method for filling in objects from foreign keys.
         void FillInArmyLists(IEnumerable<Army> list)

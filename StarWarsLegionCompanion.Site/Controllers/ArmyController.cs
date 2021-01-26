@@ -22,44 +22,54 @@ namespace StarWarsLegionCompanion.Site.Controllers
         [HttpGet]
         public async Task<ActionResult> Index()
         {
-            var units = await proxy.GetAllUnits();
             var armyList = await proxy.GetArmyLists();
-
-            var armyListVm = new ArmyViewModel() { AvailableUnits = units, ArmyList = armyList, };
-
-            return View(armyListVm);
+            //TODO: insert control for army retrievel, for authenticated user only
+            return View(armyList);
         }
-
+        //GET Edit
         [HttpGet, Route("[controller]/[action]/{id}")]
-        public async Task<ActionResult> Edit(int id, ArmyViewModel model = null)
+        public async Task<ActionResult> Edit(int id)
         {
-            if (model == null)
-                model = new ArmyViewModel();
-            var armylist = await proxy.GetArmyList(id);
-            var availableUnits = await proxy.GetAllUnits(); 
-            availableUnits.Where(x => x.FactionId == armylist.FactionId).ToList();
-            model.AvailableUnits = availableUnits;
-            model.Army = armylist;
+            var army = await proxy.GetArmyList(id);
 
-            return View(model);
+            var chosenunits = await proxy.GetAllChosenUnits();
+            var query = chosenunits.Where(x => x.ArmyId == id);
+
+            var availableUnits = await proxy.GetAllUnits();
+            availableUnits.Where(x => x.FactionId == army.FactionId);
+            
+
+            var currentUnits = ChosenUnitConverter(chosenunits, availableUnits);
+            var armyVM = new ArmyViewModel { Unit = null, Army = army, ChosenUnitList = chosenunits, CurrentUnits = currentUnits, AvailableUnits = availableUnits };
+
+            return View(armyVM);
         }
 
-        [HttpPost("AddUnit/{unitid}")]
-        public async Task<IActionResult> AddUnit(int armyid, int unitid)
+
+        //POST ADD unit to current list
+        [HttpPost("[controller]/[action]/{id}")]
+        public async Task<IActionResult> AddUnit(int id, int armyid)
         {
-            var armyListVm = new ArmyViewModel() { AvailableUnits = await proxy.GetAllUnits(), Army = new Army { Units = new List<Unit>() } };
-            var unit = await proxy.GetUnit(unitid);
-
-            armyListVm.Army.Units.Add(unit);
-            armyListVm.AvailableUnits.Remove(unit);
-
-            return RedirectToAction("Edit", new { Id = armyid, model= armyListVm });
+            var chosenUnit = new ChosenUnit { ArmyId = armyid, UnitId = id };
+            await proxy.PostChosenUnit(chosenUnit);
+            
+            return RedirectToAction("Edit", new { Id = armyid });
         }
 
+        //POST REMOVE unit from current list
+        [HttpPost("[controller]/[action]/{id}")]
+        public async Task<IActionResult> RemoveUnit(int id, int armyid) //id = chosen ID
+        {
+            await proxy.DeleteChosenUnit(id);
+
+            return RedirectToAction("Edit", new { Id = armyid });
+        }
+
+        //GET Create View
         [HttpGet]
         public async Task<ActionResult> Create()
         {
-            var apiResponse = await proxy.GetArmyLists();
+            //var apiResponse = await proxy.GetArmyLists();
             var factions = await proxy.GetFactions();
 
             var items = factions.Where(x => x.Id >= 0).Select(x => new SelectListItem
@@ -68,11 +78,13 @@ namespace StarWarsLegionCompanion.Site.Controllers
                 Text = x.Name
             }).ToList();
 
-            var armylistVm = new ArmyViewModel() { Army = new Army() };
+            var armylistVm = new ArmyViewModel() { Army = null, Factions = items};
             armylistVm.Factions = items;
 
             return View(armylistVm);
         }
+
+        //POST Create new Army Model
         [HttpPost]
         public async Task<IActionResult> Create(ArmyViewModel model)
         {
@@ -80,17 +92,27 @@ namespace StarWarsLegionCompanion.Site.Controllers
                 return View();
             //model.Armylist.Player = new Player { Id = 3, Name = "Testi Jeff" };
             model.Army.PointLimit = 800;
-            model.Army.FactionId = int.Parse(Request.Form["ArmyList.Faction"]);
-
+            model.Army.FactionId = int.Parse(Request.Form["Army.Faction"]);
             await proxy.PostArmyList(model.Army);
-
-            return RedirectToAction("Edit", new { Id = model.Army.Id });
+            var armies = await proxy.GetArmyLists();
+            var newArmy = armies.FirstOrDefault(x => x.Name == model.Army.Name);
+            return RedirectToAction("Edit", new { id = newArmy.Id });
         }
         [HttpPost]
         public IActionResult Delete(int id)
         {
             //IMPLEMENT DELETE LIST WITH POST CALL TO API
             return View();
+        }
+        private List<Unit> ChosenUnitConverter(IEnumerable<ChosenUnit> chosenunits, List<Unit> availableUnits)
+        {
+            var unitList = new List<Unit>();
+            foreach (var cUnit in chosenunits)
+            {
+                var unit = availableUnits.FirstOrDefault(x => x.Id == cUnit.UnitId);
+                unitList.Add(unit);
+            }
+            return unitList;
         }
     }
 }

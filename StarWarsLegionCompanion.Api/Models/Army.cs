@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace StarWarsLegionCompanion.Api.Models
@@ -10,11 +12,12 @@ namespace StarWarsLegionCompanion.Api.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public int PlayerId { get; set; }
+        [NotMapped]
         public virtual Player Player { get; set; }
         public int FactionId { get; set; }
+        [NotMapped]
         public virtual Faction Faction { get; set; }
         public int PointLimit { get; set; }
-        public List<Unit> Units { get; set; }
 
     }
 }

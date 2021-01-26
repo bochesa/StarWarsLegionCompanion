@@ -1,8 +1,8 @@
 ﻿@model ArmyViewModel
 
-@foreach (var unit in Model.ChosenUnitList)
+@foreach (var unit in Model.AvailableUnits)
 {
-    <form asp-action="RemoveUnit" asp-controller="Army" asp-route-id="@unit.Id" asp-route-armyid="@Model.Army.Id">
+    <form asp-action="AddUnit" asp-controller="Army"asp-route-id="@unit.Id" asp-route-armyid="@Model.Army.Id">
         <div class="row">
             <div class="col-10">
                 <div class="card shadow mb-4" id="Model-card-id-@unit.Id">
@@ -10,11 +10,9 @@
                     <a href="#unit-card-@unit.Id" class="d-block card-header py-3 collapsed" data-toggle="collapse"
                        role="button" aria-expanded="false" aria-controls="collapseCardExample">
                         <h6 class="m-0 font-weight-bold text-primary">
-                            @if(Model.CurrentUnits.FirstOrDefault(x => x.Id == unit.UnitId).IsUnique) 
-                            { 
-                                <span><i class="fas fa-square fa-xxs"></i></span>
-                            }
-                            @Model.CurrentUnits.FirstOrDefault(x => x.Id == unit.UnitId).Name [@Model.CurrentUnits.FirstOrDefault(x => x.Id == unit.UnitId).PointCost]
+                            @if (unit.IsUnique)
+                            {<span><i class="fas fa-square fa-xs"></i></span>}
+                            @unit.Name [@unit.PointCost]
                         </h6>
                     </a>
                     <!-- Card Content - Collapse -->
@@ -30,7 +28,7 @@
 
             <div class="col-2">
                 <button type="submit" class="btn btn-success btn-circle align-middle">
-                    <i class="fas fa-minus"></i>
+                    <i class="fas fa-plus"></i>
                 </button>
             </div>
         </div>

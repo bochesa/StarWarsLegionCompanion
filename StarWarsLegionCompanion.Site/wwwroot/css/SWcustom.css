@@ -1,0 +1,54 @@
+﻿.commander-icon {
+    background: url('/img/icons/01_Commander_icon_Simple.png');
+    background-size: contain;
+    background-repeat:no-repeat;
+    height: 35px;
+    width: 35px;
+    display: block;
+    /* Other styles here */
+}
+.operative-icon {
+    background: url('/img/icons/02_Operative_icon_Simple.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 35px;
+    width: 35px;
+    display: block;
+    /* Other styles here */
+}
+.corps-icon {
+    background: url('/img/icons/03_Corps_icon_simple.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 35px;
+    width: 35px;
+    display: block;
+    /* Other styles here */
+}
+.specialforces-icon {
+    background: url('/img/icons/04_Special_forces_icon_simple.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 35px;
+    width: 35px;
+    display: block;
+    /* Other styles here */
+}
+.support-icon {
+    background: url('/img/icons/05_Support_icon_simple.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 35px;
+    width: 35px;
+    display: block;
+    /* Other styles here */
+}
+.heavy-icon {
+    background: url('/img/icons/06_Heavy_icon_Simple.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 35px;
+    width: 35px;
+    display: block;
+    /* Other styles here */
+}

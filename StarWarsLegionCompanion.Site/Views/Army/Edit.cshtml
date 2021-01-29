@@ -1,11 +1,52 @@
 ﻿@model ArmyViewModel
 
 <!-- Page Heading -->
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h2 mb-0 text-gray-800">@Model.Army.Name</h1>
-    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-        <i class="fas fa-download fa-sm text-white-50"></i> Generate Report
-    </a>
+<div class="row">
+    <div class="d-sm-flex col align-items-center justify-content-between mb-4">
+        <h1 class="h2 mb-0 text-gray-800">@Model.Army.Name</h1>
+    </div>
+
+    <div class="card col-8 bg-light text-black shadow">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-6">
+                    @Model.AccumulatedPointCost / 800 Armypoint |
+                </div>
+                <div class="col-6">
+                    @Model.CurrentUnits.Count() Activations
+                </div>
+            </div>
+            <div class="row">
+                    <div id="commander-status" class="col-2 border-right">
+                        <i class="commander-icon"></i> @Model.CurrentUnits.Where(x => x.RankId == 1).Count() / 1-2
+                    </div>
+                <span id="operative-status" class="col-2 border-right">
+                    <i class="operative-icon"></i> @Model.CurrentUnits.Where(x => x.RankId == 2).Count() / 0-2
+                </span>
+                <span id="corps-status" class="col-2 border-right">
+                    <i class="corps-icon"></i> @Model.CurrentUnits.Where(x => x.RankId == 3).Count() / 3-6
+                </span>
+                <span id="specialforces-status" class="col-2 border-right">
+                    <i class="specialforces-icon"></i> @Model.CurrentUnits.Where(x => x.RankId == 4).Count() / 0-3
+                </span>
+                <span id="support-status" class="col-2 border-right">
+                    <i class="support-icon"></i> @Model.CurrentUnits.Where(x => x.RankId == 5).Count() / 0-3
+                </span>
+                <span id="heavy-status" class="col-2">
+                    <i class="heavy-icon"></i> @Model.CurrentUnits.Where(x => x.RankId == 6).Count() / 0-2
+                </span>
+            </div>
+
+
+
+        </div>
+    </div>
+
+    @*<div class="col-4">
+        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            <i class="fas fa-download fa-sm text-white-50"></i> Generate Report
+        </a>
+    </div>*@
 </div>
 
 <!-- Units/Upgrades Row -->
@@ -15,9 +56,10 @@
 
     <div class="col-4" id="available-list">
         <h3 class="h3 mb-0 text-gray-800">Available Units</h3>
-        
+        @if(Model.AvailableUnits !=null)
+        {
             @await Html.PartialAsync("_UnitCardAvailable", Model)
-        
+        }
 
     </div>
 
@@ -47,32 +89,33 @@
     <!-- Column of Selected Units-->
     <div class="col-4" id="current-list">
         <h3 class="h3 mb-0 text-gray-800">Current Units</h3>
-        
-        @if(Model == null)
-        {
-            //UNUSED PLACEHOLDER
 
-            <!-- Collapsable Card Example2 -->
-            <div class="card shadow mb-4">
-                <!-- Card Header - Accordion -->
-                <a href="#collapseCardExample2" class="d-block card-header py-3" data-toggle="collapse"
-                    role="button" aria-expanded="false" aria-controls="collapseCardExample">
-                    <h6 class="m-0 font-weight-bold text-primary">Collapsable Card Example - Middle COL</h6>
-                </a>
-                <!-- Card Content - Collapse -->
-                <div class="collapse" id="collapseCardExample2">
-                    <div class="card-body">
-                        This is a collapsable card example using Bootstrap's built in collapse
-                        functionality. <strong>Click on the card header</strong> to see the card body
-                        collapse and expand!
-                    </div>
+        @if (Model.CurrentUnits.Count == 0 || Model.CurrentUnits == null)
+        {
+            @foreach (var unitgroup in Model.AvailableUnitsGrouped)
+            {
+                <div class="card bg-transparent border-0" id="Model-group-current-@unitgroup.ElementAt(0).RankId">
+                    <!-- Card Header - Accordion -->
+                    <a href="#group-current-card-@unitgroup.ElementAt(0).RankId" class="d-block card-header bg-transparent border-top border-bottom-0 py-3 collapsed" data-toggle="collapse"
+                       role="button" aria-expanded="false" aria-controls="group-avail-card-@unitgroup.ElementAt(0).RankId">
+                        <div class="row">
+                            <h5 class="m-0 font-weight-bold text-primary">
+                                @unitgroup.ElementAt(0).Rank.Name
+                            </h5>
+                            <span class="ml-3">
+                                <i class="@unitgroup.ElementAt(0).Rank.Name.ToLower().Replace(" ","")-icon ml-3"></i>
+                            </span>
+
+                        </div>
+                    </a>
                 </div>
-            </div>
+            }
+               
         }
         else
         {
-                @await Html.PartialAsync("_UnitCard", Model)
-         
+        @await Html.PartialAsync("_UnitCardCurrent", Model)
+
         }
 
     </div>

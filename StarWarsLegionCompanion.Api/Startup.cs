@@ -13,6 +13,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.Reflection;
+using System.IO;
+using Microsoft.OpenApi.Models;
 
 namespace StarWarsLegionCompanion.Api
 {
@@ -32,6 +35,32 @@ namespace StarWarsLegionCompanion.Api
                 .AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore
                     );
+            services.AddSwaggerGen(c =>
+            {
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "Star Wars Legion Companion API",
+                    Description = "My API to support the Star Wars Legion Companion App for mobile and online platform",
+                    TermsOfService = new Uri("https://example.com/terms"),
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Henrik Bochesa",
+                        Email = "henrik@bochesa.dk",
+                        Url = new Uri("https://www.linkedin.com/in/henrik-levin-bochesa-51386027/"),
+                    },
+                    License = new OpenApiLicense
+                    {
+                        Name = "Use under LICX",
+                        Url = new Uri("https://example.com/license"),
+                    }
+                });
+            });
+
 
 
 
@@ -50,6 +79,11 @@ namespace StarWarsLegionCompanion.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "StarWarsLegionCompanion");
+            });
 
             app.UseHttpsRedirection();
 

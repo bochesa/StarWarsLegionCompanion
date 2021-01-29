@@ -9,15 +9,15 @@ namespace StarWarsLegionCompanion.Site.Models
 {
     public class ArmyViewModel
     {
-        public Unit Unit { get; set; }
         public Army Army { get; set; }
         public List<ChosenUnit> ChosenUnitList { get; set; }
         public List<Unit> CurrentUnits { get; set; }
         public List<Unit> AvailableUnits { get; set; }
+        public List<List<Unit>> AvailableUnitsGrouped { get; set; }
+        public List<List<Unit>> CurrentUnitsGrouped { get; set; }
+        public int AccumulatedPointCost { get; set; }
 
         public List<SelectListItem> Factions { get; set; } = new List<SelectListItem>();
-
-
 
     }
 }

@@ -12,7 +12,7 @@ namespace StarWarsLegionCompanion.Api.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public int PlayerId { get; set; }
-        [NotMapped]
+        [NotMapped, JsonIgnore]
         public virtual Player Player { get; set; }
         public int FactionId { get; set; }
         [NotMapped]

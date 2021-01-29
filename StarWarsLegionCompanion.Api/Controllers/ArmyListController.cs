@@ -23,6 +23,8 @@ namespace StarWarsLegionCompanion.Api.Controllers
         public IActionResult GetArmyList()
         {
             var armyList = context.ArmyLists.ToList();
+            
+
             FillInArmyLists(armyList);
             return Ok(armyList);
         }
@@ -69,7 +71,21 @@ namespace StarWarsLegionCompanion.Api.Controllers
 
             return Ok(army);
         }
-
+        /// <summary>
+        /// Delete an ArmyList
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete("{id}")]
+        public ActionResult<Army> DeleteArmyList(int id)
+        {
+            var army = context.ArmyLists.Find(id);
+            if (army == null)
+                return NotFound();
+            context.ArmyLists.Remove(army);
+            context.SaveChanges();
+            return army;
+        }
 
         //Support method for filling in objects from foreign keys.
         void FillInArmyLists(IEnumerable<Army> list)

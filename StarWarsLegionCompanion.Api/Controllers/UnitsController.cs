@@ -20,6 +20,10 @@ namespace StarWarsLegionCompanion.Api.Controllers
             this.context = context;
         }
         #region GET Actions
+        /// <summary>
+        /// Get All Units
+        /// </summary>
+        /// <returns>List of sorted units</returns>
         [HttpGet]
         public IActionResult GetAllUnits()
         {
@@ -27,7 +31,22 @@ namespace StarWarsLegionCompanion.Api.Controllers
                 .Include(u => u.Weapons).ThenInclude(k => k.Keywords)
                 .Include(u => u.Keywords)
                 ;
-            var units = qeuryunits.ToList();
+            var units = qeuryunits.OrderBy(u => u.RankId).ToList();
+
+            FillInObjectsForList(units);
+
+            return Ok(units);
+        }
+        /// <summary>
+        /// Get All units in specified faction by its Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("faction/{id}")]
+        public IActionResult GetAllUnitsByFaction(int id)
+        {
+
+            var units = context.Units.Where(x => x.FactionId == id).OrderBy(u => u.RankId).ToList();
 
             FillInObjectsForList(units);
 
@@ -47,23 +66,10 @@ namespace StarWarsLegionCompanion.Api.Controllers
                 return NotFound();
             return Ok(unit);
         }
-        //Get the full List of Chosen units
-        [HttpGet("/chosenunit")]
-        public IActionResult GetAllChosenUnits()
-        {
-            var chosenUnits = context.ChosenUnits.ToList();
-
-            return Ok(chosenUnits);
-        }
-        //Get a chosen unit by Id
-        [HttpGet("/chosenunit/{id}")]
-        public IActionResult GetChosenUnitById(int id)
-        {
-            var chosenUnit = context.ChosenUnits.FirstOrDefault(x => x.Id == id);
-
-            return Ok(chosenUnit);
-        }
+        
         #endregion
+
+
 
         #region POST Actions
         [HttpPost]
@@ -73,14 +79,7 @@ namespace StarWarsLegionCompanion.Api.Controllers
             context.SaveChanges();
             return CreatedAtAction("GetUnitById", new { id = unit.Id }, unit);
         }
-        //Post and save chosenunits for armylists
-        [HttpPost("/chosenunit")]
-        public IActionResult PostChosenUnit([FromBody] ChosenUnit chosenUnit)
-        {
-            context.ChosenUnits.Add(chosenUnit);
-            context.SaveChanges();
-            return CreatedAtAction("GetChosenUnitById", new { id = chosenUnit.Id }, chosenUnit);
-        } 
+        
         #endregion
 
         [HttpPut("{id}")]
@@ -115,16 +114,7 @@ namespace StarWarsLegionCompanion.Api.Controllers
             context.SaveChanges();
             return unit;
         }
-        [HttpDelete("/chosenunit/{id}")]
-        public ActionResult<ChosenUnit> DeleteChosenUnit(int id)
-        {
-            var unit = context.ChosenUnits.Find(id);
-            if (unit == null)
-                return NotFound();
-            context.ChosenUnits.Remove(unit);
-            context.SaveChanges();
-            return unit;
-        }
+       
         void FillInObjectsForList(List<Unit> units)
         {
             foreach (var unit in units)

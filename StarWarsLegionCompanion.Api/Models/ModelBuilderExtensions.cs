@@ -165,34 +165,21 @@ namespace StarWarsLegionCompanion.Api.Models
             });
             #endregion
 
-            //DefenseDie is Obsolete - may come back
-            #region Seed DefenseDie
-            //premade DefenseDie
-            //var defWhite = new DefenseDie { Id = 1, Name = "White" };
-            //var defRed = new DefenseDie { Id = 2, Name = "Red" };
-
-            //builder.Entity<DefenseDie>(d =>
-            //{
-            //    d.HasData(defWhite);
-            //    d.HasData(defRed);
-            //});
-            #endregion
-
             #region Seed Factions
             //Premade Factions
-            var neutral = new Faction { Id = 1, Name = "Neutral" };
-            var rebel = new Faction { Id = 2, Name = "Rebel Alliance" };
-            var empire = new Faction { Id = 3, Name = "Galactic Empire" };
-            var separaist = new Faction { Id = 4, Name = "Separatist Alliance" };
-            var clone = new Faction { Id = 5, Name = "Galactic Republic" };
+            var rebel = new Faction { Id = 1, Name = "Rebel Alliance" };
+            var empire = new Faction { Id = 2, Name = "Galactic Empire" };
+            var separaist = new Faction { Id = 3, Name = "Separatist Alliance" };
+            var clone = new Faction { Id = 4, Name = "Galactic Republic" };
+            var neutral = new Faction { Id = 20, Name = "Neutral" };
 
             builder.Entity<Faction>(f =>
             {
-                f.HasData(neutral);
                 f.HasData(rebel);
                 f.HasData(empire);
                 f.HasData(separaist);
                 f.HasData(clone);
+                f.HasData(neutral);
 
             });
             #endregion
@@ -211,7 +198,7 @@ namespace StarWarsLegionCompanion.Api.Models
             });
             #endregion
 
-            #region Seed Trooper
+            #region Seed UnitTypes
             //Premade TrooperOptions
             var trooper = new UnitType { Id = 1, Name = "Trooper" };
             var repulsorVehicle = new UnitType { Id = 2, Name = "Repulsor Vehicle" };
@@ -272,8 +259,8 @@ namespace StarWarsLegionCompanion.Api.Models
             #region Seed ArmyList
             //Premade ArmyList
 
-            var armylist1 = new Army { Id = 1, Name = "Holy Molys", FactionId = 2, PlayerId = 1, PointLimit = 800 };
-            var armylist2 = new Army { Id = 2, Name = "City Bois", FactionId = 3, PlayerId = 2, PointLimit = 800 };
+            var armylist1 = new Army { Id = 1, Name = "Holy Molys", FactionId = 1, PlayerId = 1, PointLimit = 800 };
+            var armylist2 = new Army { Id = 2, Name = "City Bois", FactionId = 2, PlayerId = 2, PointLimit = 800 };
 
             builder.Entity<Army>(d =>
             {
@@ -428,7 +415,7 @@ namespace StarWarsLegionCompanion.Api.Models
                 AttackSurgeId = 3,
                 IsDefenseRed = true,
                 Courage = 3,
-                FactionId = 2,
+                FactionId = 1,
                 IsUnique = true,
                 PointCost = 160,
                 RankId = 1,
@@ -446,7 +433,7 @@ namespace StarWarsLegionCompanion.Api.Models
                 IsDefenseSurge = true,
                 IsDefenseRed = false,
                 Courage = 2,
-                FactionId = 2,
+                FactionId = 1,
                 IsUnique = true,
                 PointCost = 90,
                 RankId = 1,
@@ -463,7 +450,7 @@ namespace StarWarsLegionCompanion.Api.Models
                 IsDefenseSurge = true,
                 IsDefenseRed = false,
                 Courage = 1,
-                FactionId = 2,
+                FactionId = 1,
                 IsUnique = false,
                 PointCost = 40,
                 RankId = 3,
@@ -472,41 +459,901 @@ namespace StarWarsLegionCompanion.Api.Models
                 MinisInUnit = 4,
                 UnitTypeId = 1,
             };
+            var fleettrooper = new Unit
+            {
+                Id = 4,
+                Name = "Fleet Troopers",
+                AttackSurgeId = 2,
+                IsDefenseSurge = true,
+                IsDefenseRed = false,
+                Courage = 1,
+                FactionId = 1,
+                IsUnique = false,
+                PointCost = 44,
+                RankId = 3,
+                WoundThreshold = 1,
+                Speed = 2,
+                MinisInUnit = 4,
+                UnitTypeId = 1,
+            }; 
+            var t47airspeeder = new Unit
+            {
+                Id = 5,
+                Name = "T-47 Airspeeder",
+                AttackSurgeId = 3,
+                IsDefenseSurge = true,
+                IsDefenseRed = false,
+                Courage = 5,
+                FactionId = 1,
+                IsUnique = false,
+                PointCost = 175,
+                RankId = 6,
+                WoundThreshold = 7,
+                Speed = 3,
+                MinisInUnit = 1,
+                UnitTypeId = 2,
+            };
+            var rebelatrt = new Unit
+            {
+                Id = 6,
+                Name = "AT-RT",
+                AttackSurgeId = 3,
+                IsDefenseSurge = false,
+                IsDefenseRed = false,
+                Courage = 4,
+                FactionId = 1,
+                IsUnique = false,
+                PointCost = 55,
+                RankId = 5,
+                WoundThreshold = 6,
+                Speed = 2,
+                MinisInUnit = 1,
+                UnitTypeId = 3,
+            };
+            var rebelcommandos = new Unit
+            {
+                Id = 7,
+                Name = "Rebel Commandos",
+                AttackSurgeId = 2,
+                IsDefenseSurge = true,
+                IsDefenseRed = false,
+                Courage = 2,
+                FactionId = 1,
+                IsUnique = false,
+                PointCost = 60,
+                RankId = 4,
+                WoundThreshold = 1,
+                Speed = 2,
+                MinisInUnit = 4,
+                UnitTypeId = 1,
+            };
+            var rebelcommandos2 = new Unit
+            {
+                Id = 8,
+                Name = "Rebel Commandos",
+                SurName = "Strike Team",
+                AttackSurgeId = 2,
+                IsDefenseSurge = true,
+                IsDefenseRed = false,
+                Courage = 2,
+                FactionId = 1,
+                IsUnique = false,
+                PointCost = 16,
+                RankId = 4,
+                WoundThreshold = 1,
+                Speed = 2,
+                MinisInUnit = 1,
+                UnitTypeId = 1,
+            };
+            var hansolo = new Unit
+            {
+                Id = 9,
+                Name = "Han Solo",
+                SurName = "Unorthodox general",
+                AttackSurgeId = 3,
+                IsDefenseSurge = true,
+                IsDefenseRed = false,
+                Courage = 2,
+                FactionId = 1,
+                IsUnique = true,
+                PointCost = 120,
+                RankId = 1,
+                WoundThreshold = 6,
+                Speed = 2,
+                MinisInUnit = 1,
+                UnitTypeId = 1,
+            };
+            var fdlasercannonteam = new Unit
+            {
+                Id = 10,
+                Name = "1.4 FD Laser Cannon Team",
+                AttackSurgeId = 2,
+                IsDefenseSurge = true,
+                IsDefenseRed = false,
+                Courage = 2,
+                FactionId = 1,
+                IsUnique = false,
+                PointCost = 70,
+                RankId = 5,
+                WoundThreshold = 6,
+                Speed = 0,
+                MinisInUnit = 1,
+                UnitTypeId = 4,
+            };
+            var rebelofficer = new Unit
+            {
+                Id = 11,
+                Name = "Rebel Officer",
+                SurName = "Resolute Commander",
+                AttackSurgeId = 2,
+                IsDefenseSurge = true,
+                IsDefenseRed = false,
+                Courage = 2,
+                FactionId = 1,
+                IsUnique = false,
+                PointCost = 50,
+                RankId = 1,
+                WoundThreshold = 4,
+                Speed = 2,
+                MinisInUnit = 1,
+                UnitTypeId = 1,
+            };
+            var wookiewarrior = new Unit
+            {
+                Id = 12,
+                Name = "Wookie Warriors",
+                AttackSurgeId = 2,
+                IsDefenseSurge = false,
+                IsDefenseRed = false,
+                Courage = 2,
+                FactionId = 1,
+                IsUnique = false,
+                PointCost = 75,
+                RankId = 4,
+                WoundThreshold = 3,
+                Speed = 2,
+                MinisInUnit = 3,
+                UnitTypeId = 6,
+            };
+            var chewbacca = new Unit
+            {
+                Id = 13,
+                Name = "Chewbacca",
+                SurName = "walking Carpet",
+                AttackSurgeId = 3,
+                IsDefenseSurge = false,
+                IsDefenseRed = false,
+                Courage = 2,
+                FactionId = 1,
+                IsUnique = true,
+                PointCost = 110,
+                RankId = 2,
+                WoundThreshold = 9,
+                Speed = 2,
+                MinisInUnit = 1,
+                UnitTypeId = 6,
+            };
+            var jynerso = new Unit
+            {
+                Id = 14,
+                Name = "Jyn Erso",
+                SurName = "Stardust",
+                AttackSurgeId = 3,
+                IsDefenseSurge = true,
+                IsDefenseRed = false,
+                Courage = 3,
+                FactionId = 1,
+                IsUnique = true,
+                PointCost = 130,
+                RankId = 1,
+                WoundThreshold = 6,
+                Speed = 2,
+                MinisInUnit = 1,
+                UnitTypeId = 1,
+            };
+            var rebelpathfinders = new Unit
+            {
+                Id = 15,
+                Name = "Rebel Pathfinders",
+                AttackSurgeId = 2,
+                IsDefenseSurge = true,
+                IsDefenseRed = false,
+                Courage = 2,
+                FactionId = 1,
+                IsUnique = false,
+                PointCost = 68,
+                RankId = 4,
+                WoundThreshold = 1,
+                Speed = 2,
+                MinisInUnit = 4,
+                UnitTypeId = 1,
+            };
+            var landspeeder = new Unit
+            {
+                Id = 16,
+                Name = "X-34 Landspeeder",
+                AttackSurgeId = 2,
+                IsDefenseSurge = true,
+                IsDefenseRed = false,
+                Courage = 4,
+                FactionId = 1,
+                IsUnique = false,
+                PointCost = 75,
+                RankId = 6,
+                WoundThreshold = 6,
+                Speed = 2,
+                MinisInUnit = 1,
+                UnitTypeId = 2,
+            };
+            var sabinewren = new Unit
+            {
+                Id = 17,
+                Name = "Sabine Wren",
+                SurName = "Explosive Artist",
+                AttackSurgeId = 3,
+                IsDefenseSurge = true,
+                IsDefenseRed = true,
+                Courage = 2,
+                FactionId = 1,
+                IsUnique = true,
+                PointCost = 125,
+                RankId = 2,
+                WoundThreshold = 5,
+                Speed = 3,
+                MinisInUnit = 1,
+                UnitTypeId = 1,
+            };
+            var tauntaunriders = new Unit
+            {
+                Id = 18,
+                Name = "Tauntaun Riders",
+                AttackSurgeId = 2,
+                IsDefenseSurge = true,
+                IsDefenseRed = false,
+                Courage = 2,
+                FactionId = 1,
+                IsUnique = false,
+                PointCost = 90,
+                RankId = 5,
+                WoundThreshold = 4,
+                Speed = 3,
+                MinisInUnit = 2,
+                UnitTypeId = 5,
+            };
+            var rebelveterans = new Unit
+            {
+                Id = 19,
+                Name = "Rebel Veterans",
+                AttackSurgeId = 2,
+                IsDefenseSurge = true,
+                IsDefenseRed = false,
+                Courage = 1,
+                FactionId = 1,
+                IsUnique = false,
+                PointCost = 44,
+                RankId = 3,
+                WoundThreshold = 1,
+                Speed = 2,
+                MinisInUnit = 4,
+                UnitTypeId = 1,
+            };
+            var mediumblastertrooper = new Unit
+            {
+                Id = 20,
+                Name = "Mark II Medium Blaster Trooper",
+                AttackSurgeId = 2,
+                IsDefenseSurge = true,
+                IsDefenseRed = false,
+                Courage = 2,
+                FactionId = 1,
+                IsUnique = false,
+                PointCost = 38,
+                RankId = 3,
+                WoundThreshold = 4,
+                Speed = 1,
+                MinisInUnit = 1,
+                UnitTypeId = 4,
+            };
+            var lukeSkywalkeroperative = new Unit
+            {
+                Id = 21,
+                Name = "Luke Skywalker",
+                SurName = "Jedi Knight",
+                AttackSurgeId = 3,
+                IsDefenseRed = true,
+                Courage = 4,
+                FactionId = 1,
+                IsUnique = true,
+                PointCost = 200,
+                RankId = 2,
+                WoundThreshold = 7,
+                Speed = 2,
+                MinisInUnit = 1,
+                UnitTypeId = 1,
+            };
+            var r2d2 = new Unit
+            {
+                Id = 22,
+                Name = "R2-D2",
+                SurName = "Hero of Thousands Devices",
+                AttackSurgeId = 2,
+                IsDefenseRed = false,
+                Courage = 2,
+                FactionId = 1,
+                IsUnique = true,
+                PointCost = 35,
+                RankId = 2,
+                WoundThreshold = 4,
+                Speed = 1,
+                MinisInUnit = 1,
+                UnitTypeId = 7,
+            };
+            var casisianandor = new Unit
+            {
+                Id = 23,
+                Name = "Casisian Andor",
+                SurName = "Capable Intelligence Agent",
+                AttackSurgeId = 2,
+                IsDefenseSurge = true,
+                IsDefenseRed = false,
+                Courage = 2,
+                FactionId = 1,
+                IsUnique = true,
+                PointCost = 90,
+                RankId = 1,
+                WoundThreshold = 6,
+                Speed = 2,
+                MinisInUnit = 1,
+                UnitTypeId = 1,
+            };
+            var k2so = new Unit
+            {
+                Id = 24,
+                Name = "K-2SO",
+                SurName = "Sardonic Security Droid",
+                AttackSurgeId = 3,
+                IsDefenseRed = true,
+                Courage = 2,
+                FactionId = 1,
+                IsUnique = true,
+                PointCost = 70,
+                RankId = 2,
+                WoundThreshold = 5,
+                Speed = 1,
+                MinisInUnit = 1,
+                UnitTypeId = 7,
+            };
+            var mandalorianresistance = new Unit
+            {
+                Id = 25,
+                Name = "Mandalorian Resistance",
+                AttackSurgeId = 2,
+                IsDefenseSurge = true,
+                IsDefenseRed = true,
+                Courage = 2,
+                FactionId = 1,
+                IsUnique = false,
+                PointCost = 72,
+                RankId = 4,
+                WoundThreshold = 1,
+                Speed = 3,
+                MinisInUnit = 3,
+                UnitTypeId = 1,
+            };
+            var mandalorianresistanceClanWren = new Unit
+            {
+                Id = 26,
+                Name = "Mandalorian Resistance",
+                SurName = "Clan Wren",
+                AttackSurgeId = 2,
+                IsDefenseSurge = true,
+                IsDefenseRed = true,
+                Courage = 2,
+                FactionId = 1,
+                IsUnique = false,
+                PointCost = 34,
+                RankId = 4,
+                WoundThreshold = 2,
+                Speed = 3,
+                MinisInUnit = 1,
+                UnitTypeId = 1,
+            };
+            var lando = new Unit
+            {
+                Id = 27,
+                Name = "Lando Calrissian",
+                SurName = "Smooth Operator",
+                AttackSurgeId = 3,
+                IsDefenseSurge = true,
+                IsDefenseRed = false,
+                Courage = 2,
+                FactionId = 1,
+                IsUnique = true,
+                PointCost = 105,
+                RankId = 1,
+                WoundThreshold = 6,
+                Speed = 2,
+                MinisInUnit = 1,
+                UnitTypeId = 1,
+            };
+
+
             builder.Entity<Unit>(u =>
             {
                 u.HasData(lukeSkywalker);
                 u.HasData(leiaOrgana);
                 u.HasData(rebeltrooper);
+                u.HasData(fleettrooper);
+                u.HasData(t47airspeeder);
+                u.HasData(rebelatrt);
+                u.HasData(rebelcommandos);
+                u.HasData(rebelcommandos2);
+                u.HasData(hansolo);
+                u.HasData(fdlasercannonteam);
+                u.HasData(rebelofficer);
+                u.HasData(wookiewarrior);
+                u.HasData(chewbacca);
+                u.HasData(jynerso);
+                u.HasData(rebelpathfinders);
+                u.HasData(landspeeder);
+                u.HasData(sabinewren);
+                u.HasData(tauntaunriders);
+                u.HasData(rebelveterans);
+                u.HasData(mediumblastertrooper);
+                u.HasData(lukeSkywalkeroperative);
+                u.HasData(r2d2);
+                u.HasData(casisianandor);
+                u.HasData(k2so);
+                u.HasData(mandalorianresistance);
+                u.HasData(mandalorianresistanceClanWren);
+                u.HasData(lando);
+
+
+
             });
+            
+            // SEED Imperial Units
+            builder.Entity<Unit>().HasData(
+               new Unit
+               {
+                    Id = 50,
+                    Name = "Darth Vader",
+                    SurName = "DARK LORD OF THE SITH",
+                    AttackSurgeId = 1,
+                    IsDefenseRed = false,
+                    Courage = 0,
+                    FactionId = 2,
+                    IsUnique = true,
+                    PointCost = 200,
+                    RankId = 1,
+                    WoundThreshold = 8,
+                    Speed = 1,
+                    MinisInUnit = 1,
+                    UnitTypeId = 1,
+               },
+               new Unit
+               {
+                   Id = 51,
+                   Name = "Storm Trooper",
+                   AttackSurgeId = 2,
+                   IsDefenseRed = true,
+                   Courage = 1,
+                   FactionId = 2,
+                   IsUnique = false,
+                   PointCost = 44,
+                   RankId = 3,
+                   WoundThreshold = 1,
+                   Speed = 2,
+                   MinisInUnit = 4,
+                   UnitTypeId = 1,
+               },
+               new Unit
+               {
+                   Id = 52,
+                   Name = "General Veers",
+                   SurName = "Master Tactician",
+                   AttackSurgeId = 3,
+                   IsDefenseSurge = false,
+                   IsDefenseRed = true,
+                   Courage = 2,
+                   FactionId = 2,
+                   IsUnique = true,
+                   PointCost = 80,
+                   RankId = 1,
+                   WoundThreshold = 5,
+                   Speed = 2,
+                   MinisInUnit = 1,
+                   UnitTypeId = 1,
+               },
+               new Unit
+               {
+                   Id = 53,
+                   Name = "AT-ST",
+                   AttackSurgeId = 1,
+                   IsDefenseSurge = true,
+                   IsDefenseRed = false,
+                   Courage = 8,
+                   FactionId = 2,
+                   IsUnique = false,
+                   PointCost = 195,
+                   RankId = 6,
+                   WoundThreshold = 11,
+                   Speed = 2,
+                   MinisInUnit = 1,
+                   UnitTypeId = 3,
+               },
+               new Unit
+               {
+                   Id = 54,
+                   Name = "74-Z Speeder Bikes",
+                   AttackSurgeId = 2,
+                   IsDefenseSurge = false,
+                   IsDefenseRed = false,
+                   Courage = 0,
+                   FactionId = 2,
+                   IsUnique = false,
+                   PointCost = 90,
+                   RankId = 5,
+                   WoundThreshold = 3,
+                   Speed = 3,
+                   MinisInUnit = 2,
+                   UnitTypeId = 2,
+               },
+               new Unit
+               {
+                   Id = 55,
+                   Name = "E-Web Heavy Blaster Team",
+                   AttackSurgeId = 3,
+                   IsDefenseSurge = false,
+                   IsDefenseRed = true,
+                   Courage = 2,
+                   FactionId = 2,
+                   IsUnique = false,
+                   PointCost = 55,
+                   RankId = 5,
+                   WoundThreshold = 4,
+                   Speed = 1,
+                   MinisInUnit = 1,
+                   UnitTypeId = 4,
+               },
+               new Unit
+               {
+                   Id = 56,
+                   Name = "Imperial Royal Guards",
+                   AttackSurgeId = 1,
+                   IsDefenseSurge = false,
+                   IsDefenseRed = true,
+                   Courage = 1,
+                   FactionId = 2,
+                   IsUnique = false,
+                   PointCost = 44,
+                   RankId = 3,
+                   WoundThreshold = 1,
+                   Speed = 2,
+                   MinisInUnit = 4,
+                   UnitTypeId = 1,
+               },
+               new Unit
+               {
+                   Id = 57,
+                   Name = "Scout Trooper",
+                   SurName = "Strike Team",
+                   AttackSurgeId = 1,
+                   IsDefenseSurge = true,
+                   IsDefenseRed = false,
+                   Courage = 2,
+                   FactionId = 2,
+                   IsUnique = false,
+                   PointCost = 16,
+                   RankId = 4,
+                   WoundThreshold = 1,
+                   Speed = 2,
+                   MinisInUnit = 1,
+                   UnitTypeId = 1,
+               },
+               new Unit
+               {
+                   Id = 58,
+                   Name = "Scout Trooper",
+                   AttackSurgeId = 1,
+                   IsDefenseSurge = true,
+                   IsDefenseRed = false,
+                   Courage = 2,
+                   FactionId = 2,
+                   IsUnique = false,
+                   PointCost = 60,
+                   RankId = 4,
+                   WoundThreshold = 1,
+                   Speed = 2,
+                   MinisInUnit = 4,
+                   UnitTypeId = 1,
+               },
+               new Unit
+               {
+                   Id = 59,
+                   Name = "Director Orson Krennic",
+                   AttackSurgeId = 3,
+                   IsDefenseSurge = true,
+                   IsDefenseRed = false,
+                   Courage = 2,
+                   FactionId = 2,
+                   IsUnique = true,
+                   PointCost = 90,
+                   RankId = 1,
+                   WoundThreshold = 6,
+                   Speed = 2,
+                   MinisInUnit = 1,
+                   UnitTypeId = 1,
+               },
+               new Unit
+               {
+                   Id = 60,
+                   Name = "Imperial Death Trooper",
+                   AttackSurgeId = 2,
+                   IsDefenseSurge = true,
+                   IsDefenseRed = true,
+                   Courage = 2,
+                   FactionId = 2,
+                   IsUnique = false,
+                   PointCost = 76,
+                   RankId = 3,
+                   WoundThreshold = 1,
+                   Speed = 2,
+                   MinisInUnit = 4,
+                   UnitTypeId = 1,
+               },
+               new Unit
+               {
+                   Id = 61,
+                   Name = "Bossk",
+                   AttackSurgeId = 3,
+                   IsDefenseSurge = false,
+                   IsDefenseRed = false,
+                   Courage = 2,
+                   FactionId = 2,
+                   IsUnique = true,
+                   PointCost = 115,
+                   RankId = 2,
+                   WoundThreshold = 7,
+                   Speed = 2,
+                   MinisInUnit = 1,
+                   UnitTypeId = 1,
+               },
+               new Unit
+               {
+                   Id = 62,
+                   Name = "Emperor Palpatine",
+                   SurName = "Ruler of The Galactic Empire",
+                   AttackSurgeId = 3,
+                   IsDefenseSurge = true,
+                   IsDefenseRed = true,
+                   Courage = 4,
+                   FactionId = 2,
+                   IsUnique = true,
+                   PointCost = 210,
+                   RankId = 1,
+                   WoundThreshold = 5,
+                   Speed = 1,
+                   MinisInUnit = 1,
+                   UnitTypeId = 1,
+               },
+               new Unit
+               {
+                   Id = 74,
+                   Name = "Imperial Officer",
+                   AttackSurgeId = 2,
+                   IsDefenseSurge = true,
+                   IsDefenseRed = false,
+                   Courage = 2,
+                   FactionId = 2,
+                   IsUnique = false,
+                   PointCost = 50,
+                   RankId = 1,
+                   WoundThreshold = 4,
+                   Speed = 2,
+                   MinisInUnit = 1,
+                   UnitTypeId = 1,
+               },
+               new Unit
+               {
+                   Id = 63,
+                   Name = "Snowtrooper",
+                   AttackSurgeId = 2,
+                   IsDefenseSurge = false,
+                   IsDefenseRed = true,
+                   Courage = 1,
+                   FactionId = 2,
+                   IsUnique = false,
+                   PointCost = 48,
+                   RankId = 3,
+                   WoundThreshold = 1,
+                   Speed = 1,
+                   MinisInUnit = 4,
+                   UnitTypeId = 1,
+               },
+               new Unit
+               {
+                   Id = 64,
+                   Name = "TX-225 GAVw Occupier Combat Assault Tank",
+                   AttackSurgeId = 1,
+                   IsDefenseSurge = false,
+                   IsDefenseRed = true,
+                   Courage = 6,
+                   FactionId = 2,
+                   IsUnique = false,
+                   PointCost = 155,
+                   RankId = 6,
+                   WoundThreshold = 8,
+                   Speed = 1,
+                   MinisInUnit = 1,
+                   UnitTypeId = 3,
+               },
+               new Unit
+               {
+                   Id = 65,
+                   Name = "Shoretrooper",
+                   AttackSurgeId = 1,
+                   IsDefenseSurge = false,
+                   IsDefenseRed = true,
+                   Courage = 1,
+                   FactionId = 2,
+                   IsUnique = false,
+                   PointCost = 52,
+                   RankId = 3,
+                   WoundThreshold = 1,
+                   Speed = 2,
+                   MinisInUnit = 4,
+                   UnitTypeId = 1,
+               },
+               new Unit
+               {
+                   Id = 66,
+                   Name = "Iden Verio",
+                   AttackSurgeId = 2,
+                   IsDefenseSurge = false,
+                   IsDefenseRed = true,
+                   Courage = 3,
+                   FactionId = 2,
+                   IsUnique = false,
+                   PointCost = 100,
+                   RankId = 1,
+                   WoundThreshold = 6,
+                   Speed = 2,
+                   MinisInUnit = 1,
+                   UnitTypeId = 1,
+               },
+               new Unit
+               {
+                   Id = 67,
+                   Name = "Dewback Rider",
+                   AttackSurgeId = 2,
+                   IsDefenseSurge = false,
+                   IsDefenseRed = true,
+                   Courage = 2,
+                   FactionId = 2,
+                   IsUnique = false,
+                   PointCost = 90,
+                   RankId = 5,
+                   WoundThreshold = 6,
+                   Speed = 1,
+                   MinisInUnit = 1,
+                   UnitTypeId = 5,
+               },
+               new Unit
+               {
+                   Id = 68,
+                   Name = "DF-90 Mortar Trooper",
+                   AttackSurgeId = 1,
+                   IsDefenseSurge = false,
+                   IsDefenseRed = true,
+                   Courage = 2,
+                   FactionId = 2,
+                   IsUnique = false,
+                   PointCost = 36,
+                   RankId = 3,
+                   WoundThreshold = 3,
+                   Speed = 1,
+                   MinisInUnit = 1,
+                   UnitTypeId = 4,
+               },
+               new Unit
+               {
+                   Id = 69,
+                   Name = "Imperial Special Forces",
+                   AttackSurgeId = 2,
+                   IsDefenseSurge = false,
+                   IsDefenseRed = true,
+                   Courage = 2,
+                   FactionId = 2,
+                   IsUnique = false,
+                   PointCost = 68,
+                   RankId = 3,
+                   WoundThreshold = 1,
+                   Speed = 2,
+                   MinisInUnit = 4,
+                   UnitTypeId = 1,
+               },
+               new Unit
+               {
+                   Id = 70,
+                   Name = "Imperial Special Forces",
+                   SurName = "Inferno Squad",
+                   AttackSurgeId = 2,
+                   IsDefenseSurge = false,
+                   IsDefenseRed = true,
+                   Courage = 2,
+                   FactionId = 2,
+                   IsUnique = false,
+                   PointCost = 34,
+                   RankId = 3,
+                   WoundThreshold = 2,
+                   Speed = 2,
+                   MinisInUnit = 1,
+                   UnitTypeId = 1,
+               },
+               new Unit
+               {
+                   Id = 71,
+                   Name = "Boba Fett",
+                   SurName = "Infamous Bounty Hunter",
+                   AttackSurgeId = 3,
+                   IsDefenseSurge = true,
+                   IsDefenseRed = true,
+                   Courage = 3,
+                   FactionId = 2,
+                   IsUnique = true,
+                   PointCost = 140,
+                   RankId = 2,
+                   WoundThreshold = 5,
+                   Speed = 3,
+                   MinisInUnit = 1,
+                   UnitTypeId = 1,
+               },
+               new Unit
+               {
+                   Id = 72,
+                   Name = "Darth Vader",
+                   SurName = "The Emperor's Apprentice",
+                   AttackSurgeId = 1,
+                   IsDefenseSurge = false,
+                   IsDefenseRed = true,
+                   Courage = 3,
+                   FactionId = 2,
+                   IsUnique = true,
+                   PointCost = 170,
+                   RankId = 2,
+                   WoundThreshold = 6,
+                   Speed = 1,
+                   MinisInUnit = 1,
+                   UnitTypeId = 1,
+               },
+               new Unit
+               {
+                   Id = 73,
+                   Name = "Agent Kallus",
+                   AttackSurgeId = 3,
+                   IsDefenseSurge = false,
+                   IsDefenseRed = true,
+                   Courage = 2,
+                   FactionId = 2,
+                   IsUnique = true,
+                   PointCost = 90,
+                   RankId = 1,
+                   WoundThreshold = 6,
+                   Speed = 2,
+                   MinisInUnit = 1,
+                   UnitTypeId = 1,
+               });
             #endregion
 
             #region Seed Chosen Units
-            var chosenunit1 = new ChosenUnit { Id = 10, ArmyId = 1, UnitId = 1 };
-            var chosenunit2 = new ChosenUnit { Id = 11, ArmyId = 1, UnitId = 3 };
-            var chosenunit3 = new ChosenUnit { Id = 12, ArmyId = 1, UnitId = 3 };
-
-            builder.Entity<ChosenUnit>(u =>
-            {
-                u.HasData(chosenunit1);
-                u.HasData(chosenunit2);
-                u.HasData(chosenunit3);
-            });
-
-
-
+            builder.Entity<ChosenUnit>().HasData(
+                new ChosenUnit { Id = 10, ArmyId = 1, UnitId = 1 },
+                new ChosenUnit { Id = 11, ArmyId = 1, UnitId = 3 },
+                new ChosenUnit { Id = 12, ArmyId = 1, UnitId = 3 },
+                new ChosenUnit { Id = 13, ArmyId = 2, UnitId = 50 }
+            );
             #endregion
-
-
-            //     modelBuilder.Entity<Category>().HasData(
-            //    new Category { Id = 1, Name = "Active Wear - Men" },
-            //    new Category { Id = 2, Name = "Active Wear - Women" },
-            //    new Category { Id = 3, Name = "Mineral Water" },
-            //    new Category { Id = 4, Name = "Publications" },
-            //    new Category { Id = 5, Name = "Supplements" });
-
-            //modelBuilder.Entity<Product>().HasData(
-            //    new Product { Id = 1, CategoryId = 1, Name = "Grunge Skater Jeans", Sku = "AWMGSJ", Price = 68, IsAvailable = true },
-            //    new Product { Id = 2, CategoryId = 1, Name = "Polo Shirt", Sku = "AWMPS", Price = 35, IsAvailable = true },
         }
     }
 }

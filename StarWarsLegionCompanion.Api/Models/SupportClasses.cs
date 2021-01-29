@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace StarWarsLegionCompanion.Api.Models
@@ -26,11 +28,14 @@ namespace StarWarsLegionCompanion.Api.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        [NotMapped, JsonIgnore]
+        public virtual List<Weapon> Weapons{ get; set; }
     }
     public class Faction
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        [NotMapped, JsonIgnore]
         public virtual List<Unit> Units { get; set; }
     }
   
@@ -38,6 +43,7 @@ namespace StarWarsLegionCompanion.Api.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        [NotMapped, JsonIgnore]
         public virtual List<Unit> Units { get; set; }
 
     }
@@ -45,6 +51,7 @@ namespace StarWarsLegionCompanion.Api.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        [NotMapped, JsonIgnore]
         public virtual List<Unit> Units { get; set; }
 
     }
@@ -52,12 +59,15 @@ namespace StarWarsLegionCompanion.Api.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        [NotMapped, JsonIgnore]
         public virtual List<Unit> Units { get; set; }
     }
     public class Player
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        [NotMapped, JsonIgnore]
+        public virtual List<Army> Armies{ get; set; }
 
     }
 

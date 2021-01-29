@@ -35,6 +35,15 @@ namespace StarWarsLegionCompanion.Site.Models
 
             return unit;
         }
+        public async Task<List<Unit>> GetAllUnitsByFaction(int id)
+        {
+            var response = await client.GetAsync($"{client.BaseAddress}units/faction/{id}");
+            string result = await response.Content.ReadAsStringAsync();
+            List<Unit> units = JsonConvert.DeserializeObject<List<Unit>>(result);
+
+            return units;
+        }
+
         //GET CHOSEN UNITS
         public async Task<List<ChosenUnit>> GetAllChosenUnits()
         {
@@ -49,6 +58,14 @@ namespace StarWarsLegionCompanion.Site.Models
             var response = await client.GetAsync($"{client.BaseAddress}chosenunit/{id}");
             string result = await response.Content.ReadAsStringAsync();
             ChosenUnit chosenunit = JsonConvert.DeserializeObject<ChosenUnit>(result);
+
+            return chosenunit;
+        }
+        public async Task<List<ChosenUnit>> GetChosenUnitByArmy(int id)
+        {
+            var response = await client.GetAsync($"{client.BaseAddress}chosenunit/army/{id}");
+            string result = await response.Content.ReadAsStringAsync();
+            List<ChosenUnit> chosenunit = JsonConvert.DeserializeObject<List<ChosenUnit>>(result);
 
             return chosenunit;
         }
@@ -84,11 +101,20 @@ namespace StarWarsLegionCompanion.Site.Models
             StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
             await client.PostAsync($"{client.BaseAddress}chosenunit", content);
         }
-        public async Task PostArmyList(Army model)
+        /// <summary>
+        /// Post a newly created Army
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns>The new army's Id as int</returns>
+        public async Task<int> PostArmyList(Army model)
         {
             string data = JsonConvert.SerializeObject(model);
             StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
-            await client.PostAsync($"{client.BaseAddress}armylist", content);
+            var response = await client.PostAsync($"{client.BaseAddress}armylist", content);
+            var result = await response.Content.ReadAsStringAsync();
+            Army armyList = JsonConvert.DeserializeObject<Army>(result);
+            var newId = armyList.Id;
+            return newId;
         }
 
         //PUT
@@ -104,6 +130,10 @@ namespace StarWarsLegionCompanion.Site.Models
         {
             await client.DeleteAsync($"{client.BaseAddress}chosenunit/{id}");
         }
-
+        public async Task DeleteArmyList(int id)
+        {
+            await client.DeleteAsync($"{client.BaseAddress}armylist/{id}");
+            //Maybe return armyname for user feedback
+        }
     }
 }

@@ -16,12 +16,14 @@ namespace StarWarsLegionCompanion.Api.Models
     //public enum AttackSurge { none, hit, CriticalHit}
     //public enum UnitType {Trooper, RepulsorVehicle, GroundVehicle, EmplacementTrooper, CreatureTropper, WookieTropper, DroidTrooper, CloneTrooper}
     //public enum RankType { Commander, Operative, Corps, SpecialForces, Support, Heavy}
-  
+
     public class AttackDie
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public int Value { get; set; }
+        [NotMapped, JsonIgnore]
+        public virtual List<Weapon> Weapons { get; set; }
     }
 
     public class RangeType
@@ -29,7 +31,7 @@ namespace StarWarsLegionCompanion.Api.Models
         public int Id { get; set; }
         public string Name { get; set; }
         [NotMapped, JsonIgnore]
-        public virtual List<Weapon> Weapons{ get; set; }
+        public virtual List<Weapon> Weapons { get; set; }
     }
     public class Faction
     {
@@ -38,7 +40,7 @@ namespace StarWarsLegionCompanion.Api.Models
         [NotMapped, JsonIgnore]
         public virtual List<Unit> Units { get; set; }
     }
-  
+
     public class AttackSurge
     {
         public int Id { get; set; }
@@ -67,7 +69,7 @@ namespace StarWarsLegionCompanion.Api.Models
         public int Id { get; set; }
         public string Name { get; set; }
         [NotMapped, JsonIgnore]
-        public virtual List<Army> Armies{ get; set; }
+        public virtual List<Army> Armies { get; set; }
 
     }
 

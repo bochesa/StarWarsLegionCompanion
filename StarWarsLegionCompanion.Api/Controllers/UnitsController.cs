@@ -30,6 +30,7 @@ namespace StarWarsLegionCompanion.Api.Controllers
             var qeuryunits = context.Units
                 .Include(u => u.Weapons).ThenInclude(k => k.Keywords)
                 .Include(u => u.Keywords)
+                .Include(u => u.UpgradeCategories)
                 ;
             var units = qeuryunits.OrderBy(u => u.RankId).ToList();
 
@@ -57,7 +58,9 @@ namespace StarWarsLegionCompanion.Api.Controllers
         {
             Unit unit = context.Units.Where(u => u.Id == id)
                 .Include(u => u.Weapons).ThenInclude(k => k.Keywords)
-                .Include(u => u.Keywords).FirstOrDefault()
+                .Include(u => u.Keywords)
+                .Include(u => u.UpgradeCategories)
+                .FirstOrDefault()
                 ;
 
             FillInObjects(unit);
@@ -66,7 +69,7 @@ namespace StarWarsLegionCompanion.Api.Controllers
                 return NotFound();
             return Ok(unit);
         }
-        
+
         #endregion
 
 
@@ -79,7 +82,7 @@ namespace StarWarsLegionCompanion.Api.Controllers
             context.SaveChanges();
             return CreatedAtAction("GetUnitById", new { id = unit.Id }, unit);
         }
-        
+
         #endregion
 
         [HttpPut("{id}")]
@@ -114,7 +117,7 @@ namespace StarWarsLegionCompanion.Api.Controllers
             context.SaveChanges();
             return unit;
         }
-       
+
         void FillInObjectsForList(List<Unit> units)
         {
             foreach (var unit in units)

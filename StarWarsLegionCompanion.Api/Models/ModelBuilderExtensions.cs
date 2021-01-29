@@ -13,144 +13,80 @@ namespace StarWarsLegionCompanion.Api.Models
         {
             #region Seed AttackDies
             //premade object for Attack die
-            var wd1 = new AttackDie() { Id = 1, Name = "White", Value = 1 };
-            var wd2 = new AttackDie() { Id = 2, Name = "White", Value = 2 };
-            var wd3 = new AttackDie() { Id = 3, Name = "White", Value = 3 };
-            var wd4 = new AttackDie() { Id = 4, Name = "White", Value = 4 };
-            var wd5 = new AttackDie() { Id = 5, Name = "White", Value = 5 };
-            var wd6 = new AttackDie() { Id = 6, Name = "White", Value = 6 };
+            builder.Entity<AttackDie>().HasData(
+                new AttackDie() { Id = 1, Name = "White", Value = 1 },
+                new AttackDie() { Id = 2, Name = "White", Value = 2 },
+                new AttackDie() { Id = 3, Name = "White", Value = 3 },
+                new AttackDie() { Id = 4, Name = "White", Value = 4 },
+                new AttackDie() { Id = 5, Name = "White", Value = 5 },
+                new AttackDie() { Id = 6, Name = "White", Value = 6 },
 
-            var bd1 = new AttackDie() { Id = 11, Name = "Black", Value = 1 };
-            var bd2 = new AttackDie() { Id = 12, Name = "Black", Value = 2 };
-            var bd3 = new AttackDie() { Id = 13, Name = "Black", Value = 3 };
-            var bd4 = new AttackDie() { Id = 14, Name = "Black", Value = 4 };
-            var bd5 = new AttackDie() { Id = 15, Name = "Black", Value = 5 };
-            var bd6 = new AttackDie() { Id = 16, Name = "Black", Value = 6 };
+                new AttackDie() { Id = 11, Name = "Black", Value = 1 },
+                new AttackDie() { Id = 12, Name = "Black", Value = 2 },
+                new AttackDie() { Id = 13, Name = "Black", Value = 3 },
+                new AttackDie() { Id = 14, Name = "Black", Value = 4 },
+                new AttackDie() { Id = 15, Name = "Black", Value = 5 },
+                new AttackDie() { Id = 16, Name = "Black", Value = 6 },
 
-            var rd1 = new AttackDie() { Id = 21, Name = "Red", Value = 1 };
-            var rd2 = new AttackDie() { Id = 22, Name = "Red", Value = 2 };
-            var rd3 = new AttackDie() { Id = 23, Name = "Red", Value = 3 };
-            var rd4 = new AttackDie() { Id = 24, Name = "Red", Value = 4 };
-            var rd5 = new AttackDie() { Id = 25, Name = "Red", Value = 5 };
-            var rd6 = new AttackDie() { Id = 26, Name = "Red", Value = 6 };
-
-        builder.Entity<AttackDie>(d =>
-            {
-                d.HasData(wd1);
-                d.HasData(wd2);
-                d.HasData(wd3);
-                d.HasData(wd4);
-                d.HasData(wd5);
-                d.HasData(wd6);
-
-                d.HasData(bd1);
-                d.HasData(bd2);
-                d.HasData(bd3);
-                d.HasData(bd4);
-                d.HasData(bd5);
-                d.HasData(bd6);
-
-                d.HasData(rd1);
-                d.HasData(rd2);
-                d.HasData(rd3);
-                d.HasData(rd4);
-                d.HasData(rd5);
-                d.HasData(rd6);
-            });
+                new AttackDie() { Id = 21, Name = "Red", Value = 1 },
+                new AttackDie() { Id = 22, Name = "Red", Value = 2 },
+                new AttackDie() { Id = 23, Name = "Red", Value = 3 },
+                new AttackDie() { Id = 24, Name = "Red", Value = 4 },
+                new AttackDie() { Id = 25, Name = "Red", Value = 5 },
+                new AttackDie() { Id = 26, Name = "Red", Value = 6 }
+            );
             #endregion
 
             #region Seed UpgradeCategories
-            //            //premade objects for upgradecategories
-            //            var armament = new UpgradeCategory { Id = 1, Name = "Armament" };
-            //    var command = new UpgradeCategory { Id = 2, Name = "Command" };
-            //    var comms = new UpgradeCategory { Id = 3, Name = "Comms" };
-            //    var crew = new UpgradeCategory { Id = 4, Name = "Crew" };
-            //    var force = new UpgradeCategory { Id = 5, Name = "Force" };
-            //    var gear = new UpgradeCategory { Id = 6, Name = "Gear" };
-            //    var generator = new UpgradeCategory { Id = 7, Name = "Generator" };
-            //    var grenades = new UpgradeCategory { Id = 8, Name = "Grenades" };
-            //    var hardpoint = new UpgradeCategory { Id = 9, Name = "Hardpoint" };
-            //    var heavyWeapon = new UpgradeCategory { Id = 10, Name = "Heavy Weapon" };
-            //    var ordnance = new UpgradeCategory { Id = 11, Name = "Ordnance" };
-            //    var personnel = new UpgradeCategory { Id = 12, Name = "Personnel" };
-            //    var pilot = new UpgradeCategory { Id = 13, Name = "Pilot" };
-            //    var training = new UpgradeCategory { Id = 14, Name = "Training" };
+            //premade objects for upgradecategories
 
-            //    var armament2 = new UpgradeCategory { Id = 15, Name = "Armament" };
-            //    var command2 = new UpgradeCategory { Id = 16, Name = "Command" };
-            //    var comms2 = new UpgradeCategory { Id = 17, Name = "Comms" };
-            //    var crew2 = new UpgradeCategory { Id = 18, Name = "Crew" };
-            //    var force2 = new UpgradeCategory { Id = 19, Name = "Force" };
-            //    var gear2 = new UpgradeCategory { Id = 20, Name = "Gear" };
-            //    var generator2 = new UpgradeCategory { Id = 21, Name = "Generator" };
-            //    var grenades2 = new UpgradeCategory { Id = 22, Name = "Grenades" };
-            //    var hardpoint2 = new UpgradeCategory { Id = 23, Name = "Hardpoint" };
-            //    var heavyWeapon2 = new UpgradeCategory { Id = 24, Name = "Heavy Weapon" };
-            //    var ordnance2 = new UpgradeCategory { Id = 25, Name = "Ordnance" };
-            //    var personnel2 = new UpgradeCategory { Id = 26, Name = "Personnel" };
-            //    var pilot2 = new UpgradeCategory { Id = 27, Name = "Pilot" };
-            //    var training2 = new UpgradeCategory { Id = 28, Name = "Training" };
+            builder.Entity<UpgradeCategory>().HasData(
 
-            //    var armament3 = new UpgradeCategory { Id = 29, Name = "Armament" };
-            //    var command3 = new UpgradeCategory { Id = 30, Name = "Command" };
-            //    var comms3 = new UpgradeCategory { Id = 31, Name = "Comms" };
-            //    var crew3 = new UpgradeCategory { Id = 32, Name = "Crew" };
-            //    var force3 = new UpgradeCategory { Id = 33, Name = "Force" };
-            //    var gear3 = new UpgradeCategory { Id = 34, Name = "Gear" };
-            //    var generator3 = new UpgradeCategory { Id = 35, Name = "Generator" };
-            //    var grenades3 = new UpgradeCategory { Id = 36, Name = "Grenades" };
-            //    var hardpoint3 = new UpgradeCategory { Id = 37, Name = "Hardpoint" };
-            //    var heavyWeapon3 = new UpgradeCategory { Id = 38, Name = "Heavy Weapon" };
-            //    var ordnance3 = new UpgradeCategory { Id = 39, Name = "Ordnance" };
-            //    var personnel3 = new UpgradeCategory { Id = 40, Name = "Personnel" };
-            //    var pilot3 = new UpgradeCategory { Id = 41, Name = "Pilot" };
-            //    var training3 = new UpgradeCategory { Id = 42, Name = "Training" };
+            new UpgradeCategory { Id = 1, Name = "Armament" },
+            new UpgradeCategory { Id = 2, Name = "Command" },
+            new UpgradeCategory { Id = 3, Name = "Comms" },
+            new UpgradeCategory { Id = 4, Name = "Crew" },
+            new UpgradeCategory { Id = 5, Name = "Force" },
+            new UpgradeCategory { Id = 6, Name = "Gear" },
+            new UpgradeCategory { Id = 7, Name = "Generator" },
+            new UpgradeCategory { Id = 8, Name = "Grenades" },
+            new UpgradeCategory { Id = 9, Name = "Hardpoint" },
+            new UpgradeCategory { Id = 10, Name = "Heavy Weapon" },
+            new UpgradeCategory { Id = 11, Name = "Ordnance" },
+            new UpgradeCategory { Id = 12, Name = "Personnel" },
+            new UpgradeCategory { Id = 13, Name = "Pilot" },
+            new UpgradeCategory { Id = 14, Name = "Training" },
 
-            //    builder.Entity<UpgradeCategory>(u =>
-            //            {
-            //                u.HasData(armament);
-            //                u.HasData(command);
-            //                u.HasData(comms);
-            //                u.HasData(crew);
-            //                u.HasData(force);
-            //                u.HasData(gear);
-            //                u.HasData(generator);
-            //                u.HasData(grenades);
-            //                u.HasData(hardpoint);
-            //                u.HasData(heavyWeapon);
-            //                u.HasData(ordnance);
-            //                u.HasData(personnel);
-            //                u.HasData(pilot);
-            //                u.HasData(training);
-            //                u.HasData(armament2);
-            //                u.HasData(command2);
-            //                u.HasData(comms2);
-            //                u.HasData(crew2);
-            //                u.HasData(force2);
-            //                u.HasData(gear2);
-            //                u.HasData(generator2);
-            //                u.HasData(grenades2);
-            //                u.HasData(hardpoint2);
-            //                u.HasData(heavyWeapon2);
-            //                u.HasData(ordnance2);
-            //                u.HasData(personnel2);
-            //                u.HasData(pilot2);
-            //                u.HasData(training2);
-            //                u.HasData(armament3);
-            //                u.HasData(command3);
-            //                u.HasData(comms3);
-            //                u.HasData(crew3);
-            //                u.HasData(force3);
-            //                u.HasData(gear3);
-            //                u.HasData(generator3);
-            //                u.HasData(grenades3);
-            //                u.HasData(hardpoint3);
-            //                u.HasData(heavyWeapon3);
-            //                u.HasData(ordnance3);
-            //                u.HasData(personnel3);
-            //                u.HasData(pilot3);
-            //                u.HasData(training3);
-            //            });
+            new UpgradeCategory { Id = 15, Name = "Armament" },
+            new UpgradeCategory { Id = 16, Name = "Command" },
+            new UpgradeCategory { Id = 17, Name = "Comms" },
+            new UpgradeCategory { Id = 18, Name = "Crew" },
+            new UpgradeCategory { Id = 19, Name = "Force" },
+            new UpgradeCategory { Id = 20, Name = "Gear" },
+             new UpgradeCategory { Id = 21, Name = "Generator" },
+            new UpgradeCategory { Id = 22, Name = "Grenades" },
+             new UpgradeCategory { Id = 23, Name = "Hardpoint" },
+             new UpgradeCategory { Id = 24, Name = "Heavy Weapon" },
+            new UpgradeCategory { Id = 25, Name = "Ordnance" },
+             new UpgradeCategory { Id = 26, Name = "Personnel" },
+            new UpgradeCategory { Id = 27, Name = "Pilot" },
+             new UpgradeCategory { Id = 28, Name = "Training" },
+
+             new UpgradeCategory { Id = 29, Name = "Armament" },
+            new UpgradeCategory { Id = 30, Name = "Command" },
+            new UpgradeCategory { Id = 31, Name = "Comms" },
+             new UpgradeCategory { Id = 32, Name = "Crew" },
+             new UpgradeCategory { Id = 33, Name = "Force" },
+             new UpgradeCategory { Id = 34, Name = "Gear" },
+             new UpgradeCategory { Id = 35, Name = "Generator" },
+            new UpgradeCategory { Id = 36, Name = "Grenades" },
+             new UpgradeCategory { Id = 37, Name = "Hardpoint" },
+             new UpgradeCategory { Id = 38, Name = "Heavy Weapon" },
+            new UpgradeCategory { Id = 39, Name = "Ordnance" },
+             new UpgradeCategory { Id = 40, Name = "Personnel" },
+             new UpgradeCategory { Id = 41, Name = "Pilot" },
+             new UpgradeCategory { Id = 42, Name = "Training" }
+            );
             #endregion
 
             #region Seed RangeTypes
@@ -271,88 +207,98 @@ namespace StarWarsLegionCompanion.Api.Models
 
             #region Seed Keyword Database
             //Premade keywords:
-            var jump1 = new Keyword
+            builder.Entity<Keyword>().HasData(
+
+            new Keyword
             {
                 Id = 1,
                 Name = "Jump",
                 AbilityValue = 1,
                 Text = "Perform a move during which you ignore terrain that is height 1 or lower. This is treated as a move action.",
                 IsCardAction = true,
-            };
-            var charge = new Keyword
+            },
+            new Keyword
             {
                 Id = 2,
                 Name = "Charge",
                 Text = "After you perform a move action, you may perform a free melee attack action.",
-            };
-            var deflect = new Keyword
+            },
+            new Keyword
             {
                 Id = 3,
                 Name = "Deflect",
                 Text = "After While defending, if you spend a dodge token, you gain “Surge: Block”: if it’s a ranged attack, the attacker suffers 1 wound for each Surge rolled.",
-            };
-            var immunePierce = new Keyword
+            },
+            new Keyword
             {
                 Id = 4,
                 Name = "Immune: Pierce",
                 Text = "Pierce cannot be used against you.",
-            };
-            var impact2 = new Keyword
+            },
+            new Keyword
             {
                 Id = 5,
                 Name = "Impact",
                 Text = "While attacking a unit that has Armor, change up to X Dice Hit.png result(s) to Dice Crit.png result(s).",
                 AbilityValue = 2
-            };
-            var pierce2 = new Keyword
+            },
+            new Keyword
             {
                 Id = 6,
                 Name = "Pierce",
                 Text = "When attacking, ignore up to 2 block results.",
                 AbilityValue = 2,
-            };
-            var precise1 = new Keyword
+            },
+            new Keyword
             {
                 Id = 7,
                 Name = "Precise 1",
                 Text = "When you spend an aim token, reroll up to 1 additional die.",
                 AbilityValue = 1,
-            };
-
-            builder.Entity<Keyword>(k =>
+            },
+            new Keyword
             {
-                k.HasData(jump1);
-                k.HasData(charge);
-                k.HasData(deflect);
-                k.HasData(immunePierce);
-                k.HasData(impact2);
-                k.HasData(pierce2);
-                k.HasData(precise1);
-            });
+                Id = 8,
+                Name = "Impact",
+                Text = "While attacking a unit that has Armor, change up to X Dice Hit.png result(s) to Dice Crit.png result(s).",
+                AbilityValue = 3
+            },
+            new Keyword
+            {
+                Id = 9,
+                Name = "Pierce",
+                Text = "When attacking, ignore up to 2 block results.",
+                AbilityValue = 3,
+            }
+
+            );
             #endregion
 
             #region Seed Weapons Database
             //Premade weapons for Luke
-            var lukeSaber = new Weapon
+            builder.Entity<Weapon>().HasData(
+
+            new Weapon
             {
                 Id = 1,
                 Name = "Anakin's Lightsaber",
                 RangeTypeId = 1,
-            };
-            var lukesBlaster = new Weapon
+            },
+            new Weapon
             {
                 Id = 2,
                 Name = "Luke's DL-44 Blaster Pistol",
                 RangeTypeId = 2,
                 MinRange = 1,
                 MaxRange = 2,
-            };
-
-            builder.Entity<Weapon>(w =>
+            },
+            new Weapon
             {
-                w.HasData(lukesBlaster);
-                w.HasData(lukeSaber);
-            });
+                Id = 3,
+                Name = "Vader's Lightsaber",
+                RangeTypeId = 1
+            }
+            );
 
             #endregion
 
@@ -404,7 +350,7 @@ namespace StarWarsLegionCompanion.Api.Models
             //});
 
             #endregion
-            
+
             #region Seed Unit Database
             //units:
             var lukeSkywalker = new Unit
@@ -475,7 +421,7 @@ namespace StarWarsLegionCompanion.Api.Models
                 Speed = 2,
                 MinisInUnit = 4,
                 UnitTypeId = 1,
-            }; 
+            };
             var t47airspeeder = new Unit
             {
                 Id = 5,
@@ -911,25 +857,25 @@ namespace StarWarsLegionCompanion.Api.Models
 
 
             });
-            
+
             // SEED Imperial Units
             builder.Entity<Unit>().HasData(
                new Unit
                {
-                    Id = 50,
-                    Name = "Darth Vader",
-                    SurName = "DARK LORD OF THE SITH",
-                    AttackSurgeId = 1,
-                    IsDefenseRed = false,
-                    Courage = 0,
-                    FactionId = 2,
-                    IsUnique = true,
-                    PointCost = 200,
-                    RankId = 1,
-                    WoundThreshold = 8,
-                    Speed = 1,
-                    MinisInUnit = 1,
-                    UnitTypeId = 1,
+                   Id = 50,
+                   Name = "Darth Vader",
+                   SurName = "DARK LORD OF THE SITH",
+                   AttackSurgeId = 1,
+                   IsDefenseRed = false,
+                   Courage = 0,
+                   FactionId = 2,
+                   IsUnique = true,
+                   PointCost = 200,
+                   RankId = 1,
+                   WoundThreshold = 8,
+                   Speed = 1,
+                   MinisInUnit = 1,
+                   UnitTypeId = 1,
                },
                new Unit
                {
@@ -1208,7 +1154,7 @@ namespace StarWarsLegionCompanion.Api.Models
                new Unit
                {
                    Id = 66,
-                   Name = "Iden Verio",
+                   Name = "Iden Versio",
                    AttackSurgeId = 2,
                    IsDefenseSurge = false,
                    IsDefenseRed = true,
@@ -1353,6 +1299,86 @@ namespace StarWarsLegionCompanion.Api.Models
                 new ChosenUnit { Id = 12, ArmyId = 1, UnitId = 3 },
                 new ChosenUnit { Id = 13, ArmyId = 2, UnitId = 50 }
             );
+            #endregion
+
+
+            #region Many to Many Relations
+            //Seed M2M units keywords - Add keywords to units
+            builder
+                .Entity<Unit>()
+                .HasMany(p => p.Keywords)
+                .WithMany(p => p.Units)
+                .UsingEntity(j =>
+                {
+                    j.HasData(new { UnitsId = 1, KeywordsId = 1 }); //jump
+                    j.HasData(new { UnitsId = 1, KeywordsId = 2 }); //Charge
+                    j.HasData(new { UnitsId = 1, KeywordsId = 3 }); //Deflect
+                    j.HasData(new { UnitsId = 1, KeywordsId = 4 }); //ImmunePierce
+
+                    j.HasData(new { UnitsId = 50, KeywordsId = 3 }); //Deflect
+                    j.HasData(new { UnitsId = 50, KeywordsId = 4 }); //ImmunePierce
+                });
+
+            //Seed M2M Units Weapons - Add weapons to units
+            builder
+                .Entity<Unit>()
+                .HasMany(u => u.Weapons)
+                .WithMany(w => w.Units)
+                .UsingEntity(j =>
+                {
+                    j.HasData(new { UnitsId = 1, WeaponsId = 1 }); //luke - lukes saber
+                    j.HasData(new { UnitsId = 1, WeaponsId = 2 }); //luke - lukes blaster
+
+                    j.HasData(new { UnitsId = 50, WeaponsId = 3 }); //luke - lukes saber
+                });
+
+            //Seed M2M Units UpgradeCategories - Add Upgradecategoies to Units
+            builder
+                .Entity<Unit>()
+                .HasMany(u => u.UpgradeCategories)
+                .WithMany(uc => uc.Units)
+                .UsingEntity(j =>
+                {
+                    j.HasData(new { UnitsId = 1, UpgradeCategoriesId = 5 }); //luke - Force1
+                    j.HasData(new { UnitsId = 1, UpgradeCategoriesId = 19 }); //luke - Force2
+                    j.HasData(new { UnitsId = 1, UpgradeCategoriesId = 6 }); //luke - Gear1
+
+                    j.HasData(new { UnitsId = 50, UpgradeCategoriesId = 5 }); //vader - Force1
+                    j.HasData(new { UnitsId = 50, UpgradeCategoriesId = 19 }); //vader - Force2
+                    j.HasData(new { UnitsId = 50, UpgradeCategoriesId = 33 }); //vader - Force3
+                });
+
+            //Seed M2M Weapons AttackDie - Add Attackdie to Weapons
+            builder
+                .Entity<Weapon>()
+                .HasMany(w => w.AttackDie)
+                .WithMany(a => a.Weapons)
+                .UsingEntity(j =>
+                {
+                    j.HasData(new { WeaponsId = 1, AttackDieId = 16 }); //lukes saber - 6_Black
+                    j.HasData(new { WeaponsId = 2, AttackDieId = 22 }); //lukes saber - 2_Red
+
+                    j.HasData(new { WeaponsId = 3, AttackDieId = 26 }); //vader saber - 6_Red
+
+                });
+
+            //Seed M2M Weapons Keywords - Add keywords to Weapons
+            builder
+                .Entity<Weapon>()
+                .HasMany(w => w.Keywords)
+                .WithMany(u => u.Weapons)
+                .UsingEntity(j =>
+                {
+                    j.HasData(new { WeaponsId = 1, KeywordsId = 6 }); //lukes saber - pierce2
+                    j.HasData(new { WeaponsId = 1, KeywordsId = 5 }); //lukes saber - impact2
+                    j.HasData(new { WeaponsId = 2, KeywordsId = 6 }); //lukes blaster - impact2
+
+                    j.HasData(new { WeaponsId = 3, KeywordsId = 8 }); //vaders saber - pierce3
+                    j.HasData(new { WeaponsId = 3, KeywordsId = 9 }); //vaders saber - impact3
+                });
+
+
+
             #endregion
         }
     }

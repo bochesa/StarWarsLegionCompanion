@@ -11,7 +11,7 @@ namespace StarWarsLegionCompanion.Api.Models
         public DataContext(DbContextOptions<DataContext> options)
             : base(options)
         {
-            Database.EnsureCreated();
+            //Database.EnsureCreated();
         }
 
         public DbSet<Unit> Units { get; set; }
@@ -33,7 +33,7 @@ namespace StarWarsLegionCompanion.Api.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Seed();
-            
+
             //modelBuilder
             //    .Entity<Unit>()
             //    .HasMany(p => p.Armies)

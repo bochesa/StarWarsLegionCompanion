@@ -66,9 +66,9 @@ namespace StarWarsLegionCompanion.Api
 
             services.AddDbContext<DataContext>(options =>
             {
-                //var connectionsString = Configuration.GetConnectionString("DBConnectionString");
-                //options.UseSqlServer(connectionsString);
-                options.UseInMemoryDatabase("SWLegion");
+                var connectionsString = Configuration.GetConnectionString("DBConnectionString");
+                options.UseSqlServer(connectionsString);
+                //options.UseInMemoryDatabase("SWLegion");
             });
         }
 

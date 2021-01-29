@@ -20,7 +20,7 @@ namespace StarWarsLegionCompanion.Api.Models
         [NotMapped]
         public virtual Rank Rank { get; set; }
         public int UnitTypeId { get; set; }
-        [NotMapped] 
+        [NotMapped]
         public virtual UnitType UnitType { get; set; }
         public int WoundThreshold { get; set; }
         public int Courage { get; set; }
@@ -33,8 +33,9 @@ namespace StarWarsLegionCompanion.Api.Models
         [NotMapped]
         public virtual AttackSurge AttackSurge { get; set; }
         public int? ArmyId { get; set; }
-        public virtual List<Keyword> Keywords { get; set; } = new List<Keyword>();
-        public virtual List<Weapon> Weapons { get; set; } = new List<Weapon>();
+        public virtual ICollection<Keyword> Keywords { get; set; } = new List<Keyword>(); // For many-to-any relations
+        public virtual ICollection<Weapon> Weapons { get; set; } = new List<Weapon>(); // For many-to-any relations
+        public virtual ICollection<UpgradeCategory> UpgradeCategories { get; set; } = new List<UpgradeCategory>(); // For many-to-any relations
 
     }
 }

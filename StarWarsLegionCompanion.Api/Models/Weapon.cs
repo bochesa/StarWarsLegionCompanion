@@ -15,11 +15,15 @@ namespace StarWarsLegionCompanion.Api.Models
         public int RangeTypeId { get; set; }
         [NotMapped]
         public virtual RangeType RangeType { get; set; }
+        public int UpgradeId { get; set; }
+        [NotMapped]
+        public virtual Upgrade Upgrade { get; set; }
         public int? MinRange { get; set; }
         public int? MaxRange { get; set; }
         public virtual ICollection<AttackDie> AttackDie { get; set; } = new List<AttackDie>();
         public virtual ICollection<Keyword> Keywords { get; set; } = new List<Keyword>();
         public virtual ICollection<Unit> Units { get; set; } = new List<Unit>();
+
     }
 
 }

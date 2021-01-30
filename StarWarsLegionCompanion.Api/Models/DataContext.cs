@@ -25,10 +25,10 @@ namespace StarWarsLegionCompanion.Api.Models
         public DbSet<UnitType> UnitTypes { get; set; }
         public DbSet<Rank> Ranks { get; set; }
         public DbSet<Player> Players { get; set; }
+        public DbSet<Upgrade> Upgrades { get; set; }
 
         public DbSet<ChosenUnit> ChosenUnits { get; set; }
         public DbSet<ChosenUpgrade> ChosenUpgrades { get; set; }
-        //public DbSet<Upgrade> Upgrades { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -72,5 +72,16 @@ namespace StarWarsLegionCompanion.Api.Models
         public virtual List<Army> Armies { get; set; }
 
     }
+    //Class to hold restrictions, if !null then only specified units, unitTypes, factions osv will have this option
+    public class Restrictions
+    {
+        public ICollection<Unit> Units { get; set; }
+        public ICollection<UnitType> UnitTypes { get; set; }
+        public ICollection<Faction> Factions { get; set; }
+        public ICollection<Rank> Ranks { get; set; }
+        public ICollection<UpgradeCategory> UpgradeCategories { get; set; }
+
+    }
+
 
 }

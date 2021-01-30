@@ -29,6 +29,6 @@ namespace StarWarsLegionCompanion.Api.Models
         public bool IsCardAction { get; set; }
         public virtual ICollection<Unit> Units { get; set; } = new List<Unit>(); // For many-to-any relations
         public virtual ICollection<Weapon> Weapons { get; set; } = new List<Weapon>();
-
+        public virtual ICollection<Upgrade> Upgrades { get; set; } = new List<Upgrade>();
     }
 }

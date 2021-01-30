@@ -303,51 +303,45 @@ namespace StarWarsLegionCompanion.Api.Models
             #endregion
 
             #region Seed Upgrade Database
-            ////upgrades:
-            //var forcepush = new Upgrade
-            //{
-            //    Id = 1,
-            //    Name = "Force Push",
-            //    Text = "Choose an enemy trooper unit at range 1. Perform a speed-1 move with that unit, even if it is engaged.",
-            //    IsExhausable = true,
-            //    IsFreeAction = true,
-            //    PointCost = 10,
-            //    UpgradeCategoryId = 5
-            //};
-            //var forceChoke = new Upgrade
-            //{
-            //    Id = 2,
-            //    Name = "Force Choke",
-            //    Text = "Choose a non-commander, non-operative enemy trooper mini at range 1. It suffers 1 wound.",
-            //    IsExhausable = true,
-            //    IsFreeAction = true,
-            //    PointCost = 5,
-            //    //Factions = { empire, separaist },
-            //    UpgradeCategoryId = 5
-            //};
-            //var battleMeditation = new Upgrade
-            //{
-            //    Id = 3,
-            //    Name = "Battle Meditation",
-            //    Text = "While you are issuing orders using a command card, you may issue 1 of those orders to any friendly unit on the battlefield, instead of a unit indicated on the command card.",
-            //    PointCost = 10,
-            //    UpgradeCategoryId = 5
-            //};
-            //var targetingScopes = new Upgrade
-            //{
-            //    Id = 4,
-            //    Name = "Targeting Scopes",
-            //    Text = "You gain Precise 1",
-            //    //Keywords = new List<Keyword>() { precise1 },
-            //    PointCost = 6,
-            //    UpgradeCategoryId = 6
-            //};
-            //builder.Entity<Upgrade>(u =>
-            //{
-            //    u.HasData(forcepush);
-            //    u.HasData(battleMeditation);
-            //    u.HasData(targetingScopes);
-            //});
+            //upgrades:
+            builder.Entity<Upgrade>().HasData(
+
+            new Upgrade
+            {
+                Id = 1,
+                Name = "Force Push",
+                Text = "Choose an enemy trooper unit at range 1. Perform a speed-1 move with that unit, even if it is engaged.",
+                IsExhaustable = true,
+                IsFreeAction = true,
+                PointCost = 10,
+                UpgradeCategoryId = 5
+            },
+            new Upgrade
+            {
+                Id = 2,
+                Name = "Force Choke",
+                Text = "Choose a non-commander, non-operative enemy trooper mini at range 1. It suffers 1 wound.",
+                IsExhaustable = true,
+                IsFreeAction = true,
+                PointCost = 5,
+                UpgradeCategoryId = 5
+            },
+            new Upgrade
+            {
+                Id = 3,
+                Name = "Battle Meditation",
+                Text = "While you are issuing orders using a command card, you may issue 1 of those orders to any friendly unit on the battlefield, instead of a unit indicated on the command card.",
+                PointCost = 10,
+                UpgradeCategoryId = 5
+            },
+            new Upgrade
+            {
+                Id = 4,
+                Name = "Targeting Scopes",
+                Text = "You gain Precise 1",
+                PointCost = 6,
+                UpgradeCategoryId = 6
+            });
 
             #endregion
 
@@ -1301,6 +1295,15 @@ namespace StarWarsLegionCompanion.Api.Models
             );
             #endregion
 
+            #region Seed Chosen Upgrades
+            builder.Entity<ChosenUpgrade>().HasData(
+                new ChosenUpgrade { Id = 20, UpgradeId = 1, ChosenUnitId = 1 },
+                new ChosenUpgrade { Id = 21, UpgradeId = 3, ChosenUnitId = 1 },
+                new ChosenUpgrade { Id = 22, UpgradeId = 5, ChosenUnitId = 3 },
+                new ChosenUpgrade { Id = 23, UpgradeId = 5, ChosenUnitId = 3 },
+                new ChosenUpgrade { Id = 24, UpgradeId = 2, ChosenUnitId = 13 }
+            );
+            #endregion
 
             #region Many to Many Relations
             //Seed M2M units keywords - Add keywords to units
@@ -1332,7 +1335,7 @@ namespace StarWarsLegionCompanion.Api.Models
                     j.HasData(new { UnitsId = 50, WeaponsId = 3 }); //luke - lukes saber
                 });
 
-            //Seed M2M Units UpgradeCategories - Add Upgradecategoies to Units
+            //Seed M2M Units UpgradeCategories - Add Upgradecategories to Units
             builder
                 .Entity<Unit>()
                 .HasMany(u => u.UpgradeCategories)
@@ -1375,6 +1378,17 @@ namespace StarWarsLegionCompanion.Api.Models
 
                     j.HasData(new { WeaponsId = 3, KeywordsId = 8 }); //vaders saber - pierce3
                     j.HasData(new { WeaponsId = 3, KeywordsId = 9 }); //vaders saber - impact3
+                });
+
+            //Seed M2M Upgrades Keywords - Add keywords to Upgrades
+            builder
+                .Entity<Upgrade>()
+                .HasMany(u => u.Keywords)
+                .WithMany(k => k.Upgrades)
+                .UsingEntity(j =>
+                {
+                    j.HasData(new { UpgradesId = 4, KeywordsId = 7 }); //Targeting Scopes - Precise 1
+
                 });
 
 

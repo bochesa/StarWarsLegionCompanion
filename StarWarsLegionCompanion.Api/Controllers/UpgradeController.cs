@@ -29,7 +29,7 @@ namespace StarWarsLegionCompanion.Api.Controllers
         public IActionResult GetAllUpgrades()
         {
             var upgrades = context.Upgrades.Include(u => u.Keywords).ToList();
-
+            FillInObjectsForList(upgrades);
             return Ok(upgrades);
         }
         /// <summary>
@@ -41,8 +41,12 @@ namespace StarWarsLegionCompanion.Api.Controllers
         public IActionResult GetAllUpgradesByCategory(int id)
         {
 
-            var upgrades = context.Upgrades.Where(x => x.UpgradeCategoryId == id).Include(u => u.Keywords);
+            var upgrades = context.Upgrades
+                .Where(x => x.UpgradeCategoryId == id)
+                .Include(u => u.Keywords)
+                .ToList();
 
+            FillInObjectsForList(upgrades);
 
             return Ok(upgrades);
         }
@@ -106,6 +110,18 @@ namespace StarWarsLegionCompanion.Api.Controllers
             context.Upgrades.Remove(upgrade);
             context.SaveChanges();
             return upgrade;
+        }
+
+        void FillInObjectsForList(List<Upgrade> upgrades)
+        {
+            foreach (var upgrade in upgrades)
+            {
+                upgrade.UpgradeCategory = context.UpgradeCategories.FirstOrDefault(f => f.Id == upgrade.UpgradeCategoryId);
+            }
+        }
+        void FillInObjects(Upgrade upgrade)
+        {
+            upgrade.UpgradeCategory = context.UpgradeCategories.FirstOrDefault(f => f.Id == upgrade.UpgradeCategoryId);
         }
     }
 }

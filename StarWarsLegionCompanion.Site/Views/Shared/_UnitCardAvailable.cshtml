@@ -1,35 +1,35 @@
 ﻿@model ArmyViewModel
-    
+
 @foreach (var group in Model.AvailableUnitsGrouped)
 {
-    if(group!=null)
+    if (group != null)
     {
         <div class="card bg-transparent border-0" id="Model-group-avail-@group.ElementAt(0).Rank.Id">
             <!-- Card Header - Accordion -->
             <a href="#group-avail-card-@group.ElementAt(0).Rank.Id" class="d-block card-header bg-transparent border-top border-bottom-0 py-3 collapsed" data-toggle="collapse"
                role="button" aria-expanded="false" aria-controls="group-avail-card-@group.ElementAt(0).Rank.Id">
                 <div class="row">
-                <h5 class="m-0 font-weight-bold text-primary">
-                    @group.ElementAt(0).Rank.Name
-                </h5>
-                <span class="ml-3">
-                <i class="@group.ElementAt(0).Rank.Name.ToLower().Replace(" ","")-icon ml-3"></i>
-                </span>
+                    <h5 class="m-0 font-weight-bold text-primary">
+                        @group.ElementAt(0).Rank.Name
+                    </h5>
+                    <span class="ml-3">
+                        <i class="@group.ElementAt(0).Rank.Name.ToLower().Replace(" ","")-icon ml-3"></i>
+                    </span>
 
                 </div>
             </a>
             <!-- Card Content - Collapse -->
             <div class="collapse" id="group-avail-card-@group.ElementAt(0).Rank.Id">
                 <div class="card-body">
-                    
+
                     @foreach (var unit in group)
                     {
-                        <form asp-action="AddUnit" asp-controller="Army"asp-route-id="@unit.Id" asp-route-armyid="@Model.Army.Id">
+                        <form asp-action="AddUnit" asp-controller="Army" asp-route-id="@unit.Id" asp-route-armyid="@Model.Army.Id" asp-route-rankid="@unit.RankId">
                             <div class="row">
                                 <div class="col-10">
-                                    <div class="card shadow mb-0" id="Model-card-id-@unit.Id">
+                                    <div class="card shadow mb-0" id="Model-available-card-id-@unit.Id">
                                         <!-- Card Header - Accordion -->
-                                        <a href="#unit-card-@unit.Id" class="d-block card-header py-3 collapsed" data-toggle="collapse"
+                                        <a href="#unit-card-available-@unit.Id" class="d-block card-header py-3 collapsed" data-toggle="collapse"
                                            role="button" aria-expanded="false" aria-controls="collapseCardExample">
                                             <h6 class="m-0 font-weight-bold text-primary">
                                                 @if (unit.IsUnique)
@@ -38,7 +38,7 @@
                                             </h6>
                                         </a>
                                         <!-- Card Content - Collapse -->
-                                        <div class="collapse" id="unit-card-@unit.Id">
+                                        <div class="collapse" id="unit-card-available-@unit.Id">
                                             <div class="card-body">
                                                 This is a collapsable card example using Bootstrap's built in collapse
                                                 functionality. <strong>Click on the card header</strong> to see the card body

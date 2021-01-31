@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StarWarsLegionCompanion.Api.Models;
 
 namespace StarWarsLegionCompanion.Api.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210130191946_minorfixtoSeed")]
+    partial class minorfixtoSeed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -377,9 +379,6 @@ namespace StarWarsLegionCompanion.Api.Migrations
                     b.Property<int>("UnitId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UnitRankId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.ToTable("ChosenUnits");
@@ -389,29 +388,25 @@ namespace StarWarsLegionCompanion.Api.Migrations
                         {
                             Id = 10,
                             ArmyId = 1,
-                            UnitId = 1,
-                            UnitRankId = 1
+                            UnitId = 1
                         },
                         new
                         {
                             Id = 11,
                             ArmyId = 1,
-                            UnitId = 3,
-                            UnitRankId = 3
+                            UnitId = 3
                         },
                         new
                         {
                             Id = 12,
                             ArmyId = 1,
-                            UnitId = 3,
-                            UnitRankId = 3
+                            UnitId = 3
                         },
                         new
                         {
                             Id = 13,
                             ArmyId = 2,
-                            UnitId = 50,
-                            UnitRankId = 1
+                            UnitId = 50
                         });
                 });
 
@@ -449,7 +444,7 @@ namespace StarWarsLegionCompanion.Api.Migrations
                         {
                             Id = 22,
                             ChosenUnitId = 11,
-                            UpgradeId = 4
+                            UpgradeId = 5
                         },
                         new
                         {
@@ -1832,7 +1827,7 @@ namespace StarWarsLegionCompanion.Api.Migrations
 
                     b.HasIndex("UpgradeId1");
 
-                    b.ToTable("UpgradeCategories");
+                    b.ToTable("UpgradeCategory");
 
                     b.HasData(
                         new

@@ -34,14 +34,26 @@ namespace StarWarsLegionCompanion.Site.Controllers
             var army = await proxy.GetArmyList(id);
 
             var chosenunits = await proxy.GetChosenUnitByArmy(id); //chosenunit List
-
+            List<ChosenUpgrade> chosenUpgrades = new List<ChosenUpgrade>();
+            foreach (ChosenUnit cUnit in chosenunits)
+            {
+                var cunitUpgrade = await proxy.GetChosenUpgradeByChosenUnit(cUnit.Id);
+                if (cunitUpgrade != null)
+                    chosenUpgrades.AddRange(cunitUpgrade);
+            }
+            var upgradesAvailable = await proxy.GetAllUpgrades();
             var overallAvailableUnits = await proxy.GetAllUnitsByFaction(army.FactionId);
             //Sorting of units into Rank
 
             var armyAvailaleUnits = CheckAvailability(overallAvailableUnits, chosenunits);
 
-            var currentUnits = ChosenUnitConverter(chosenunits, overallAvailableUnits).OrderBy(x=>x.RankId).ToList(); 
+            var currentUnits = ChosenUnitConverter(chosenunits, overallAvailableUnits).OrderBy(x => x.RankId).ToList();
             //var armyAvailaleUnitsSorted = armyAvailaleUnits.OrderBy(x => x.RankId).ToList();
+            var currentUpgrades = ChosenUnitConverter(chosenUpgrades, upgradesAvailable).ToList();
+            var groupedaChosenUnits = chosenunits
+                .GroupBy(u => u.UnitRankId)
+                .Select(grp => grp.OrderBy(x => x.Id).ToList())
+                .ToList();
 
             var groupedaArmyAvailaleUnits = armyAvailaleUnits
                 .GroupBy(u => u.RankId)
@@ -56,21 +68,27 @@ namespace StarWarsLegionCompanion.Site.Controllers
             {
                 accumulatedPointCost += unit.PointCost;
             }
-            var armyVM = new ArmyViewModel 
-            { 
-                Army = army, 
-                ChosenUnitList = chosenunits, 
-                CurrentUnits = currentUnits, 
+            foreach (var upgrade in currentUpgrades)
+            {
+                accumulatedPointCost += upgrade.PointCost;
+            }
+            var armyVM = new ArmyViewModel
+            {
+                Army = army,
+                ChosenUnitList = chosenunits,
+                ChosenUnitsGrouped = groupedaChosenUnits,
+                CurrentUnits = currentUnits,
                 AvailableUnits = armyAvailaleUnits,
                 AvailableUnitsGrouped = groupedaArmyAvailaleUnits,
                 CurrentUnitsGrouped = groupedacurrentUnits,
                 AccumulatedPointCost = accumulatedPointCost,
-                //ChosenUnitListGrouped = groupedacurrentUnits
+                ChosenUpgrades = chosenUpgrades,
+                AvailableUpgrades = upgradesAvailable,
+                CurrentUpgrades = currentUpgrades,
             };
-
             return View(armyVM);
         }
-        private List<Unit> CheckAvailability( 
+        private List<Unit> CheckAvailability(
             List<Unit> overallAvailableUnits,
             List<ChosenUnit> chosenunits)
         {
@@ -86,11 +104,12 @@ namespace StarWarsLegionCompanion.Site.Controllers
 
         //POST ADD unit to current list
         [HttpPost("[controller]/[action]/{id}")]
-        public async Task<IActionResult> AddUnit(int id, int armyid)
+        public async Task<IActionResult> AddUnit(int id, int armyid, int rankid)
         {
-            var chosenUnit = new ChosenUnit { ArmyId = armyid, UnitId = id };
+            var chosenUnit = new ChosenUnit { ArmyId = armyid, UnitId = id, UnitRankId = rankid };
+            //get unit 
             await proxy.PostChosenUnit(chosenUnit);
-            
+
             return RedirectToAction("Edit", new { Id = armyid });
         }
 
@@ -110,7 +129,7 @@ namespace StarWarsLegionCompanion.Site.Controllers
             //var apiResponse = await proxy.GetArmyLists();
             var factions = await proxy.GetFactions();
             var items = new List<SelectListItem> { new SelectListItem { Value = "0", Text = "Select..." } };
-            var selectedListItems = factions.Where(x => x.Id >= 0 && x.Id <20).Select(x => new SelectListItem
+            var selectedListItems = factions.Where(x => x.Id >= 0 && x.Id < 20).Select(x => new SelectListItem
             {
                 Value = x.Id.ToString(),
                 Text = x.Name
@@ -118,7 +137,7 @@ namespace StarWarsLegionCompanion.Site.Controllers
 
             items.AddRange(selectedListItems);
 
-            var armylistVm = new ArmyViewModel() { Army = null, Factions = items};
+            var armylistVm = new ArmyViewModel() { Army = null, Factions = items };
 
             return View(armylistVm);
         }
@@ -131,7 +150,7 @@ namespace StarWarsLegionCompanion.Site.Controllers
             if (!ModelState.IsValid)
                 return View();
             var factionId = int.Parse(Request.Form["Army.Faction"]);
-            if (factionId == 0 || factionId > factions.Count-1)
+            if (factionId == 0 || factionId > factions.Count - 1)
                 return View();
 
             //model.Armylist.Player = new Player { Id = 3, Name = "Testi Jeff" };
@@ -147,7 +166,18 @@ namespace StarWarsLegionCompanion.Site.Controllers
             return RedirectToAction("Index");
         }
 
-
+        private List<Upgrade> ChosenUnitConverter(IEnumerable<ChosenUpgrade> chosenUpgrades, List<Upgrade> availableUpgrades)
+        {
+            var upgradelist = new List<Upgrade>();
+            if (availableUpgrades == null || chosenUpgrades == null)
+                return upgradelist;
+            foreach (var cUnit in chosenUpgrades)
+            {
+                var upgrade = availableUpgrades.FirstOrDefault(x => x.Id == cUnit.UpgradeId);
+                upgradelist.Add(upgrade);
+            }
+            return upgradelist;
+        }
         private List<Unit> ChosenUnitConverter(IEnumerable<ChosenUnit> chosenunits, List<Unit> availableUnits)
         {
             var unitList = new List<Unit>();

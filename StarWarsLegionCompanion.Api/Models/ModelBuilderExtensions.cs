@@ -1288,19 +1288,18 @@ namespace StarWarsLegionCompanion.Api.Models
 
             #region Seed Chosen Units
             builder.Entity<ChosenUnit>().HasData(
-                new ChosenUnit { Id = 10, ArmyId = 1, UnitId = 1 },
-                new ChosenUnit { Id = 11, ArmyId = 1, UnitId = 3 },
-                new ChosenUnit { Id = 12, ArmyId = 1, UnitId = 3 },
-                new ChosenUnit { Id = 13, ArmyId = 2, UnitId = 50 }
+                new ChosenUnit { Id = 10, ArmyId = 1, UnitId = 1, UnitRankId = 1 },
+                new ChosenUnit { Id = 11, ArmyId = 1, UnitId = 3, UnitRankId = 3 },
+                new ChosenUnit { Id = 12, ArmyId = 1, UnitId = 3, UnitRankId = 3 },
+                new ChosenUnit { Id = 13, ArmyId = 2, UnitId = 50, UnitRankId = 1 }
             );
             #endregion
 
             #region Seed Chosen Upgrades
             builder.Entity<ChosenUpgrade>().HasData(
-                new ChosenUpgrade { Id = 20, UpgradeId = 1, ChosenUnitId = 1 },
-                new ChosenUpgrade { Id = 21, UpgradeId = 3, ChosenUnitId = 1 },
-                new ChosenUpgrade { Id = 22, UpgradeId = 5, ChosenUnitId = 3 },
-                new ChosenUpgrade { Id = 23, UpgradeId = 5, ChosenUnitId = 3 },
+                new ChosenUpgrade { Id = 20, UpgradeId = 1, ChosenUnitId = 10 },
+                new ChosenUpgrade { Id = 21, UpgradeId = 3, ChosenUnitId = 10 },
+                new ChosenUpgrade { Id = 22, UpgradeId = 4, ChosenUnitId = 11 },
                 new ChosenUpgrade { Id = 24, UpgradeId = 2, ChosenUnitId = 13 }
             );
             #endregion

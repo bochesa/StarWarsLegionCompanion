@@ -11,11 +11,15 @@ namespace StarWarsLegionCompanion.Site.Models
     {
         public Army Army { get; set; }
         public List<ChosenUnit> ChosenUnitList { get; set; }
+        public List<List<ChosenUnit>> ChosenUnitsGrouped { get; set; }
         public List<Unit> CurrentUnits { get; set; }
         public List<Unit> AvailableUnits { get; set; }
         public List<List<Unit>> AvailableUnitsGrouped { get; set; }
         public List<List<Unit>> CurrentUnitsGrouped { get; set; }
         public int AccumulatedPointCost { get; set; }
+        public List<ChosenUpgrade> ChosenUpgrades { get; set; }
+        public List<Upgrade> CurrentUpgrades { get; set; }
+        public List<Upgrade> AvailableUpgrades { get; set; }
 
         public List<SelectListItem> Factions { get; set; } = new List<SelectListItem>();
 

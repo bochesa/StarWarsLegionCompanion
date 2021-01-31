@@ -30,7 +30,7 @@ namespace StarWarsLegionCompanion.Api.Controllers
         [HttpGet]
         public IActionResult GetAllChosenUnits()
         {
-            var chosenUnits = context.ChosenUnits.ToList();
+            var chosenUnits = context.ChosenUnits.OrderBy(x => x.UnitRankId);
 
             return Ok(chosenUnits);
         }
@@ -49,7 +49,7 @@ namespace StarWarsLegionCompanion.Api.Controllers
         [HttpGet("army/{id}")]
         public IActionResult GetChosenUnitByArmy(int id) //faction Id
         {
-            var chosenUnit = context.ChosenUnits.Where(x => x.ArmyId == id);
+            var chosenUnit = context.ChosenUnits.Where(x => x.ArmyId == id).OrderBy(x => x.UnitRankId);
 
             return Ok(chosenUnit);
         }

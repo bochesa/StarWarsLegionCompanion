@@ -1,73 +1,83 @@
 ﻿@model ArmyViewModel
-
-@foreach (var group in Model.CurrentUnitsGrouped)
+@foreach (var group in Model.ChosenUnitsGrouped)
 {
-    
-    if (group != null)
-    {
-        // RANKID: @group.ElementAt(0).RankId
-        // Chosen ID: @Model.ChosenUnitList.FirstOrDefault(x=>x.Id == group.Id)
+
+    // RANKID: @group.ElementAt(0).UnitRankId
 
 
 
-        <div class="card bg-transparent border-0" id="Model-group-current-@group.ElementAt(0).RankId"> @*This Groups rank*@
-            <!-- Rank Group card -->
-            <a href="#group-current-card-@group.ElementAt(0).RankId " @*Take current Chosen units ID*@
-               class="d-block card-header bg-transparent border-top border-bottom-0 py-3" data-toggle="collapse"
-               role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                <div class="row">
-                    <h5 class="m-0 font-weight-bold text-primary">
-                        @group.ElementAt(0).Rank.Name
-                    </h5>
-                    <span class="ml-3">
-                        <i class="@group.ElementAt(0).Rank.Name.ToLower().Replace(" ","")-icon ml-3"></i>
-                    </span>
+    <div class="card bg-transparent border-0" id="Model-group-current-@group.ElementAt(0).UnitRankId">
+        @*This Groups rank*@
+        <!-- Rank Group card -->
+        <a href="#group-current-card-@group.ElementAt(0).UnitRankId" @*Take current Chosen units ID*@
+           class="d-block card-header bg-transparent border-top border-bottom-0 py-3" data-toggle="collapse"
+           role="button" aria-expanded="true" aria-controls="collapseCardExample">
+            <div class="row">
+                <h5 class="m-0 font-weight-bold text-primary">
+                    @Model.CurrentUnits.FirstOrDefault(x => x.RankId == group.ElementAt(0).UnitRankId).Rank.Name
+                </h5>
+                <span class="ml-3">
+                    <i class="@Model.CurrentUnits.FirstOrDefault(x => x.RankId == group.ElementAt(0).UnitRankId).Rank.Name.ToLower().Replace(" ","")-icon ml-3"></i>
+                </span>
+            </div>
+        </a>
+        <!-- Card Content - Collapse -->
+        <div class="collapse show" id="group-current-card-@group.ElementAt(0).UnitRankId">
+            <div class="card-body">
+                @*each unit in The crurrent Unit group*@
+                @*
+                    Chosen ID: @Model.ChosenUnitList.FirstOrDefault(x=>x.UnitId == Model.CurrentUnitsGrouped.ElementAt(i).ElementAt(j).Id).Id
+                    ChosenUnits Ref.Unit: @Model.CurrentUnits.FirstOrDefault(x=>x.Id == chosenunit.UnitId)
+                *@
+                @*@for (int j = 0; j < Model.CurrentUnitsGrouped.ElementAt(i).Count; j++)*@
+                @foreach (var cUnit in group)
+                {
+                    <form asp-action="removeUnit" asp-controller="Army" asp-route-id="@cUnit.Id" asp-route-armyid="@Model.Army.Id">
+                        <div class="row">
+                            <div class="col-10">
+                                <div class="card shadow mb-0" id="Model-card-id-@cUnit.Id">
+                                    <!-- Card Header - Accordion -->
+                                    <a href="#unit-card-@cUnit.Id"
+                                       class="d-block card-header py-3 collapsed" data-toggle="collapse"
+                                       role="button" aria-expanded="false" aria-controls="collapseCardExample">
+                                        <h6 class="m-0 font-weight-bold text-primary">
+                                            @if (Model.CurrentUnits.Where(x => x.Id == cUnit.UnitId).First().IsUnique)
+                                            {<span><i class="fas fa-square fa-xs"></i></span>}
+                                            @Model.CurrentUnits.Where(x => x.Id == cUnit.UnitId).First().Name [@Model.CurrentUnits.Where(x => x.Id == cUnit.UnitId).First().PointCost]
+                                        </h6>
+                                    </a>
+                                    <!-- Card Content - Collapse -->
+                                    <div class="collapse" id="unit-card-@cUnit.Id">
+                                        <div class="card-body">
+                                            <strong>Upgrades Chosen:</strong>
+                                            @foreach (var chosenupgrade in Model.ChosenUpgrades)
+                                            {
+                                                if (chosenupgrade.ChosenUnitId == cUnit.Id)
+                                                {
+                                                    <div>
+                                                        @Model.CurrentUpgrades.FirstOrDefault(x => x.Id == chosenupgrade.UpgradeId).Name [@Model.CurrentUpgrades.FirstOrDefault(x => x.Id == chosenupgrade.UpgradeId).PointCost]
+                                                    </div>
+                                                }
 
-                </div>
-            </a>
-            <!-- Card Content - Collapse -->
-            <div class="collapse show" id="group-current-card-@Model.CurrentUnits.FirstOrDefault(x=>x.Id== group.ElementAt(0).Id).RankId">
-                <div class="card-body">
-                    @*each unit in The crurrent Unit group*@
-                    @foreach (var unit in group)
-                    {
-                        //Chosen ID: @Model.ChosenUnitList.FirstOrDefault(x=>x.UnitId == unit.Id).Id
+                                            }
 
-                        <form asp-action="removeUnit" asp-controller="Army" asp-route-id="@Model.ChosenUnitList.FirstOrDefault(x=>x.UnitId == unit.Id).Id" asp-route-armyid="@Model.Army.Id">
-                            <div class="row">
-                                <div class="col-10">
-                                    <div class="card shadow mb-0" id="Model-card-id-@Model.ChosenUnitList.FirstOrDefault(x=>x.UnitId == unit.Id).Id">
-                                        <!-- Card Header - Accordion -->
-                                        <a href="#unit-card-@Model.ChosenUnitList.FirstOrDefault(x=>x.UnitId == unit.Id).Id" class="d-block card-header py-3 collapsed" data-toggle="collapse"
-                                            role="button" aria-expanded="false" aria-controls="collapseCardExample">
-                                            <h6 class="m-0 font-weight-bold text-primary">
-                                                @if (unit.IsUnique)
-                                                {<span><i class="fas fa-square fa-xs"></i></span>}
-                                                @unit.Name [@unit.PointCost]
-                                            </h6>
-                                        </a>
-                                        <!-- Card Content - Collapse -->
-                                        <div class="collapse" id="unit-card-@Model.ChosenUnitList.FirstOrDefault(x=>x.UnitId == unit.Id).Id">
-                                            <div class="card-body">
-                                                This is a collapsable card example using Bootstrap's built in collapse
-                                                functionality. <strong>Click on the card header</strong> to see the card body
-                                                collapse and expand!
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="col-2">
-                                    <button type="submit" class="btn btn-success btn-circle align-middle">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                </div>
                             </div>
-                        </form>
-                        
-                    }
-                </div>
+
+                            <div class="col-2">
+                                <button type="submit" class="btn btn-success btn-circle align-middle">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                }
+
+
             </div>
         </div>
-    }
+    </div>
+
 }

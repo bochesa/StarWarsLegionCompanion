@@ -10,6 +10,7 @@ namespace StarWarsLegionCompanion.Api.Models
         public int Id { get; set; }
         public int ArmyId { get; set; }
         public int UnitId { get; set; }
+        public int UnitRankId { get; set; }
     }
     public class ChosenUpgrade
     {

@@ -44,6 +44,32 @@ namespace StarWarsLegionCompanion.Site.Models
             return units;
         }
 
+        //GET UPGRADES
+        public async Task<List<Upgrade>> GetAllUpgrades()
+        {
+            var response = await client.GetAsync($"{client.BaseAddress}upgrade");
+            string result = await response.Content.ReadAsStringAsync();
+            List<Upgrade> upgrades = JsonConvert.DeserializeObject<List<Upgrade>>(result);
+
+            return upgrades;
+        }
+        public async Task<Upgrade> GetUpgrade(int id)
+        {
+            var response = await client.GetAsync($"{client.BaseAddress}upgrade/{id}");
+            string result = await response.Content.ReadAsStringAsync();
+            Upgrade upgrade = JsonConvert.DeserializeObject<Upgrade>(result);
+
+            return upgrade;
+        }
+        public async Task<List<Upgrade>> GetAllUpgradesByCategory(int id)
+        {
+            var response = await client.GetAsync($"{client.BaseAddress}Upgrade/Category/{id}");
+            string result = await response.Content.ReadAsStringAsync();
+            List<Upgrade> upgrades = JsonConvert.DeserializeObject<List<Upgrade>>(result);
+
+            return upgrades;
+        }
+
         //GET CHOSEN UNITS
         public async Task<List<ChosenUnit>> GetAllChosenUnits()
         {
@@ -68,6 +94,24 @@ namespace StarWarsLegionCompanion.Site.Models
             List<ChosenUnit> chosenunit = JsonConvert.DeserializeObject<List<ChosenUnit>>(result);
 
             return chosenunit;
+        }
+
+        //GET CHOSEN UPGRADES
+        public async Task<List<ChosenUpgrade>> GetAllChosenUpgrades()
+        {
+            var response = await client.GetAsync($"{client.BaseAddress}ChosenUpgrade");
+            string result = await response.Content.ReadAsStringAsync();
+            List<ChosenUpgrade> chosenupgrades = JsonConvert.DeserializeObject<List<ChosenUpgrade>>(result);
+
+            return chosenupgrades;
+        }
+        public async Task<List<ChosenUpgrade>> GetChosenUpgradeByChosenUnit(int id) //by ChosenUnit Id
+        {
+            var response = await client.GetAsync($"{client.BaseAddress}ChosenUpgrade/ChosenUnit/{id}");
+            string result = await response.Content.ReadAsStringAsync();
+            List<ChosenUpgrade> chosenupgrades = JsonConvert.DeserializeObject<List<ChosenUpgrade>>(result);
+
+            return chosenupgrades;
         }
         //GET ARMY
         public async Task<Army> GetArmyList(int id)

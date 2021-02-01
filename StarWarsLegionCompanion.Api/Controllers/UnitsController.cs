@@ -28,10 +28,12 @@ namespace StarWarsLegionCompanion.Api.Controllers
         public IActionResult GetAllUnits()
         {
             var qeuryunits = context.Units
+                .Include(u => u.Weapons).ThenInclude(k => k.AttackDie)
                 .Include(u => u.Weapons).ThenInclude(k => k.Keywords)
                 .Include(u => u.Keywords)
                 .Include(u => u.UpgradeCategories)
                 ;
+
             var units = qeuryunits.OrderBy(u => u.RankId).ToList();
 
             FillInObjectsForList(units);
@@ -47,7 +49,15 @@ namespace StarWarsLegionCompanion.Api.Controllers
         public IActionResult GetAllUnitsByFaction(int id)
         {
 
-            var units = context.Units.Where(x => x.FactionId == id).OrderBy(u => u.RankId).ToList();
+            var qeuryunits = context.Units.Where(x => x.FactionId == id)
+                .Include(u => u.Weapons).ThenInclude(k => k.AttackDie)
+                .Include(u => u.Weapons).ThenInclude(k => k.Keywords)
+                .Include(u => u.Keywords)
+                .Include(u => u.UpgradeCategories)
+                ;
+
+
+            var units = qeuryunits.OrderBy(u => u.RankId).ToList();
 
             FillInObjectsForList(units);
 
@@ -57,6 +67,7 @@ namespace StarWarsLegionCompanion.Api.Controllers
         public IActionResult GetUnitById(int id)
         {
             Unit unit = context.Units.Where(u => u.Id == id)
+                .Include(u => u.Weapons).ThenInclude(k => k.AttackDie)
                 .Include(u => u.Weapons).ThenInclude(k => k.Keywords)
                 .Include(u => u.Keywords)
                 .Include(u => u.UpgradeCategories)

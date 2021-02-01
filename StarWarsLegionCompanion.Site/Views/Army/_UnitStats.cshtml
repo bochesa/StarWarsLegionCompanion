@@ -1,0 +1,90 @@
+﻿@model Unit
+
+
+<div class="row" id="main-row">
+    <div class="col-sm-2 gutt" id="leftside">
+        <span id="unit-pointcost">@Model.PointCost</span>
+        @foreach (var upgradecategory in Model.UpgradeCategories)
+        {
+            <span><i class="@upgradecategory.Name.ToLower().Replace(" ","")-icon float-right"></i></span><br />
+        }
+
+    </div>
+
+    <div class="col-sm" id="middle-content">
+        <div class="row" id="middle-row">
+            <div class="col-sm" id="middle-coloumn">
+                <span>
+                    @if (Model.SurName != null)
+                    {
+                        <small class="text-muted small">
+                            <i>@Model.SurName.ToUpper()</i>
+                        </small>
+                    }
+
+                </span><br />
+
+                @foreach (var keyword in Model.Keywords)
+                {
+                    <span><strong>@keyword.FullName</strong></span><br />
+                }
+            </div>
+
+            <div class="col-sm-3" id="rightside">
+                <span class="small">
+                    @Model.MinisInUnit <span class="small font-italic">@Model.UnitType.Name</span>
+                </span>
+                @if (Model.IsDefenseRed)
+                {
+                    <span class="float-right"><i class="defensediered-icon"></i></span>
+                }
+                else
+                {
+                    <span class="float-right"><i class="defensediewhite-icon"></i></span>
+                }
+                <span class="float-right">@Model.WoundThreshold <i class="woundtreshold-icon float-right"></i></span><br />
+                <span class="float-right">@Model.Courage <i class="resilience-icon float-right"></i></span>
+
+            </div>
+        </div>
+
+        <div class="row" id="weapon-row">
+            @foreach (var weapon in Model.Weapons)
+            {
+                <div class="col">
+                    <span class="small">
+                        @weapon.Name
+                    </span>
+                    <br />
+                    <span>
+                        @if (weapon.RangeType.Name == "Melee")
+                        {
+                            <span class="float-left"><i class="melee-icon"></i></span>
+                        }
+                        else
+                        {
+                            <span class="float-left"><i class="ranged-@weapon.MinRange-icon"></i> - <i class="ranged-@weapon.MaxRange-icon"></i></span>
+                        }
+
+                        @foreach (var attackdie in weapon.AttackDie)
+                        {
+                            for (int i = 0; i < attackdie.Value; i++)
+                            {
+
+                                <span class="float-left"><i class="attackdie-@attackdie.Name.ToLower()-icon"></i></span>
+                            }
+                        }
+
+                    </span>
+                    <br />
+                    <span>
+                        @foreach (var keyword in weapon.Keywords)
+                        {
+                            <span><strong>@keyword.FullName, </strong></span>
+                        }
+                    </span>
+                </div>
+            }
+        </div>
+    </div>
+</div>

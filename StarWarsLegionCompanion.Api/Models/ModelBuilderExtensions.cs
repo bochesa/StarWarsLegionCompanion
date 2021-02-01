@@ -43,48 +43,48 @@ namespace StarWarsLegionCompanion.Api.Models
             builder.Entity<UpgradeCategory>().HasData(
 
             new UpgradeCategory { Id = 1, Name = "Armament" },
-            new UpgradeCategory { Id = 2, Name = "Command" },
-            new UpgradeCategory { Id = 3, Name = "Comms" },
-            new UpgradeCategory { Id = 4, Name = "Crew" },
-            new UpgradeCategory { Id = 5, Name = "Force" },
-            new UpgradeCategory { Id = 6, Name = "Gear" },
-            new UpgradeCategory { Id = 7, Name = "Generator" },
-            new UpgradeCategory { Id = 8, Name = "Grenades" },
-            new UpgradeCategory { Id = 9, Name = "Hardpoint" },
-            new UpgradeCategory { Id = 10, Name = "Heavy Weapon" },
-            new UpgradeCategory { Id = 11, Name = "Ordnance" },
-            new UpgradeCategory { Id = 12, Name = "Personnel" },
-            new UpgradeCategory { Id = 13, Name = "Pilot" },
-            new UpgradeCategory { Id = 14, Name = "Training" },
-
-            new UpgradeCategory { Id = 15, Name = "Armament" },
-            new UpgradeCategory { Id = 16, Name = "Command" },
-            new UpgradeCategory { Id = 17, Name = "Comms" },
-            new UpgradeCategory { Id = 18, Name = "Crew" },
-            new UpgradeCategory { Id = 19, Name = "Force" },
-            new UpgradeCategory { Id = 20, Name = "Gear" },
-             new UpgradeCategory { Id = 21, Name = "Generator" },
+            new UpgradeCategory { Id = 4, Name = "Command" },
+            new UpgradeCategory { Id = 7, Name = "Comms" },
+            new UpgradeCategory { Id = 10, Name = "Crew" },
+            new UpgradeCategory { Id = 13, Name = "Force" },
+            new UpgradeCategory { Id = 16, Name = "Gear" },
+            new UpgradeCategory { Id = 19, Name = "Generator" },
             new UpgradeCategory { Id = 22, Name = "Grenades" },
-             new UpgradeCategory { Id = 23, Name = "Hardpoint" },
-             new UpgradeCategory { Id = 24, Name = "Heavy Weapon" },
-            new UpgradeCategory { Id = 25, Name = "Ordnance" },
-             new UpgradeCategory { Id = 26, Name = "Personnel" },
-            new UpgradeCategory { Id = 27, Name = "Pilot" },
-             new UpgradeCategory { Id = 28, Name = "Training" },
+            new UpgradeCategory { Id = 25, Name = "Hardpoint" },
+            new UpgradeCategory { Id = 28, Name = "Heavy Weapon" },
+            new UpgradeCategory { Id = 31, Name = "Ordnance" },
+            new UpgradeCategory { Id = 34, Name = "Personnel" },
+            new UpgradeCategory { Id = 37, Name = "Pilot" },
+            new UpgradeCategory { Id = 40, Name = "Training" },
 
-             new UpgradeCategory { Id = 29, Name = "Armament" },
-            new UpgradeCategory { Id = 30, Name = "Command" },
-            new UpgradeCategory { Id = 31, Name = "Comms" },
-             new UpgradeCategory { Id = 32, Name = "Crew" },
-             new UpgradeCategory { Id = 33, Name = "Force" },
-             new UpgradeCategory { Id = 34, Name = "Gear" },
-             new UpgradeCategory { Id = 35, Name = "Generator" },
-            new UpgradeCategory { Id = 36, Name = "Grenades" },
-             new UpgradeCategory { Id = 37, Name = "Hardpoint" },
-             new UpgradeCategory { Id = 38, Name = "Heavy Weapon" },
-            new UpgradeCategory { Id = 39, Name = "Ordnance" },
-             new UpgradeCategory { Id = 40, Name = "Personnel" },
-             new UpgradeCategory { Id = 41, Name = "Pilot" },
+            new UpgradeCategory { Id = 2, Name = "Armament" },
+            new UpgradeCategory { Id = 5, Name = "Command" },
+            new UpgradeCategory { Id = 8, Name = "Comms" },
+            new UpgradeCategory { Id = 11, Name = "Crew" },
+            new UpgradeCategory { Id = 14, Name = "Force" },
+            new UpgradeCategory { Id = 17, Name = "Gear" },
+             new UpgradeCategory { Id = 20, Name = "Generator" },
+            new UpgradeCategory { Id = 23, Name = "Grenades" },
+             new UpgradeCategory { Id = 26, Name = "Hardpoint" },
+             new UpgradeCategory { Id = 29, Name = "Heavy Weapon" },
+            new UpgradeCategory { Id = 32, Name = "Ordnance" },
+             new UpgradeCategory { Id = 35, Name = "Personnel" },
+            new UpgradeCategory { Id = 38, Name = "Pilot" },
+             new UpgradeCategory { Id = 41, Name = "Training" },
+
+             new UpgradeCategory { Id = 3, Name = "Armament" },
+            new UpgradeCategory { Id = 6, Name = "Command" },
+            new UpgradeCategory { Id = 9, Name = "Comms" },
+             new UpgradeCategory { Id = 12, Name = "Crew" },
+             new UpgradeCategory { Id = 15, Name = "Force" },
+             new UpgradeCategory { Id = 18, Name = "Gear" },
+             new UpgradeCategory { Id = 21, Name = "Generator" },
+            new UpgradeCategory { Id = 24, Name = "Grenades" },
+             new UpgradeCategory { Id = 27, Name = "Hardpoint" },
+             new UpgradeCategory { Id = 30, Name = "Heavy Weapon" },
+            new UpgradeCategory { Id = 33, Name = "Ordnance" },
+             new UpgradeCategory { Id = 36, Name = "Personnel" },
+             new UpgradeCategory { Id = 39, Name = "Pilot" },
              new UpgradeCategory { Id = 42, Name = "Training" }
             );
             #endregion
@@ -1341,13 +1341,13 @@ namespace StarWarsLegionCompanion.Api.Models
                 .WithMany(uc => uc.Units)
                 .UsingEntity(j =>
                 {
-                    j.HasData(new { UnitsId = 1, UpgradeCategoriesId = 5 }); //luke - Force1
-                    j.HasData(new { UnitsId = 1, UpgradeCategoriesId = 19 }); //luke - Force2
-                    j.HasData(new { UnitsId = 1, UpgradeCategoriesId = 6 }); //luke - Gear1
+                    j.HasData(new { UnitsId = 1, UpgradeCategoriesId = 13 }); //luke - Force1
+                    j.HasData(new { UnitsId = 1, UpgradeCategoriesId = 14 }); //luke - Force2
+                    j.HasData(new { UnitsId = 1, UpgradeCategoriesId = 16 }); //luke - Gear1
 
-                    j.HasData(new { UnitsId = 50, UpgradeCategoriesId = 5 }); //vader - Force1
-                    j.HasData(new { UnitsId = 50, UpgradeCategoriesId = 19 }); //vader - Force2
-                    j.HasData(new { UnitsId = 50, UpgradeCategoriesId = 33 }); //vader - Force3
+                    j.HasData(new { UnitsId = 50, UpgradeCategoriesId = 13 }); //vader - Force1
+                    j.HasData(new { UnitsId = 50, UpgradeCategoriesId = 14 }); //vader - Force2
+                    j.HasData(new { UnitsId = 50, UpgradeCategoriesId = 15 }); //vader - Force3
                 });
 
             //Seed M2M Weapons AttackDie - Add Attackdie to Weapons

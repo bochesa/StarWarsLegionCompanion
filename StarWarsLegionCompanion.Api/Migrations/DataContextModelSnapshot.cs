@@ -1843,121 +1843,37 @@ namespace StarWarsLegionCompanion.Api.Migrations
                         },
                         new
                         {
-                            Id = 2,
-                            Name = "Command",
-                            UpgradeId = 0
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Comms",
-                            UpgradeId = 0
-                        },
-                        new
-                        {
                             Id = 4,
-                            Name = "Crew",
-                            UpgradeId = 0
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Force",
-                            UpgradeId = 0
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Gear",
+                            Name = "Command",
                             UpgradeId = 0
                         },
                         new
                         {
                             Id = 7,
-                            Name = "Generator",
-                            UpgradeId = 0
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Name = "Grenades",
-                            UpgradeId = 0
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Name = "Hardpoint",
-                            UpgradeId = 0
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Name = "Heavy Weapon",
-                            UpgradeId = 0
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Name = "Ordnance",
-                            UpgradeId = 0
-                        },
-                        new
-                        {
-                            Id = 12,
-                            Name = "Personnel",
-                            UpgradeId = 0
-                        },
-                        new
-                        {
-                            Id = 13,
-                            Name = "Pilot",
-                            UpgradeId = 0
-                        },
-                        new
-                        {
-                            Id = 14,
-                            Name = "Training",
-                            UpgradeId = 0
-                        },
-                        new
-                        {
-                            Id = 15,
-                            Name = "Armament",
-                            UpgradeId = 0
-                        },
-                        new
-                        {
-                            Id = 16,
-                            Name = "Command",
-                            UpgradeId = 0
-                        },
-                        new
-                        {
-                            Id = 17,
                             Name = "Comms",
                             UpgradeId = 0
                         },
                         new
                         {
-                            Id = 18,
+                            Id = 10,
                             Name = "Crew",
                             UpgradeId = 0
                         },
                         new
                         {
-                            Id = 19,
+                            Id = 13,
                             Name = "Force",
                             UpgradeId = 0
                         },
                         new
                         {
-                            Id = 20,
+                            Id = 16,
                             Name = "Gear",
                             UpgradeId = 0
                         },
                         new
                         {
-                            Id = 21,
+                            Id = 19,
                             Name = "Generator",
                             UpgradeId = 0
                         },
@@ -1969,115 +1885,199 @@ namespace StarWarsLegionCompanion.Api.Migrations
                         },
                         new
                         {
-                            Id = 23,
-                            Name = "Hardpoint",
-                            UpgradeId = 0
-                        },
-                        new
-                        {
-                            Id = 24,
-                            Name = "Heavy Weapon",
-                            UpgradeId = 0
-                        },
-                        new
-                        {
                             Id = 25,
-                            Name = "Ordnance",
-                            UpgradeId = 0
-                        },
-                        new
-                        {
-                            Id = 26,
-                            Name = "Personnel",
-                            UpgradeId = 0
-                        },
-                        new
-                        {
-                            Id = 27,
-                            Name = "Pilot",
+                            Name = "Hardpoint",
                             UpgradeId = 0
                         },
                         new
                         {
                             Id = 28,
-                            Name = "Training",
-                            UpgradeId = 0
-                        },
-                        new
-                        {
-                            Id = 29,
-                            Name = "Armament",
-                            UpgradeId = 0
-                        },
-                        new
-                        {
-                            Id = 30,
-                            Name = "Command",
-                            UpgradeId = 0
-                        },
-                        new
-                        {
-                            Id = 31,
-                            Name = "Comms",
-                            UpgradeId = 0
-                        },
-                        new
-                        {
-                            Id = 32,
-                            Name = "Crew",
-                            UpgradeId = 0
-                        },
-                        new
-                        {
-                            Id = 33,
-                            Name = "Force",
-                            UpgradeId = 0
-                        },
-                        new
-                        {
-                            Id = 34,
-                            Name = "Gear",
-                            UpgradeId = 0
-                        },
-                        new
-                        {
-                            Id = 35,
-                            Name = "Generator",
-                            UpgradeId = 0
-                        },
-                        new
-                        {
-                            Id = 36,
-                            Name = "Grenades",
-                            UpgradeId = 0
-                        },
-                        new
-                        {
-                            Id = 37,
-                            Name = "Hardpoint",
-                            UpgradeId = 0
-                        },
-                        new
-                        {
-                            Id = 38,
                             Name = "Heavy Weapon",
                             UpgradeId = 0
                         },
                         new
                         {
-                            Id = 39,
+                            Id = 31,
                             Name = "Ordnance",
                             UpgradeId = 0
                         },
                         new
                         {
-                            Id = 40,
+                            Id = 34,
                             Name = "Personnel",
                             UpgradeId = 0
                         },
                         new
                         {
+                            Id = 37,
+                            Name = "Pilot",
+                            UpgradeId = 0
+                        },
+                        new
+                        {
+                            Id = 40,
+                            Name = "Training",
+                            UpgradeId = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Armament",
+                            UpgradeId = 0
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Command",
+                            UpgradeId = 0
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "Comms",
+                            UpgradeId = 0
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Name = "Crew",
+                            UpgradeId = 0
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Name = "Force",
+                            UpgradeId = 0
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Name = "Gear",
+                            UpgradeId = 0
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Name = "Generator",
+                            UpgradeId = 0
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Name = "Grenades",
+                            UpgradeId = 0
+                        },
+                        new
+                        {
+                            Id = 26,
+                            Name = "Hardpoint",
+                            UpgradeId = 0
+                        },
+                        new
+                        {
+                            Id = 29,
+                            Name = "Heavy Weapon",
+                            UpgradeId = 0
+                        },
+                        new
+                        {
+                            Id = 32,
+                            Name = "Ordnance",
+                            UpgradeId = 0
+                        },
+                        new
+                        {
+                            Id = 35,
+                            Name = "Personnel",
+                            UpgradeId = 0
+                        },
+                        new
+                        {
+                            Id = 38,
+                            Name = "Pilot",
+                            UpgradeId = 0
+                        },
+                        new
+                        {
                             Id = 41,
+                            Name = "Training",
+                            UpgradeId = 0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Armament",
+                            UpgradeId = 0
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Command",
+                            UpgradeId = 0
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "Comms",
+                            UpgradeId = 0
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Name = "Crew",
+                            UpgradeId = 0
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Name = "Force",
+                            UpgradeId = 0
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Name = "Gear",
+                            UpgradeId = 0
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Name = "Generator",
+                            UpgradeId = 0
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Name = "Grenades",
+                            UpgradeId = 0
+                        },
+                        new
+                        {
+                            Id = 27,
+                            Name = "Hardpoint",
+                            UpgradeId = 0
+                        },
+                        new
+                        {
+                            Id = 30,
+                            Name = "Heavy Weapon",
+                            UpgradeId = 0
+                        },
+                        new
+                        {
+                            Id = 33,
+                            Name = "Ordnance",
+                            UpgradeId = 0
+                        },
+                        new
+                        {
+                            Id = 36,
+                            Name = "Personnel",
+                            UpgradeId = 0
+                        },
+                        new
+                        {
+                            Id = 39,
                             Name = "Pilot",
                             UpgradeId = 0
                         },
@@ -2159,32 +2159,32 @@ namespace StarWarsLegionCompanion.Api.Migrations
                         new
                         {
                             UnitsId = 1,
-                            UpgradeCategoriesId = 5
+                            UpgradeCategoriesId = 13
                         },
                         new
                         {
                             UnitsId = 1,
-                            UpgradeCategoriesId = 19
+                            UpgradeCategoriesId = 14
                         },
                         new
                         {
                             UnitsId = 1,
-                            UpgradeCategoriesId = 6
+                            UpgradeCategoriesId = 16
                         },
                         new
                         {
                             UnitsId = 50,
-                            UpgradeCategoriesId = 5
+                            UpgradeCategoriesId = 13
                         },
                         new
                         {
                             UnitsId = 50,
-                            UpgradeCategoriesId = 19
+                            UpgradeCategoriesId = 14
                         },
                         new
                         {
                             UnitsId = 50,
-                            UpgradeCategoriesId = 33
+                            UpgradeCategoriesId = 15
                         });
                 });
 

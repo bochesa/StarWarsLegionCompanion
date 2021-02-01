@@ -40,9 +40,7 @@
                                         <!-- Card Content - Collapse -->
                                         <div class="collapse" id="unit-card-available-@unit.Id">
                                             <div class="card-body">
-                                                This is a collapsable card example using Bootstrap's built in collapse
-                                                functionality. <strong>Click on the card header</strong> to see the card body
-                                                collapse and expand!
+                                                @await Html.PartialAsync("_UnitStats", unit)
                                             </div>
                                         </div>
                                     </div>

@@ -1,12 +1,17 @@
-﻿.commander-icon {
+﻿
+/*
+ICONS FOR Ranks
+*/
+.commander-icon {
     background: url('/img/icons/01_Commander_icon_Simple.png');
     background-size: contain;
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     height: 35px;
     width: 35px;
     display: block;
     /* Other styles here */
 }
+
 .operative-icon {
     background: url('/img/icons/02_Operative_icon_Simple.png');
     background-size: contain;
@@ -16,6 +21,7 @@
     display: block;
     /* Other styles here */
 }
+
 .corps-icon {
     background: url('/img/icons/03_Corps_icon_simple.png');
     background-size: contain;
@@ -25,6 +31,7 @@
     display: block;
     /* Other styles here */
 }
+
 .specialforces-icon {
     background: url('/img/icons/04_Special_forces_icon_simple.png');
     background-size: contain;
@@ -34,6 +41,7 @@
     display: block;
     /* Other styles here */
 }
+
 .support-icon {
     background: url('/img/icons/05_Support_icon_simple.png');
     background-size: contain;
@@ -43,6 +51,7 @@
     display: block;
     /* Other styles here */
 }
+
 .heavy-icon {
     background: url('/img/icons/06_Heavy_icon_Simple.png');
     background-size: contain;
@@ -52,3 +61,287 @@
     display: block;
     /* Other styles here */
 }
+/*
+ICONS FOR wounds and courage
+*/
+.woundtreshold-icon {
+    background: url('/img/icons/WoundThreshold.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 35px;
+    width: 35px;
+    display: block;
+    /* Other styles here */
+}
+
+.resilience-icon {
+    background: url('/img/icons/Resilience.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 35px;
+    width: 35px;
+    display: block;
+    /* Other styles here */
+}
+/*
+ICONS FOR Die attack and defense
+*/
+.attackdie-red-icon {
+    background: url('/img/icons/Attack_die_red.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 15px;
+    width: 15px;
+    display: block;
+    /* Other styles here */
+}
+
+.attackdie-black-icon {
+    background: url('/img/icons/Attack_die_black.PNG.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 15px;
+    width: 15px;
+    display: block;
+    /* Other styles here */
+}
+
+.attackdie-white-icon {
+    background: url('/img/icons/Attack_die_white.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 15px;
+    width: 15px;
+    display: block;
+    /* Other styles here */
+}
+
+.defensediewhite-icon {
+    background: url('/img/icons/Defense_die_white.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 35px;
+    width: 35px;
+    display: block;
+    /* Other styles here */
+}
+
+.defensediered-icon {
+    background: url('/img/icons/Defense_die_red.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 35px;
+    width: 35px;
+    display: block;
+    /* Other styles here */
+}
+/*
+ICONS FOR Upgrade Categories
+*/
+.armament-icon {
+    background: url('/img/icons/Armament_icon.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 35px;
+    width: 35px;
+    display: block;
+    /* Other styles here */
+}
+
+.command-icon {
+    background: url('/img/icons/Command_icon2.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 35px;
+    width: 35px;
+    display: block;
+    /* Other styles here */
+}
+
+.comms-icon {
+    background: url('/img/icons/Comms_icon2.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 35px;
+    width: 35px;
+    display: block;
+    /* Other styles here */
+}
+
+.crew-icon {
+    background: url('/img/icons/Crew_icon.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 35px;
+    width: 35px;
+    display: block;
+    /* Other styles here */
+}
+
+.force-icon {
+    background: url('/img/icons/Force_icon2.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 35px;
+    width: 35px;
+    display: block;
+    /* Other styles here */
+}
+
+.gear-icon {
+    background: url('/img/icons/Gear_icon2.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 35px;
+    width: 35px;
+    display: block;
+    /* Other styles here */
+}
+
+.generator-icon {
+    background: url('/img/icons/Generator_icon.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 35px;
+    width: 35px;
+    display: block;
+    /* Other styles here */
+}
+
+.grenades-icon {
+    background: url('/img/icons/Grenades_icon2.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 35px;
+    width: 35px;
+    display: block;
+    /* Other styles here */
+}
+
+.hardpoint-icon {
+    background: url('/img/icons/Hardpoint_icon2.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 35px;
+    width: 35px;
+    display: block;
+    /* Other styles here */
+}
+
+.heavyweapon-icon {
+    background: url('/img/icons/Heavy_weapon_icon2.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 35px;
+    width: 35px;
+    display: block;
+    /* Other styles here */
+}
+
+.ordnance-icon {
+    background: url('/img/icons/Ordnance_icon.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 35px;
+    width: 35px;
+    display: block;
+    /* Other styles here */
+}
+
+.personnel-icon {
+    background: url('/img/icons/Personnel_icon2.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 35px;
+    width: 35px;
+    display: block;
+    /* Other styles here */
+}
+
+.pilot-icon {
+    background: url('/img/icons/Pilot_icon2.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 35px;
+    width: 35px;
+    display: block;
+    /* Other styles here */
+}
+
+.training-icon {
+    background: url('/img/icons/Training_icon.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 35px;
+    width: 35px;
+    display: block;
+    /* Other styles here */
+}
+/*
+ICONS FOR RangeType Symbols
+*/
+.melee-icon {
+    background: url('/img/icons/Melee_high_contrast.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 20px;
+    width: 20px;
+    display: block;
+    /* Other styles here */
+}
+
+.ranged-1-icon {
+    background: url('/img/icons/Range_1.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 20px;
+    width: 20px;
+    display: block;
+    /* Other styles here */
+}
+.ranged-2-icon {
+    background: url('/img/icons/Range_2.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 20px;
+    width: 20px;
+    display: block;
+    /* Other styles here */
+}
+.ranged-3-icon {
+    background: url('/img/icons/Range_3.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 20px;
+    width: 20px;
+    display: block;
+    /* Other styles here */
+}
+.ranged-4-icon {
+    background: url('/img/icons/Range_4.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 20px;
+    width: 20px;
+    display: block;
+    /* Other styles here */
+}
+.ranged-5-icon {
+    background: url('/img/icons/Range_5.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 20px;
+    width: 20px;
+    display: block;
+    /* Other styles here */
+}
+.ranged-inf-icon {
+    background: url('/img/icons/Range_inf.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 20px;
+    width: 20px;
+    display: block;
+    /* Other styles here */
+}
+

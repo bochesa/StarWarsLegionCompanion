@@ -28,13 +28,16 @@ namespace StarWarsLegionCompanion.Api.Controllers
         public IActionResult GetAllUnits()
         {
             var qeuryunits = context.Units
-                .Include(u => u.Weapons).ThenInclude(k => k.AttackDie)
-                .Include(u => u.Weapons).ThenInclude(k => k.Keywords)
+                .Include(u => u.Weapons)
+                .ThenInclude(k => k.AttackDie)
+                .Include(u => u.Weapons)
+                .ThenInclude(k => k.Keywords)
                 .Include(u => u.Keywords)
                 .Include(u => u.UpgradeCategories)
                 ;
 
             var units = qeuryunits.OrderBy(u => u.RankId).ToList();
+
 
             FillInObjectsForList(units);
 

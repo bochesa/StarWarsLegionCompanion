@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Shared\_UnitCardCurrentBackup.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\StarWarsLegionCompanion.Api\StarWarsLegionCompanion.Api.csproj" />
   </ItemGroup>
 

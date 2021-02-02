@@ -49,7 +49,12 @@
                                     <!-- Card Content - Collapse -->
                                     <div class="collapse" id="unit-card-@cUnit.Id">
                                         <div class="card-body">
-                                            <strong>Upgrades Chosen:</strong>
+                                            <strong>Upgrades:</strong>
+                                            @foreach (var uCategory in Model.CurrentUnits.Where(x => x.Id == cUnit.UnitId).First().UpgradeCategories)
+                                            {
+                                                <div><i class="@uCategory.Name.ToLower().Replace(" ","")-icon "></i></div>
+                                            }
+
                                             @foreach (var chosenupgrade in Model.ChosenUpgrades)
                                             {
                                                 if (chosenupgrade.ChosenUnitId == cUnit.Id)

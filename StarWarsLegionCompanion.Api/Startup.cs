@@ -33,7 +33,7 @@ namespace StarWarsLegionCompanion.Api
         {
             services.AddControllers()
                 .AddNewtonsoftJson(options =>
-                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                options.SerializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.Objects
                     );
             services.AddSwaggerGen(c =>
             {

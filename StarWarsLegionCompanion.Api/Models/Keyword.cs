@@ -27,8 +27,11 @@ namespace StarWarsLegionCompanion.Api.Models
         public string Text { get; set; }
         public bool IsFreeAction { get; set; }
         public bool IsCardAction { get; set; }
+        [NotMapped, JsonIgnore]
         public virtual ICollection<Unit> Units { get; set; } = new List<Unit>(); // For many-to-any relations
+        [NotMapped, JsonIgnore]
         public virtual ICollection<Weapon> Weapons { get; set; } = new List<Weapon>();
+        [NotMapped, JsonIgnore]
         public virtual ICollection<Upgrade> Upgrades { get; set; } = new List<Upgrade>();
     }
 }

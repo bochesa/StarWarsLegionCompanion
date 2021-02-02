@@ -1,46 +1,51 @@
 ﻿@model Unit
 
 
-<div class="row" id="main-row">
-    <div class="col-sm-2 gutt" id="leftside">
-        <span id="unit-pointcost">@Model.PointCost</span>
-        @foreach (var upgradecategory in Model.UpgradeCategories)
-        {
-            <span><i class="@upgradecategory.Name.ToLower().Replace(" ","")-icon float-right"></i></span><br />
-        }
+<div class="row">
+    <div class="col-sm-2" id="unit-pointcost">@Model.PointCost</div>
 
+    <div class="col-sm">
+        <span>
+            @if (Model.SurName != null)
+            {
+                <small class="text-muted small">
+                    <i>@Model.SurName.ToUpper()</i>
+                </small>
+            }
+
+        </span>
     </div>
 
+    <div class="col-sm">
+        <span class="float-right">@Model.MinisInUnit </span><span class="small float-right pr-2 font-italic">@Model.UnitType.Name</span>
+    </div>
+</div>
+
+<div class="row" id="main-row">
+    <div class="col-sm-2 border-top border-right" id="leftside">
+        @foreach (var upgradecategory in Model.UpgradeCategories)
+        {
+            <div><i class="@upgradecategory.Name.ToLower().Replace(" ","")-icon float-left"></i></div><br />
+        }
+    </div>
     <div class="col-sm" id="middle-content">
         <div class="row" id="middle-row">
-            <div class="col-sm" id="middle-coloumn">
-                <span>
-                    @if (Model.SurName != null)
-                    {
-                        <small class="text-muted small">
-                            <i>@Model.SurName.ToUpper()</i>
-                        </small>
-                    }
-
-                </span><br />
-
+            <div class="col-sm border-top border-right" id="middle-coloumn">
                 @foreach (var keyword in Model.Keywords)
                 {
-                    <span><strong>@keyword.FullName</strong></span><br />
+                    <span class="float-left" data-toggle="tooltip" data-placement="top" title="@keyword.Text"><strong>@keyword.FullName</strong></span><br />
                 }
             </div>
 
-            <div class="col-sm-3" id="rightside">
-                <span class="small">
-                    @Model.MinisInUnit <span class="small font-italic">@Model.UnitType.Name</span>
-                </span>
+            <div class="col-sm-3 float-right border-top" id="rightside">
+
                 @if (Model.IsDefenseRed)
                 {
-                    <span class="float-right"><i class="defensediered-icon"></i></span>
+                    <span class="float-right"><i class="defensediered-icon"></i></span><br />
                 }
                 else
                 {
-                    <span class="float-right"><i class="defensediewhite-icon"></i></span>
+                    <span class="float-right"><i class="defensediewhite-icon"></i></span><br />
                 }
                 <span class="float-right">@Model.WoundThreshold <i class="woundtreshold-icon float-right"></i></span><br />
                 <span class="float-right">@Model.Courage <i class="resilience-icon float-right"></i></span>
@@ -48,22 +53,21 @@
             </div>
         </div>
 
-        <div class="row" id="weapon-row">
+        <div class="row border-top" id="weapon-row">
             @foreach (var weapon in Model.Weapons)
             {
                 <div class="col">
-                    <span class="small">
+                    <div class="small">
                         @weapon.Name
-                    </span>
-                    <br />
-                    <span>
+                    </div>
+                    <div class="d-flex">
                         @if (weapon.RangeType.Name == "Melee")
                         {
-                            <span class="float-left"><i class="melee-icon"></i></span>
+                            <div class="float-left"><i class="melee-icon float-left"></i></div>
                         }
                         else
                         {
-                            <span class="float-left"><i class="ranged-@weapon.MinRange-icon"></i> - <i class="ranged-@weapon.MaxRange-icon"></i></span>
+                            <div class="float-left"><i class="ranged-@weapon.MinRange-icon float-left"></i><i class="fas fa-minus fa-xs float-left"></i><i class="ranged-@weapon.MaxRange-icon float-left"></i></div>
                         }
 
                         @foreach (var attackdie in weapon.AttackDie)
@@ -71,18 +75,17 @@
                             for (int i = 0; i < attackdie.Value; i++)
                             {
 
-                                <span class="float-left"><i class="attackdie-@attackdie.Name.ToLower()-icon"></i></span>
+                                <div class="float-left"><i class="attackdie-@attackdie.Name.ToLower()-icon float-left"></i></div>
                             }
                         }
 
-                    </span>
-                    <br />
-                    <span>
+                    </div>
+                    <div class="d-flex">
                         @foreach (var keyword in weapon.Keywords)
                         {
-                            <span><strong>@keyword.FullName, </strong></span>
+                            <span class="mr-2"><strong>@keyword.FullName</strong></span>
                         }
-                    </span>
+                    </div>
                 </div>
             }
         </div>

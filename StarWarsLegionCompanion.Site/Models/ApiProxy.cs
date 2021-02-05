@@ -145,6 +145,13 @@ namespace StarWarsLegionCompanion.Site.Models
             StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
             await client.PostAsync($"{client.BaseAddress}chosenunit", content);
         }
+
+        public async Task PostChosenUpgrade(ChosenUpgrade model)
+        {
+            string data = JsonConvert.SerializeObject(model);
+            StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
+            await client.PostAsync($"{client.BaseAddress}ChosenUpgrade", content);
+        }
         /// <summary>
         /// Post a newly created Army
         /// </summary>
@@ -174,6 +181,11 @@ namespace StarWarsLegionCompanion.Site.Models
         {
             await client.DeleteAsync($"{client.BaseAddress}chosenunit/{id}");
         }
+        public async Task DeleteChosenUpgrade(int id)
+        {
+            await client.DeleteAsync($"{client.BaseAddress}ChosenUpgrade/{id}");
+        }
+
         public async Task DeleteArmyList(int id)
         {
             await client.DeleteAsync($"{client.BaseAddress}armylist/{id}");

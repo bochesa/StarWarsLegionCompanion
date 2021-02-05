@@ -6,53 +6,16 @@
     </div>
 
     <div class="card col-8 bg-light text-black shadow">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-6">
-                    @Model.AccumulatedPointCost / 800 Armypoint |
-                </div>
-                <div class="col-6">
-                    @Model.CurrentUnits.Count() Activations
-                </div>
-            </div>
-            <div class="row">
-                <div id="commander-status" class="col-2 border-right">
-                    <i class="commander-icon"></i> @Model.CurrentUnits.Where(x => x.RankId == 1).Count() / 1-2
-                </div>
-                <span id="operative-status" class="col-2 border-right">
-                    <i class="operative-icon"></i> @Model.CurrentUnits.Where(x => x.RankId == 2).Count() / 0-2
-                </span>
-                <span id="corps-status" class="col-2 border-right">
-                    <i class="corps-icon"></i> @Model.CurrentUnits.Where(x => x.RankId == 3).Count() / 3-6
-                </span>
-                <span id="specialforces-status" class="col-2 border-right">
-                    <i class="specialforces-icon"></i> @Model.CurrentUnits.Where(x => x.RankId == 4).Count() / 0-3
-                </span>
-                <span id="support-status" class="col-2 border-right">
-                    <i class="support-icon"></i> @Model.CurrentUnits.Where(x => x.RankId == 5).Count() / 0-3
-                </span>
-                <span id="heavy-status" class="col-2">
-                    <i class="heavy-icon"></i> @Model.CurrentUnits.Where(x => x.RankId == 6).Count() / 0-2
-                </span>
-            </div>
 
+        @await Html.PartialAsync("_ArmyStatus", Model)
 
-
-        </div>
     </div>
-
-    @*<div class="col-4">
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-                <i class="fas fa-download fa-sm text-white-50"></i> Generate Report
-            </a>
-        </div>*@
 </div>
 
 <!-- Units/Upgrades Row -->
-<div class="row">
+<div class="row" id="unitUpgradeSection">
 
     <!-- Column of Available Units-->
-
     <div class="col-5" id="available-list">
         <h3 class="h3 mb-0 text-gray-800">Available Units</h3>
         @if (Model.AvailableUnits != null)
@@ -60,7 +23,6 @@
             @await Html.PartialAsync("_UnitCardAvailable", Model)
 
         }
-
     </div>
 
     <!-- Column of Current Units-->
@@ -78,20 +40,13 @@
             @await Html.PartialAsync("_UnitCardCurrent", Model)
             //@await Html.PartialAsync("_UnitCardCurrentForLoop", Model)
         }
-
     </div>
 
     <!-- Column of Available Upgrades-->
-    <div class="col-2" id="current-list">
+    <div class="col-2" id="currentUpgrade">
         <h3 class="h3 mb-0 text-gray-800">Upgrades </h3>
 
-        <div>
-            <h4 data-toggle="tooltip" data-placement="top" title="testing">Add units from Available Units</h4>
-            <button data-toggle="tooltip" data-placement="top" title="testing2">Tryk for test</button>
-        </div>
-        <div>
-            Add functionality for adding upgrades. When clicking on a Upgradecategory in Current Unit List, open up a card here with available options for: Unit, Upgradecategory
-        </div>
+        @await Html.PartialAsync("_CurrentUnitUpgrades", Model)
 
     </div>
 

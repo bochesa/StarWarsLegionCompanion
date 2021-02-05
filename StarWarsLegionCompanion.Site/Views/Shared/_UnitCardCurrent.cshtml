@@ -52,12 +52,16 @@
                                             <strong>Upgrades:</strong>
                                             @foreach (var uCategory in Model.CurrentUnits.Where(x => x.Id == cUnit.UnitId).First().UpgradeCategories)
                                             {
-                                                <div><i class="@uCategory.Name.ToLower().Replace(" ","")-icon "></i></div>
+
+                                                <div>
+                                                    <i class="@uCategory.Name.ToLower().Replace(" ","")-icon "></i>
+                                                    <a class="loader" href="@Url.Action("Edit", "Army", new { ChosenUnitId = cUnit.Id, UpgradeCategory = uCategory.Id })">tryk her</a>
+                                                </div>
                                             }
 
                                             @foreach (var chosenupgrade in Model.ChosenUpgrades)
                                             {
-                                                if (chosenupgrade.ChosenUnitId == cUnit.Id)
+                                                if (chosenupgrade.ChosenUnitId == cUnit.Id && Model.CurrentUpgrades.Count != 0)
                                                 {
                                                     <div>
                                                         @Model.CurrentUpgrades.FirstOrDefault(x => x.Id == chosenupgrade.UpgradeId).Name [@Model.CurrentUpgrades.FirstOrDefault(x => x.Id == chosenupgrade.UpgradeId).PointCost]

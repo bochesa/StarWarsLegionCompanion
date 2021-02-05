@@ -314,7 +314,7 @@ namespace StarWarsLegionCompanion.Api.Models
                 IsExhaustable = true,
                 IsFreeAction = true,
                 PointCost = 10,
-                UpgradeCategoryId = 5
+                UpgradeCategoryId = 13
             },
             new Upgrade
             {
@@ -324,7 +324,7 @@ namespace StarWarsLegionCompanion.Api.Models
                 IsExhaustable = true,
                 IsFreeAction = true,
                 PointCost = 5,
-                UpgradeCategoryId = 5
+                UpgradeCategoryId = 13
             },
             new Upgrade
             {
@@ -332,7 +332,7 @@ namespace StarWarsLegionCompanion.Api.Models
                 Name = "Battle Meditation",
                 Text = "While you are issuing orders using a command card, you may issue 1 of those orders to any friendly unit on the battlefield, instead of a unit indicated on the command card.",
                 PointCost = 10,
-                UpgradeCategoryId = 5
+                UpgradeCategoryId = 13
             },
             new Upgrade
             {
@@ -340,7 +340,7 @@ namespace StarWarsLegionCompanion.Api.Models
                 Name = "Targeting Scopes",
                 Text = "You gain Precise 1",
                 PointCost = 6,
-                UpgradeCategoryId = 6
+                UpgradeCategoryId = 16
             });
 
             #endregion

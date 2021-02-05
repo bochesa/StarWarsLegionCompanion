@@ -1,0 +1,32 @@
+﻿@model ArmyViewModel
+
+<div class="card-body">
+    <div class="row">
+        <div class="col-6 text-center">
+            @Model.AccumulatedPointCost / 800 Armypoint @*TODO: Make army size dynamic*@
+        </div>
+        <div class="col-6 text-center">
+            @Model.CurrentUnits.Count() Activations
+        </div>
+    </div>
+    <div class="row">
+        <div id="commander-status" class="col-2 border-right">
+            <i class="commander-icon float-left"></i> @Model.CurrentUnits.Where(x => x.RankId == 1).Count() / 1-2 @*TODO: Make max min army ranks dynamic*@
+        </div>
+        <span id="operative-status" class="col-2 border-right">
+            <i class="operative-icon  float-left"></i> @Model.CurrentUnits.Where(x => x.RankId == 2).Count() / 0-2
+        </span>
+        <span id="corps-status" class="col-2 border-right">
+            <i class="corps-icon  float-left"></i> @Model.CurrentUnits.Where(x => x.RankId == 3).Count() / 3-6
+        </span>
+        <span id="specialforces-status" class="col-2 border-right float-left">
+            <i class="specialforces-icon float-left"></i> @Model.CurrentUnits.Where(x => x.RankId == 4).Count() / 0-3
+        </span>
+        <span id="support-status" class="col-2 border-right">
+            <i class="support-icon float-left"></i> @Model.CurrentUnits.Where(x => x.RankId == 5).Count() / 0-3
+        </span>
+        <span id="heavy-status" class="col-2">
+            <i class="heavy-icon float-left"></i> @Model.CurrentUnits.Where(x => x.RankId == 6).Count() / 0-2
+        </span>
+    </div>
+</div>

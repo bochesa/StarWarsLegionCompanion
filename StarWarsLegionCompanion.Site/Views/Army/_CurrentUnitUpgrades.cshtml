@@ -1,0 +1,16 @@
+﻿@model ArmyViewModel
+
+<div>
+    @foreach (var upgrade in Model.AvailableUpgrades)
+    {
+        <form method="post" asp-action="AddUpgrade" asp-controller="Army" asp-route-id="@Model.Army.Id"
+              asp-route-chosenunitid="@Model.ChosenUnitId"
+              asp-route-upgradeid="@upgrade.Id">
+            <span>@upgrade.Name </span>
+            <span> [@upgrade.PointCost]</span>
+            <button type="submit" class="btn btn-success btn-circle align-middle">
+                <i class="fas fa-plus"></i>
+            </button>
+        </form>
+    }
+</div>

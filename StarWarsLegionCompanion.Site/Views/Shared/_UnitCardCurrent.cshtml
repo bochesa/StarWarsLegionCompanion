@@ -32,58 +32,60 @@
                 @*@for (int j = 0; j < Model.CurrentUnitsGrouped.ElementAt(i).Count; j++)*@
                 @foreach (var cUnit in group)
                 {
-                    <form asp-action="removeUnit" asp-controller="Army" asp-route-id="@cUnit.Id" asp-route-armyid="@Model.Army.Id">
-                        <div class="row">
-                            <div class="col-10">
-                                <div class="card shadow mb-0" id="Model-card-id-@cUnit.Id">
-                                    <!-- Card Header - Accordion -->
-                                    <a href="#unit-card-@cUnit.Id"
-                                       class="d-block card-header py-3 collapsed" data-toggle="collapse"
-                                       role="button" aria-expanded="false" aria-controls="collapseCardExample">
-                                        <h6 class="m-0 font-weight-bold text-primary">
-                                            @if (Model.CurrentUnits.Where(x => x.Id == cUnit.UnitId).First().IsUnique)
-                                            {<span><i class="fas fa-square fa-xs"></i></span>}
-                                            @Model.CurrentUnits.Where(x => x.Id == cUnit.UnitId).First().Name [@Model.CurrentUnits.Where(x => x.Id == cUnit.UnitId).First().PointCost]
-                                        </h6>
-                                    </a>
-                                    <!-- Card Content - Collapse -->
-                                    <div class="collapse" id="unit-card-@cUnit.Id">
-                                        <div class="card-body">
-                                            <strong>Upgrades:</strong>
-                                            @foreach (var uCategory in Model.CurrentUnits.Where(x => x.Id == cUnit.UnitId).First().UpgradeCategories)
-                                            {
+                    <div class="row">
+                        <div class="col-10">
+                            <div class="card shadow mb-0" id="Model-card-id-@cUnit.Id">
+                                <!-- Card Header - Accordion -->
+                                <a href="#unit-card-@cUnit.Id"
+                                   class="d-block card-header py-3 collapsed" data-toggle="collapse"
+                                   role="button" aria-expanded="false" aria-controls="collapseCardExample">
+                                    <h6 class="m-0 font-weight-bold text-primary">
+                                        @if (Model.CurrentUnits.Where(x => x.Id == cUnit.UnitId).First().IsUnique)
+                                        {<span><i class="fas fa-square fa-xs"></i></span>}
+                                        @Model.CurrentUnits.Where(x => x.Id == cUnit.UnitId).First().Name [@Model.CurrentUnits.Where(x => x.Id == cUnit.UnitId).First().PointCost]
+                                    </h6>
+                                </a>
+                                <!-- Card Content - Collapse -->
+                                <div class="collapse" id="unit-card-@cUnit.Id">
+                                    <div class="card-body">
+                                        <strong>Upgrades:</strong>
+                                        @foreach (var uCategory in Model.CurrentUnits.Where(x => x.Id == cUnit.UnitId).First().UpgradeCategories)
+                                        {
 
+                                            <div>
+                                                <i class="@uCategory.Name.ToLower().Replace(" ","")-icon "></i>
+                                                @*<a class="btn btn-default btn-sm" id="@uCategory.Id" onclick="ShowUpgrades(@cUnit.Id,@uCategory.Id,@Model.Army.Id)">Show</a>*@
+                                                @*<a class="loader" href="@Url.Action("ShowUpgrades", "Army", new { chosenunitid = cUnit.Id,  upgradecategory= uCategory.Id,  Model.Army.Id})">Tryk her</a>*@
+                                                @*<button id="availableupgrades" data-chosenunitid="@cUnit.Id" data-armyid="@Model.Army.Id" data-categoryid="@uCategory.Id">Add Upgrade</button>*@
+                                                <a class="loader" id="lukeskywalker" href="@Url.Action("Edit", "Army", new { ChosenUnitId = cUnit.Id, UpgradeCategory = uCategory.Id })">tryk her</a>
+                                            </div>
+                                        }
+
+                                        @foreach (var chosenupgrade in Model.ChosenUpgrades)
+                                        {
+                                            if (chosenupgrade.ChosenUnitId == cUnit.Id && Model.CurrentUpgrades.Count != 0)
+                                            {
                                                 <div>
-                                                    <i class="@uCategory.Name.ToLower().Replace(" ","")-icon "></i>
-                                                    <a class="loader" href="@Url.Action("Edit", "Army", new { ChosenUnitId = cUnit.Id, UpgradeCategory = uCategory.Id })">tryk her</a>
+                                                    @Model.CurrentUpgrades.FirstOrDefault(x => x.Id == chosenupgrade.UpgradeId).Name [@Model.CurrentUpgrades.FirstOrDefault(x => x.Id == chosenupgrade.UpgradeId).PointCost]
                                                 </div>
                                             }
 
-                                            @foreach (var chosenupgrade in Model.ChosenUpgrades)
-                                            {
-                                                if (chosenupgrade.ChosenUnitId == cUnit.Id && Model.CurrentUpgrades.Count != 0)
-                                                {
-                                                    <div>
-                                                        @Model.CurrentUpgrades.FirstOrDefault(x => x.Id == chosenupgrade.UpgradeId).Name [@Model.CurrentUpgrades.FirstOrDefault(x => x.Id == chosenupgrade.UpgradeId).PointCost]
-                                                    </div>
-                                                }
+                                        }
 
-                                            }
-
-                                        </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
+                        <form asp-action="removeUnit" asp-controller="Army" asp-route-id="@cUnit.Id" asp-route-armyid="@Model.Army.Id">
                             <div class="col-2">
                                 <button type="submit" class="btn btn-success btn-circle align-middle">
                                     <i class="fas fa-minus"></i>
                                 </button>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 }
-
 
             </div>
         </div>

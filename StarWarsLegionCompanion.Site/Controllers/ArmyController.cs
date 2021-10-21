@@ -102,6 +102,10 @@ namespace StarWarsLegionCompanion.Site.Controllers
                 CurrentUpgrades = currentUpgrades,
                 ChosenUnitId = chosenunitid,
             };
+
+            if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+                return PartialView(armyVM);
+
             return View(armyVM);
         }
         private List<Unit> CheckAvailability(
@@ -131,6 +135,24 @@ namespace StarWarsLegionCompanion.Site.Controllers
             }
             return armyAvailaleUpgrades;
         }
+        [HttpGet("[controller]/[action]")]
+        public async Task<IActionResult> ShowUpgrades(int chosenunitid, int upgradecategory, int armyid)
+        {
+            //var availableupgrades = new List<Upgrade>();
+            var army = await proxy.GetArmyList(armyid);
+            var availableupgrades = await proxy.GetAllUpgradesByCategory(upgradecategory);
+
+            var vm = new ArmyViewModel() { AvailableUpgrades = availableupgrades, ChosenUnitId = chosenunitid, Army = army };
+            return PartialView("_CurrentUnitUpgrades", vm);
+        }
+
+        public class AvailableUpgradesViewModel
+        {
+            public int ArmyId { get; set; }
+            public List<Upgrade> AvailableUpgrades { get; set; }
+            public int ChosenunitId { get; set; }
+        }
+
         [HttpPost("[controller]/[action]/{id}")]
         public async Task<IActionResult> AddUpgrade(int id, int chosenunitid, int upgradeid) //id = Army Id
         {

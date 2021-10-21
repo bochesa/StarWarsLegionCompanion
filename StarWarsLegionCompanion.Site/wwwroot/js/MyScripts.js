@@ -7,17 +7,6 @@
     });
 });
 
-$(function () {
-
-    $('#unitUpgradeSection').on('click', '.loader a', function () {
-        var url = $(this).attr('href');
-
-        $('#unitUpgradeSection').load(url);
-
-        return false;
-    })
-})
-
 
 //At some point Refactor the shit!!! Learn JavaScript
 const collapseAvail1 = $("#group-avail-card-1");
@@ -108,4 +97,3 @@ if (showCollapseAvail6 === "show") {
 } else {
     collapseAvail6.collapse("hide");
 }
-});

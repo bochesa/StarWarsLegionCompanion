@@ -45,9 +45,20 @@
     <!-- Column of Available Upgrades-->
     <div class="col-2" id="currentUpgrade">
         <h3 class="h3 mb-0 text-gray-800">Upgrades </h3>
-
         @await Html.PartialAsync("_CurrentUnitUpgrades", Model)
 
     </div>
 
 </div>
+<script>
+    $(function () {
+
+        $('#current-list').on('click', '#lukeskywalker', function () {
+            var url = $(this).attr('href');
+
+            $('#current-list').load(url);
+
+            return false;
+        })
+    })
+</script>

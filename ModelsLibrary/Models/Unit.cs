@@ -25,9 +25,9 @@ namespace UtilityLibrary.Models
         public bool IsDefenseSurge { get; set; }
         public virtual AttackSurge AttackSurge { get; set; }
         public int? ArmyId { get; set; }
-        public virtual IEnumerable<Keyword> Keywords { get; set; } = new List<Keyword>(); // For many-to-any relations
-        public virtual IEnumerable<Weapon> Weapons { get; set; } = new List<Weapon>(); // For many-to-any relations
-        public virtual IEnumerable<UpgradeType> UpgradeCategories { get; set; } = new List<UpgradeType>(); // For many-to-any relations
+        public virtual IEnumerable<Keyword> Keywords { get; set; }
+        public virtual IEnumerable<Weapon> Weapons { get; set; }
+        public virtual IEnumerable<UpgradeType> UpgradeCategories { get; set; }
 
     }
 }

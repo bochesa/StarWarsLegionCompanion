@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UtilityLibrary.Models;
 
-namespace UtilityLibrary.Data.Repositories
+namespace UtilityLibrary.Application
 {
-    public interface IUpgradeRepository : IRepository<Upgrade>
+    public class ApplicationMediatorEntryPoint
     {
-
     }
 }

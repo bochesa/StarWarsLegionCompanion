@@ -7,8 +7,7 @@ using UtilityLibrary.Models;
 
 namespace UtilityLibrary.Data.Repositories
 {
-    public interface IUpgradeRepository : IRepository<Upgrade>
+    public interface IArmyRepository : IRepository<Army>
     {
-
     }
 }

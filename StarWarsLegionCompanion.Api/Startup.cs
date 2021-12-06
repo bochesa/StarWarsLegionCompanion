@@ -16,6 +16,10 @@ using Newtonsoft.Json;
 using System.Reflection;
 using System.IO;
 using Microsoft.OpenApi.Models;
+using UtilityLibrary.Data.SWContext;
+using MediatR;
+using UtilityLibrary.Application;
+using UtilityLibrary.Data.UnitOfWork;
 
 namespace StarWarsLegionCompanion.Api
 {
@@ -61,14 +65,16 @@ namespace StarWarsLegionCompanion.Api
                 });
             });
 
+            // implement Mediator pattern
+            services.AddMediatR(typeof(ApplicationMediatorEntryPoint).Assembly);
 
-
-
-            services.AddDbContext<DataContext>(options =>
+            // Entrypoint for Unit of Work and Repository Pattern
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddDbContext<ApplicationContext>(options =>
             {
-                var connectionsString = Configuration.GetConnectionString("DBConnectionString");
-                options.UseSqlServer(connectionsString);
-                //options.UseInMemoryDatabase("SWLegion");
+                //var connectionsString = Configuration.GetConnectionString("DBConnectionString");
+                //options.UseSqlServer(connectionsString);
+                options.UseInMemoryDatabase("SWLegion");
             });
         }
 

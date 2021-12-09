@@ -2,24 +2,21 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using StarWarsLegionCompanion.Api.Models;
+using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using System.Reflection;
-using System.IO;
-using Microsoft.OpenApi.Models;
 using UtilityLibrary.Data.SWContext;
 using MediatR;
 using UtilityLibrary.Application;
 using UtilityLibrary.Data.UnitOfWork;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace StarWarsLegionCompanion.Api
 {
@@ -35,34 +32,15 @@ namespace StarWarsLegionCompanion.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddControllers()
-                .AddNewtonsoftJson(options =>
-                options.SerializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.Objects
-                    );
+                // .AddNewtonsoftJson(options =>
+                //options.SerializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.Objects
+                //     )
+                ;
             services.AddSwaggerGen(c =>
             {
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                c.IncludeXmlComments(xmlPath);
-
-                c.SwaggerDoc("v1", new OpenApiInfo
-                {
-                    Version = "v1",
-                    Title = "Star Wars Legion Companion API",
-                    Description = "My API to support the Star Wars Legion Companion App for mobile and online platform",
-                    TermsOfService = new Uri("https://example.com/terms"),
-                    Contact = new OpenApiContact
-                    {
-                        Name = "Henrik Bochesa",
-                        Email = "henrik@bochesa.dk",
-                        Url = new Uri("https://www.linkedin.com/in/henrik-levin-bochesa-51386027/"),
-                    },
-                    License = new OpenApiLicense
-                    {
-                        Name = "Use under LICX",
-                        Url = new Uri("https://example.com/license"),
-                    }
-                });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "StarWarsLegionCompanion.Api", Version = "v1" });
             });
 
             // implement Mediator pattern
@@ -72,9 +50,9 @@ namespace StarWarsLegionCompanion.Api
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddDbContext<ApplicationContext>(options =>
             {
-                //var connectionsString = Configuration.GetConnectionString("DBConnectionString");
-                //options.UseSqlServer(connectionsString);
-                options.UseInMemoryDatabase("SWLegion");
+                var connectionsString = Configuration.GetConnectionString("LocalDBConnectionString");
+                options.UseSqlServer(connectionsString);
+                //options.UseInMemoryDatabase("SWLegion");
             });
         }
 
@@ -84,12 +62,9 @@ namespace StarWarsLegionCompanion.Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "StarWarsLegionCompanion.Api v1"));
             }
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "StarWarsLegionCompanion");
-            });
 
             app.UseHttpsRedirection();
 

@@ -9,6 +9,6 @@ namespace UtilityLibrary.Data.Repositories
 {
     public interface IUnitRepository : IRepository<Unit>
     {
-
+        Task<Unit> GetUnitByIdWithPopulatedLists(int id);
     }
 }

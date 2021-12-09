@@ -17,8 +17,10 @@ namespace UtilityLibrary.Data.UnitOfWork
             _context = context;
 
             Units = new UnitRepository(_context);
+            Weapons = new WeaponRepository(_context);
         }
         public IUnitRepository Units { get; private set; }
+        public IWeaponRepository Weapons { get; private set; }
 
         public async Task<int> Complete()
         {

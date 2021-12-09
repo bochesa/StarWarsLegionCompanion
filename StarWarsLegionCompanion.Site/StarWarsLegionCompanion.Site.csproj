@@ -16,10 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\StarWarsLegionCompanion.Api\StarWarsLegionCompanion.Api.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="wwwroot\lib\jquery.unobtrusive-ajax.js" />
     <None Include="wwwroot\lib\jquery.unobtrusive-ajax.min.js" />
   </ItemGroup>

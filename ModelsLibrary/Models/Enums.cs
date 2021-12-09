@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -17,21 +16,29 @@ namespace UtilityLibrary.Models
     }
     public enum RangeType { Melee, Ranged }
     public enum DefenseDie { white, red }
-    public enum AttackDieType { white, black, red }
-    public enum UpgradeType { none, Armament, Command, Comms, Crew, Force, Gear, Generator, Grenades, Hardpoint, HeavyWeapon, Ordnance, Personnel, Pilot, Training }
+    //public enum AttackDieType { white, black, red }
+    public enum UpgradeType
+    {
+        none,
+        Armament,
+        Command,
+        Comms,
+        Crew,
+        Force,
+        Gear,
+        Generator,
+        Grenades,
+        Hardpoint,
+        HeavyWeapon,
+        Ordnance,
+        Personnel,
+        Pilot,
+        Training
+    }
     public enum AttackSurge { none, hit, CriticalHit }
     public enum UnitType { Trooper, RepulsorVehicle, GroundVehicle, EmplacementTrooper, CreatureTropper, WookieTropper, DroidTrooper, CloneTrooper }
     public enum RankType { Commander, Operative, Corps, SpecialForces, Support, Heavy }
     public enum ActionType { none, FreeAction, CardAction }
-
-    //public class AttackDie
-    //{
-    //    public int Id { get; set; }
-    //    public string Name { get; set; }
-    //    public int Value { get; set; }
-    //    [NotMapped, JsonIgnore]
-    //    public virtual List<Weapon> Weapons { get; set; }
-    //}
 
     //public class RangeType
     //{

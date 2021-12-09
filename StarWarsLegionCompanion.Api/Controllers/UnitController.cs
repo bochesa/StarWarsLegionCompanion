@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using UtilityLibrary.Application.Handlers;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -10,26 +11,31 @@ namespace StarWarsLegionCompanion.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UnitController : ControllerBase
+    public class UnitController : SWLBaseController
     {
         // GET: api/<UnitController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IActionResult> GetAllUnits()
         {
-            return new string[] { "value1", "value2" };
+            var units = await Mediator.Send(new InGetAllUnitsDTO());
+            return Ok(units);
         }
 
         // GET api/<UnitController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<IActionResult> GetUnit(int id)
         {
-            return "value";
+            var dto = new InUnitDTO { Id = id };
+            var unit = await Mediator.Send(dto);
+            return Ok(unit);
         }
 
         // POST api/<UnitController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody] InPostNewUnitDTO request)
         {
+            var affectedLines = await Mediator.Send(request);
+            return Ok(affectedLines);
         }
 
         // PUT api/<UnitController>/5

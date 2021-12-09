@@ -26,5 +26,8 @@ namespace UtilityLibrary.Models
         public int? AbilityValue { get; set; }
         public string Text { get; set; }
         public ActionType ActionType { get; set; }
+        public virtual ICollection<Unit> Units { get; set; }
+        public virtual ICollection<Weapon> Weapons { get; set; }
+        public virtual ICollection<Upgrade> Upgrades { get; set; }
     }
 }

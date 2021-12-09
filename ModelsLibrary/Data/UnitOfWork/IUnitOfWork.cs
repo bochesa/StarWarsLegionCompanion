@@ -10,6 +10,7 @@ namespace UtilityLibrary.Data.UnitOfWork
     public interface IUnitOfWork : IDisposable
     {
         IUnitRepository Units { get; }
+        IWeaponRepository Weapons { get; }
         Task<int> Complete();
     }
 }

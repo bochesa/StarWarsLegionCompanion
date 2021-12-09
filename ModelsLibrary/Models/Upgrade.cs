@@ -29,6 +29,6 @@ namespace UtilityLibrary.Models
         public bool IsFreeAction { get; set; }
         public virtual UpgradeType UpgradeType { get; set; }
         public virtual Weapon Weapon { get; set; }
-        public virtual ICollection<Keyword> Keywords { get; set; } = new List<Keyword>();
+        public virtual ICollection<Keyword> Keywords { get; set; }
     }
 }

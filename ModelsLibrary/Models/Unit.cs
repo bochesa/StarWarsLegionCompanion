@@ -24,10 +24,9 @@ namespace UtilityLibrary.Models
         public bool IsDefenseRed { get; set; }
         public bool IsDefenseSurge { get; set; }
         public virtual AttackSurge AttackSurge { get; set; }
-        public int? ArmyId { get; set; }
-        public virtual IEnumerable<Keyword> Keywords { get; set; }
-        public virtual IEnumerable<Weapon> Weapons { get; set; }
-        public virtual IEnumerable<UpgradeType> UpgradeCategories { get; set; }
+        public virtual ICollection<Keyword> Keywords { get; set; }
+        public virtual ICollection<Weapon> Weapons { get; set; }
+        public virtual ICollection<UpgradeOption> UpgradeOptions { get; set; }
 
     }
 }

@@ -12,14 +12,12 @@ namespace UtilityLibrary.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Text { get; set; }
-        public virtual RangeType RangeType { get; set; }
-        public virtual UpgradeType Upgrade { get; set; }
-        public int MinRange { get; set; }
+        public RangeType RangeType { get; set; }
+        public int? MinRange { get; set; }
         public int? MaxRange { get; set; }
-        public virtual ICollection<AttackDieType> AttackDie { get; set; } = new List<AttackDieType>();
-        public virtual ICollection<Keyword> Keywords { get; set; } = new List<Keyword>();
-        public virtual ICollection<Unit> Units { get; set; } = new List<Unit>();
+        public AttackValue AttackValue { get; set; }
+        public virtual ICollection<Keyword> Keywords { get; set; }
+        public virtual ICollection<Unit> Units { get; set; }
 
     }
 

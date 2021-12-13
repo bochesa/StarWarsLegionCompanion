@@ -29,6 +29,7 @@ namespace UtilityLibrary.Application.Handlers
                 OutGetAllUnitsDTO unitDto = new OutGetAllUnitsDTO
                 {
                     Name = item.Name,
+                    Id = item.Id
                 };
                 unitDtos.Add(unitDto);
             }

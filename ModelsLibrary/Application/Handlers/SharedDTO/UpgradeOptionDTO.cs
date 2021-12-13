@@ -10,6 +10,6 @@ namespace UtilityLibrary.Application.Handlers
     {
         public int UpgradeType { get; set; }
         public int Amount { get; set; }
-        public string Name { get; set; }
     }
+
 }

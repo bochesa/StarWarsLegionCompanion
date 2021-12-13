@@ -43,29 +43,29 @@ namespace UtilityLibrary.Application.Handlers
             };
 
             // Loop for converting Upgradeoptions to DTO
-            var upgradeoptions = new List<UpgradeOptionDTO>();
+            var upgradeoptions = new List<OutUpgradeOptionDTO>();
             foreach (var item in unit.UpgradeOptions)
             {
-                var dto = new UpgradeOptionDTO
+                var dto = new OutUpgradeOptionDTO
                 {
                     Amount = item.Amount,
-                    Name = Enum.GetName(typeof(UpgradeType), item.UpgradeType)
+                    UpgradeType = Enum.GetName(typeof(UpgradeType), item.UpgradeType)
 
                 };
                 upgradeoptions.Add(dto);
             }
 
             // Loop for converting Weapons including its keywords to DTO
-            var weapons = new List<WeaponDTO>();
+            var weapons = new List<OutWeaponDTO>();
             foreach (var item in unit.Weapons)
             {
-                var dto = new WeaponDTO
+                var dto = new OutWeaponDTO
                 {
                     //AttackValue = item.AttackValue,
                     MaxRange = item.MaxRange,
                     MinRange = item.MinRange,
                     Name = item.Name,
-                    RangeType = Enum.GetName(typeof(RangeType), item.RangeType),
+                    RangeType = Enum.GetName(typeof(RangeType), item.RangeType)
                 };
                 var attackDto = new AttackValueDTO
                 {
@@ -74,10 +74,10 @@ namespace UtilityLibrary.Application.Handlers
                     WhiteDie = item.AttackValue.WhiteDie
                 };
                 dto.AttackValue = attackDto;
-                var weaponsKeywords = new List<KeywordDTO>();
+                var weaponsKeywords = new List<OutKeywordDTO>();
                 foreach (var keyword in item.Keywords)
                 {
-                    var keywordDto = new KeywordDTO
+                    var keywordDto = new OutKeywordDTO
                     {
                         AbilityValue = keyword.AbilityValue,
                         ActionType = Enum.GetName(typeof(ActionType), keyword.ActionType),
@@ -91,10 +91,10 @@ namespace UtilityLibrary.Application.Handlers
             }
 
             // Loop for converting The units Keywords to DTO
-            var keywords = new List<KeywordDTO>();
+            var keywords = new List<OutKeywordDTO>();
             foreach (var keyword in unit.Keywords)
             {
-                var keywordDto = new KeywordDTO
+                var keywordDto = new OutKeywordDTO
                 {
                     AbilityValue = keyword.AbilityValue,
                     ActionType = Enum.GetName(typeof(ActionType), keyword.ActionType),

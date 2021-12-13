@@ -10,8 +10,8 @@ namespace UtilityLibrary.Application.Handlers
 {
     public class OutGetAllUnitsDTO
     {
+        public int Id { get; set; }
         public string Name { get; set; }
-        //public int Id { get; set; }
         //public string Name { get; set; }
         //public string SurName { get; set; }
         //public bool IsUnique { get; set; }

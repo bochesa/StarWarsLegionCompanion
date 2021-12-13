@@ -23,7 +23,6 @@
     <Folder Include="Application\Handlers\ArmyHandlers\Commands\" />
     <Folder Include="Application\Handlers\ArmyHandlers\Queries\" />
     <Folder Include="Application\Handlers\UpgradeHandlers\Commands\" />
-    <Folder Include="Application\Handlers\UpgradeHandlers\Queries\" />
     <Folder Include="Application\Services\" />
   </ItemGroup>
 </Project>

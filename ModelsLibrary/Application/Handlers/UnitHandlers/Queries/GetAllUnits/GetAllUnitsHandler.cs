@@ -23,7 +23,7 @@ namespace UtilityLibrary.Application.Handlers
         {
             var units = await _uow.Units.GetAll();
             List<OutGetAllUnitsDTO> unitDtos = new();
-            //CaseStatus = Enum.GetName(typeof(CaseStatus), item.CaseStatus),
+
             foreach (var item in units)
             {
                 OutGetAllUnitsDTO unitDto = new OutGetAllUnitsDTO

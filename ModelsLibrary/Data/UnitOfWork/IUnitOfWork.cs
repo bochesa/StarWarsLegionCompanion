@@ -9,9 +9,10 @@ namespace UtilityLibrary.Data.UnitOfWork
 {
     public interface IUnitOfWork : IDisposable
     {
+        IUpgradeRepository Upgrades { get; }
         IUnitRepository Units { get; }
         IWeaponRepository Weapons { get; }
-        IKeywordRepository Keywords { get; set; }
+        IKeywordRepository Keywords { get; }
         Task<int> Complete();
     }
 }

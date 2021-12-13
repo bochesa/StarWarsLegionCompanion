@@ -27,12 +27,5 @@ namespace UtilityLibrary.Data.Repositories
             return unit;
         }
     }
-    public class UpgradeRepository : Repository<Upgrade>, IUpgradeRepository
-    {
-        public UpgradeRepository(ApplicationContext context) : base(context)
-        {
-
-        }
-    }
 }
 

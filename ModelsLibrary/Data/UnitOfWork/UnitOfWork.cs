@@ -18,9 +18,11 @@ namespace UtilityLibrary.Data.UnitOfWork
 
             Units = new UnitRepository(_context);
             Weapons = new WeaponRepository(_context);
+            Keywords = new KeywordRepository(_context);
         }
         public IUnitRepository Units { get; private set; }
         public IWeaponRepository Weapons { get; private set; }
+        public IKeywordRepository Keywords { get; set; }
 
         public async Task<int> Complete()
         {

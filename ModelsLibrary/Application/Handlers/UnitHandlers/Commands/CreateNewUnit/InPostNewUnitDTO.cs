@@ -24,8 +24,8 @@ namespace UtilityLibrary.Application.Handlers
         public bool IsDefenseRed { get; set; }
         public bool IsDefenseSurge { get; set; }
         public int AttackSurge { get; set; }
-        public IEnumerable<KeywordDTO> Keywords { get; set; }
-        public IEnumerable<WeaponDTO> Weapons { get; set; }
-        public IEnumerable<UpgradeOptionDTO> UpgradeCategories { get; set; }
+        public IEnumerable<InKeywordDTO> Keywords { get; set; }
+        public IEnumerable<InWeaponDTO> Weapons { get; set; }
+        public IEnumerable<InUpgradeOptionDTO> UpgradeCategories { get; set; }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UtilityLibrary.Application.Handlers
 {
-    public class KeywordDTO
+    public class InKeywordDTO
     {
         public string Name { get; set; }
         public int? AbilityValue { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UtilityLibrary.Application.Handlers
 {
-    public class UpgradeOptionDTO
+    public class InUpgradeOptionDTO
     {
         public int UpgradeType { get; set; }
         public int Amount { get; set; }

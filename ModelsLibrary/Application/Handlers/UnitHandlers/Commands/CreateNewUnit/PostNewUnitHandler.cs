@@ -42,7 +42,7 @@ namespace UtilityLibrary.Application.Handlers
                 UpgradeOptions = new List<UpgradeOption>()
 
             };
-
+            // loop through Weapons and convert WeaponDTO to Weapon if there are any
             if (request.Weapons.Count() != 0)
             {
                 //Loop through all keywords and add each one, or add the reference for an existing weapon
@@ -64,7 +64,7 @@ namespace UtilityLibrary.Application.Handlers
                             RedDie = item.AttackValue.RedDie,
                             WhiteDie = item.AttackValue.WhiteDie
                         };
-
+                        // loop through Keywords and convert KeywordDTO to keyword if there are any
                         if (item.Keywords.Count() != 0)
                         {
                             foreach (var kewordDto in request.Keywords)
@@ -115,6 +115,7 @@ namespace UtilityLibrary.Application.Handlers
                 }
 
             }
+            // loop through Keywords and convert KeywordDTO to keyword if there are any
             if (request.Keywords.Count() != 0)
             {
 
@@ -145,6 +146,7 @@ namespace UtilityLibrary.Application.Handlers
                 }
 
             }
+            // loop through UpgradeCategories and convert UpgradeOptionDTO to UpgradeOption if there are any
             if (request.UpgradeCategories.Count() != 0)
             {
                 foreach (var item in request.UpgradeCategories)

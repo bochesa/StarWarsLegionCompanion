@@ -36,12 +36,4 @@ namespace UtilityLibrary.Application.Handlers
             return OutDto;
         }
     }
-    public class InGetAllCommandsDTO : IRequest<List<OutGetAllCommandsDTO>>
-    {
-    }
-    public class OutGetAllCommandsDTO
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-    }
 }

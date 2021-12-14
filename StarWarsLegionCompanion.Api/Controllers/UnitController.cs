@@ -25,7 +25,7 @@ namespace StarWarsLegionCompanion.Api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUnit(int id)
         {
-            var dto = new InUnitDTO { Id = id };
+            var dto = new InGetUnitDTO { Id = id };
             var unit = await Mediator.Send(dto);
             return Ok(unit);
         }

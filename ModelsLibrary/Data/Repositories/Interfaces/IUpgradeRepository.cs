@@ -9,6 +9,6 @@ namespace UtilityLibrary.Data.Repositories
 {
     public interface IUpgradeRepository : IRepository<Upgrade>
     {
-
+        Task<Upgrade> GetUpgradeByIdWithPopulatedLists(int id);
     }
 }

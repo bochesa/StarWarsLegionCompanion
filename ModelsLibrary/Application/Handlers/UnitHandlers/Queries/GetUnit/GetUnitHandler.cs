@@ -10,7 +10,7 @@ using UtilityLibrary.Models;
 
 namespace UtilityLibrary.Application.Handlers
 {
-    public class GetUnitHandler : IRequestHandler<InUnitDTO, OutUnitDTO>
+    public class GetUnitHandler : IRequestHandler<InGetUnitDTO, OutGetUnitDTO>
     {
         private readonly IUnitOfWork _uow;
 
@@ -19,11 +19,11 @@ namespace UtilityLibrary.Application.Handlers
             _uow = uow;
         }
 
-        public async Task<OutUnitDTO> Handle(InUnitDTO request, CancellationToken cancellationToken)
+        public async Task<OutGetUnitDTO> Handle(InGetUnitDTO request, CancellationToken cancellationToken)
         {
             var unit = await _uow.Units.GetUnitByIdWithPopulatedLists(request.Id);
 
-            OutUnitDTO unitDto = new OutUnitDTO
+            OutGetUnitDTO unitDto = new OutGetUnitDTO
             {
                 Id = unit.Id,
                 AttackSurge = Enum.GetName(typeof(AttackSurge), unit.AttackSurge),
@@ -65,15 +65,14 @@ namespace UtilityLibrary.Application.Handlers
                     MaxRange = item.MaxRange,
                     MinRange = item.MinRange,
                     Name = item.Name,
-                    RangeType = Enum.GetName(typeof(RangeType), item.RangeType)
+                    RangeType = Enum.GetName(typeof(RangeType), item.RangeType),
+                    AttackValue = new AttackValueDTO
+                    {
+                        BlackDie = item.AttackValue.BlackDie,
+                        RedDie = item.AttackValue.RedDie,
+                        WhiteDie = item.AttackValue.WhiteDie
+                    }
                 };
-                var attackDto = new AttackValueDTO
-                {
-                    BlackDie = item.AttackValue.BlackDie,
-                    RedDie = item.AttackValue.RedDie,
-                    WhiteDie = item.AttackValue.WhiteDie
-                };
-                dto.AttackValue = attackDto;
                 var weaponsKeywords = new List<OutKeywordDTO>();
                 foreach (var keyword in item.Keywords)
                 {

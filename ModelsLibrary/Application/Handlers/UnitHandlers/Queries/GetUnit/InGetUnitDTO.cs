@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace UtilityLibrary.Application.Handlers
 {
-    public class InUnitDTO : IRequest<OutUnitDTO>
+    public class InGetUnitDTO : IRequest<OutGetUnitDTO>
     {
         public int Id { get; set; }
     }

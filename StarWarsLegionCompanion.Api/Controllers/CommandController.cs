@@ -3,45 +3,43 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using UtilityLibrary.Application.Handlers;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace StarWarsLegionCompanion.Api.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class UpgradeController : SWLBaseController
+    public class CommandController : SWLBaseController
     {
-        // GET: api/<UpgradeController>
+        // GET: api/<CommandController>
         [HttpGet]
-        public async Task<IActionResult> GetAllUpgrades()
+        public async Task<IActionResult> GetAllCommands()
         {
-            var upgrades = await Mediator.Send(new InGetAllUpgradesDTO());
-            return Ok(upgrades);
+            var units = await Mediator.Send(new InGetAllUnitsDTO());
+            return Ok(units);
         }
 
-        // GET api/<UpgradeController>/5
+        // GET api/<CommandController>/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetUpgrade(int id)
+        public string Get(int id)
         {
-            var upgrade = await Mediator.Send(new InGetUpgradeDTO { Id = id });
-            return Ok(upgrade);
+            return "value";
         }
 
-        // POST api/<UpgradeController>
+        // POST api/<CommandController>
         [HttpPost]
         public void Post([FromBody] string value)
         {
         }
 
-        // PUT api/<UpgradeController>/5
+        // PUT api/<CommandController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE api/<UpgradeController>/5
+        // DELETE api/<CommandController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

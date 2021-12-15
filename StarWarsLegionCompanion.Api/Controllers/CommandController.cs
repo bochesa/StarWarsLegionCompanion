@@ -23,15 +23,19 @@ namespace StarWarsLegionCompanion.Api.Controllers
 
         // GET api/<CommandController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<IActionResult> GetCommand(int id)
         {
-            return "value";
+            var dto = new InGetCommandDTO { Id = id };
+            var command = await Mediator.Send(dto);
+            return Ok(command);
         }
 
         // POST api/<CommandController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody] InPostNewCommand request)
         {
+            var affectedLines = await Mediator.Send(request);
+            return Ok(affectedLines);
         }
 
         // PUT api/<CommandController>/5

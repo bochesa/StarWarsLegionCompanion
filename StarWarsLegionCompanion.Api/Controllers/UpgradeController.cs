@@ -31,8 +31,10 @@ namespace StarWarsLegionCompanion.Api.Controllers
 
         // POST api/<UpgradeController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody] InPostNewUpgradeDTO request)
         {
+            var affectedLines = await Mediator.Send(request);
+            return Ok(affectedLines);
         }
 
         // PUT api/<UpgradeController>/5

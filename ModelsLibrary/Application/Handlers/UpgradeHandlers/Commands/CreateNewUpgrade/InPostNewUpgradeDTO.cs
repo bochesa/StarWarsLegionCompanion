@@ -10,7 +10,6 @@ namespace UtilityLibrary.Application.Handlers
 {
     public class InPostNewUpgradeDTO : IRequest<int>
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public bool IsUnique { get; set; }
         public int PointCost { get; set; }

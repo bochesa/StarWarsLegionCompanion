@@ -31,30 +31,65 @@ namespace UtilityLibrary.Application.Handlers
                 Text = request.Text,
                 UpgradeType = (UpgradeType)request.UpgradeType,
                 WoundThreshold = request.WoundThreshold,
-                Keywords = new List<Keyword>()
+                Keywords = new List<Keyword>(),
+                Weapon = new Weapon()
             };
 
-            Weapon weapon = new Weapon
+            // Convert WeaponDTO into a Weapon object
+            if (request.Weapon is not null)
             {
-                MaxRange = request.Weapon.MaxRange,
-                MinRange = request.Weapon.MinRange,
-                Name = request.Weapon.Name,
-                RangeType = (RangeType)request.Weapon.RangeType,
-                AttackValue = new AttackValue
+
+                Weapon weapon = new Weapon
                 {
-                    BlackDie = request.Weapon.AttackValue.BlackDie,
-                    RedDie = request.Weapon.AttackValue.RedDie,
-                    WhiteDie = request.Weapon.AttackValue.WhiteDie
-                },
-                Keywords = new List<Keyword>()
-            };
+                    MaxRange = request.Weapon.MaxRange,
+                    MinRange = request.Weapon.MinRange,
+                    Name = request.Weapon.Name,
+                    RangeType = (RangeType)request.Weapon.RangeType,
+                    AttackValue = new AttackValue
+                    {
+                        BlackDie = request.Weapon.AttackValue.BlackDie,
+                        RedDie = request.Weapon.AttackValue.RedDie,
+                        WhiteDie = request.Weapon.AttackValue.WhiteDie
+                    },
+                    Keywords = new List<Keyword>()
 
-            upgrade.Weapon = weapon;
-            await _uow.Weapons.Add(weapon);
-            // loop through Keywords and convert KeywordDTO to keyword if there are any
-            if (request.Weapon.Keywords.Count() != 0)
+                };
+
+                // loop through Keywords on the weapon and convert KeywordDTO to keyword if there are any
+                if (request.Weapon.Keywords.Count() != 0)
+                {
+                    foreach (var item in request.Weapon.Keywords)
+                    {
+                        bool keywordExists = await _uow.Keywords.KeywordExist(item.Name);
+
+                        // if weaponExists is true build the weapon - This might be deprecated in the future, it might be better to add keywords on its own
+                        if (!keywordExists)
+                        {
+                            var keyword = new Keyword();
+                            keyword.Name = item.Name;
+                            keyword.AbilityValue = item.AbilityValue;
+                            keyword.ActionType = (ActionType)item.ActionType;
+                            keyword.Text = item.Text;
+
+                            weapon.Keywords.Add(keyword);
+                            await _uow.Keywords.Add(keyword);
+                        }
+                        else
+                        {
+                            Keyword keyword = await _uow.Keywords.GetKeywordByName(item.Name);
+                            weapon.Keywords.Add(keyword);
+                        }
+                    }
+                }
+
+                upgrade.Weapon = weapon;
+                await _uow.Weapons.Add(weapon);
+            }
+
+            // Loop through the keywords in the request and add them as DTO to the upgrade
+            if (request.Keywords.Count() != 0)
             {
-                foreach (var item in request.Weapon.Keywords)
+                foreach (var item in request.Keywords)
                 {
                     bool keywordExists = await _uow.Keywords.KeywordExist(item.Name);
 
@@ -73,10 +108,12 @@ namespace UtilityLibrary.Application.Handlers
                     else
                     {
                         Keyword keyword = await _uow.Keywords.GetKeywordByName(item.Name);
-                        weapon.Keywords.Add(keyword);
+                        upgrade.Keywords.Add(keyword);
                     }
                 }
             }
+
+
             await _uow.Upgrades.Add(upgrade);
 
             int changes = await _uow.Complete();

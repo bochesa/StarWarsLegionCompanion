@@ -18,7 +18,7 @@ namespace UtilityLibrary.Data.SWContext
             //Database.EnsureCreated();
         }
 
-        //public DbSet<Army> Armies { get; set; }
+        public DbSet<Army> Armies { get; set; }
         public DbSet<Unit> Units { get; set; }
         public DbSet<Command> Commands { get; set; }
         public DbSet<Upgrade> Upgrades { get; set; }

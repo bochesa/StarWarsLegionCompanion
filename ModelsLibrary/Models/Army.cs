@@ -13,9 +13,10 @@ namespace UtilityLibrary.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public virtual Player Player { get; set; }
-
         public virtual FactionType Faction { get; set; }
         public int PointLimit { get; set; }
-
+        public List<int> CommandIds { get; set; }
+        public List<int> UnitIds { get; set; }
+        public List<int> UpgradeIds { get; set; }
     }
 }

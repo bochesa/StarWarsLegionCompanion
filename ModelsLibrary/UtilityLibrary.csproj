@@ -20,8 +20,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Application\Handlers\ArmyHandlers\Commands\" />
-    <Folder Include="Application\Handlers\ArmyHandlers\Queries\" />
     <Folder Include="Application\Services\" />
   </ItemGroup>
 </Project>

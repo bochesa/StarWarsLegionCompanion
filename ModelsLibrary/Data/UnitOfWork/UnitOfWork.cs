@@ -21,7 +21,9 @@ namespace UtilityLibrary.Data.UnitOfWork
             Keywords = new KeywordRepository(_context);
             Upgrades = new UpgradeRepository(_context);
             Commands = new CommandRepository(_context);
+            Armies = new ArmyRepository(_context);
         }
+        public IArmyRepository Armies { get; private set; }
         public IUnitRepository Units { get; private set; }
         public IWeaponRepository Weapons { get; private set; }
         public IKeywordRepository Keywords { get; private set; }

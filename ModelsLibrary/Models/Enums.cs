@@ -10,10 +10,10 @@ namespace UtilityLibrary.Models
     public enum FactionType
     {
         Neutral,
-        Rebel,
-        Empire,
-        [Display(Name = "Separatist Alliance")] SeparatistAlliance,
-        [Display(Name = "Galactic Republic ")] GalacticRepublic
+        [Display(Name = "Rebel Alliance")] Rebel,
+        [Display(Name = "Galactic Empire")] Empire,
+        [Display(Name = "Separatist Alliance")] Separatist,
+        [Display(Name = "Galactic Republic ")] Republic
     }
     public enum RangeType
     {

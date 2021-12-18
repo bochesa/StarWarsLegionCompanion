@@ -6,6 +6,14 @@ using UtilityLibrary.Models;
 
 namespace UtilityLibrary.Data.Repositories
 {
+    public class PlayerRepository : Repository<Player>, IPlayerRepository
+    {
+        public PlayerRepository(ApplicationContext context) : base(context)
+        {
+
+        }
+    }
+
     public class ArmyRepository : Repository<Army>, IArmyRepository
     {
         public ArmyRepository(ApplicationContext context) : base(context)

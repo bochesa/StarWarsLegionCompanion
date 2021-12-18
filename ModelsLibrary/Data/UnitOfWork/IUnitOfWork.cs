@@ -15,6 +15,7 @@ namespace UtilityLibrary.Data.UnitOfWork
         IKeywordRepository Keywords { get; }
         ICommandRepository Commands { get; }
         IArmyRepository Armies { get; }
+        IPlayerRepository Players { get; }
         Task<int> Complete();
     }
 }

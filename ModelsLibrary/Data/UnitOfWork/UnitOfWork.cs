@@ -22,6 +22,7 @@ namespace UtilityLibrary.Data.UnitOfWork
             Upgrades = new UpgradeRepository(_context);
             Commands = new CommandRepository(_context);
             Armies = new ArmyRepository(_context);
+            Players = new PlayerRepository(_context);
         }
         public IArmyRepository Armies { get; private set; }
         public IUnitRepository Units { get; private set; }
@@ -29,6 +30,7 @@ namespace UtilityLibrary.Data.UnitOfWork
         public IKeywordRepository Keywords { get; private set; }
         public IUpgradeRepository Upgrades { get; private set; }
         public ICommandRepository Commands { get; private set; }
+        public IPlayerRepository Players { get; private set; }
 
         public async Task<int> Complete()
         {

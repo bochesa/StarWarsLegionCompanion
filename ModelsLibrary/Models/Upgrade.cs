@@ -17,7 +17,7 @@ namespace UtilityLibrary.Models
         public int? WoundThreshold { get; set; }
         public bool IsExhaustable { get; set; }
         public bool IsFreeAction { get; set; }
-        public Upgrade? Reconfigure { get; set; } = null;
+        public Upgrade Reconfigure { get; set; } = null;
         public virtual UpgradeType UpgradeType { get; set; }
         public virtual Weapon Weapon { get; set; }
         public virtual ICollection<Keyword> Keywords { get; set; }

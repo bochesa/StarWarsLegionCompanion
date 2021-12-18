@@ -17,6 +17,8 @@ using UtilityLibrary.Application;
 using UtilityLibrary.Data.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using System.Reflection;
+using System.IO;
 
 namespace StarWarsLegionCompanion.Api
 {
@@ -41,6 +43,9 @@ namespace StarWarsLegionCompanion.Api
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "StarWarsLegionCompanion.Api", Version = "v1" });
+                // using System.Reflection;
+                var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
             });
 
             // implement Mediator pattern

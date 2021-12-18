@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 
 namespace UtilityLibrary.Data.SWContext
 {
+#pragma warning disable CS1591
+
     public class ApplicationContext : DbContext
     {
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
@@ -23,5 +25,5 @@ namespace UtilityLibrary.Data.SWContext
         public DbSet<Weapon> Weapons { get; set; }
         public DbSet<Keyword> Keywords { get; set; }
     }
-
+#pragma warning restore CS1591
 }

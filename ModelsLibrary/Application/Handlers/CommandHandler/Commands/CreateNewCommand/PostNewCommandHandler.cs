@@ -25,7 +25,7 @@ namespace UtilityLibrary.Application.Handlers
             {
                 Name = request.Name,
                 Pips = request.Pips,
-                UnitActivated = request.UnitActivated,
+                Orders = request.Orders,
                 Text = request.Text,
                 Unit = await _uow.Units.Get(request.UnitId)
             };

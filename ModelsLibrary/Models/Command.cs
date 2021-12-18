@@ -9,7 +9,7 @@ namespace UtilityLibrary.Models
         public Unit? Unit { get; set; } = null;
         public int Pips { get; set; }
         public string Text { get; set; }
-        public string UnitActivated { get; set; }
+        public string Orders { get; set; }
 
     }
 }

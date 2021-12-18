@@ -15,8 +15,28 @@ namespace UtilityLibrary.Models
         public virtual Player Player { get; set; }
         public virtual FactionType Faction { get; set; }
         public int PointLimit { get; set; }
-        public List<int> CommandIds { get; set; }
-        public List<int> UnitIds { get; set; }
-        public List<int> UpgradeIds { get; set; }
+        public List<ChosenCommand> ChosenCommands { get; set; }
+        public List<ChosenUnit> ChosenUnits { get; set; }
+    }
+
+    public class ChosenUnit
+    {
+        public int Id { get; set; }
+        public int UnitId { get; set; }
+        public Unit Unit { get; set; }
+        public ICollection<ChosenUpgrade> ChosenUpgrades { get; set; }
+    }
+    public class ChosenUpgrade
+    {
+        public int Id { get; set; }
+        public int UpgradeId { get; set; }
+        public Upgrade Upgrade { get; set; }
+
+    }
+    public class ChosenCommand
+    {
+        public int Id { get; set; }
+        public int CommandId { get; set; }
+        public Command Command { get; set; }
     }
 }

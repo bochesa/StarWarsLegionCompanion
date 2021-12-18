@@ -27,7 +27,7 @@ namespace UtilityLibrary.Application.Handlers
                 Name = data.Name,
                 Pips = data.Pips,
                 Text = data.Text,
-                UnitActivated = data.UnitActivated,
+                UnitActivated = data.Orders,
                 UnitName = data.Unit.Name
             };
             return commandDto;

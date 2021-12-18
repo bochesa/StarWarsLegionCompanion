@@ -9,5 +9,6 @@ namespace UtilityLibrary.Data.Repositories
 {
     public interface IArmyRepository : IRepository<Army>
     {
+        Task<Army> GetArmyByIdWithPopulatedLists(int id);
     }
 }

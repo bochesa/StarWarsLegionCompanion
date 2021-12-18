@@ -9,14 +9,17 @@ namespace UtilityLibrary.Models
 {
     public enum FactionType
     {
+        Neutral,
         Rebel,
         Empire,
         [Display(Name = "Separatist Alliance")] SeparatistAlliance,
         [Display(Name = "Galactic Republic ")] GalacticRepublic
     }
-    public enum RangeType { Melee, Ranged }
-    public enum DefenseDie { white, red }
-    //public enum AttackDieType { white, black, red }
+    public enum RangeType
+    {
+        Melee = 1,
+        Ranged
+    }
     public enum UpgradeType
     {
         none,
@@ -35,49 +38,39 @@ namespace UtilityLibrary.Models
         Pilot,
         Training
     }
-    public enum AttackSurge { none, hit, CriticalHit }
-    public enum UnitType { Trooper, RepulsorVehicle, GroundVehicle, EmplacementTrooper, CreatureTropper, WookieTropper, DroidTrooper, CloneTrooper }
-    public enum RankType { Commander, Operative, Corps, SpecialForces, Support, Heavy }
-    public enum ActionType { none, FreeAction, CardAction }
+    public enum AttackSurge
+    {
+        none,
+        hit,
+        CriticalHit
+    }
+    public enum UnitType
+    {
+        Trooper = 1,
+        [Display(Name = "Repulsor Vehicle")] RepulsorVehicle,
+        [Display(Name = "Ground Vehicle")] GroundVehicle,
+        [Display(Name = "Emplacement Vehicle")] EmplacementTrooper,
+        [Display(Name = "Createure Vehicle")] CreatureTropper,
+        [Display(Name = "Wookie Vehicle")] WookieTropper,
+        [Display(Name = "Droid Vehicle")] DroidTrooper,
+        [Display(Name = "Clone Vehicle")] CloneTrooper
+    }
+    public enum RankType
+    {
+        Commander = 1,
+        Operative,
+        Corps,
+        [Display(Name = "Special Forces")] SpecialForces,
+        Support,
+        Heavy
+    }
+    public enum ActionType
+    {
+        none,
+        FreeAction,
+        CardAction
+    }
 
-    //public class RangeType
-    //{
-    //    public int Id { get; set; }
-    //    public string Name { get; set; }
-    //    [NotMapped, JsonIgnore]
-    //    public virtual List<Weapon> Weapons { get; set; }
-    //}
-    //public class Faction
-    //{
-    //    public int Id { get; set; }
-    //    public string Name { get; set; }
-    //    [NotMapped, JsonIgnore]
-    //    public virtual List<Unit> Units { get; set; }
-    //}
-
-    //public class AttackSurge
-    //{
-    //    public int Id { get; set; }
-    //    public string Name { get; set; }
-    //    [NotMapped, JsonIgnore]
-    //    public virtual List<Unit> Units { get; set; }
-
-    //}
-    //public class UnitType
-    //{
-    //    public int Id { get; set; }
-    //    public string Name { get; set; }
-    //    [NotMapped, JsonIgnore]
-    //    public virtual List<Unit> Units { get; set; }
-
-    //}
-    //public class Rank
-    //{
-    //    public int Id { get; set; }
-    //    public string Name { get; set; }
-    //    [NotMapped, JsonIgnore]
-    //    public virtual List<Unit> Units { get; set; }
-    //}
     //public class Player
     //{
     //    public int Id { get; set; }

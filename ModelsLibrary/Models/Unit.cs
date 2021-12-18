@@ -21,8 +21,8 @@ namespace UtilityLibrary.Models
         public int Speed { get; set; }
         public int MinisInUnit { get; set; }
         public int PointCost { get; set; }
-        public bool IsDefenseRed { get; set; }
-        public bool IsDefenseSurge { get; set; }
+        public bool IsDefenseRed { get; set; } = false;
+        public bool IsDefenseSurge { get; set; } = false;
         public virtual AttackSurge AttackSurge { get; set; }
         public virtual ICollection<Keyword> Keywords { get; set; }
         public virtual ICollection<Weapon> Weapons { get; set; }

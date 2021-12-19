@@ -35,18 +35,18 @@ namespace StarWarsLegionCompanion.Api
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers()
-                // .AddNewtonsoftJson(options =>
-                //options.SerializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.Objects
-                //     )
-                ;
+            services.AddControllers().AddNewtonsoftJson();
+            // .AddNewtonsoftJson(options =>
+            //options.SerializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.Objects
+            //     )
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "StarWarsLegionCompanion.Api", Version = "v1" });
                 // using System.Reflection;
                 var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
-            });
+            }).AddSwaggerGenNewtonsoftSupport();
 
             // implement Mediator pattern
             services.AddMediatR(typeof(ApplicationMediatorEntryPoint).Assembly);

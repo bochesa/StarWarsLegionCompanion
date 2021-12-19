@@ -24,9 +24,17 @@ namespace UtilityLibrary.Application.Handlers
             _uow = uow;
         }
 
-        public Task<int> Handle(InRemoveArmyCommandDTO request, CancellationToken cancellationToken)
+        public async Task<int> Handle(InRemoveArmyCommandDTO request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            //var army = await _uow.Armies.RemoveChosenCommandFromArmy(request.ArmyId, request.CommandId);
+            var army = await _uow.Armies.GetArmyByIdWithPopulatedLists(request.ArmyId);
+            var CommandToRemove = army.ChosenCommands.Find(c => c.CommandId == request.CommandId);
+
+            army.ChosenCommands.Remove(CommandToRemove);
+
+            int changes = await _uow.Complete();
+            _uow.Dispose();
+            return changes;
         }
     }
 }

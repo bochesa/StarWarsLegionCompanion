@@ -45,8 +45,8 @@ namespace StarWarsLegionCompanion.Api.Controllers
             var affectedLines = await Mediator.Send(request);
             return Ok(affectedLines);
         }
-        // Post /Army/RemoveCommand
-        [HttpPost("AddCommand")]
+        // Delete /Army/RemoveCommand
+        [HttpDelete("RemoveCommand")]
         public async Task<IActionResult> RemoveCommand([FromBody] InRemoveArmyCommandDTO request)
         {
             var affectedLines = await Mediator.Send(request);

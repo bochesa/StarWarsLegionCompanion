@@ -55,31 +55,18 @@ namespace StarWarsLegionCompanion.Api.Controllers
             var affectedLines = await Mediator.Send(request);
             return Ok(affectedLines);
         }
-        //[HttpPatch("{id}")]
-        //public async Task<IActionResult> UpdateUnit(int id, JsonPatchDocument<Unit> unitUpdates)
+        
+
+        //// PUT api/<UnitController>/5
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody] string value)
         //{
-        //    var unit = await uow.Units.Get(id);
-
-        //    if (unit == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    unitUpdates.ApplyTo(unit);
-        //    await uow.Complete();
-        //    return Ok(unit);
         //}
 
-        // PUT api/<UnitController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<UnitController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        //// DELETE api/<UnitController>/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
     }
 }

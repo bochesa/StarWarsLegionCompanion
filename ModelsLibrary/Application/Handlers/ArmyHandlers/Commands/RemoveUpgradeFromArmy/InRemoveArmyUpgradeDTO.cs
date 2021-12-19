@@ -6,9 +6,8 @@ using System.Text;
 
 namespace UtilityLibrary.Application.Handlers
 {
-    public class InRemoveArmyCommandDTO : IRequest<int>
+    public class InRemoveArmyUpgradeDTO : IRequest<int>
     {
-        //public int ArmyId { get; set; }
-        public int ChosenCommandId { get; set; }
+        public int ChosenUpgradeId { get; set; }
     }
 }

@@ -38,7 +38,8 @@ namespace UtilityLibrary.Application.Handlers
                 foreach (var command in army.ChosenCommands)
                 {
                     var commandDto = new OutCommandDTO();
-                    commandDto.Id = command.Command.Id;
+                    commandDto.ChosenCommandId = command.Id;
+                    commandDto.CommandId = command.Command.Id;
                     commandDto.Name = command.Command.Name;
                     armyDTO.Commands.Add(commandDto);
                 }
@@ -51,7 +52,8 @@ namespace UtilityLibrary.Application.Handlers
                 {
                     var unitDto = new OutUnitDTO
                     {
-                        Id = unit.Id,
+                        ChosenUnitId = unit.Id,
+                        UnitId = unit.UnitId,
                         Name = unit.Unit.Name,
                         PointCost = unit.Unit.PointCost,
                         Rank = Enum.GetName(typeof(RankType), unit.Unit.Rank),
@@ -61,7 +63,8 @@ namespace UtilityLibrary.Application.Handlers
                     {
                         var upgradeDto = new OutUpgradeDTO
                         {
-                            Id = upgrade.Id,
+                            UpgradeId = upgrade.UpgradeId,
+                            ChosenUpgradeId = upgrade.Id,
                             Name = upgrade.Upgrade.Name,
                             PointCost = upgrade.Upgrade.PointCost,
                             UpgradeType = Enum.GetName(typeof(UpgradeType),

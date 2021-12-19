@@ -2,7 +2,8 @@
 {
     public class OutCommandDTO
     {
-        public int Id { get; set; }
+        public int ChosenCommandId { get; set; }
+        public int CommandId { get; set; }
         public string Name { get; set; }
     }
 }

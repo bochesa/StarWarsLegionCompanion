@@ -9,7 +9,7 @@ using UtilityLibrary.Application.Handlers;
 
 namespace StarWarsLegionCompanion.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class CommandController : SWLBaseController
     {
@@ -38,16 +38,16 @@ namespace StarWarsLegionCompanion.Api.Controllers
             return Ok(affectedLines);
         }
 
-        // PUT api/<CommandController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+        //// PUT api/<CommandController>/5
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody] string value)
+        //{
+        //}
 
-        // DELETE api/<CommandController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        //// DELETE api/<CommandController>/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
     }
 }

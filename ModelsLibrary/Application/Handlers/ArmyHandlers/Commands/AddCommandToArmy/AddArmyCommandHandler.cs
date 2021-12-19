@@ -18,9 +18,9 @@ namespace UtilityLibrary.Application.Handlers
         {
             var army = await _uow.Armies.GetArmyByIdWithPopulatedLists(request.ArmyId);
 
-            var command = await _uow.Commands.Get(request.CommandId);
+            //var command = await _uow.Commands.Get(request.CommandId);
 
-            army.ChosenCommands.Add(new ChosenCommand { Command = command });
+            army.ChosenCommands.Add(new ChosenCommand { CommandId = request.CommandId });
 
             int changes = await _uow.Complete();
             _uow.Dispose();

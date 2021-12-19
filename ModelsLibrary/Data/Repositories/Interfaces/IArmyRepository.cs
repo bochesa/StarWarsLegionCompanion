@@ -10,6 +10,9 @@ namespace UtilityLibrary.Data.Repositories
     public interface IArmyRepository : IRepository<Army>
     {
         Task<Army> GetArmyByIdWithPopulatedLists(int id);
-
+        Task RemoveCommand(int ChosenCommandId);
+        Task RemoveUnit(int ChosenUnitId);
+        Task RemoveUpgrade(int ChosenUpgradeId);
+        Task<ChosenUnit> GetChosenUnitById(int chosenUnitId);
     }
 }

@@ -19,6 +19,7 @@ namespace UtilityLibrary.Data.SWContext
         }
 
         public DbSet<Army> Armies { get; set; }
+        public DbSet<ChosenCommand> ChosenCommands { get; set; }
         public DbSet<Unit> Units { get; set; }
         public DbSet<Command> Commands { get; set; }
         public DbSet<Upgrade> Upgrades { get; set; }

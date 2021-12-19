@@ -53,16 +53,34 @@ namespace StarWarsLegionCompanion.Api.Controllers
             return Ok(affectedLines);
         }
 
-        // PUT api/<ArmyController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        // Post /Army/AddChosenUnit
+        [HttpPost("AddChosenUnit")]
+        public async Task<IActionResult> AddChosenUnit([FromBody] InAddArmyChosenUnitDTO request)
         {
+            var affectedLines = await Mediator.Send(request);
+            return Ok(affectedLines);
+        }
+        // Delete /Army/RemoveChosenUnit
+        [HttpDelete("RemoveChosenUnit")]
+        public async Task<IActionResult> RemoveChosenUnit([FromBody] InRemoveArmyChosenUnitDTO request)
+        {
+            var affectedLines = await Mediator.Send(request);
+            return Ok(affectedLines);
+        }
+        // Post /Army/AddChosenUpgrade
+        [HttpPost("AddChosenUpgrade")]
+        public async Task<IActionResult> AddChosenUpgrade([FromBody] InAddArmyChosenUpgradeDTO request)
+        {
+            var affectedLines = await Mediator.Send(request);
+            return Ok(affectedLines);
         }
 
-        // DELETE api/<ArmyController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        // Delete /Army/RemoveChosenUpgrade
+        [HttpDelete("RemoveChosenUpgrade")]
+        public async Task<IActionResult> RemoveChosenUpgrade([FromBody] InRemoveArmyUpgradeDTO request)
         {
+            var affectedLines = await Mediator.Send(request);
+            return Ok(affectedLines);
         }
     }
 }

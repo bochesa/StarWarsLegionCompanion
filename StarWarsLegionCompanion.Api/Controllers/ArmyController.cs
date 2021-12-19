@@ -38,6 +38,21 @@ namespace StarWarsLegionCompanion.Api.Controllers
             return Ok(affectedLines);
         }
 
+        // Post /Army/AddCommand
+        [HttpPost("AddCommand")]
+        public async Task<IActionResult> AddCommand([FromBody] InAddArmyCommandDTO request)
+        {
+            var affectedLines = await Mediator.Send(request);
+            return Ok(affectedLines);
+        }
+        // Post /Army/RemoveCommand
+        [HttpPost("AddCommand")]
+        public async Task<IActionResult> RemoveCommand([FromBody] InRemoveArmyCommandDTO request)
+        {
+            var affectedLines = await Mediator.Send(request);
+            return Ok(affectedLines);
+        }
+
         // PUT api/<ArmyController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)

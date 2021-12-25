@@ -29,7 +29,11 @@ namespace UtilityLibrary.Application.Handlers
                 OutGetAllUnitsDTO unitDto = new OutGetAllUnitsDTO
                 {
                     Name = item.Name,
-                    Id = item.Id
+                    Id = item.Id,
+                    PointCost = item.PointCost,
+                    IsUnique = item.IsUnique,
+                    SurName = item.SurName,
+                    Rank = Enum.GetName(typeof(RankType), item.Rank)
                 };
                 unitDtos.Add(unitDto);
             }

@@ -19,6 +19,9 @@ namespace UtilityLibrary.Application.Services
         Task<ICollection<Keyword>> PostListOfKeywords(IEnumerable<InKeywordDTO> requestKeywords);
         Task<ICollection<Weapon>> PostListOfWeapons(IEnumerable<InWeaponDTO> requestWeapons);
         Task<Weapon> PostWeapon(InWeaponDTO requestWeapon);
+        ICollection<OutCommandDTO> GetCommandsForArmy(IEnumerable<ChosenCommand> armyChosenCommands);
+        ICollection<OutUpgradeDTO> GetChosenUpgradesForUnit(IEnumerable<ChosenUpgrade> unitChosenUpgrades);
+        ICollection<OutUnitDTO> GetChosenUnitsForArmy(IEnumerable<ChosenUnit> armyChosenUnits);
     }
     public class DTOServices : IDTOServices
     {
@@ -225,6 +228,68 @@ namespace UtilityLibrary.Application.Services
             }
 
             return weapon;
+        }
+
+        public ICollection<OutCommandDTO> GetCommandsForArmy(IEnumerable<ChosenCommand> armyChosenCommands)
+        {
+            List<OutCommandDTO> commands = new();
+
+            foreach (var command in armyChosenCommands)
+            {
+                var commandDto = new OutCommandDTO();
+                commandDto.ChosenCommandId = command.Id;
+                commandDto.CommandId = command.Command.Id;
+                commandDto.Name = command.Command.Name;
+                commands.Add(commandDto);
+            }
+
+            return commands;
+        }
+
+        public ICollection<OutUpgradeDTO> GetChosenUpgradesForUnit(IEnumerable<ChosenUpgrade> unitChosenUpgrades)
+        {
+            List<OutUpgradeDTO> upgrades = new();
+
+            foreach (var upgrade in unitChosenUpgrades)
+            {
+                var upgradeDto = new OutUpgradeDTO
+                {
+                    UpgradeId = upgrade.UpgradeId,
+                    ChosenUpgradeId = upgrade.Id,
+                    Name = upgrade.Upgrade.Name,
+                    PointCost = upgrade.Upgrade.PointCost,
+                    UpgradeType = Enum.GetName(typeof(UpgradeType), upgrade.Upgrade.UpgradeType)
+                };
+                upgrades.Add(upgradeDto);
+            }
+
+            return upgrades;
+        }
+
+        public ICollection<OutUnitDTO> GetChosenUnitsForArmy(IEnumerable<ChosenUnit> armyChosenUnits)
+        {
+            List<OutUnitDTO> units = new();
+
+            foreach (var unit in armyChosenUnits)
+            {
+                var unitDto = new OutUnitDTO
+                {
+                    ChosenUnitId = unit.Id,
+                    UnitId = unit.UnitId,
+                    Name = unit.Unit.Name,
+                    PointCost = unit.Unit.PointCost,
+                    Rank = Enum.GetName(typeof(RankType), unit.Unit.Rank)
+                };
+
+                if (unit.ChosenUpgrades.Count != 0)
+                {
+                    ICollection<OutUpgradeDTO> upgrades = GetChosenUpgradesForUnit(unit.ChosenUpgrades);
+                    unitDto.Upgrades = upgrades;
+                }
+                units.Add(unitDto);
+            }
+
+            return units;
         }
     }
 }

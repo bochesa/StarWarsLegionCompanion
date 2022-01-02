@@ -9,6 +9,6 @@ namespace UtilityLibrary.Application.Handlers
         public string Name { get; set; }
         public int PointCost { get; set; }
         public string Rank { get; set; }
-        public List<OutUpgradeDTO> Upgrades { get; set; }
+        public ICollection<OutUpgradeDTO> Upgrades { get; set; } = new List<OutUpgradeDTO>();
     }
 }

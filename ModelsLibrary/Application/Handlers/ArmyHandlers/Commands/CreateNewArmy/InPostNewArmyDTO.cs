@@ -11,7 +11,7 @@ namespace UtilityLibrary.Application.Handlers
         public int PlayerId { get; set; }
         public int Faction { get; set; }
         public int PointLimit { get; set; }
-        public IEnumerable<int> ChosenCommands { get; set; }
+        public IEnumerable<int> ChosenCommandIds { get; set; }
         public IEnumerable<InChosenUnitDTO> ChosenUnits { get; set; }
     }
 }

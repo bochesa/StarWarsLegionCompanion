@@ -25,14 +25,12 @@ namespace UtilityLibrary.Application.Handlers
                 Name = request.Name,
                 PointLimit = request.PointLimit,
                 Player = await _uow.Players.Get(request.PlayerId),
-                Faction = (FactionType)request.Faction,
-                ChosenCommands = new List<ChosenCommand>(),
-                ChosenUnits = new List<ChosenUnit>()
+                Faction = (FactionType)request.Faction
             };
 
-            if (request.ChosenCommands.Count() != 0)
+            if (request.ChosenCommandIds.Count() != 0)
             {
-                foreach (var commandId in request.ChosenCommands)
+                foreach (var commandId in request.ChosenCommandIds)
                 {
                     var newChosenCommand = new ChosenCommand
                     {
@@ -49,7 +47,7 @@ namespace UtilityLibrary.Application.Handlers
                     var newChosenUnit = new ChosenUnit
                     {
                         Unit = await _uow.Units.Get(requestUnit.UnitId),
-                        ChosenUpgrades = new List<ChosenUpgrade>()
+                        //ChosenUpgrades = new List<ChosenUpgrade>()
                     };
                     foreach (var upgrade in requestUnit.ChosenUpgrades)
                     {

@@ -19,12 +19,6 @@ namespace UtilityLibrary.Data.Repositories
             return weapon;
         }
 
-        public async Task<bool> WeaponExist(string name)
-        {
-            bool weapon = await _context.Set<Weapon>().AnyAsync(w => w.Name == name);
-            return weapon;
-
-        }
     }
 
 }

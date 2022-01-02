@@ -22,6 +22,5 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Application\Handlers\UnitHandlers\Queries\GetAllUnitsByFaction\" />
-    <Folder Include="Application\Services\" />
   </ItemGroup>
 </Project>

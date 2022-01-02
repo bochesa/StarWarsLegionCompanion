@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using UtilityLibrary.Application.Services;
 using UtilityLibrary.Data.UnitOfWork;
 using UtilityLibrary.Models;
 
@@ -13,10 +14,12 @@ namespace UtilityLibrary.Application.Handlers
     public class GetUnitHandler : IRequestHandler<InGetUnitDTO, OutGetUnitDTO>
     {
         private readonly IUnitOfWork _uow;
+        private readonly IDTOServices _services;
 
-        public GetUnitHandler(IUnitOfWork uow)
+        public GetUnitHandler(IUnitOfWork uow, IDTOServices services)
         {
             _uow = uow;
+            _services = services;
         }
 
         public async Task<OutGetUnitDTO> Handle(InGetUnitDTO request, CancellationToken cancellationToken)
@@ -42,67 +45,9 @@ namespace UtilityLibrary.Application.Handlers
                 WoundThreshold = unit.WoundThreshold
             };
 
-            // Loop for converting Upgradeoptions to DTO
-            var upgradeoptions = new List<OutUpgradeOptionDTO>();
-            foreach (var item in unit.UpgradeOptions)
-            {
-                var dto = new OutUpgradeOptionDTO
-                {
-                    Amount = item.Amount,
-                    UpgradeType = Enum.GetName(typeof(UpgradeType), item.UpgradeType)
-
-                };
-                upgradeoptions.Add(dto);
-            }
-
-            // Loop for converting Weapons including its keywords to DTO
-            var weapons = new List<OutWeaponDTO>();
-            foreach (var item in unit.Weapons)
-            {
-                var dto = new OutWeaponDTO
-                {
-                    //AttackValue = item.AttackValue,
-                    MaxRange = item.MaxRange,
-                    MinRange = item.MinRange,
-                    Name = item.Name,
-                    RangeType = Enum.GetName(typeof(RangeType), item.RangeType),
-                    AttackValue = new AttackValueDTO
-                    {
-                        BlackDie = item.AttackValue.BlackDie,
-                        RedDie = item.AttackValue.RedDie,
-                        WhiteDie = item.AttackValue.WhiteDie
-                    }
-                };
-                var weaponsKeywords = new List<OutKeywordDTO>();
-                foreach (var keyword in item.Keywords)
-                {
-                    var keywordDto = new OutKeywordDTO
-                    {
-                        AbilityValue = keyword.AbilityValue,
-                        ActionType = Enum.GetName(typeof(ActionType), keyword.ActionType),
-                        Name = keyword.Name,
-                        Text = keyword.Text
-                    };
-                    weaponsKeywords.Add(keywordDto);
-                }
-                dto.Keywords = weaponsKeywords;
-                weapons.Add(dto);
-            }
-
-            // Loop for converting The units Keywords to DTO
-            var keywords = new List<OutKeywordDTO>();
-            foreach (var keyword in unit.Keywords)
-            {
-                var keywordDto = new OutKeywordDTO
-                {
-                    AbilityValue = keyword.AbilityValue,
-                    ActionType = Enum.GetName(typeof(ActionType), keyword.ActionType),
-                    Name = keyword.Name,
-                    Text = keyword.Text
-                };
-                keywords.Add(keywordDto);
-            }
-
+            var upgradeoptions = _services.CreateListOfOutUpgradeOptionsDTO(unit.UpgradeOptions);
+            var weapons = _services.CreateListOfOutWeaponsDTO(unit.Weapons);
+            var keywords = _services.CreateListOfOutKeywordsDTO(unit.Keywords);
 
             unitDto.UpgradeOptions = upgradeoptions;
             unitDto.Weapons = weapons;

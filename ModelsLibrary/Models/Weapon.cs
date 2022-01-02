@@ -15,10 +15,10 @@ namespace UtilityLibrary.Models
         public RangeType RangeType { get; set; }
         public int? MinRange { get; set; }
         public int? MaxRange { get; set; }
-        public virtual AttackSurge AttackSurge { get; set; } = 0;
+        public virtual AttackSurge AttackSurge { get; set; }
         public AttackValue AttackValue { get; set; }
-        public virtual ICollection<Keyword> Keywords { get; set; }
-        public virtual ICollection<Unit> Units { get; set; }
+        public virtual ICollection<Keyword> Keywords { get; set; } = new List<Keyword>();
+        public virtual ICollection<Unit> Units { get; set; } = new List<Unit>();
 
     }
 

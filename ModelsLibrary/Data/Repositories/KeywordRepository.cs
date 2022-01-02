@@ -18,12 +18,6 @@ namespace UtilityLibrary.Data.Repositories
             return keyword;
         }
 
-        public async Task<bool> KeywordExist(string name)
-        {
-            bool keyword = await _context.Set<Keyword>().AnyAsync(w => w.Name == name);
-            return keyword;
-
-        }
     }
 
 }

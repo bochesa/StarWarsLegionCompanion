@@ -19,6 +19,7 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System.Reflection;
 using System.IO;
+using UtilityLibrary.Application.Services;
 
 namespace StarWarsLegionCompanion.Api
 {
@@ -53,6 +54,7 @@ namespace StarWarsLegionCompanion.Api
 
             // Entrypoint for Unit of Work and Repository Pattern
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<IDTOServices, DTOServices>();
             services.AddDbContext<ApplicationContext>(options =>
             {
                 var connectionsString = Configuration.GetConnectionString("LocalDBConnectionString");

@@ -64,8 +64,9 @@ namespace UtilityLibrary.Application.Handlers
                 {
                     foreach (var item in request.Weapon.Keywords)
                     {
-                        bool keywordExists = await _uow.Keywords.KeywordExist(item.Name);
 
+                        //bool keywordExists = await _uow.Keywords.KeywordExist(item.Name);
+                        bool keywordExists = false;
                         // if weaponExists is true build the weapon - This might be deprecated in the future, it might be better to add keywords on its own
                         if (!keywordExists)
                         {
@@ -97,8 +98,8 @@ namespace UtilityLibrary.Application.Handlers
                 {
                     foreach (var item in request.Keywords)
                     {
-                        bool keywordExists = await _uow.Keywords.KeywordExist(item.Name);
-
+                        //bool keywordExists = await _uow.Keywords.KeywordExist(item.Name);
+                        bool keywordExists = false;
                         // if weaponExists is true build the weapon - This might be deprecated in the future, it might be better to add keywords on its own
                         if (!keywordExists)
                         {

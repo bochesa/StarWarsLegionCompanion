@@ -24,9 +24,9 @@ namespace UtilityLibrary.Models
         public bool IsDefenseRed { get; set; } = false;
         public bool IsDefenseSurge { get; set; } = false;
         public virtual AttackSurge AttackSurge { get; set; }
-        public virtual ICollection<Keyword> Keywords { get; set; }
-        public virtual ICollection<Weapon> Weapons { get; set; }
-        public virtual ICollection<UpgradeOption> UpgradeOptions { get; set; }
+        public virtual ICollection<Keyword> Keywords { get; set; } = new List<Keyword>();
+        public virtual ICollection<Weapon> Weapons { get; set; } = new List<Weapon>();
+        public virtual ICollection<UpgradeOption> UpgradeOptions { get; set; } = new List<UpgradeOption>();
 
     }
 }

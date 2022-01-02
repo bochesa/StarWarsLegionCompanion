@@ -9,7 +9,7 @@ namespace UtilityLibrary.Data.Repositories
 {
     public interface IKeywordRepository : IRepository<Keyword>
     {
-        Task<bool> KeywordExist(string name);
+
         Task<Keyword> GetKeywordByName(string name);
     }
 }

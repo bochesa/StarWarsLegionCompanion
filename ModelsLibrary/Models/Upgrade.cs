@@ -20,7 +20,7 @@ namespace UtilityLibrary.Models
         public bool IsFreeAction { get; set; } = false;
         public Upgrade Reconfigure { get; set; } = null;
         public virtual UpgradeType UpgradeType { get; set; }
-        public virtual Weapon Weapon { get; set; }
-        public virtual ICollection<Keyword> Keywords { get; set; }
+        public virtual Weapon Weapon { get; set; } = null;
+        public virtual ICollection<Keyword> Keywords { get; set; } = new List<Keyword>();
     }
 }

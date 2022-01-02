@@ -14,9 +14,11 @@ namespace UtilityLibrary.Application.Services
         ICollection<OutUpgradeOptionDTO> CreateListOfOutUpgradeOptionsDTO(ICollection<UpgradeOption> unitUpgradeOptions);
         ICollection<OutKeywordDTO> CreateListOfOutKeywordsDTO(ICollection<Keyword> requestKeywords);
         ICollection<OutWeaponDTO> CreateListOfOutWeaponsDTO(ICollection<Weapon> requestWeapons);
+        OutWeaponDTO CreateOutWeaponsDTO(Weapon weapon);
         ICollection<UpgradeOption> PostListOfUpgradeOptions(IEnumerable<InUpgradeOptionDTO> requestUpgradeOptions);
         Task<ICollection<Keyword>> PostListOfKeywords(IEnumerable<InKeywordDTO> requestKeywords);
         Task<ICollection<Weapon>> PostListOfWeapons(IEnumerable<InWeaponDTO> requestWeapons);
+        Task<Weapon> PostWeapon(InWeaponDTO requestWeapon);
     }
     public class DTOServices : IDTOServices
     {
@@ -85,7 +87,27 @@ namespace UtilityLibrary.Application.Services
             }
             return weapons;
         }
+        public OutWeaponDTO CreateOutWeaponsDTO(Weapon weapon)
+        {
+            OutWeaponDTO weaponDto = new OutWeaponDTO();
+            if (weapon is not null)
+            {
+                weaponDto.Name = weapon.Name;
+                weaponDto.AttackValue = new AttackValueDTO
+                {
+                    BlackDie = weapon.AttackValue.BlackDie,
+                    RedDie = weapon.AttackValue.RedDie,
+                    WhiteDie = weapon.AttackValue.WhiteDie,
+                };
+                weaponDto.AttackSurge = Enum.GetName(typeof(AttackSurge), weapon.AttackSurge);
+                weaponDto.MaxRange = weapon.MaxRange;
+                weaponDto.MinRange = weapon.MinRange;
+                weaponDto.RangeType = Enum.GetName(typeof(RangeType), weapon.RangeType);
+                weaponDto.Keywords = CreateListOfOutKeywordsDTO(weapon.Keywords);
+            }
 
+            return weaponDto;
+        }
 
 
         // In DTO Section:
@@ -177,6 +199,32 @@ namespace UtilityLibrary.Application.Services
             }
 
             return weapons;
+        }
+        public async Task<Weapon> PostWeapon(InWeaponDTO requestWeapon)
+        {
+            Weapon weapon = await _uow.Weapons.GetWeaponByName(requestWeapon.Name);
+            if (weapon is null)
+            {
+                weapon = new Weapon();
+                weapon.MaxRange = requestWeapon.MaxRange;
+                weapon.MinRange = requestWeapon.MinRange;
+                weapon.Name = requestWeapon.Name;
+                weapon.AttackSurge = (AttackSurge)requestWeapon.AttackSurge;
+                weapon.RangeType = (RangeType)requestWeapon.RangeType;
+                weapon.AttackValue = new AttackValue
+                {
+                    BlackDie = requestWeapon.AttackValue.BlackDie,
+                    RedDie = requestWeapon.AttackValue.RedDie,
+                    WhiteDie = requestWeapon.AttackValue.WhiteDie
+                };
+
+                if (requestWeapon.Keywords.Count() != 0)
+                {
+                    weapon.Keywords = await PostListOfKeywords(requestWeapon.Keywords);
+                }
+            }
+
+            return weapon;
         }
     }
 }

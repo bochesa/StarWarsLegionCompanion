@@ -15,7 +15,7 @@ namespace UtilityLibrary.Data.SWContext
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
             : base(options)
         {
-            //Database.EnsureCreated();
+            Database.EnsureCreated();
         }
 
         public DbSet<Army> Armies { get; set; }

@@ -37,6 +37,11 @@ namespace StarWarsLegionCompanion.Api.Controllers
         {
             var dto = new InGetUnitDTO { Id = id };
             var unit = await Mediator.Send(dto);
+            if(unit is null)
+            {
+                return NotFound($"No such unit with id: {id}");
+                //return this.Problem($"No such unit with id: {id}", statusCode: 400 );
+            }
             return Ok(unit);
         }
 

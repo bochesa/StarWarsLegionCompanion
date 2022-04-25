@@ -25,6 +25,10 @@ namespace UtilityLibrary.Application.Handlers
         public async Task<OutGetUnitDTO> Handle(InGetUnitDTO request, CancellationToken cancellationToken)
         {
             var unit = await _uow.Units.GetUnitByIdWithPopulatedLists(request.Id);
+            if(unit is null)
+            {
+                return null;
+            }
 
             OutGetUnitDTO unitDto = new OutGetUnitDTO
             {

@@ -18,13 +18,21 @@ namespace UtilityLibrary.Data.Repositories
 
         public async Task<Unit> GetUnitByIdWithPopulatedLists(int id)
         {
-            var unit = await _context.Set<Unit>().Where(u => u.Id == id)
-                .Include(u => u.Weapons).ThenInclude(w => w.AttackValue)
-                .Include(u => u.Weapons).ThenInclude(w => w.Keywords)
-                .Include(u => u.Keywords)
-                .Include(u => u.UpgradeOptions)
-                .SingleAsync();
-            return unit;
+            try
+            {
+                var unit = await _context.Set<Unit>().Where(u => u.Id == id)
+                    .Include(u => u.Weapons).ThenInclude(w => w.AttackValue)
+                    .Include(u => u.Weapons).ThenInclude(w => w.Keywords)
+                    .Include(u => u.Keywords)
+                    .Include(u => u.UpgradeOptions)
+                    .SingleAsync();
+                return unit;
+
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
     }
 }

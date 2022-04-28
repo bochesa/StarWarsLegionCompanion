@@ -23,15 +23,14 @@ namespace UtilityLibrary.Application.Handlers
 
         public async Task<OutGetPlayerDTO> Handle(InGetPlayerDTO request, CancellationToken cancellationToken)
         {
-            // get Player from _uow
             var player = await _uow.Players.GetPlayerWithArmies(request.Id);
-            // Create Out DTO
-            
+
             OutGetPlayerDTO playerDto = new OutGetPlayerDTO
             {
                 Id = player.Id,
-                Armies
-            }
+                Armies = player.Armies,
+                Name = player.Name
+            };
 
             return playerDto;
         }

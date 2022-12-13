@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30717.126
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilityLibrary", "ModelsLibrary\UtilityLibrary.csproj", "{1B8CF6D1-2623-488A-8104-11A5BAE3612B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarsLegionCompanion.Api", "StarWarsLegionCompanion.Api\StarWarsLegionCompanion.Api.csproj", "{7917C3CA-88E0-409C-890C-86AEB4FCD7B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarWarsLegionCompanion.Api", "StarWarsLegionCompanion.Api\StarWarsLegionCompanion.Api.csproj", "{7917C3CA-88E0-409C-890C-86AEB4FCD7B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarsLegionMobile", "StarWarsLegionMobile\StarWarsLegionMobile.csproj", "{02898195-16B2-4A05-BDAB-85B4C738D382}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,12 @@ Global
 		{7917C3CA-88E0-409C-890C-86AEB4FCD7B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7917C3CA-88E0-409C-890C-86AEB4FCD7B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7917C3CA-88E0-409C-890C-86AEB4FCD7B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02898195-16B2-4A05-BDAB-85B4C738D382}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02898195-16B2-4A05-BDAB-85B4C738D382}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02898195-16B2-4A05-BDAB-85B4C738D382}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{02898195-16B2-4A05-BDAB-85B4C738D382}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02898195-16B2-4A05-BDAB-85B4C738D382}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02898195-16B2-4A05-BDAB-85B4C738D382}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

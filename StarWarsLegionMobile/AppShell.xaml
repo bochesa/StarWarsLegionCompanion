@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="StarWarsLegionMobile.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:StarWarsLegionMobile.Views"
+    xmlns:models="clr-namespace:StarWarsLegionMobile.Models"
+    Shell.FlyoutBehavior="Flyout"
+    >
+
+    <FlyoutItem Title="One"  FlyoutIcon="user.png">
+       
+            <ShellContent
+            Title="My Profile"
+            ContentTemplate="{DataTemplate views:ProfilePage}"
+            Route="ProfilePage" />
+
+    </FlyoutItem>
+    <FlyoutItem Title="Two" FlyoutIcon="user.png">
+       
+        <ShellContent
+                Title="Two"
+                ContentTemplate="{DataTemplate views:DogsPage}"
+                Route="TwoPage" />
+        
+    </FlyoutItem>
+    <FlyoutItem Title="Three" FlyoutIcon="{StaticResource IconThree}">
+        
+        <ShellContent
+            Title="Three"
+            ContentTemplate="{DataTemplate views:MonkeysPage}"
+            Route="ThreePage" />
+        
+    </FlyoutItem>
+    <FlyoutItem Title="Four" FlyoutIcon="{StaticResource IconFour}">
+        <ShellContent
+            Title="Four"
+            ContentTemplate="{DataTemplate views:MainPage}"
+            Route="FourPage" />
+    </FlyoutItem>
+
+</Shell>

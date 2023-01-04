@@ -38,7 +38,7 @@
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
 
 		<!-- Images -->
-		<MauiImage Include="Resources\Images\*" />
+		<MauiImage Include="Resources\Images\**\*" />
 		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
 
 		<!-- Custom Fonts -->
@@ -52,16 +52,61 @@
 	  <None Remove="Resources\Fonts\Font Awesome 6 Brands-Regular-400.otf" />
 	  <None Remove="Resources\Fonts\Font Awesome 6 Free-Regular-400.otf" />
 	  <None Remove="Resources\Fonts\Font Awesome 6 Free-Solid-900.otf" />
+	  <None Remove="Resources\Images\Icons\attack_surge.png" />
+	  <None Remove="Resources\Images\Icons\block.png" />
+	  <None Remove="Resources\Images\Icons\commander.png" />
+	  <None Remove="Resources\Images\Icons\corps.png" />
+	  <None Remove="Resources\Images\Icons\crit_hit.png" />
+	  <None Remove="Resources\Images\Icons\def_surge.png" />
+	  <None Remove="Resources\Images\Icons\empire.png" />
+	  <None Remove="Resources\Images\Icons\free_action.png" />
+	  <None Remove="Resources\Images\Icons\heavy.png" />
+	  <None Remove="Resources\Images\Icons\hit.png" />
+	  <None Remove="Resources\Images\Icons\operative.png" />
+	  <None Remove="Resources\Images\Icons\rebel.png" />
+	  <None Remove="Resources\Images\Icons\republic.png" />
+	  <None Remove="Resources\Images\Icons\separatist.png" />
+	  <None Remove="Resources\Images\Icons\specialforces.png" />
+	  <None Remove="Resources\Images\Icons\support.png" />
 	  <None Remove="Resources\Images\user.png" />
 	  <None Remove="Resources\Images\user.svg" />
+	  <None Remove="Resources\Raw\keywordsdata.json" />
+	  <None Remove="Resources\Raw\unitsdata.json" />
+	  <None Remove="Resources\Raw\upgradesdata.json" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\StarWarsLegion.Models\StarWarsLegion.Models.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="AppShell.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ArmyListPages\ArmyBuilderPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ArmyListPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ArmyListPages\TestPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\CollectionPages\CollectionPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\DatabasePages\KeywordsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\DatabasePages\ProductsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\DatabasePages\KeywordDetailsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ProfilePage.xaml">
@@ -73,9 +118,24 @@
 	  <MauiXaml Update="Views\MonkeysPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\DatabasePages\UnitsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\DatabasePages\UpgradesPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\DatabasePages\UpgradeDetailsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\DatabasePages\UnitDetailsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\ArmyListPage.xaml.cs">
+	    <DependentUpon>ArmyListPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\ProfilePage.xaml.cs">
 	    <DependentUpon>ProfilePage.xaml</DependentUpon>
 	  </Compile>

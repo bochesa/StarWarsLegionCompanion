@@ -27,7 +27,9 @@ namespace StarWarsLegionMobile.Models
         public const string _8 = "\u0038";
         public const string _9 = "\u0039";
         public const string LessThan = "\u003c";
+#pragma warning disable CS0108 // Member hides inherited member; missing new keyword
         public const string Equals = "\u003d";
+#pragma warning restore CS0108 // Member hides inherited member; missing new keyword
         public const string GreaterThan = "\u003e";
         public const string Question = "\u003f";
         public const string At = "\u0040";

@@ -28,7 +28,6 @@ namespace UtilityLibrary.Application.Handlers
                 {
                     Id = army.Id,
                     Name = army.Name,
-                    PointLimit = army.PointLimit,
                     Faction = Enum.GetName(typeof(FactionType), army.Faction)
                 };
                 armyDtos.Add(armyDto);

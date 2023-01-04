@@ -9,6 +9,15 @@
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <Color x:Key="LightBackground">#FAF9F8</Color>
+            <Style x:Key="CardView" TargetType="Frame">
+                <Setter Property="BorderColor" Value="#DDDDDD"/>
+                <Setter Property="HasShadow" Value="{OnPlatform iOS=false, MacCatalyst=false, Default=true}"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="Background" Value="{StaticResource LightBackground}"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="IsClippedToBounds" Value="true"/>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -30,7 +30,15 @@ namespace UtilityLibrary.Application.Handlers
                 OutGetAllUpgradesDTO unitDto = new OutGetAllUpgradesDTO
                 {
                     Name = item.Name,
-                    Id = item.Id
+                    Id = item.Id,
+                    Image = item.Image,
+                    IsExhaustable= item.IsExhaustable,  
+                    IsFreeAction= item.IsFreeAction,
+                    IsUnique= item.IsUnique,
+                    PointCost= item.PointCost,
+                    Restriction= item.Restriction,
+                    Text= item.Text,
+                    WoundThreshold = item.WoundThreshold
                 };
                 upgradesDto.Add(unitDto);
             }

@@ -1,0 +1,41 @@
+[
+  {
+    "id": 1,
+    "name": "Echo",
+    "isUnique": true,
+    "pointCost": 40,
+    "restriction": "ARC Troppers or Clone Trooper only.",
+    "text": "Add 1 Echo mini.",
+    "woundThreshold": 2,
+    "isExhaustable": false,
+    "isFreeAction": false,
+    "image": "https://image.bochesa.dk/upgrades/echo.png",
+    "upgradeType":  10
+  },
+  {
+    "id": 2,
+    "name": "Concussion Grenades",
+    "isUnique": false,
+    "pointCost": 5,
+    "restriction": null,
+    "text": null,
+    "woundThreshold": 0,
+    "isExhaustable": false,
+    "isFreeAction": false,
+    "image": "https://image.bochesa.dk/upgrades/concussion_grenades.png",
+    "upgradeType": 8
+  },
+  {
+    "id": 3,
+    "name": "Comms Jammer",
+    "isUnique": false,
+    "pointCost": 15,
+    "restriction": null,
+    "text": "Enemy units at range 1 cannot be issued orders, unless they are issuing an order to themselves.",
+    "woundThreshold": 0,
+    "isExhaustable": false,
+    "isFreeAction": false,
+    "image": "https://image.bochesa.dk/upgrades/comms_jammer.png",
+    "upgradeType": 3
+  }
+]

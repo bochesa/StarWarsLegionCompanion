@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilityLibrary", "ModelsLib
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarWarsLegionCompanion.Api", "StarWarsLegionCompanion.Api\StarWarsLegionCompanion.Api.csproj", "{7917C3CA-88E0-409C-890C-86AEB4FCD7B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarsLegionMobile", "StarWarsLegionMobile\StarWarsLegionMobile.csproj", "{02898195-16B2-4A05-BDAB-85B4C738D382}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarWarsLegionMobile", "StarWarsLegionMobile\StarWarsLegionMobile.csproj", "{02898195-16B2-4A05-BDAB-85B4C738D382}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarsLegion.Models", "StarWarsLegion.Models\StarWarsLegion.Models.csproj", "{7BE14FC7-85FC-45F5-A4F3-00E2EA195582}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{02898195-16B2-4A05-BDAB-85B4C738D382}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02898195-16B2-4A05-BDAB-85B4C738D382}.Release|Any CPU.Build.0 = Release|Any CPU
 		{02898195-16B2-4A05-BDAB-85B4C738D382}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{7BE14FC7-85FC-45F5-A4F3-00E2EA195582}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BE14FC7-85FC-45F5-A4F3-00E2EA195582}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BE14FC7-85FC-45F5-A4F3-00E2EA195582}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BE14FC7-85FC-45F5-A4F3-00E2EA195582}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

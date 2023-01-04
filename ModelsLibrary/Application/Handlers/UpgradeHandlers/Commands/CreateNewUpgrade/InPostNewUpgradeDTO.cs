@@ -14,7 +14,7 @@ namespace UtilityLibrary.Application.Handlers
         public bool IsUnique { get; set; } = false;
         public int PointCost { get; set; }
         public string Text { get; set; }
-        public int? WoundThreshold { get; set; } = null;
+        public int WoundThreshold { get; set; }
         public bool IsExhaustable { get; set; } = false;
         public bool IsFreeAction { get; set; } = false;
         public int UpgradeType { get; set; }

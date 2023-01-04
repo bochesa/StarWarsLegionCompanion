@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UtilityLibrary.Data.SWContext;
 
+#nullable disable
+
 namespace UtilityLibrary.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
@@ -15,24 +17,10 @@ namespace UtilityLibrary.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.12")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "7.0.1")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            modelBuilder.Entity("KeywordUnit", b =>
-                {
-                    b.Property<int>("KeywordsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UnitsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("KeywordsId", "UnitsId");
-
-                    b.HasIndex("UnitsId");
-
-                    b.ToTable("KeywordUnit");
-                });
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("KeywordUpgrade", b =>
                 {
@@ -83,8 +71,9 @@ namespace UtilityLibrary.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("Faction")
                         .HasColumnType("int");
@@ -109,8 +98,9 @@ namespace UtilityLibrary.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("BlackDie")
                         .HasColumnType("int");
@@ -130,8 +120,9 @@ namespace UtilityLibrary.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("ArmyId")
                         .HasColumnType("int");
@@ -152,8 +143,9 @@ namespace UtilityLibrary.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("ArmyId")
                         .HasColumnType("int");
@@ -174,8 +166,9 @@ namespace UtilityLibrary.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("ChosenUnitId")
                         .HasColumnType("int");
@@ -196,8 +189,9 @@ namespace UtilityLibrary.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -226,21 +220,40 @@ namespace UtilityLibrary.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("Relational:JsonPropertyName", "id");
 
-                    b.Property<int?>("AbilityValue")
-                        .HasColumnType("int");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AbilityValue")
+                        .HasColumnType("int")
+                        .HasAnnotation("Relational:JsonPropertyName", "abilityValue");
 
                     b.Property<int>("ActionType")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("Relational:JsonPropertyName", "actionType");
+
+                    b.Property<int>("KeywordType")
+                        .HasColumnType("int")
+                        .HasAnnotation("Relational:JsonPropertyName", "keywordType");
+
+                    b.Property<string>("LongDescription")
+                        .HasColumnType("nvarchar(max)")
+                        .HasAnnotation("Relational:JsonPropertyName", "longDescription");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasAnnotation("Relational:JsonPropertyName", "name");
 
-                    b.Property<string>("Text")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("ShortDescription")
+                        .HasColumnType("nvarchar(max)")
+                        .HasAnnotation("Relational:JsonPropertyName", "shortDescription");
+
+                    b.Property<int?>("UnitId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UnitId");
 
                     b.ToTable("Keywords");
                 });
@@ -249,23 +262,25 @@ namespace UtilityLibrary.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Player");
+                    b.ToTable("Palyers");
                 });
 
             modelBuilder.Entity("UtilityLibrary.Models.Unit", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("AttackSurge")
                         .HasColumnType("int");
@@ -275,6 +290,9 @@ namespace UtilityLibrary.Migrations
 
                     b.Property<int>("Faction")
                         .HasColumnType("int");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDefenseRed")
                         .HasColumnType("bit");
@@ -318,8 +336,12 @@ namespace UtilityLibrary.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsExhaustable")
                         .HasColumnType("bit");
@@ -367,8 +389,9 @@ namespace UtilityLibrary.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("Amount")
                         .HasColumnType("int");
@@ -390,8 +413,9 @@ namespace UtilityLibrary.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("AttackSurge")
                         .HasColumnType("int");
@@ -416,21 +440,6 @@ namespace UtilityLibrary.Migrations
                     b.HasIndex("AttackValueId");
 
                     b.ToTable("Weapons");
-                });
-
-            modelBuilder.Entity("KeywordUnit", b =>
-                {
-                    b.HasOne("UtilityLibrary.Models.Keyword", null)
-                        .WithMany()
-                        .HasForeignKey("KeywordsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("UtilityLibrary.Models.Unit", null)
-                        .WithMany()
-                        .HasForeignKey("UnitsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("KeywordUpgrade", b =>
@@ -541,6 +550,13 @@ namespace UtilityLibrary.Migrations
                     b.Navigation("Unit");
                 });
 
+            modelBuilder.Entity("UtilityLibrary.Models.Keyword", b =>
+                {
+                    b.HasOne("UtilityLibrary.Models.Unit", null)
+                        .WithMany("Keywords")
+                        .HasForeignKey("UnitId");
+                });
+
             modelBuilder.Entity("UtilityLibrary.Models.Upgrade", b =>
                 {
                     b.HasOne("UtilityLibrary.Models.Upgrade", "Reconfigure")
@@ -593,6 +609,8 @@ namespace UtilityLibrary.Migrations
 
             modelBuilder.Entity("UtilityLibrary.Models.Unit", b =>
                 {
+                    b.Navigation("Keywords");
+
                     b.Navigation("UpgradeOptions");
                 });
 #pragma warning restore 612, 618

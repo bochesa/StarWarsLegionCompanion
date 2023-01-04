@@ -1,0 +1,48 @@
+﻿[
+  {
+    "id": 1,
+    "name": "Nimble",
+    "keywordType": 1,
+    "abilityValue": 0,
+    "shortDescription": "After defending, if you spent 1 or more dodge tokens, gain 1 dodge token.",
+    "longDescription": "After defending, if you spent 1 or more dodge tokens, gain 1 dodge token.",
+    "actionType": 0
+  },
+  {
+    "id": 4,
+    "name": "Poison 1",
+    "keywordType": 2,
+    "abilityValue": 1,
+    "shortDescription": "A trooper wounded by an attack that includes this weapon gains 1 poison token.",
+    "longDescription": "A trooper wounded by an attack that includes this weapon gains 1 poison token.",
+    "actionType": 0
+  },
+  {
+    "id": 5,
+    "name": "Poison ",
+    "keywordType": 0,
+    "abilityValue": 0,
+    "shortDescription": "At the end of a unit’s activation, it suffers 1 wound for each poison token it has, then discards each poison token it has.",
+    "longDescription": "At the end of a unit’s activation, it suffers 1 wound for each poison token it has, then discards each poison token it has.",
+    "actionType": 0
+  },
+  {
+    "id": 6,
+    "name": "Quick Thinking",
+    "keywordType": 1,
+    "abilityValue": 0,
+    "shortDescription": "Gain 1 aim token and 1 dodge token.",
+    "longDescription": "Gain 1 aim token and 1 dodge token.",
+    "actionType": 2
+  },
+  {
+    "id": 7,
+    "name": "Repair 1: Capacity 2",
+    "keywordType": 0,
+    "abilityValue": 2,
+    "shortDescription": "Place a wound token on this card to remove 1 wound, ion, or vehicle damage token from a friendly ground vehicle at range 1 and in line of sight. Limit 2 tokens.",
+    "longDescription": "Place a wound token on this card to remove 1 wound, ion, or vehicle damage token from a friendly ground vehicle at range 1 and in line of sight. Limit 2 tokens.",
+    "actionType": 1
+  }
+
+]

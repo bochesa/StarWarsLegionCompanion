@@ -23,7 +23,6 @@ namespace UtilityLibrary.Application.Handlers
             var army = new Army
             {
                 Name = request.Name,
-                PointLimit = request.PointLimit,
                 Player = await _uow.Players.Get(request.PlayerId),
                 Faction = (FactionType)request.Faction
             };

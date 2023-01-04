@@ -1,40 +1,63 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="StarWarsLegionMobile.Views.MainPage">
+             x:Class="StarWarsLegionMobile.Views.MainPage"
+             xmlns:viewmodel="clr-namespace:StarWarsLegionMobile.ViewModels"
+             xmlns:model="clr-namespace:StarWarsLegionMobile.Models"
+             x:DataType="viewmodel:MainViewModel">
 
     <ScrollView>
+
         <VerticalStackLayout
             Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
+            Padding="20,0"
+            VerticalOptions="Start">
+            
 
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
-
-            <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
-
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
-
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
-
+            <Grid RowDefinitions="*,auto">
+                <VerticalStackLayout Grid.Row="0" HorizontalOptions="Center">
+                    <Label Text="Choose a faction" FontSize="36" />
+                    <BoxView HeightRequest="20" Color="Transparent"/>
+                </VerticalStackLayout>
+                <FlexLayout Wrap="Wrap" Grid.Row="1"
+                        AlignItems="Center"
+                        JustifyContent="SpaceAround">
+                    <VerticalStackLayout Padding="6">
+                        <Border HeightRequest="60" WidthRequest="60" StrokeShape="Ellipse">
+                            <Image Source="empire.png" HeightRequest="60" WidthRequest="60"/>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                    CommandParameter="{Binding Army}"
+                                    Command="{Binding GoToArmyBuilderCommand}"
+                                    />
+                            </Border.GestureRecognizers>
+                        </Border>
+                        <BoxView HeightRequest="10" Color="Transparent"/>
+                        <Label Text="Galactic Empire"/>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Padding="6">
+                        <Border HeightRequest="60" WidthRequest="60" StrokeShape="Ellipse">
+                            <Image Source="rebel.png" HeightRequest="60" WidthRequest="60"/>
+                        </Border>
+                        <BoxView HeightRequest="10" Color="Transparent"/>
+                        <Label Text="Rebel Alliance"/>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Padding="6">
+                        <Border HeightRequest="60" WidthRequest="60" StrokeShape="Ellipse">
+                            <Image Source="republic.png" HeightRequest="60" WidthRequest="60"/>
+                        </Border>
+                        <BoxView HeightRequest="10" Color="Transparent"/>
+                        <Label Text="Galactic Republic"/>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Padding="6">
+                        <Border HeightRequest="60" WidthRequest="60" StrokeShape="Ellipse">
+                            <Image Source="separatist.png" HeightRequest="60" WidthRequest="60"/>
+                        </Border>
+                        <BoxView HeightRequest="10" Color="Transparent"/>
+                        <Label Text="Separatist Alliance"/>
+                    </VerticalStackLayout>
+                </FlexLayout>
+            </Grid>
         </VerticalStackLayout>
     </ScrollView>
 

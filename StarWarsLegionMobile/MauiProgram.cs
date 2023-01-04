@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
+using StarWarsLegionMobile.Services;
+using StarWarsLegionMobile.Views;
 
 namespace StarWarsLegionMobile
 {
@@ -21,6 +23,34 @@ namespace StarWarsLegionMobile
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif
+            // services
+            builder.Services.AddSingleton<DatabaseServices>();
+
+            // Viewmodels
+            // list pages
+            builder.Services.AddSingleton<KeywordViewModel>();
+            builder.Services.AddSingleton<UpgradeViewModel>();
+            builder.Services.AddSingleton<UnitViewModel>();
+            builder.Services.AddSingleton<MainViewModel>();
+            builder.Services.AddSingleton<ArmyViewModel>();
+
+            // viewmodels for detail pages
+            builder.Services.AddTransient<KeywordDetailsViewModel>();
+            builder.Services.AddTransient<UpgradeDetailsViewModel>();
+            builder.Services.AddTransient<UnitDetailsViewModel>();
+            builder.Services.AddTransient<TestViewModel>();
+            
+            //pages
+            builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddSingleton<KeywordsPage>();
+            builder.Services.AddSingleton<UpgradesPage>();
+            builder.Services.AddSingleton<UnitsPage>();
+
+            builder.Services.AddTransient<KeywordDetailsPage>();
+            builder.Services.AddTransient<UpgradeDetailsPage>();
+            builder.Services.AddTransient<UnitDetailsPage>();
+            builder.Services.AddTransient<ArmyBuilderPage>();
+            builder.Services.AddTransient<TestPage>();
 
             return builder.Build();
         }

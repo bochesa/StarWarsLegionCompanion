@@ -33,7 +33,7 @@ namespace UtilityLibrary.Application.Handlers
                 PointCost = request.PointCost,
                 Text = request.Text,
                 UpgradeType = (UpgradeType)request.UpgradeType,
-                WoundThreshold = request.WoundThreshold == 0 ? null : request.WoundThreshold,
+                WoundThreshold = request.WoundThreshold
             };
 
             if (request.Reconfigure != null)

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StarWarsLegionMobile.Views.KeywordDetailsPage"
+             xmlns:viewmodel="clr-namespace:StarWarsLegionMobile.ViewModels"
+             x:DataType="viewmodel:KeywordDetailsViewModel"
+             Title="{Binding KeywordModel.Name}">
+    <ScrollView>
+        <Grid RowDefinitions="Auto,50,*,Auto">
+            <VerticalStackLayout Grid.Row="0" Padding="20">
+                <HorizontalStackLayout HorizontalOptions="Center">
+                    <Image Source="https://image.bochesa.dk/icons/card_action.png" 
+                                                       BackgroundColor="Gray"
+                                                       HeightRequest="16"
+                                                       WidthRequest="16"
+                                                       Margin="4"
+                                                       IsVisible="{Binding KeywordModel.IsCardAction}"/>
+                    <Image Source="https://image.bochesa.dk/icons/free_action.png" 
+                                                       Margin="4"
+                                                       BackgroundColor="Gray"
+                                                       HeightRequest="16"
+                                                       WidthRequest="16"
+                                                       IsVisible="{Binding KeywordModel.IsFreeAction}"/>
+                    <Label Text="{Binding KeywordModel.Name}" FontSize="24"/>
+                    <Label Margin="2" Text="{Binding KeywordModel.KeywordType, StringFormat=' ({0} Keyword)'}" 
+                           FontAttributes="Italic" VerticalOptions="Center" IsVisible="{Binding KeywordModel.IsTypeNotNone}"/>
+                </HorizontalStackLayout>
+                <Label Text="{Binding KeywordModel.ShortDescription}"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout Grid.Row="1" Padding="20">
+                <Label Text="{Binding KeywordModel.LongDescription}"/>
+
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>

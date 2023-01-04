@@ -43,7 +43,7 @@ namespace UtilityLibrary.Application.Services
                     AbilityValue = keyword.AbilityValue,
                     ActionType = Enum.GetName(typeof(ActionType), keyword.ActionType),
                     Name = keyword.Name,
-                    Text = keyword.Text
+                    ShortDescription = keyword.ShortDescription
                 };
                 keywords.Add(keywordDto);
             }
@@ -140,7 +140,7 @@ namespace UtilityLibrary.Application.Services
                         keyword.Name = keywordDto.Name;
                         keyword.AbilityValue = keywordDto.AbilityValue;
                         keyword.ActionType = (ActionType)keywordDto.ActionType;
-                        keyword.Text = keywordDto.Text;
+                        keyword.ShortDescription = keywordDto.ShortDescription;
 
                     }
 

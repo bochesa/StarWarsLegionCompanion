@@ -17,7 +17,7 @@ namespace StarWarsLegionCompanion.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllArmies()
         {
-            var armies = await Mediator.Send(new InGetAllArmiesDTO());
+            var armies = await Mediator.Send(new InGetAllKeywordsDTO());
             return Ok(armies);
         }
 

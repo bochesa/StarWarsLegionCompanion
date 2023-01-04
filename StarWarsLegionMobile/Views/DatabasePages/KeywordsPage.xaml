@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StarWarsLegionMobile.Views.KeywordsPage"
+             xmlns:viewmodel="clr-namespace:StarWarsLegionMobile.ViewModels"
+             xmlns:model="clr-namespace:StarWarsLegionMobile.Models"
+             x:DataType="viewmodel:KeywordViewModel"
+             Title="{Binding Title}">
+
+    
+    <Grid ColumnDefinitions="*,*"
+          ColumnSpacing="5"
+          RowDefinitions="*,auto"
+          RowSpacing="0">
+
+        <CollectionView Grid.ColumnSpan="2"
+                        ItemsSource="{Binding Keywords}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:KeywordModel">
+                    <Grid Padding="4" 
+                          ColumnDefinitions="*"
+                          ColumnSpacing="5"
+                          RowDefinitions="*,auto"
+                          >
+                        <Frame Padding="6"
+                               Style="{StaticResource CardView}">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                    CommandParameter="{Binding .}"
+                                    Command="{Binding Source={RelativeSource 
+                                                            AncestorType={x:Type viewmodel:KeywordViewModel}}, 
+                                                            Path=GoToDetailsCommand}"
+                                    />
+                            </Frame.GestureRecognizers>
+                            
+                                <VerticalStackLayout Padding="2">
+                                    <HorizontalStackLayout >
+                                    <Image Source="https://image.bochesa.dk/Icon/card_action.png" 
+                                               BackgroundColor="Gray"
+                                               HeightRequest="16"
+                                               WidthRequest="16"
+                                               Margin="0,0,6,0"
+                                               IsVisible="{Binding IsCardAction}"/>
+                                    <Image Source="https://image.bochesa.dk/Icon/free_action.png" 
+                                            BackgroundColor="Gray"
+                                            HeightRequest="16"
+                                            WidthRequest="16"
+                                            Margin="0,0,6,0"
+                                            IsVisible="{Binding IsFreeAction}"/>
+                                    <Label Text="{Binding Name}" FontSize="16"/>
+                                    <Label Text="{Binding KeywordType, StringFormat=' ({0})'}" 
+                                           Margin="2" 
+                                           FontAttributes="Italic" IsVisible="{Binding IsTypeNotNone}" 
+                                           VerticalOptions="Center"/>
+                                    </HorizontalStackLayout>
+                                    
+                                    <Label Text="{Binding ShortDescription}"/>
+                                    <!--<Label Text="{Binding ShortDescription,StringFormat='({0})'}"/>-->
+                                </VerticalStackLayout>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button Text="Get Keywords"
+                Command="{Binding GetKeywordsCommand}"
+                IsEnabled="{Binding IsNotBusy}"
+                Grid.Row="1"
+                Margin="6"/>
+        
+        <ActivityIndicator IsVisible="{Binding IsBusy}"
+                           IsRunning="{Binding IsBusy}"
+                           HorizontalOptions="FillAndExpand"    
+                           VerticalOptions="CenterAndExpand"
+                           Grid.ColumnSpan="2"
+                           Grid.RowSpan="2"/>
+    </Grid>
+</ContentPage>

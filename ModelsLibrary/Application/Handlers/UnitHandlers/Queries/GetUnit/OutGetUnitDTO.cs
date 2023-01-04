@@ -25,8 +25,8 @@ namespace UtilityLibrary.Application.Handlers
         public bool IsDefenseRed { get; set; }
         public bool IsDefenseSurge { get; set; }
         public string AttackSurge { get; set; }
-        public ICollection<OutKeywordDTO>? Keywords { get; set; }
-        public ICollection<OutWeaponDTO>? Weapons { get; set; }
-        public ICollection<OutUpgradeOptionDTO>? UpgradeOptions { get; set; }
+        public ICollection<OutKeywordDTO> Keywords { get; set; }
+        public ICollection<OutWeaponDTO> Weapons { get; set; }
+        public ICollection<OutUpgradeOptionDTO> UpgradeOptions { get; set; }
     }
 }

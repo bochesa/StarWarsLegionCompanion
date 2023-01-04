@@ -13,7 +13,7 @@ namespace UtilityLibrary.Application.Handlers
         public bool IsExhaustable { get; set; }
         public bool IsFreeAction { get; set; }
         public string UpgradeType { get; set; }
-        public OutWeaponDTO? Weapon { get; set; }
-        public IEnumerable<OutKeywordDTO>? Keywords { get; set; }
+        public OutWeaponDTO Weapon { get; set; }
+        public IEnumerable<OutKeywordDTO> Keywords { get; set; }
     }
 }

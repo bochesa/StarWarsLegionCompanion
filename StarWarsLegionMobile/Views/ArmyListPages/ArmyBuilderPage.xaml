@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StarWarsLegionMobile.Views.ArmyBuilderPage"
+             xmlns:viewmodel="clr-namespace:StarWarsLegionMobile.ViewModels"
+             xmlns:model="clr-namespace:StarWarsLegionMobile.Models"
+             x:DataType="viewmodel:ArmyViewModel"
+             Title="{Binding Title}">
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="20,0"
+            VerticalOptions="Start">
+            <Grid RowDefinitions="auto,auto,*">
+
+                <HorizontalStackLayout Grid.Row="0">
+                    <Label Text="{Binding Army.Faction}" FontSize="60"/>
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding Armypoints}"/>
+                                <Span Text=" / "/>
+                                <Span Text="{Binding Army.ArmySetup.PointLimit}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Grid.Row="1" >
+                    <VerticalStackLayout>
+                        <Border HeightRequest="40" WidthRequest="40" StrokeShape="Ellipse">
+                            <Image Source="commander.png" HeightRequest="40" WidthRequest="40"/>
+                        </Border>
+                        <Label HorizontalOptions="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding Commanders}" />
+                                    <Span Text=" / "/>
+                                    <Span Text="{Binding Army.ArmySetup.CommanderMaximum}"  />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </VerticalStackLayout>
+                    <BoxView WidthRequest="20"  Color="Transparent"/>
+                    <VerticalStackLayout>
+                        <Border HeightRequest="40" WidthRequest="40" StrokeShape="Ellipse">
+                            <Image Source="commander.png" HeightRequest="40" WidthRequest="40"/>
+                        </Border>
+                        <Label HorizontalOptions="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding Operatives}" />
+                                    <Span Text=" / "/>
+                                    <Span Text="{Binding Army.ArmySetup.OperativeMaximum}"  />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </VerticalStackLayout>
+                    <BoxView WidthRequest="20"  Color="Transparent"/>
+                    <VerticalStackLayout>
+                        <Border HeightRequest="40" WidthRequest="40" StrokeShape="Ellipse">
+                            <Image Source="commander.png" HeightRequest="40" WidthRequest="40"/>
+                        </Border>
+                        <Label HorizontalOptions="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding Corps}" />
+                                    <Span Text=" / "/>
+                                    <Span Text="{Binding Army.ArmySetup.CorpsMaximum}"  />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </VerticalStackLayout>
+                    <BoxView WidthRequest="20"  Color="Transparent"/>
+                    <VerticalStackLayout>
+                        <Border HeightRequest="40" WidthRequest="40" StrokeShape="Ellipse">
+                            <Image Source="commander.png" HeightRequest="40" WidthRequest="40"/>
+                        </Border>
+                        <Label HorizontalOptions="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding SpecialForces}" />
+                                    <Span Text=" / "/>
+                                    <Span Text="{Binding Army.ArmySetup.SpecialForcesMaximum}"  />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </VerticalStackLayout>
+                    <BoxView WidthRequest="20"  Color="Transparent"/>
+                    <VerticalStackLayout>
+                        <Border HeightRequest="40" WidthRequest="40" StrokeShape="Ellipse">
+                            <Image Source="commander.png" HeightRequest="40" WidthRequest="40"/>
+                        </Border>
+                        <Label HorizontalOptions="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding Supports}" />
+                                    <Span Text=" / "/>
+                                    <Span Text="{Binding Army.ArmySetup.SupportMaximum}"  />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </VerticalStackLayout>
+                    <BoxView WidthRequest="20"  Color="Transparent"/>
+                    <VerticalStackLayout>
+                        <Border HeightRequest="40" WidthRequest="40" StrokeShape="Ellipse">
+                            <Image Source="commander.png" HeightRequest="40" WidthRequest="40"/>
+                        </Border>
+                        <Label HorizontalOptions="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding Heavies}" />
+                                    <Span Text=" / "/>
+                                    <Span Text="{Binding Army.ArmySetup.HeavyMaximum}"  />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </VerticalStackLayout>
+                    <BoxView WidthRequest="20"  Color="Transparent"/>
+                    
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Grid.Row="2">
+                    <Button Text="Go to Unit Pick page"
+                            CommandParameter="{Binding Army}"
+                            Command="{Binding GotoUnitPickCommand}"
+                            ></Button>
+                </HorizontalStackLayout>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

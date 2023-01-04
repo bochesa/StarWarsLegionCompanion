@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StarWarsLegionMobile.Views.TestPage"
+             xmlns:viewmodel="clr-namespace:StarWarsLegionMobile.ViewModels"
+             xmlns:model="clr-namespace:StarWarsLegionMobile.Models"
+             x:DataType="viewmodel:TestViewModel"
+             Title="TestPage">
+    <VerticalStackLayout>
+        <Label 
+            Text="Welcome to .NET MAUI!"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Label Text="{Binding Army.Name}"/>
+
+        <Button Text="Click Me!"
+                Command="{Binding GoBackCommand}"
+                CommandParameter="{Binding Army}"
+                ></Button>
+    </VerticalStackLayout>
+</ContentPage>

@@ -5,19 +5,25 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:StarWarsLegionMobile.Views">
     
-    <FlyoutItem Title="Army Builder" FlyoutDisplayOptions="AsMultipleItems">
-            <ShellContent
-               Title="Star Wars Legion Compantion App"
-               ContentTemplate="{DataTemplate views:MainPage}"
-               Route="MainPage"/>
+    <FlyoutItem 
+            Title="Home"
+        FlyoutDisplayOptions="AsSingleItem"
+        >
+
         <ShellContent
-               Title="Army Builder"
-               ContentTemplate="{DataTemplate views:ArmyBuilderPage}"
-               Route="ArmyBuilder"/>
+            ContentTemplate="{DataTemplate views:MainPage}"
+            />
+        
+    </FlyoutItem>
+    <FlyoutItem Title="Army Building" FlyoutDisplayOptions="AsSingleItem">
         <ShellContent
                Title="Army Lists"
                ContentTemplate="{DataTemplate views:ArmyListPage}"
-               Route="ArmyLists"/>
+               />
+        <ShellContent
+               Title="Army Builder"
+               ContentTemplate="{DataTemplate views:ArmyBuilderPage}"
+              />
     </FlyoutItem>
     <FlyoutItem Title="Player" FlyoutDisplayOptions="AsMultipleItems">
 
@@ -30,7 +36,7 @@
         <ShellContent
                 Title="Collection"
                 ContentTemplate="{DataTemplate views:CollectionPage}"
-                Route="Collection"/>
+                />
     </FlyoutItem>
     <FlyoutItem Title="Card Database">
 
@@ -38,25 +44,25 @@
             <ShellContent
                 Title="Units"
                 ContentTemplate="{DataTemplate views:UnitsPage}"
-                Route="Units"/>
+                />
         </Tab>
         <Tab Title="Upgrades">
             <ShellContent
                 Title="Upgrades"
                 ContentTemplate="{DataTemplate views:UpgradesPage}"
-                Route="Upgrades"/>
+                />
         </Tab>
         <Tab Title="Keywords">
             <ShellContent
                 Title="Keywords"
                 ContentTemplate="{DataTemplate views:KeywordsPage}"
-                Route="Keywords"/>
+                />
         </Tab>
         <Tab Title="Products">
             <ShellContent
                 Title="Products"
                 ContentTemplate="{DataTemplate views:ProductsPage}"
-                Route="Products"/>
+                />
         </Tab>
         
     </FlyoutItem>

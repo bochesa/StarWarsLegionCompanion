@@ -1,10 +1,10 @@
 namespace StarWarsLegionMobile.Views;
 
-public partial class ArmyBuilderPage : ContentPage
+public partial class PickUnitPage : ContentPage
 {
-    ArmyViewModel viewModel;
+    PickUnitViewModel viewModel;
 
-    public ArmyBuilderPage(ArmyViewModel viewModel)
+    public PickUnitPage(PickUnitViewModel viewModel)
 	{
 		InitializeComponent();
 		BindingContext= viewModel;
@@ -13,6 +13,6 @@ public partial class ArmyBuilderPage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        viewModel.Title = viewModel.Army.Name;
+        viewModel.GetUnitsCommand.Execute(this);
     }
 }

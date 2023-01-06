@@ -52,8 +52,6 @@ namespace StarWarsLegionMobile.ViewModels
                 }
                 foreach (var unit in units)
                 {
-                    var unitName = Helper.RemoveWhitespace(unit.Name).ToLower();
-                    unit.UnitThumb = $"https://image.bochesa.dk/Units/Icons/{unitName}.jpeg";
                     Units.Add(unit);
                 }
             }

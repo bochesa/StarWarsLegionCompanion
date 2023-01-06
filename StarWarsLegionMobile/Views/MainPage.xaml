@@ -4,7 +4,8 @@
              x:Class="StarWarsLegionMobile.Views.MainPage"
              xmlns:viewmodel="clr-namespace:StarWarsLegionMobile.ViewModels"
              xmlns:model="clr-namespace:StarWarsLegionMobile.Models"
-             x:DataType="viewmodel:MainViewModel">
+             x:DataType="viewmodel:MainViewModel"
+             Title="Home">
 
     <ScrollView>
 

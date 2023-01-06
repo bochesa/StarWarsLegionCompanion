@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StarWarsLegionMobile.Views.PickUnitPage"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:viewmodel="clr-namespace:StarWarsLegionMobile.ViewModels"
+             xmlns:model="clr-namespace:StarWarsLegionMobile.Models"
+             x:DataType="viewmodel:PickUnitViewModel"
+             Title="{Binding Title}">
+
+    <Grid ColumnDefinitions="*,*"
+          ColumnSpacing="5"
+          RowDefinitions="*,auto"
+          RowSpacing="0">
+
+        <CollectionView Grid.ColumnSpan="2"
+                        Grid.Row="0"
+                        ItemsSource="{Binding Unitslist}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:UnitModel">
+                    <Grid Padding="4" 
+                          ColumnDefinitions="*"
+                          ColumnSpacing="5"
+                          RowDefinitions="*,Auto"
+                          HeightRequest="125">
+                        <Frame Padding="6"
+                               Style="{StaticResource CardView}">
+                            <Frame.Behaviors>
+                                <toolkit:AnimationBehavior>
+                                    <toolkit:AnimationBehavior.AnimationType>
+                                        <toolkit:FadeAnimation Opacity="0.5" />
+                                    </toolkit:AnimationBehavior.AnimationType>
+                                </toolkit:AnimationBehavior>
+                            </Frame.Behaviors>
+                            <Frame.GestureRecognizers>
+
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource 
+                                                            AncestorType={x:Type viewmodel:PickUnitViewModel}}, 
+                                                            Path=AddUnitCommand}" CommandParameter="{Binding .}"/>
+
+                            </Frame.GestureRecognizers>
+                            <Grid ColumnDefinitions="auto,*,30">
+                                <HorizontalStackLayout Grid.Column="0">
+                                    <Border
+                                        StrokeShape="RoundRectangle 20"
+                                        >
+                                        <Image Source="{Binding UnitThumb}"
+                                                   Aspect="Center"
+                                                  />
+                                    </Border>
+                                </HorizontalStackLayout>
+                                <VerticalStackLayout Grid.Column="1">
+                                    <HorizontalStackLayout HorizontalOptions="Center">
+                                        <VerticalStackLayout>
+                                            <HorizontalStackLayout >
+                                                <Label Text="*" IsVisible="{Binding IsUnique}" VerticalOptions="Center" Margin="0,0,4,0"/>
+                                                <Label Text="{Binding Name}" FontSize="16"/>
+                                                <Label Text="{Binding PointCost, StringFormat='{}({0})'}" VerticalOptions="Center" Margin="4,0,0,0"/>
+                                            </HorizontalStackLayout>
+                                            <Label Text="{Binding SurName}" FontAttributes="Italic" FontSize="10"/>
+                                        </VerticalStackLayout>
+                                    </HorizontalStackLayout>
+                                </VerticalStackLayout>
+                                <VerticalStackLayout Grid.Column="2">
+                                    <Label Text="{Binding Faction}" IsVisible="false"/>
+                                    <Image Source="{Binding Faction, StringFormat='{0}.png'}" 
+                                               WidthRequest="25" 
+                                               HeightRequest="25" 
+                                               BackgroundColor="Transparent"/>
+                                </VerticalStackLayout>
+
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+        <Button Text="Go Back" Command="{Binding GoBackCommand}" Grid.Row="1"/>
+    </Grid>
+</ContentPage>

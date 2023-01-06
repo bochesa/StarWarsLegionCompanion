@@ -13,13 +13,13 @@ namespace StarWarsLegionMobile.ViewModels
     {
 
         DatabaseServices databaseServices;
-        public Army Army { get; set; }
+        [ObservableProperty]
+        Army army;
 
         public MainViewModel(DatabaseServices databaseServices)
-        {
-            Title = "Army Builder"; 
+        { 
             this.databaseServices = databaseServices;
-            Army = new Army { Name = "test" };
+            army = new Army { Name = "No Name" };
         }
 
         [RelayCommand]
@@ -28,7 +28,6 @@ namespace StarWarsLegionMobile.ViewModels
             if (army is null) return;
 
             army.Faction = FactionType.Empire;
-            army.ArmySetup.PointLimit = 800;
 
             await Shell.Current.GoToAsync($"{nameof(ArmyBuilderPage)}", true,
                 new Dictionary<string, object>

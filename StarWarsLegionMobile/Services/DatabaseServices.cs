@@ -1,5 +1,6 @@
 ﻿using StarWarsLegionMobile.Views;
 using System.Net.Http.Json;
+using UtilityLibrary.Models;
 
 namespace StarWarsLegionMobile.Services
 {
@@ -39,7 +40,15 @@ namespace StarWarsLegionMobile.Services
             using var reader = new StreamReader(stream);
             var contents = await reader.ReadToEndAsync();
             units = JsonSerializer.Deserialize<List<UnitModel>>(contents);
-
+            if(units is not null ) 
+            {
+                foreach (var unit in units)
+                {
+                    var unitName = Helper.RemoveWhitespace(unit.Name).ToLower();
+                    unit.UnitThumb = $"https://image.bochesa.dk/Units/Icons/{unitName}.jpeg";
+                    
+                }
+            }
             return units;
         }
         public async Task<List<KeywordModel>> GetKeywords()

@@ -43,7 +43,6 @@ namespace UtilityLibrary.Models
         public int Id { get; set; }
         public int UnitId { get; set; }
         public Unit? Unit { get; set; }
-        public RankType Rank { get; set; }
         public ICollection<ChosenUpgrade> ChosenUpgrades { get; set; } = new List<ChosenUpgrade>();
     }
     public class ChosenUpgrade

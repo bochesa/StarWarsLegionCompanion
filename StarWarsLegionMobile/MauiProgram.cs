@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using CommunityToolkit.Maui;
+using CommunityToolkit.Maui.Markup;
+using Microsoft.Extensions.Logging;
 using StarWarsLegionMobile.Services;
 using StarWarsLegionMobile.Views;
 
@@ -10,7 +12,7 @@ namespace StarWarsLegionMobile
         {
             var builder = MauiApp.CreateBuilder();
             builder
-                .UseMauiApp<App>()
+                .UseMauiApp<App>().UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -39,6 +41,7 @@ namespace StarWarsLegionMobile
             builder.Services.AddTransient<UpgradeDetailsViewModel>();
             builder.Services.AddTransient<UnitDetailsViewModel>();
             builder.Services.AddTransient<TestViewModel>();
+            builder.Services.AddTransient<PickUnitViewModel>();
             
             //pages
             builder.Services.AddSingleton<MainPage>();
@@ -51,6 +54,7 @@ namespace StarWarsLegionMobile
             builder.Services.AddTransient<UnitDetailsPage>();
             builder.Services.AddTransient<ArmyBuilderPage>();
             builder.Services.AddTransient<TestPage>();
+            builder.Services.AddTransient<PickUnitPage>();
 
             return builder.Build();
         }

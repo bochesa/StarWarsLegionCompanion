@@ -2,16 +2,21 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="StarWarsLegionMobile.Views.ArmyBuilderPage"
+             xmlns:service="clr-namespace:StarWarsLegionMobile.Services"
              xmlns:viewmodel="clr-namespace:StarWarsLegionMobile.ViewModels"
              xmlns:model="clr-namespace:StarWarsLegionMobile.Models"
              x:DataType="viewmodel:ArmyViewModel"
              Title="{Binding Title}">
-    <ScrollView>
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsEnabled="False" IsVisible="False" />
+    </Shell.BackButtonBehavior>
+    
         <VerticalStackLayout
             Spacing="25"
             Padding="20,0"
             VerticalOptions="Start">
-            <Grid RowDefinitions="auto,auto,*">
+            <Grid RowDefinitions="auto,Auto,*,auto">
 
                 <HorizontalStackLayout Grid.Row="0">
                     <Label Text="{Binding Army.Faction}" FontSize="60"/>
@@ -25,6 +30,7 @@
                         </Label.FormattedText>
                     </Label>
                 </HorizontalStackLayout>
+                
                 <HorizontalStackLayout Grid.Row="1" >
                     <VerticalStackLayout>
                         <Border HeightRequest="40" WidthRequest="40" StrokeShape="Ellipse">
@@ -40,6 +46,7 @@
                             </Label.FormattedText>
                         </Label>
                     </VerticalStackLayout>
+                    
                     <BoxView WidthRequest="20"  Color="Transparent"/>
                     <VerticalStackLayout>
                         <Border HeightRequest="40" WidthRequest="40" StrokeShape="Ellipse">
@@ -118,7 +125,61 @@
                     <BoxView WidthRequest="20"  Color="Transparent"/>
                     
                 </HorizontalStackLayout>
-                <HorizontalStackLayout Grid.Row="2">
+            <ScrollView Grid.Row="2">
+                    <VerticalStackLayout >
+                    <CollectionView ItemsSource="{Binding ChosenUnitModels}">
+                        <CollectionView.EmptyView>
+                            <Label Text="List is Empty!"/>
+                        </CollectionView.EmptyView>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:UnitModel">
+                                <Grid Padding="4" ColumnDefinitions="*"
+                                          ColumnSpacing="5"
+                                          RowDefinitions="*,Auto"
+                                          HeightRequest="125">      
+
+                                    <Frame Style="{StaticResource CardView}" Padding="6" HeightRequest="110">
+                                        <Grid ColumnDefinitions="auto,*,30">
+                                            <HorizontalStackLayout Grid.Column="0">
+                                                <Border
+                                                    StrokeShape="RoundRectangle 20"
+                                                    >
+                                                    <Image Source="{Binding UnitThumb}"
+                                                       Aspect="Center"
+                                                      />
+                                                </Border>
+                                            </HorizontalStackLayout>
+                                            <VerticalStackLayout Grid.Column="1">
+                                                <HorizontalStackLayout HorizontalOptions="Center">
+                                                    <VerticalStackLayout>
+                                                        <HorizontalStackLayout >
+                                                            <Label Text="*" IsVisible="{Binding IsUnique}" VerticalOptions="Center" Margin="0,0,4,0"/>
+                                                            <Label Text="{Binding Name}" FontSize="16"/>
+                                                            <Label Text="{Binding PointCost, StringFormat='{}({0})'}" VerticalOptions="Center" Margin="4,0,0,0"/>
+                                                        </HorizontalStackLayout>
+                                                        <Label Text="{Binding SurName}" FontAttributes="Italic" FontSize="10"/>
+                                                    </VerticalStackLayout>
+                                                </HorizontalStackLayout>
+                                            </VerticalStackLayout>
+                                            <VerticalStackLayout Grid.Column="2">
+                                                <Label Text="{Binding Faction}" IsVisible="false"/>
+                                                <Image Source="{Binding Faction, StringFormat='{0}.png'}" 
+                                                   WidthRequest="25" 
+                                                   HeightRequest="25" 
+                                                   BackgroundColor="Transparent"/>
+                                            </VerticalStackLayout>
+
+                                        </Grid>
+                                    </Frame>
+
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </ScrollView>
+                
+                <HorizontalStackLayout Grid.Row="3">
                     <Button Text="Go to Unit Pick page"
                             CommandParameter="{Binding Army}"
                             Command="{Binding GotoUnitPickCommand}"
@@ -126,5 +187,4 @@
                 </HorizontalStackLayout>
             </Grid>
         </VerticalStackLayout>
-    </ScrollView>
 </ContentPage>

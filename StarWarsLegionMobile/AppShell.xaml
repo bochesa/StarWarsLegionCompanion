@@ -5,15 +5,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:StarWarsLegionMobile.Views">
     
-    <FlyoutItem 
-            Title="Home"
-        FlyoutDisplayOptions="AsSingleItem"
-        >
-
+    <FlyoutItem Title="Home" FlyoutDisplayOptions="AsSingleItem">
         <ShellContent
             ContentTemplate="{DataTemplate views:MainPage}"
             />
-        
     </FlyoutItem>
     <FlyoutItem Title="Army Building" FlyoutDisplayOptions="AsSingleItem">
         <ShellContent
@@ -39,7 +34,6 @@
                 />
     </FlyoutItem>
     <FlyoutItem Title="Card Database">
-
         <Tab Title="Units">
             <ShellContent
                 Title="Units"
@@ -64,8 +58,5 @@
                 ContentTemplate="{DataTemplate views:ProductsPage}"
                 />
         </Tab>
-        
     </FlyoutItem>
-
-
 </Shell>

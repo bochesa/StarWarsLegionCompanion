@@ -2,28 +2,40 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="StarWarsLegionMobile.Views.ArmyBuilderPage"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:service="clr-namespace:StarWarsLegionMobile.Services"
              xmlns:viewmodel="clr-namespace:StarWarsLegionMobile.ViewModels"
              xmlns:model="clr-namespace:StarWarsLegionMobile.Models"
              x:DataType="viewmodel:ArmyViewModel"
              Title="{Binding Title}">
 
-    <Shell.BackButtonBehavior>
-        <BackButtonBehavior IsEnabled="False" IsVisible="False" />
-    </Shell.BackButtonBehavior>
     
         <VerticalStackLayout
             Spacing="25"
             Padding="20,0"
             VerticalOptions="Start">
-            <Grid RowDefinitions="auto,Auto,*,auto">
+            <Grid RowDefinitions="Auto,Auto,*,auto"
+                  ColumnDefinitions="*,Auto,*">
 
                 <HorizontalStackLayout Grid.Row="0">
-                    <Label Text="{Binding Army.Faction}" FontSize="60"/>
-                    <Label>
+                <Border Padding="10">
+                    <Image Source="{Binding Faction, StringFormat='{0}.png'}" WidthRequest="60" HeightRequest="60"/>
+                </Border>
+                <Label Text="{Binding Faction}" Grid.Column="0" Padding="10" IsVisible="False"/>
+                <Entry x:Name="EntryName" 
+                       WidthRequest="250"
+                       Grid.Column="1"
+                       Text="{Binding Title, Mode=TwoWay}"
+                       Placeholder="Enter name" 
+                       ClearButtonVisibility="WhileEditing"
+                       ReturnCommand="{Binding ChangeArmyListNameCommand}"
+                       ReturnCommandParameter="{Binding Source={x:Reference EntryName}, Path=Text}">
+
+                </Entry>
+                <Label Grid.Column="2" Padding="30">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="{Binding Armypoints}"/>
+                                <Span Text="{Binding ArmyPoints}"/>
                                 <Span Text=" / "/>
                                 <Span Text="{Binding Army.ArmySetup.PointLimit}"/>
                             </FormattedString>
@@ -125,6 +137,7 @@
                     <BoxView WidthRequest="20"  Color="Transparent"/>
                     
                 </HorizontalStackLayout>
+            
             <ScrollView Grid.Row="2">
                     <VerticalStackLayout >
                     <CollectionView ItemsSource="{Binding ChosenUnitModels}">
@@ -139,7 +152,7 @@
                                           HeightRequest="125">      
 
                                     <Frame Style="{StaticResource CardView}" Padding="6" HeightRequest="110">
-                                        <Grid ColumnDefinitions="auto,*,30">
+                                        <Grid ColumnDefinitions="auto,*,Auto">
                                             <HorizontalStackLayout Grid.Column="0">
                                                 <Border
                                                     StrokeShape="RoundRectangle 20"
@@ -162,11 +175,24 @@
                                                 </HorizontalStackLayout>
                                             </VerticalStackLayout>
                                             <VerticalStackLayout Grid.Column="2">
-                                                <Label Text="{Binding Faction}" IsVisible="false"/>
-                                                <Image Source="{Binding Faction, StringFormat='{0}.png'}" 
-                                                   WidthRequest="25" 
-                                                   HeightRequest="25" 
-                                                   BackgroundColor="Transparent"/>
+                                                <HorizontalStackLayout>
+                                                    <Border >
+                                                        <Border.GestureRecognizers>
+                                                            <TapGestureRecognizer 
+                                                                Command="{Binding Source={RelativeSource 
+                                                                    AncestorType={x:Type viewmodel:ArmyViewModel}}, 
+                                                                    Path=RemoveUnitCommand}"
+                                                                    CommandParameter="{Binding Id}" />
+                                                        </Border.GestureRecognizers>
+                                                        <Label Text="Remove"/>
+                                                    </Border>
+                                                    <BoxView WidthRequest="10" Color="Transparent"/>
+                                                    <Border StrokeThickness="0" WidthRequest="30" HeightRequest="30" >
+                                                        <Image Source="{Binding Faction, StringFormat='{0}.png'}" 
+                                                            WidthRequest="25" 
+                                                            HeightRequest="25"/>
+                                                    </Border>
+                                                </HorizontalStackLayout>
                                             </VerticalStackLayout>
 
                                         </Grid>
@@ -184,7 +210,11 @@
                             CommandParameter="{Binding Army}"
                             Command="{Binding GotoUnitPickCommand}"
                             ></Button>
-                </HorizontalStackLayout>
+                <Button Text="Save Army List" BackgroundColor="DarkGreen"
+                        Command="{Binding SaveArmyListCommand}"
+                        CommandParameter="{Binding Army}"
+                        />
+            </HorizontalStackLayout>
             </Grid>
         </VerticalStackLayout>
 </ContentPage>

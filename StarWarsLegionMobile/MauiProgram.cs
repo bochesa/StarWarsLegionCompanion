@@ -35,6 +35,7 @@ namespace StarWarsLegionMobile
             builder.Services.AddSingleton<UnitViewModel>();
             builder.Services.AddSingleton<MainViewModel>();
             builder.Services.AddSingleton<ArmyViewModel>();
+            builder.Services.AddSingleton<ArmyListViewModel>();
 
             // viewmodels for detail pages
             builder.Services.AddTransient<KeywordDetailsViewModel>();
@@ -48,6 +49,7 @@ namespace StarWarsLegionMobile
             builder.Services.AddSingleton<KeywordsPage>();
             builder.Services.AddSingleton<UpgradesPage>();
             builder.Services.AddSingleton<UnitsPage>();
+            builder.Services.AddSingleton<ArmyListPage>();
 
             builder.Services.AddTransient<KeywordDetailsPage>();
             builder.Services.AddTransient<UpgradeDetailsPage>();

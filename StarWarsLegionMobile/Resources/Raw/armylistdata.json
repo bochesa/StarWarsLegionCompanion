@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "name": "Lukes Bois",
+    "faction": 1
+  },
+  {
+    "id": 2,
+    "name": "Vaders Fist",
+    "faction": 2
+  }
+]

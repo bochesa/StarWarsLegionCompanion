@@ -10,9 +10,12 @@ namespace UtilityLibrary.Models
 {
     public class Army
     {
+        [JsonPropertyName("id")]
         public int Id { get; set; }
+        [JsonPropertyName("name")]
         public string? Name { get; set; }
         public virtual Player? Player { get; set; }
+        [JsonPropertyName("faction")]
         public virtual FactionType Faction { get; set; }
         // default to normal battle 800 pts.
         public ArmySetup ArmySetup { get; set; } = new ArmySetup {Id = 1, PointLimit = 800, CommanderMaximum = 2,CommanderMinimum = 1,CorpsMaximum = 6, CorpsMinimum = 3, HeavyMaximum = 2,HeavyMinimum = 0,OperativeMaximum = 2, OperativeMinimum = 0,SpecialForcesMaximum = 3, SpecialForcesMinimum = 0, SupportMaximum = 3, SupportMinimum = 0  };

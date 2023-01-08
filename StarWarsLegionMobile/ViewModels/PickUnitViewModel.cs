@@ -32,17 +32,14 @@ namespace StarWarsLegionMobile.ViewModels
         {
             ChosenUnit chosenUnit = new ChosenUnit();
             chosenUnit.Unit = (Unit)unitModel;
-            Army.ChosenUnits.Add(chosenUnit);
-
+            army.ChosenUnits.Add(chosenUnit);
             WeakReferenceMessenger.Default.Send(new UpdateArmyBuilderList(army));
-            await Task.Delay(1);
             await GoBack();
         }
 
         [RelayCommand]
         async Task GoBack()
         {
-           await Task.Delay(1);
             await Shell.Current.GoToAsync(nameof(ArmyBuilderPage), true);
         }
 
@@ -60,9 +57,24 @@ namespace StarWarsLegionMobile.ViewModels
                 {
                     Unitslist.Clear();
                 }
+
                 foreach (var unit in units)
                 {
+                    if(unit.Faction == Army.Faction)
                     Unitslist.Add(unit);
+                }
+
+                if(army.ChosenUnits.Count() != 0)
+                {
+                    var chosenUniques = army.ChosenUnits.Where(u=>u.Unit.IsUnique).ToList();
+                   
+                    foreach (var unit in chosenUniques)
+                    {
+                        var unitid = unit.Unit.Id;
+                        var unittoremove = Unitslist.FirstOrDefault(u=>u.Id== unitid);
+                        Unitslist.Remove(unittoremove);
+                    }
+                    
                 }
             }
             catch (Exception ex)

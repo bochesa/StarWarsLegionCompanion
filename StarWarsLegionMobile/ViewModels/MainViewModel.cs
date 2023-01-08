@@ -1,4 +1,6 @@
-﻿using StarWarsLegionMobile.Services;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using StarWarsLegionMobile.Messages;
+using StarWarsLegionMobile.Services;
 using StarWarsLegionMobile.Views;
 using System;
 using System.Collections.Generic;
@@ -13,29 +15,20 @@ namespace StarWarsLegionMobile.ViewModels
     {
 
         DatabaseServices databaseServices;
-        [ObservableProperty]
-        Army army;
-
+        
         public MainViewModel(DatabaseServices databaseServices)
         { 
             this.databaseServices = databaseServices;
-            army = new Army { Name = "No Name" };
         }
 
         [RelayCommand]
-        async Task GoToArmyBuilderAsync(Army army)
+        async Task GoToArmyBuilderAsync(string faction)
         {
-            if (army is null) return;
 
-            army.Faction = FactionType.Empire;
+            //army.Faction = (FactionType)Enum.Parse(typeof(FactionType), faction);
 
-            await Shell.Current.GoToAsync($"{nameof(ArmyBuilderPage)}", true,
-                new Dictionary<string, object>
-                {
-                    {
-                        "Army",army
-                    }
-                });
+            await Shell.Current.GoToAsync($"{nameof(ArmyBuilderPage)}?faction={faction}", true);
+            WeakReferenceMessenger.Default.Send(new UpdateArmyFaction(faction));
 
         }
 

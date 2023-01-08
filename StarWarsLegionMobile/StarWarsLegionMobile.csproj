@@ -70,6 +70,7 @@
 	  <None Remove="Resources\Images\Icons\support.png" />
 	  <None Remove="Resources\Images\user.png" />
 	  <None Remove="Resources\Images\user.svg" />
+	  <None Remove="Resources\Raw\armylistdata.json" />
 	  <None Remove="Resources\Raw\keywordsdata.json" />
 	  <None Remove="Resources\Raw\unitsdata.json" />
 	  <None Remove="Resources\Raw\upgradesdata.json" />
@@ -93,7 +94,7 @@
 	  <MauiXaml Update="Views\ArmyListPages\ArmyBuilderPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\ArmyListPage.xaml">
+	  <MauiXaml Update="Views\ArmyListPages\ArmyListPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ArmyListPages\TestPage.xaml">
@@ -135,7 +136,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Views\ArmyListPage.xaml.cs">
+	  <Compile Update="Views\ArmyListPages\ArmyListPage.xaml.cs">
 	    <DependentUpon>ArmyListPage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Views\ProfilePage.xaml.cs">

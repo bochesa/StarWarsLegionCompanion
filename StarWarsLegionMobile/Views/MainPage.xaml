@@ -19,45 +19,8 @@
                 <VerticalStackLayout Grid.Row="0" HorizontalOptions="Center">
                     <Label Text="Choose a faction" FontSize="36" />
                     <BoxView HeightRequest="20" Color="Transparent"/>
+                <Label Text="Go to Armybuilder menu to create a new army"/>
                 </VerticalStackLayout>
-                <FlexLayout Wrap="Wrap" Grid.Row="1"
-                        AlignItems="Center"
-                        JustifyContent="SpaceAround">
-                    <VerticalStackLayout Padding="6">
-                        <Border HeightRequest="60" WidthRequest="60" StrokeShape="Ellipse">
-                            <Image Source="empire.png" HeightRequest="60" WidthRequest="60"/>
-                            <Border.GestureRecognizers>
-                                <TapGestureRecognizer 
-                                    CommandParameter="{Binding Army}"
-                                    Command="{Binding GoToArmyBuilderCommand}"
-                                    />
-                            </Border.GestureRecognizers>
-                        </Border>
-                        <BoxView HeightRequest="10" Color="Transparent"/>
-                        <Label Text="Galactic Empire"/>
-                    </VerticalStackLayout>
-                    <VerticalStackLayout Padding="6">
-                        <Border HeightRequest="60" WidthRequest="60" StrokeShape="Ellipse">
-                            <Image Source="rebel.png" HeightRequest="60" WidthRequest="60"/>
-                        </Border>
-                        <BoxView HeightRequest="10" Color="Transparent"/>
-                        <Label Text="Rebel Alliance"/>
-                    </VerticalStackLayout>
-                    <VerticalStackLayout Padding="6">
-                        <Border HeightRequest="60" WidthRequest="60" StrokeShape="Ellipse">
-                            <Image Source="republic.png" HeightRequest="60" WidthRequest="60"/>
-                        </Border>
-                        <BoxView HeightRequest="10" Color="Transparent"/>
-                        <Label Text="Galactic Republic"/>
-                    </VerticalStackLayout>
-                    <VerticalStackLayout Padding="6">
-                        <Border HeightRequest="60" WidthRequest="60" StrokeShape="Ellipse">
-                            <Image Source="separatist.png" HeightRequest="60" WidthRequest="60"/>
-                        </Border>
-                        <BoxView HeightRequest="10" Color="Transparent"/>
-                        <Label Text="Separatist Alliance"/>
-                    </VerticalStackLayout>
-                </FlexLayout>
             </Grid>
         </VerticalStackLayout>
     </ScrollView>

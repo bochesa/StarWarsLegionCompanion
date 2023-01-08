@@ -11,66 +11,90 @@ using System.Threading.Tasks;
 
 namespace StarWarsLegionMobile.ViewModels
 {
-    [QueryProperty("Army", "Army")]
-    public partial class ArmyViewModel : BaseViewModel, IRecipient<UpdateArmyBuilderList>
+    [QueryProperty(nameof(faction), "faction")]
+    public partial class ArmyViewModel : BaseViewModel, IRecipient<UpdateArmyBuilderList>, IRecipient<UpdateArmyFaction>
     {
-
-        [ObservableProperty]
-        int armypoints;
-        [ObservableProperty]
-        int commanders;
-        [ObservableProperty]
-        int operatives = 0;
-        [ObservableProperty]
-        int corps = 0;
-        [ObservableProperty]
-        int specialForces = 0;
-        [ObservableProperty]
-        int supports = 0;
-        [ObservableProperty]
-        int heavies = 0;
 
         [ObservableProperty]
         Army army;
 
         [ObservableProperty]
-        ObservableCollection<UnitModel> chosenUnitModels= new ObservableCollection<UnitModel>();
+        string armyListName;
+
+        [ObservableProperty]
+        int commanders;
+        [ObservableProperty]
+        int operatives;
+        [ObservableProperty]
+        int corps;
+        [ObservableProperty]
+        int specialForces;
+        [ObservableProperty]
+        int supports;
+        [ObservableProperty]
+        int heavies;
+        [ObservableProperty]
+        int armyPoints;
+
+        [ObservableProperty]
+        ObservableCollection<UnitModel> chosenUnitModels = new();
+        [ObservableProperty]
+        string faction;
 
         public ArmyViewModel()
         {
-            if(Army is null)
-            {
-                Army = new Army();
-            }
+            if (army is null) army = new();
+           
+            armyListName = "Untitled";
+            Title = ArmyListName;
+            Faction = "Neutral";
 
             WeakReferenceMessenger.Default.Register<UpdateArmyBuilderList>(this);
+            WeakReferenceMessenger.Default.Register<UpdateArmyFaction>(this);
         }
 
+        public void Receive(UpdateArmyFaction message)
+        {
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                Faction = message.Value;
+                army.Faction = (FactionType)Enum.Parse(typeof(FactionType), message.Value);
+            });
+        }
 
         public void Receive(UpdateArmyBuilderList message)
         {
             MainThread.BeginInvokeOnMainThread(() =>
             {
                 chosenUnitModels.Clear();
-                commanders = message.Value.ChosenUnits.Where(u => u.Unit.Rank == RankType.Commander).Count();
-                operatives = message.Value.ChosenUnits.Where(u => u.Unit.Rank == RankType.Operative).Count();
-                corps = message.Value.ChosenUnits.Where(u => u.Unit.Rank == RankType.Corps).Count();
-                specialForces = message.Value.ChosenUnits.Where(u => u.Unit.Rank == RankType.SpecialForces).Count();
-                supports = message.Value.ChosenUnits.Where(u => u.Unit.Rank == RankType.Support).Count();
-                heavies = message.Value.ChosenUnits.Where(u => u.Unit.Rank == RankType.Heavy).Count();
-                armypoints = message.Value.ChosenUnits.Sum(u => u.Unit.PointCost);
-                foreach (var unit in message.Value.ChosenUnits)
+                foreach (var unit in army.ChosenUnits)
                 {
                     chosenUnitModels.Add((UnitModel)unit.Unit);
                 }
+                Commanders = chosenUnitModels.Where(u => u.Rank == RankType.Commander).Count();
+                Operatives = chosenUnitModels.Where(u => u.Rank == RankType.Operative).Count();
+                Corps = chosenUnitModels.Where(u => u.Rank == RankType.Corps).Count();
+                SpecialForces = chosenUnitModels.Where(u => u.Rank == RankType.SpecialForces).Count();
+                Supports = chosenUnitModels.Where(u => u.Rank == RankType.Support).Count();
+                Heavies = chosenUnitModels.Where(u => u.Rank == RankType.Heavy).Count();
+                ArmyPoints = chosenUnitModels.Sum(u => u.PointCost);
             });
         }
 
         [RelayCommand]
+        async Task ChangeArmyListName(string input)
+        {
+            // set name to Army data model
+            Army.Name = input;
+            await Task.Delay(1);
+        }
+
+
+
+        [RelayCommand]
         async Task GotoUnitPick(Army army)
         {
-            if(army is null) return;
-
+            if (army is null) return;
 
             await Shell.Current.GoToAsync($"{nameof(PickUnitPage)}", true,
                 new Dictionary<string, object>
@@ -79,6 +103,25 @@ namespace StarWarsLegionMobile.ViewModels
                         "Army",army
                     }
                 });
-        } 
+        }
+
+        [RelayCommand]
+        void RemoveUnit(int id)
+        {
+            var unitToRemove = army.ChosenUnits.Where(u => u.Unit.Id == id).First();
+            army.ChosenUnits.Remove(unitToRemove);
+
+            WeakReferenceMessenger.Default.Send(new UpdateArmyBuilderList(army));
+        }
+
+        [RelayCommand]
+        async Task SaveArmyList(Army army)
+        {
+            // Save armylist to database
+            //TODO to be implemented
+           await Shell.Current.DisplayAlert("Save", $"Saving {army.Name} to Database! - Needs implementing", "OK");
+        }
+
+
     }
 }

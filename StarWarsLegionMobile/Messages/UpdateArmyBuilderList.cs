@@ -13,4 +13,10 @@ namespace StarWarsLegionMobile.Messages
         {
         }
     }
+    public class UpdateArmyFaction : ValueChangedMessage<string>
+    {
+        public UpdateArmyFaction(string value) : base(value)
+        {
+        }
+    }
 }

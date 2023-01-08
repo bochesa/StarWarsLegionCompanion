@@ -15,6 +15,7 @@ namespace StarWarsLegionMobile.Services
         List<KeywordModel> keywords = new List<KeywordModel>();
         List<UpgradeModel> upgrades = new List<UpgradeModel>();
         List<UnitModel> units = new List<UnitModel>();
+        List<ArmyModel> armies = new ();
 
         public async Task<List<KeywordModel>> GetKeywordsLocally()
         {
@@ -24,6 +25,15 @@ namespace StarWarsLegionMobile.Services
             keywords = JsonSerializer.Deserialize<List<KeywordModel>>(contents);
 
             return keywords;
+        }
+        public async Task<List<ArmyModel>> GetArmiesLocally()
+        {
+            using var stream = await FileSystem.OpenAppPackageFileAsync("armylistdata.json");
+            using var reader = new StreamReader(stream);
+            var contents = await reader.ReadToEndAsync();
+            armies = JsonSerializer.Deserialize<List<ArmyModel>>(contents);
+
+            return armies;
         }
         public async Task<List<UpgradeModel>> GetUpgradesLocally()
         {

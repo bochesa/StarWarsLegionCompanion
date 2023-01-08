@@ -8,11 +8,6 @@ public partial class ArmyBuilderPage : ContentPage
 	{
 		InitializeComponent();
 		BindingContext= viewModel;
-        this.viewModel= viewModel;
-	}
-    protected override void OnAppearing()
-    {
-        base.OnAppearing();
-        viewModel.Title = viewModel.Army.Name;
     }
+
 }

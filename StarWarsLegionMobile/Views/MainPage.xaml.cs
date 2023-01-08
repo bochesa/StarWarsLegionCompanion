@@ -8,6 +8,7 @@
             InitializeComponent();
             BindingContext = viewModel;
         }
+        
 
     }
 }

@@ -40,7 +40,7 @@ namespace StarWarsLegionMobile.ViewModels
         [RelayCommand]
         async Task GoBack()
         {
-            await Shell.Current.GoToAsync(nameof(ArmyBuilderPage), true);
+            await Shell.Current.GoToAsync("..", true);
         }
 
         [RelayCommand]

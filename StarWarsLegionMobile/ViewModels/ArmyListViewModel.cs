@@ -14,9 +14,11 @@ namespace StarWarsLegionMobile.ViewModels
     public partial class ArmyListViewModel: BaseViewModel
     {
         DatabaseServices databaseServices;
-        public ArmyListViewModel(DatabaseServices databaseServices)
+        ArmyViewModel viewModel;
+        public ArmyListViewModel(DatabaseServices databaseServices, ArmyViewModel viewModel)
         {
             this.databaseServices = databaseServices;
+            this.viewModel = viewModel;
         }
 
         public ObservableCollection<ArmyModel> Armies { get; } = new();
@@ -24,7 +26,8 @@ namespace StarWarsLegionMobile.ViewModels
         [RelayCommand]
         async Task CreateNewArmyAsync(string faction)
         {
-            await Shell.Current.GoToAsync($"{nameof(ArmyBuilderPage)}?faction={faction}", true);
+            //await Shell.Current.Navigation.PushModalAsync(new ArmyBuilderPage(viewModel));
+            await Shell.Current.GoToAsync($"///ArmyBuild/ArmyBuilderPage?faction={faction}", true);
             WeakReferenceMessenger.Default.Send(new UpdateArmyFaction(faction));
         }
 

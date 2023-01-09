@@ -10,15 +10,18 @@
             ContentTemplate="{DataTemplate views:MainPage}"
             />
     </FlyoutItem>
-    <FlyoutItem Title="Army Building" FlyoutDisplayOptions="AsSingleItem">
+    <FlyoutItem Title="Army Building" FlyoutDisplayOptions="AsSingleItem" Route="ArmyBuild">
         <ShellContent
-               Title="Army Lists"
-               ContentTemplate="{DataTemplate views:ArmyListPage}"
-               />
+            Title="Army Lists"
+            Route="ArmyListPage"
+                ContentTemplate="{DataTemplate views:ArmyListPage}"
+                />
         <ShellContent
-               Title="Army Builder"
-               ContentTemplate="{DataTemplate views:ArmyBuilderPage}"
-              />
+            Title="Army Builder"
+                Route="ArmyBuilderPage"
+                x:Name="ArmyBuilder"
+                ContentTemplate="{DataTemplate views:ArmyBuilderPage}"
+                />
     </FlyoutItem>
     <FlyoutItem Title="Player" FlyoutDisplayOptions="AsMultipleItems">
 

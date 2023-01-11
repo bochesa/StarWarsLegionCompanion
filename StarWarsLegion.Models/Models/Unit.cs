@@ -44,6 +44,7 @@ namespace UtilityLibrary.Models
         public virtual AttackSurge AttackSurge { get; set; }
         public virtual ICollection<Keyword> Keywords { get; set; } = new List<Keyword>();
         public virtual ICollection<Weapon> Weapons { get; set; } = new List<Weapon>();
+        [JsonPropertyName("upgradeOptions")]
         public virtual ICollection<UpgradeOption> UpgradeOptions { get; set; } = new List<UpgradeOption>();
 
     }

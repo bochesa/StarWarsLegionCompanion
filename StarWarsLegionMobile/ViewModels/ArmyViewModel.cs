@@ -16,7 +16,7 @@ namespace StarWarsLegionMobile.ViewModels
     {
 
         [ObservableProperty]
-        Army army;
+        ArmyModel army;
 
         [ObservableProperty]
         string armyListName;
@@ -78,6 +78,7 @@ namespace StarWarsLegionMobile.ViewModels
                 Supports = chosenUnitModels.Where(u => u.Rank == RankType.Support).Count();
                 Heavies = chosenUnitModels.Where(u => u.Rank == RankType.Heavy).Count();
                 ArmyPoints = chosenUnitModels.Sum(u => u.PointCost);
+                Army.Activations = commanders + operatives + corps + specialForces + supports + heavies;
             });
         }
 
@@ -89,18 +90,26 @@ namespace StarWarsLegionMobile.ViewModels
             await Task.Delay(1);
         }
 
+        [RelayCommand]
+        async Task PickUpgrade(ArmyModel armyModel)
+        {
+            if (armyModel == null) return; 
+            // DETVIRKER!!!
+            var faction = armyModel.Faction;
+            await Task.Delay(1);
+        }
 
 
         [RelayCommand]
-        async Task GotoUnitPick(Army army)
+        async Task GotoUnitPick(ArmyModel armyModel)
         {
-            if (army is null) return;
+            if (armyModel is null) return;
 
             await Shell.Current.GoToAsync($"{nameof(PickUnitPage)}", true,
                 new Dictionary<string, object>
                 {
                     {
-                        "Army",army
+                        "ArmyModel",armyModel
                     }
                 });
         }

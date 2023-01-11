@@ -12,7 +12,7 @@ using UtilityLibrary.Models;
 
 namespace StarWarsLegionMobile.ViewModels
 {
-    [QueryProperty("Army", "Army")]
+    [QueryProperty("ArmyModel", "ArmyModel")]
     public partial class PickUnitViewModel : BaseViewModel
     {
         DatabaseServices databaseServices;
@@ -23,7 +23,7 @@ namespace StarWarsLegionMobile.ViewModels
         }
 
         [ObservableProperty]
-        Army army;
+        ArmyModel armyModel;
 
         public ObservableCollection<UnitModel> Unitslist { get; } = new ObservableCollection<UnitModel>();
 
@@ -32,8 +32,8 @@ namespace StarWarsLegionMobile.ViewModels
         {
             ChosenUnit chosenUnit = new ChosenUnit();
             chosenUnit.Unit = (Unit)unitModel;
-            army.ChosenUnits.Add(chosenUnit);
-            WeakReferenceMessenger.Default.Send(new UpdateArmyBuilderList(army));
+            armyModel.ChosenUnits.Add(chosenUnit);
+            WeakReferenceMessenger.Default.Send(new UpdateArmyBuilderList(armyModel));
             await GoBack();
         }
 
@@ -60,13 +60,13 @@ namespace StarWarsLegionMobile.ViewModels
 
                 foreach (var unit in units)
                 {
-                    if(unit.Faction == Army.Faction)
+                    if(unit.Faction == ArmyModel.Faction)
                     Unitslist.Add(unit);
                 }
 
-                if(army.ChosenUnits.Count() != 0)
+                if(armyModel.ChosenUnits.Count() != 0)
                 {
-                    var chosenUniques = army.ChosenUnits.Where(u=>u.Unit.IsUnique).ToList();
+                    var chosenUniques = armyModel.ChosenUnits.Where(u=>u.Unit.IsUnique).ToList();
                    
                     foreach (var unit in chosenUniques)
                     {

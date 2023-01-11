@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace StarWarsLegionMobile.Models
 {
-    public class UnitModel : Unit
+    public partial class UnitModel : Unit
     {
         public string UnitThumb { get; set; }
 
+        
     }
-
 }

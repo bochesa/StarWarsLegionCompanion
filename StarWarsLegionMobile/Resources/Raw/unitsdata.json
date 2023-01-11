@@ -7,7 +7,14 @@
     "rank": 1,
     "faction": 2,
     "pointCost": 200,
-    "image": "https://image.bochesa.dk/Units/empire/darthvader.png"
+    "image": "https://image.bochesa.dk/Units/empire/darthvader.png",
+    "upgradeOptions": [
+      {
+        "id": 1,
+        "upgradeType": 5
+      }
+
+    ]
   },
   {
     "id": 2,

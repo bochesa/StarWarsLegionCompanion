@@ -54,20 +54,34 @@
 	  <None Remove="Resources\Fonts\Font Awesome 6 Free-Solid-900.otf" />
 	  <None Remove="Resources\Images\Icons\attack_surge.png" />
 	  <None Remove="Resources\Images\Icons\block.png" />
+	  <None Remove="Resources\Images\Icons\command.png" />
 	  <None Remove="Resources\Images\Icons\commander.png" />
+	  <None Remove="Resources\Images\Icons\comms.png" />
 	  <None Remove="Resources\Images\Icons\corps.png" />
+	  <None Remove="Resources\Images\Icons\crew.png" />
 	  <None Remove="Resources\Images\Icons\crit_hit.png" />
 	  <None Remove="Resources\Images\Icons\def_surge.png" />
 	  <None Remove="Resources\Images\Icons\empire.png" />
+	  <None Remove="Resources\Images\Icons\force.png" />
 	  <None Remove="Resources\Images\Icons\free_action.png" />
+	  <None Remove="Resources\Images\Icons\gear.png" />
+	  <None Remove="Resources\Images\Icons\generator.png" />
+	  <None Remove="Resources\Images\Icons\grenades.png" />
+	  <None Remove="Resources\Images\Icons\hardpoint.png" />
+	  <None Remove="Resources\Images\Icons\heavies.png" />
 	  <None Remove="Resources\Images\Icons\heavy.png" />
 	  <None Remove="Resources\Images\Icons\hit.png" />
 	  <None Remove="Resources\Images\Icons\operative.png" />
+	  <None Remove="Resources\Images\Icons\ordnance.png" />
+	  <None Remove="Resources\Images\Icons\personnel.png" />
+	  <None Remove="Resources\Images\Icons\pilot.png" />
+	  <None Remove="Resources\Images\Icons\protocol.png" />
 	  <None Remove="Resources\Images\Icons\rebel.png" />
 	  <None Remove="Resources\Images\Icons\republic.png" />
 	  <None Remove="Resources\Images\Icons\separatist.png" />
 	  <None Remove="Resources\Images\Icons\specialforces.png" />
 	  <None Remove="Resources\Images\Icons\support.png" />
+	  <None Remove="Resources\Images\Icons\training.png" />
 	  <None Remove="Resources\Images\user.png" />
 	  <None Remove="Resources\Images\user.svg" />
 	  <None Remove="Resources\Raw\armylistdata.json" />
@@ -113,6 +127,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ArmyListPages\PickUnitPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ArmyListPages\PickUpgradePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ProfilePage.xaml">

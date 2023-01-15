@@ -13,6 +13,7 @@ using UtilityLibrary.Models;
 namespace StarWarsLegionMobile.ViewModels
 {
     [QueryProperty("ArmyModel", "ArmyModel")]
+    [QueryProperty("RankType", "RankType")]
     public partial class PickUnitViewModel : BaseViewModel
     {
         DatabaseServices databaseServices;
@@ -25,13 +26,30 @@ namespace StarWarsLegionMobile.ViewModels
         [ObservableProperty]
         ArmyModel armyModel;
 
+        [ObservableProperty]
+        string rankType;
+
         public ObservableCollection<UnitModel> Unitslist { get; } = new ObservableCollection<UnitModel>();
 
         [RelayCommand]
         async Task AddUnit(UnitModel unitModel)
         {
-            ChosenUnit chosenUnit = new ChosenUnit();
+            ChosenUnit chosenUnit = new ChosenUnit() { Id = 1 };
             chosenUnit.Unit = (Unit)unitModel;
+            chosenUnit.UnitId = unitModel.Id;
+
+            var lastChosenUnit = armyModel.ChosenUnits.OrderByDescending(i=>i.Id).FirstOrDefault();
+            if (lastChosenUnit != null)
+            {
+                var id = lastChosenUnit.Id;
+                if (id > 0)
+                {
+                    id++;
+                }
+                chosenUnit.Id = id;
+
+            }
+
             armyModel.ChosenUnits.Add(chosenUnit);
             WeakReferenceMessenger.Default.Send(new UpdateArmyBuilderList(armyModel));
             await GoBack();
@@ -47,6 +65,7 @@ namespace StarWarsLegionMobile.ViewModels
         async Task GetUnits()
         {
             if (IsBusy) return;
+            RankType rankType = (RankType)Enum.Parse(typeof(RankType), RankType);
 
             try
             {
@@ -57,10 +76,9 @@ namespace StarWarsLegionMobile.ViewModels
                 {
                     Unitslist.Clear();
                 }
-
-                foreach (var unit in units)
+                var unitsToShow = units.Where(u=>u.Faction == ArmyModel.Faction && u.Rank == rankType).ToList();
+                foreach (var unit in unitsToShow)
                 {
-                    if(unit.Faction == ArmyModel.Faction)
                     Unitslist.Add(unit);
                 }
 

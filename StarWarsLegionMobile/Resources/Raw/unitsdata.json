@@ -12,6 +12,12 @@
       {
         "id": 1,
         "upgradeType": 5
+      },{
+        "id": 2,
+        "upgradeType": 5
+      },{
+        "id": 3,
+        "upgradeType": 5
       }
 
     ]
@@ -24,7 +30,19 @@
     "rank": 1,
     "faction": 1,
     "pointCost": 160,
-    "image": "https://image.bochesa.dk/Units/rebel/lukeskywalker.png"
+    "image": "https://image.bochesa.dk/Units/rebel/lukeskywalker.png",
+    "upgradeOptions": [
+      {
+        "id": 1,
+        "upgradeType": 5
+      },{
+        "id": 2,
+        "upgradeType": 5
+      },{
+        "id": 3,
+        "upgradeType": 6
+      }
+    ]
   },
   {
     "id": 3,
@@ -34,7 +52,13 @@
     "rank": 3,
     "faction": 1,
     "pointCost": 40,
-    "image": "https://image.bochesa.dk/Units/rebel/rebeltroopers.png"
+    "image": "https://image.bochesa.dk/Units/rebel/rebeltroopers.png",
+    "upgradeOptions": [
+      {
+        "id": 1,
+        "upgradeType": 6
+      }
+    ]
   },
   {
     "id": 4,

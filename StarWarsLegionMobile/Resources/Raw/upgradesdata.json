@@ -4,38 +4,96 @@
     "name": "Echo",
     "isUnique": true,
     "pointCost": 40,
-    "restriction": "ARC Troppers or Clone Trooper only.",
     "text": "Add 1 Echo mini.",
     "woundThreshold": 2,
     "isExhaustable": false,
     "isFreeAction": false,
     "image": "https://image.bochesa.dk/upgrades/echo.png",
-    "upgradeType":  10
+    "upgradeType":  10,
+    "restrictions": ["ARC Troppers", "CloneTrooper","Corps", "Republic" ]
   },
   {
     "id": 2,
     "name": "Concussion Grenades",
     "isUnique": false,
     "pointCost": 5,
-    "restriction": null,
     "text": null,
     "woundThreshold": 0,
     "isExhaustable": false,
     "isFreeAction": false,
     "image": "https://image.bochesa.dk/upgrades/concussion_grenades.png",
-    "upgradeType": 8
+    "upgradeType": 8,
+    "restrictions": []
   },
   {
     "id": 3,
     "name": "Comms Jammer",
     "isUnique": false,
     "pointCost": 15,
-    "restriction": null,
     "text": "Enemy units at range 1 cannot be issued orders, unless they are issuing an order to themselves.",
     "woundThreshold": 0,
     "isExhaustable": false,
+    "isAction": false,
     "isFreeAction": false,
     "image": "https://image.bochesa.dk/upgrades/comms_jammer.png",
-    "upgradeType": 3
+    "upgradeType": 3,
+    "restrictions": []
+  },
+  {
+    "id": 4,
+    "name": "Saber Throw",
+    "isUnique": false,
+    "pointCost": 10,
+    "text": "Choose 1 of your melee weapons. Perform a ranged attack with that weapon against an enemy unit at range 1-2, using half of that weapon's dice, rounded up. This is treated as an attack action.",
+    "woundThreshold": 0,
+    "isExhaustable": false,
+    "isAction": true,
+    "isFreeAction": false,
+    "image": "https://image.bochesa.dk/upgrades/saber_throw.png",
+    "upgradeType": 5,
+    "restrictions": []
+  },
+  {
+    "id": 5,
+    "name": "Recon Intel",
+    "isUnique": false,
+    "pointCost": 2,
+    "text": "You gain Scout 1 (After you deploy, you may perform a speed-1 move.)",
+    "woundThreshold": 0,
+    "isExhaustable": false,
+    "isAction": true,
+    "isFreeAction": false,
+    "image": "https://image.bochesa.dk/upgrades/recon_intel.png",
+    "upgradeType": 6,
+    "restrictions": []
+  },
+  {
+    "id": 6,
+    "name": "Anger",
+    "isUnique": false,
+    "pointCost": 5,
+    "text": "After you suffer 1 or more wounds, gain 1 aim token.",
+    "woundThreshold": 0,
+    "isExhaustable": false,
+    "isAction": true,
+    "isFreeAction": false,
+    "image": "https://image.bochesa.dk/upgrades/anger.png",
+    "upgradeType": 5,
+    "restrictions": ["Empire", "Separatist" ]
+  
+  },
+  {
+    "id": 7,
+    "name": "Hope",
+    "isUnique": false,
+    "pointCost": 5,
+    "text": "You gain Inspire 1 (After your rally step, remove up to 1 suppression token from another friendly unit at range 1-2.)",
+    "woundThreshold": 0,
+    "isExhaustable": false,
+    "isAction": true,
+    "isFreeAction": false,
+    "image": "https://image.bochesa.dk/upgrades/hope.png",
+    "upgradeType": 5,
+    "restrictions": ["Rebel", "Republic" ]
   }
 ]

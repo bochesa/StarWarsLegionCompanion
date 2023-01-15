@@ -9,7 +9,7 @@ namespace StarWarsLegionMobile.Models
     public partial class UnitModel : Unit
     {
         public string UnitThumb { get; set; }
+        public int ChosenId { get; set; }
 
-        
     }
 }

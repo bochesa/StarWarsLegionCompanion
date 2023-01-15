@@ -43,6 +43,7 @@ namespace StarWarsLegionMobile
             builder.Services.AddTransient<UnitDetailsViewModel>();
             builder.Services.AddTransient<TestViewModel>();
             builder.Services.AddTransient<PickUnitViewModel>();
+            builder.Services.AddTransient<PickUpgradeViewModel>();
             
             //pages
             builder.Services.AddSingleton<MainPage>();
@@ -57,6 +58,7 @@ namespace StarWarsLegionMobile
             builder.Services.AddTransient<ArmyBuilderPage>();
             builder.Services.AddTransient<TestPage>();
             builder.Services.AddTransient<PickUnitPage>();
+            builder.Services.AddTransient<PickUpgradePage>();
 
             return builder.Build();
         }

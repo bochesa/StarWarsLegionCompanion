@@ -61,7 +61,7 @@ namespace UtilityLibrary.Models
         [Display(Name = "Createure Vehicle")] CreatureTropper,
         [Display(Name = "Wookie Vehicle")] WookieTropper,
         [Display(Name = "Droid Vehicle")] DroidTrooper,
-        [Display(Name = "Clone Vehicle")] CloneTrooper
+        [Display(Name = "Clone Trooper")] CloneTrooper
     }
     public enum RankType
     {

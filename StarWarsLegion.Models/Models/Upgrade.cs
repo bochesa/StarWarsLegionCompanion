@@ -23,9 +23,9 @@ namespace UtilityLibrary.Models
         [JsonProperty("pointCost")]
         [JsonPropertyName("pointCost")]
         public int PointCost { get; set; }
-        [JsonProperty("restriction")]
-        [JsonPropertyName("restriction")]
-        public string? Restriction { get; set; }
+        [JsonProperty("restrictions")]
+        [JsonPropertyName("restrictions")]
+        public List<string>? Restrictions { get; set; } = new List<string>();
         [JsonProperty("text")]
         [JsonPropertyName("text")]
         public string? Text { get; set; }
@@ -35,6 +35,8 @@ namespace UtilityLibrary.Models
         [JsonProperty("isExhaustable")]
         [JsonPropertyName("isExhaustable")]
         public bool IsExhaustable { get; set; } = false;
+        [JsonPropertyName("isAction")]
+        public bool IsAction { get; set; } = false;
         [JsonProperty("isFreeAction")]
         [JsonPropertyName("isFreeAction")]
         public bool IsFreeAction { get; set; } = false;

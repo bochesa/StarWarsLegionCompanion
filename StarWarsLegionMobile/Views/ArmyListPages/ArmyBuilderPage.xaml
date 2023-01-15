@@ -10,8 +10,8 @@
              x:DataType="viewmodel:ArmyViewModel"
              Title="{Binding Title}">
 
-    
-        <VerticalStackLayout
+
+    <VerticalStackLayout
             Spacing="25"
             Padding="20,0"
             VerticalOptions="Start">
@@ -49,10 +49,15 @@
             </VerticalStackLayout>
                 
                 <HorizontalStackLayout Grid.Row="1">
-                    <VerticalStackLayout>
+                    <VerticalStackLayout x:Name="Commander">
                         <Border HeightRequest="40" WidthRequest="40" StrokeShape="Ellipse">
                             <Image Source="commander.png" HeightRequest="40" WidthRequest="40"/>
-                        </Border>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                Command="{Binding GotoUnitPickCommand}" 
+                                CommandParameter="Commander"/>
+                        </Border.GestureRecognizers>
+                    </Border>
                         <Label HorizontalOptions="Center">
                             <Label.FormattedText>
                                 <FormattedString>
@@ -67,8 +72,13 @@
                     <BoxView WidthRequest="20"  Color="Transparent"/>
                     <VerticalStackLayout>
                         <Border HeightRequest="40" WidthRequest="40" StrokeShape="Ellipse">
-                            <Image Source="commander.png" HeightRequest="40" WidthRequest="40"/>
-                        </Border>
+                            <Image Source="Operative.png" HeightRequest="40" WidthRequest="40"/>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                    Command="{Binding GotoUnitPickCommand}" 
+                                    CommandParameter="Operative"/>
+                            </Border.GestureRecognizers>
+                    </Border>
                         <Label HorizontalOptions="Center">
                             <Label.FormattedText>
                                 <FormattedString>
@@ -82,8 +92,13 @@
                     <BoxView WidthRequest="20"  Color="Transparent"/>
                     <VerticalStackLayout>
                         <Border HeightRequest="40" WidthRequest="40" StrokeShape="Ellipse">
-                            <Image Source="commander.png" HeightRequest="40" WidthRequest="40"/>
-                        </Border>
+                        <Image Source="Corps.png" HeightRequest="40" WidthRequest="40"/>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                Command="{Binding GotoUnitPickCommand}" 
+                                CommandParameter="Corps"/>
+                        </Border.GestureRecognizers>
+                    </Border>
                         <Label HorizontalOptions="Center">
                             <Label.FormattedText>
                                 <FormattedString>
@@ -97,8 +112,13 @@
                     <BoxView WidthRequest="20"  Color="Transparent"/>
                     <VerticalStackLayout>
                         <Border HeightRequest="40" WidthRequest="40" StrokeShape="Ellipse">
-                            <Image Source="commander.png" HeightRequest="40" WidthRequest="40"/>
-                        </Border>
+                        <Image Source="SpecialForces.png" HeightRequest="40" WidthRequest="40"/>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                Command="{Binding GotoUnitPickCommand}" 
+                                CommandParameter="SpecialForces"/>
+                        </Border.GestureRecognizers>
+                    </Border>
                         <Label HorizontalOptions="Center">
                             <Label.FormattedText>
                                 <FormattedString>
@@ -112,8 +132,13 @@
                     <BoxView WidthRequest="20"  Color="Transparent"/>
                     <VerticalStackLayout>
                         <Border HeightRequest="40" WidthRequest="40" StrokeShape="Ellipse">
-                            <Image Source="commander.png" HeightRequest="40" WidthRequest="40"/>
-                        </Border>
+                            <Image Source="support.png" HeightRequest="40" WidthRequest="40"/>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                Command="{Binding GotoUnitPickCommand}" 
+                                CommandParameter="Support"/>
+                        </Border.GestureRecognizers>
+                    </Border>
                         <Label HorizontalOptions="Center">
                             <Label.FormattedText>
                                 <FormattedString>
@@ -127,8 +152,13 @@
                     <BoxView WidthRequest="20"  Color="Transparent"/>
                     <VerticalStackLayout>
                         <Border HeightRequest="40" WidthRequest="40" StrokeShape="Ellipse">
-                            <Image Source="commander.png" HeightRequest="40" WidthRequest="40"/>
-                        </Border>
+                            <Image Source="heavies.png" HeightRequest="40" WidthRequest="40"/>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding GotoUnitPickCommand}" 
+                                    CommandParameter="Heavy"/>
+                            </Border.GestureRecognizers>
+                    </Border>
                         <Label HorizontalOptions="Center">
                             <Label.FormattedText>
                                 <FormattedString>
@@ -145,7 +175,10 @@
 
                 <ScrollView Grid.Row="2" Grid.ColumnSpan="3">
                     <VerticalStackLayout >
-                        <CollectionView ItemsSource="{Binding ChosenUnitModels}">
+                    <CollectionView ItemsSource="{Binding ChosenUnitModels}" 
+                                    SelectionMode="Single"
+                                    SelectedItem="{Binding SelectedItem}"
+                                    >
                             <CollectionView.EmptyView>
                                 <Label Text="List is Empty!"/>
                             </CollectionView.EmptyView>
@@ -176,35 +209,26 @@
                                                                 <Label Text="{Binding PointCost, StringFormat='{}({0})'}" VerticalOptions="Center" Margin="4,0,0,0"/>
                                                             </HorizontalStackLayout>
                                                             <Label Text="{Binding SurName}" FontAttributes="Italic" FontSize="10"/>
+                                                            
+                                                        
                                                         </VerticalStackLayout>
+                                                        
                                                     </HorizontalStackLayout>
+                                                        <CollectionView ItemsSource="{Binding UpgradeOptions}"
+                                                                        ItemsLayout="HorizontalList" HorizontalScrollBarVisibility="Never">
+                                                            <CollectionView.ItemTemplate>
+                                                                <DataTemplate x:DataType="model:UpgradeModel">
+                                                            <VerticalStackLayout>
+                                                                    <Image Source="{Binding UpgradeType, StringFormat='{0}.png'}" WidthRequest="30" HeightRequest="30"/>
+                                                                    <Label Text="{Binding Id}" HorizontalOptions="Center"/>
+                                                            </VerticalStackLayout>
+                                                                </DataTemplate>
+                                                            </CollectionView.ItemTemplate>
+                                                        </CollectionView>
                                                 </VerticalStackLayout>
-                                                
-                                                <CollectionView ItemsSource="{Binding UpgradeOptions}" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1">
-                                                        <CollectionView.ItemTemplate>
-                                                            <DataTemplate x:DataType="model:UpgradeModel">
-                                                                <HorizontalStackLayout>
-                                                                    <VerticalStackLayout>
-                                                                        <Border HeightRequest="30" WidthRequest="30" StrokeShape="Ellipse">
-                                                                    <Border.GestureRecognizers>
-                                                                        <TapGestureRecognizer 
-                                                                            Command="{Binding Source={RelativeSource 
-                                                                            AncestorType={x:Type viewmodel:ArmyViewModel}}, 
-                                                                            Path=PickUpgradeCommand}" 
-                                                                            CommandParameter="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ArmyViewModel}}, Path=Army }"/>
 
-                                                                    </Border.GestureRecognizers>
-                                                                            <Image Source="commander.png" HeightRequest="28" WidthRequest="28"/>
-                                                                        </Border>
-                                                                        <Label Text="{Binding UpgradeType}"/>
-                                                                    
-                                                                    </VerticalStackLayout>
-                                                                </HorizontalStackLayout>
-                                                            </DataTemplate>
-                                                        </CollectionView.ItemTemplate>
-                                                    </CollectionView>
                                                 
-                                                <VerticalStackLayout Grid.Column="2">
+                                            <VerticalStackLayout Grid.Column="2">
                                                     <HorizontalStackLayout>
                                                     <Border >
                                                         <Border.GestureRecognizers>
@@ -216,6 +240,9 @@
                                                         </Border.GestureRecognizers>
                                                         <Label Text="Remove"/>
                                                     </Border>
+                                                    <Button Text="Go to Upgrades" 
+                                                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ArmyViewModel}},Path=PickUpgradeCommand}"
+                                                                CommandParameter="{Binding .}"/>
                                                 </HorizontalStackLayout>
                                                 </VerticalStackLayout>
 
@@ -231,7 +258,7 @@
 
             <HorizontalStackLayout Grid.Row="3">
                     <Button Text="Go to Unit Pick page"
-                            CommandParameter="{Binding Army}"
+                            CommandParameter="Commander"
                             Command="{Binding GotoUnitPickCommand}"
                             ></Button>
                 <Button Text="Save Army List" BackgroundColor="DarkGreen"

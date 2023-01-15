@@ -21,6 +21,7 @@ namespace UtilityLibrary.Models
         public ArmySetup ArmySetup { get; set; } = new ArmySetup {Id = 1, PointLimit = 800, CommanderMaximum = 2,CommanderMinimum = 1,CorpsMaximum = 6, CorpsMinimum = 3, HeavyMaximum = 2,HeavyMinimum = 0,OperativeMaximum = 2, OperativeMinimum = 0,SpecialForcesMaximum = 3, SpecialForcesMinimum = 0, SupportMaximum = 3, SupportMinimum = 0  };
         public ICollection<ChosenCommand> ChosenCommands { get; set; } = new List<ChosenCommand>();
         public ICollection<ChosenUnit> ChosenUnits { get; set; } = new List<ChosenUnit>();
+        public ICollection<ChosenUpgrade> ChosenUpgrades { get; set; } = new List<ChosenUpgrade>();
     }
     public class ArmySetup
     {
@@ -46,11 +47,11 @@ namespace UtilityLibrary.Models
         public int Id { get; set; }
         public int UnitId { get; set; }
         public Unit? Unit { get; set; }
-        public ICollection<ChosenUpgrade> ChosenUpgrades { get; set; } = new List<ChosenUpgrade>();
     }
     public class ChosenUpgrade
     {
         public int Id { get; set; }
+        public int ChosenUnitId { get; set; }
         public int UpgradeId { get; set; }
         public Upgrade? Upgrade { get; set; }
 

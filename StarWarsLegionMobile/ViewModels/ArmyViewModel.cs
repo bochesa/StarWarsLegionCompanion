@@ -38,8 +38,21 @@ namespace StarWarsLegionMobile.ViewModels
 
         [ObservableProperty]
         ObservableCollection<UnitModel> chosenUnitModels = new();
+
+        [ObservableProperty]
+        ObservableCollection<UpgradeModel> chosenUpgradeModels = new();
+
         [ObservableProperty]
         string faction;
+
+        [ObservableProperty]
+        UnitModel selectedItem;
+        
+        [ObservableProperty]
+        Upgrade selectedUpgrade;
+
+        [ObservableProperty]
+        string testBinding;
 
         public ArmyViewModel()
         {
@@ -67,9 +80,22 @@ namespace StarWarsLegionMobile.ViewModels
             MainThread.BeginInvokeOnMainThread(() =>
             {
                 chosenUnitModels.Clear();
-                foreach (var unit in army.ChosenUnits)
+                if(army.ChosenUnits.Count > 0)
                 {
-                    chosenUnitModels.Add((UnitModel)unit.Unit);
+                    foreach (var chosenUnit in army.ChosenUnits)
+                    {
+                        UnitModel temp = (UnitModel)chosenUnit.Unit;
+                        temp.ChosenId = chosenUnit.Id;
+                        chosenUnitModels.Add(temp);
+                    }
+                }
+                chosenUpgradeModels.Clear();
+                if(army.ChosenUpgrades.Count > 0)
+                {
+                    foreach (var upgrade in army.ChosenUpgrades)
+                    {
+                        chosenUpgradeModels.Add((UpgradeModel)upgrade.Upgrade);
+                    }
                 }
                 Commanders = chosenUnitModels.Where(u => u.Rank == RankType.Commander).Count();
                 Operatives = chosenUnitModels.Where(u => u.Rank == RankType.Operative).Count();
@@ -77,7 +103,9 @@ namespace StarWarsLegionMobile.ViewModels
                 SpecialForces = chosenUnitModels.Where(u => u.Rank == RankType.SpecialForces).Count();
                 Supports = chosenUnitModels.Where(u => u.Rank == RankType.Support).Count();
                 Heavies = chosenUnitModels.Where(u => u.Rank == RankType.Heavy).Count();
-                ArmyPoints = chosenUnitModels.Sum(u => u.PointCost);
+                ArmyPoints = 0;
+                ArmyPoints += chosenUnitModels.Sum(u => u.PointCost);
+                ArmyPoints += chosenUpgradeModels.Sum(u => u.PointCost);
                 Army.Activations = commanders + operatives + corps + specialForces + supports + heavies;
             });
         }
@@ -90,26 +118,39 @@ namespace StarWarsLegionMobile.ViewModels
             await Task.Delay(1);
         }
 
+
         [RelayCommand]
-        async Task PickUpgrade(ArmyModel armyModel)
+        async Task PickUpgrade(UnitModel unitModel)
         {
-            if (armyModel == null) return; 
-            // DETVIRKER!!!
-            var faction = armyModel.Faction;
-            await Task.Delay(1);
+
+            if (unitModel == null) return;
+            var armyModel = Army;
+            //await Task.Delay(1);
+            await Shell.Current.GoToAsync($"{nameof(PickUpgradePage)}", true,
+                new Dictionary<string, object>
+                {
+                    {
+                        "ArmyModel",armyModel
+                    },
+                    {"UnitModel", unitModel }
+                });
         }
 
 
         [RelayCommand]
-        async Task GotoUnitPick(ArmyModel armyModel)
+        async Task GotoUnitPick(string rankType)
         {
-            if (armyModel is null) return;
+            if (string.IsNullOrEmpty(rankType)) return;
+            var armyModel = Army;
 
             await Shell.Current.GoToAsync($"{nameof(PickUnitPage)}", true,
                 new Dictionary<string, object>
                 {
                     {
-                        "ArmyModel",armyModel
+                        "ArmyModel", armyModel
+                    },
+                    {
+                        "RankType", rankType
                     }
                 });
         }

@@ -159,9 +159,19 @@ namespace StarWarsLegionMobile.ViewModels
         void RemoveUnit(int id)
         {
             var unitToRemove = army.ChosenUnits.Where(u => u.Unit.Id == id).First();
+            removeUpgrades(unitToRemove);
             army.ChosenUnits.Remove(unitToRemove);
 
             WeakReferenceMessenger.Default.Send(new UpdateArmyBuilderList(army));
+        }
+
+        private void removeUpgrades(ChosenUnit unit)
+        {
+            var upgrades = army.ChosenUpgrades.Where(u=>u.ChosenUnitId == unit.Id).ToList();
+            foreach (var upgrade in upgrades) 
+            {
+                army.ChosenUpgrades.Remove(upgrade);
+            }
         }
 
         [RelayCommand]

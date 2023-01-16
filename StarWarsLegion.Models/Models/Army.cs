@@ -52,6 +52,7 @@ namespace UtilityLibrary.Models
     {
         public int Id { get; set; }
         public int ChosenUnitId { get; set; }
+        public int ChosenUpgradeOption { get; set; }
         public int UpgradeId { get; set; }
         public Upgrade? Upgrade { get; set; }
 

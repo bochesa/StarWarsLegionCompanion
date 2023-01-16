@@ -1,4 +1,6 @@
-﻿using StarWarsLegionMobile.Services;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using StarWarsLegionMobile.Messages;
+using StarWarsLegionMobile.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,12 +27,27 @@ namespace StarWarsLegionMobile.ViewModels
         [ObservableProperty]
         UnitModel unitModel;
 
+        [ObservableProperty]
+        UpgradeModel upgradeModel;
+
         public ObservableCollection<UpgradeGroup> UpgradesList { get; } = new();
 
         [RelayCommand]
         async Task AddUpgrade(UpgradeModel upgradeModel)
         {
-            //I Need the specific unit aswell
+            var unit = upgradeModel.UnitId;
+            var option = upgradeModel.UpgradeOptionId;
+            ChosenUpgrade chosenUgrade = new ChosenUpgrade { ChosenUnitId= unit, Upgrade = upgradeModel, ChosenUpgradeOption = option };
+            armyModel.ChosenUpgrades.Add(chosenUgrade);
+            WeakReferenceMessenger.Default.Send(new UpdateArmyBuilderList(armyModel));
+            //await Shell.Current.DisplayAlert("test", $"Chosen upgrade for Unit: {unit} and option: {option}", "OK");
+            // rearrange upgrade options - remove the chosen upgrade from available choices
+        }
+
+        [RelayCommand]
+        async Task GoBack()
+        {
+            await Shell.Current.GoToAsync("..", true);
         }
 
         [RelayCommand]
@@ -48,7 +65,6 @@ namespace StarWarsLegionMobile.ViewModels
 
                 //var keywords = await databaseServices.GetUnits();
                 var faction = UnitModel.Faction.ToString();
-                var unitType = UnitModel.UnitType;
                 var rankType = UnitModel.Rank.ToString();
                 if (UpgradesList.Count != 0)
                 {
@@ -59,14 +75,25 @@ namespace StarWarsLegionMobile.ViewModels
                 {
                     List<UpgradeModel> temp = new();
                     var newList = upgradesGrouped
-                        .SelectMany(u=>u
-                        .Where(i=>i.UpgradeType == option.UpgradeType)).ToList();
-                     foreach (var upgrade in newList)
+                       .SelectMany(u => u
+                       .Where(i => i.UpgradeType == option.UpgradeType)).ToList();
+                    List<UpgradeModel> newerList = new List<UpgradeModel>(newList.Count());
+                    newList.ForEach(u =>
                     {
-                        if(upgrade.Restrictions.Contains(faction) || upgrade.Restrictions.Count == 0)
+                        newerList.Add((UpgradeModel)u.Clone());
+                    });
+                     foreach (var upgrade in newerList)
+                    {
+                        if (upgrade.Restrictions.Contains(faction) || upgrade.Restrictions.Count == 0)
+                        {
+                            upgrade.UnitId = unitModel.ChosenId;
+                            upgrade.UpgradeOptionId = option.Id;
                             temp.Add(upgrade);
+                        }
                     }
-                    UpgradesList.Add(new UpgradeGroup(option.UpgradeType.ToString(), temp));
+                    UpgradeGroup upgGrp = new(option.UpgradeType.ToString(), temp);
+
+                    UpgradesList.Add(upgGrp);
                 }
 
 

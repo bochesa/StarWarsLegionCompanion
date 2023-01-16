@@ -11,13 +11,18 @@
     "upgradeOptions": [
       {
         "id": 1,
-        "upgradeType": 5
-      },{
+        "upgradeType": 5,
+        "unitId": 1
+      },
+      {
         "id": 2,
-        "upgradeType": 5
-      },{
+        "upgradeType": 5,
+        "unitId": 1
+      },
+      {
         "id": 3,
-        "upgradeType": 5
+        "upgradeType": 5,
+        "unitId": 1
       }
 
     ]
@@ -34,13 +39,18 @@
     "upgradeOptions": [
       {
         "id": 1,
-        "upgradeType": 5
-      },{
+        "upgradeType": 5,
+        "unitId": 2
+      },
+      {
         "id": 2,
-        "upgradeType": 5
-      },{
+        "upgradeType": 5,
+        "unitId": 2
+      },
+      {
         "id": 3,
-        "upgradeType": 6
+        "upgradeType": 6,
+        "unitId": 2
       }
     ]
   },
@@ -56,7 +66,8 @@
     "upgradeOptions": [
       {
         "id": 1,
-        "upgradeType": 6
+        "upgradeType": 6,
+        "unitId": 3
       }
     ]
   },
@@ -68,6 +79,13 @@
     "rank": 3,
     "faction": 2,
     "pointCost": 36,
-    "image": "https://image.bochesa.dk/Units/empire/stormtroopers.png"
+    "image": "https://image.bochesa.dk/Units/empire/stormtroopers.png",
+    "upgradeOptions": [
+      {
+        "id": 1,
+        "upgradeType": 6,
+        "unitId": 4
+      }
+    ]
   }
 ]

@@ -32,11 +32,11 @@
                     <Frame Padding="6"
                                Style="{StaticResource CardView}">
                         <Frame.GestureRecognizers>
-                            <TapGestureRecognizer/>
-                                    <!--CommandParameter="{Binding .}"
+                            <TapGestureRecognizer
+                                    CommandParameter="{Binding .}"
                                     Command="{Binding Source={RelativeSource 
-                                                            AncestorType={x:Type viewmodel:UpgradeViewModel}}, 
-                                                            Path=GoToDetailsCommand}"-->
+                                        AncestorType={x:Type viewmodel:PickUpgradeViewModel}}, 
+                                        Path=AddUpgradeCommand}"/>
                         </Frame.GestureRecognizers>
                         <Grid ColumnDefinitions="auto,*,30">
                             <HorizontalStackLayout Grid.Column="0">

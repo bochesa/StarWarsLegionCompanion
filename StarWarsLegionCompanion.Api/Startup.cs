@@ -20,6 +20,11 @@ using Newtonsoft.Json;
 using System.Reflection;
 using System.IO;
 using UtilityLibrary.Application.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+using StarWarsLegionCompanion.Api.Auth;
 
 namespace StarWarsLegionCompanion.Api
 {
@@ -57,21 +62,47 @@ namespace StarWarsLegionCompanion.Api
             services.AddTransient<IDTOServices, DTOServices>();
             services.AddDbContext<ApplicationContext>(options =>
             {
-                var connectionsString = Configuration.GetConnectionString("LocalDBConnectionString");
+                //var connectionsString = Configuration.GetConnectionString("LocalDBConnectionString");
+                var connectionsString = Configuration.GetConnectionString("Bochesa_SWLEgion");
                 options.UseSqlServer(connectionsString);
                 //options.UseInMemoryDatabase("SWLegion");
             });
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                    .AddJwtBearer(options =>
+                    {
+                        options.Authority = $"https://{Configuration["Auth0:Domain"]}/";
+                        options.Audience = Configuration["Auth0:Audience"];
+                        options.TokenValidationParameters = new TokenValidationParameters
+                        {
+                            NameClaimType = ClaimTypes.NameIdentifier
+                        };
+                    });
+            services
+                  .AddAuthorization(options =>
+                  {
+                      options.AddPolicy(
+                        "read:messages",
+                        policy => policy.Requirements.Add(
+                          new HasScopeRequirement("read:messages", "domain")
+                        )
+                      );
+                  });
+            services.AddSingleton<IAuthorizationHandler, HasScopeHandler>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
+            if (env.IsDevelopment() || env.IsProduction())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "StarWarsLegionCompanion.Api v1"));
             }
+
+            app.UseAuthentication();
 
             app.UseHttpsRedirection();
 

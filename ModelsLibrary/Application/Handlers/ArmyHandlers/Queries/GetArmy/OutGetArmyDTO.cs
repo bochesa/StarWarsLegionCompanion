@@ -11,5 +11,7 @@ namespace UtilityLibrary.Application.Handlers
         public int PointLimit { get; set; }
         public ICollection<OutCommandDTO> Commands { get; set; } = new List<OutCommandDTO>();
         public ICollection<OutUnitDTO> Units { get; set; } = new List<OutUnitDTO>();
+        public ICollection<OutUpgradeDTO> Upgrades { get; set; } = new List<OutUpgradeDTO>();
+
     }
 }

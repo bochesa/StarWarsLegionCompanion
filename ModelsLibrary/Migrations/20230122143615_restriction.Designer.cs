@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UtilityLibrary.Data.SWContext;
 
@@ -11,9 +12,11 @@ using UtilityLibrary.Data.SWContext;
 namespace UtilityLibrary.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20230122143615_restriction")]
+    partial class restriction
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -502,12 +505,12 @@ namespace UtilityLibrary.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
                     b.Property<int>("UnitId")
                         .HasColumnType("int")
                         .HasAnnotation("Relational:JsonPropertyName", "unitId");
-
-                    b.Property<int>("UpgradeOptionId")
-                        .HasColumnType("int");
 
                     b.Property<int>("UpgradeType")
                         .HasColumnType("int")

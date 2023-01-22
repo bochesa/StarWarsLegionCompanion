@@ -22,6 +22,7 @@ namespace UtilityLibrary.Application.Handlers
         //public int Speed { get; set; }
         //public int MinisInUnit { get; set; }
         public int PointCost { get; set; }
+        public string Image { get; set; }
         //public bool IsDefenseRed { get; set; }
         //public bool IsDefenseSurge { get; set; }
         //public string AttackSurge { get; set; }

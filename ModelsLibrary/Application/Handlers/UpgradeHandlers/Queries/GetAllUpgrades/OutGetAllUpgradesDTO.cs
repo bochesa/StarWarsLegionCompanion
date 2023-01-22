@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using UtilityLibrary.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +14,7 @@ namespace UtilityLibrary.Application.Handlers
         public string Name { get; set; }
         public bool IsUnique { get; set; }
         public int PointCost { get; set; }
-        public string Restriction { get; set; }
+        public List<Restriction> Restrictions { get; set; } = new();
         public string Text { get; set; }
         public int WoundThreshold { get; set; }
         public bool IsExhaustable { get; set; } = false;

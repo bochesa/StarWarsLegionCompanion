@@ -8,6 +8,6 @@ namespace StarWarsLegionMobile.Models
 {
     public partial class UpgradeOptionModel : UpgradeOption
     {
-
+        public int UpgradeOptionId { get; set; }
     }
 }

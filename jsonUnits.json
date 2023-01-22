@@ -1,0 +1,81 @@
+{
+    "name": "At-Rt",
+    "surName": null,
+    "isUnique": false,
+    "faction": 1,
+    "rank": 5,
+    "unitType": 3,
+    "woundThreshold": 6,
+    "courage": 4,
+    "speed": 2,
+    "minisInUnit": 1,
+    "pointCost": 55,
+    "isDefenseRed": false,
+    "isDefenseSurge": false,
+    "attackSurge": 2,
+    "keywords": [
+      {
+        "name": "Armor",
+        "abilityValue": 0,
+        "shortDescription": "While defending, cancel all hit results.",
+        "actionType": 0
+      },
+      {
+        "name": "Climbing Vehicle",
+        "abilityValue": 0,
+        "shortDescription": "You are treated as a trooper for the purpose og vertical movement.",
+        "actionType": 0
+      },
+      {
+        "name": "Expert Climber",
+        "abilityValue": 0,
+        "shortDescription": "Shile clambering, do not roll defense dice or suffer wounds.",
+        "actionType": 0
+      }
+    ],
+    "weapons": [
+      {
+        "name": "Grappling Claws",
+        "rangeType": 1,
+        "minRange": 0,
+        "maxRange": 0,
+        "attackSurge": 0,
+        "attackValue": {
+          "redDie": 3,
+          "blackDie": 0,
+          "whiteDie": 0
+        },
+        "keywords": [
+          {
+            "name": "Impact 1",
+            "abilityValue": 1,
+            "shortDescription": "convert 1 hit to critical hit",
+            "actionType": 0
+          }
+        ]
+      },
+      {
+        "name": "A-300 Blaster Rifle",
+        "rangeType": 2,
+        "minRange": 1,
+        "maxRange": 3,
+        "attackSurge": 0,
+        "attackValue": {
+          "redDie": 0,
+          "blackDie": 0,
+          "whiteDie": 2
+        },
+        "keywords": []
+      }
+    ],
+    "upgradeCategories": [
+      {
+        "upgradeType": 9,
+        "upgradeOptionId": 1
+      },
+      {
+        "upgradeType": 3,
+        "upgradeOptionId": 2
+      }
+    ]
+  }

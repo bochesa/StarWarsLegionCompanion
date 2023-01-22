@@ -65,6 +65,7 @@ namespace StarWarsLegionMobile.ViewModels
 
                 //var keywords = await databaseServices.GetUnits();
                 var faction = UnitModel.Faction.ToString();
+                Restriction restriction = new Restriction { RestrictionText = faction };
                 var rankType = UnitModel.Rank.ToString();
                 if (UpgradesList.Count != 0)
                 {
@@ -84,11 +85,11 @@ namespace StarWarsLegionMobile.ViewModels
                     });
                      foreach (var upgrade in newerList)
                     {
-                        if (upgrade.Restrictions.Contains(faction) || upgrade.Restrictions.Count == 0)
+                        if (upgrade.Restrictions.Contains(restriction) || upgrade.Restrictions.Count == 0)
                         {
-                            upgrade.UnitId = unitModel.ChosenId;
-                            upgrade.UpgradeOptionId = option.Id;
-                            temp.Add(upgrade);
+                            //upgrade.UnitId = unitModel.ChosenId;
+                            //upgrade.UpgradeOptionId = option.Id;
+                            //temp.Add(upgrade);
                         }
                     }
                     UpgradeGroup upgGrp = new(option.UpgradeType.ToString(), temp);

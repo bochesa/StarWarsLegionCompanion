@@ -10,13 +10,91 @@
              xmlns:system="clr-namespace:System;assembly=netstandard"
              x:DataType="viewmodel:ArmyViewModel"
              Title="{Binding Title}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:DataType="model:ChosenUnitUpgradeModel" x:Key="Normal" >
+                <Grid>
+                    <Border>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                Command="{Binding Source={RelativeSource 
+                                AncestorType={x:Type viewmodel:ArmyViewModel}},Path=PickOneUpgradeCommand}"
+                                CommandParameter="{Binding .}"/>
+                        </Border.GestureRecognizers>
+                        <HorizontalStackLayout>
 
+                            <VerticalStackLayout Padding="10">
+                                <Image Source="{Binding UpgradeType, StringFormat='{0}.png'}" WidthRequest="30" HeightRequest="30"/>
+                                
+                            </VerticalStackLayout>
+                            <!--<Button 
+                                Text="Remove"
+                                BackgroundColor="Red" 
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ArmyViewModel}},Path=RemoveOneUpgradeCommand}" 
+                                CommandParameter="{Binding .}"/>-->
+                        </HorizontalStackLayout>
+                    </Border>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="Special" x:DataType="model:ChosenUnitUpgradeModel">
+                <Grid Padding="5">
+                    <Border StrokeThickness="0.5" Stroke="black"  MinimumWidthRequest="100" BackgroundColor="LightGrey">
+                        <Border.Shadow>
+                            <Shadow Brush="Black"
+                                Offset="5,5"
+                                Radius="5"
+                                Opacity="0.5" />
+                        </Border.Shadow>
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="40" />
+                        </Border.StrokeShape>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                Command="{Binding Source={RelativeSource 
+                                AncestorType={x:Type viewmodel:ArmyViewModel}},Path=PickOneUpgradeCommand}"
+                                CommandParameter="{Binding .}"/>
+                        </Border.GestureRecognizers>
+                        
+                        <HorizontalStackLayout Padding="5">
+                            <Image Source="{Binding UpgradeType, StringFormat='{0}.png'}" 
+                                    WidthRequest="30" HeightRequest="30"/>
+                            <Label Margin="4,0,0,0"
+                                Text="{Binding UpgradeReference.Name}" 
+                                VerticalOptions="Center"/>
+                            <Label Margin="4,0,0,0" 
+                                Text="{Binding UpgradeReference.PointCost, StringFormat='{}({0})'}" 
+                                VerticalOptions="Center"/>
+                            <Border HeightRequest="20" 
+                                    WidthRequest="20" 
+                                    StrokeShape="Ellipse" 
+                                    BackgroundColor="red" 
+                                    Margin="6,0,0,0"
+                                    IsVisible="{Binding IsUpgraded}">
+                                <!--<Image Source="commander.png" HeightRequest="20" WidthRequest="20"/>-->
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ArmyViewModel}},Path=RemoveOneUpgradeCommand}" 
+                                        CommandParameter="{Binding .}"/>
+                                </Border.GestureRecognizers>
+                            </Border>
+                        </HorizontalStackLayout>
+                    </Border>
+                </Grid>
+            </DataTemplate>
+
+            <components:UpgradeDataTemplateSelector x:Key="UpgradeSelector"
+                                                    Normal="{x:StaticResource Normal}"
+                                                    Special="{x:StaticResource Special}"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    
     <Grid 
         RowDefinitions="auto,auto,*,auto"
         ColumnSpacing="4"
         ColumnDefinitions="*,*">
         <VerticalStackLayout Grid.ColumnSpan="2"> <!--Header-->
-            <Label Padding="0" Grid.ColumnSpan="3" Text="{Binding Army.Activations,StringFormat='{0} Activations'}" FontSize="16" HorizontalOptions="CenterAndExpand"/>
+            <Label Padding="0" Grid.ColumnSpan="3" Text="{Binding Activations,StringFormat='{0} Activations'}" FontSize="16" HorizontalOptions="CenterAndExpand"/>
             <HorizontalStackLayout Grid.ColumnSpan="3">
                     
                 <Border  VerticalOptions="Center" HorizontalOptions="Start" Margin="6" StrokeThickness="0" WidthRequest="50" HeightRequest="50">
@@ -45,8 +123,9 @@
                     </Label>
             </HorizontalStackLayout>
         </VerticalStackLayout>
-                
-        <HorizontalStackLayout Grid.Row="1" > <!--RankSelector-->
+
+        <HorizontalStackLayout Grid.Row="1" >
+            <!--RankSelector-->
             <VerticalStackLayout x:Name="Commander" Padding="5">
                 <Border HeightRequest="50" WidthRequest="50" StrokeShape="Ellipse">
                     <Image Source="commander.png" HeightRequest="50" WidthRequest="50"/>
@@ -67,26 +146,26 @@
                 </Label>
             </VerticalStackLayout>
             <VerticalStackLayout Padding="5">
-                    <Border HeightRequest="50" WidthRequest="50" StrokeShape="Ellipse">
-                        <Image Source="Operative.png" HeightRequest="50" WidthRequest="50"/>
-                        <Border.GestureRecognizers>
-                            <TapGestureRecognizer 
+                <Border HeightRequest="50" WidthRequest="50" StrokeShape="Ellipse">
+                    <Image Source="Operative.png" HeightRequest="50" WidthRequest="50"/>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer 
                                 Command="{Binding GotoUnitPickCommand}" 
                                 CommandParameter="Operative"/>
-                        </Border.GestureRecognizers>
+                    </Border.GestureRecognizers>
                 </Border>
-                    <Label HorizontalOptions="Center">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="{Binding Operatives}" />
-                                <Span Text=" / "/>
-                                <Span Text="{Binding Army.ArmySetup.OperativeMaximum}"  />
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                </VerticalStackLayout>
+                <Label HorizontalOptions="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding Operatives}" />
+                            <Span Text=" / "/>
+                            <Span Text="{Binding Army.ArmySetup.OperativeMaximum}"  />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </VerticalStackLayout>
             <VerticalStackLayout Padding="5">
-                    <Border HeightRequest="50" WidthRequest="50" StrokeShape="Ellipse">
+                <Border HeightRequest="50" WidthRequest="50" StrokeShape="Ellipse">
                     <Image Source="Corps.png" HeightRequest="50" WidthRequest="50"/>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer 
@@ -94,18 +173,18 @@
                             CommandParameter="Corps"/>
                     </Border.GestureRecognizers>
                 </Border>
-                    <Label HorizontalOptions="Center">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="{Binding Corps}" />
-                                <Span Text=" / "/>
-                                <Span Text="{Binding Army.ArmySetup.CorpsMaximum}"  />
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                </VerticalStackLayout>
+                <Label HorizontalOptions="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding Corps}" />
+                            <Span Text=" / "/>
+                            <Span Text="{Binding Army.ArmySetup.CorpsMaximum}"  />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </VerticalStackLayout>
             <VerticalStackLayout Padding="5">
-                    <Border HeightRequest="50" WidthRequest="50" StrokeShape="Ellipse">
+                <Border HeightRequest="50" WidthRequest="50" StrokeShape="Ellipse">
                     <Image Source="SpecialForces.png" HeightRequest="50" WidthRequest="50"/>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer 
@@ -113,62 +192,60 @@
                             CommandParameter="SpecialForces"/>
                     </Border.GestureRecognizers>
                 </Border>
-                    <Label HorizontalOptions="Center">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="{Binding SpecialForces}" />
-                                <Span Text=" / "/>
-                                <Span Text="{Binding Army.ArmySetup.SpecialForcesMaximum}"  />
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                </VerticalStackLayout>
+                <Label HorizontalOptions="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding SpecialForces}" />
+                            <Span Text=" / "/>
+                            <Span Text="{Binding Army.ArmySetup.SpecialForcesMaximum}"  />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </VerticalStackLayout>
             <VerticalStackLayout Padding="5">
-                    <Border HeightRequest="50" WidthRequest="50" StrokeShape="Ellipse">
-                        <Image Source="support.png" HeightRequest="50" WidthRequest="50"/>
+                <Border HeightRequest="50" WidthRequest="50" StrokeShape="Ellipse">
+                    <Image Source="support.png" HeightRequest="50" WidthRequest="50"/>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer 
                             Command="{Binding GotoUnitPickCommand}" 
                             CommandParameter="Support"/>
                     </Border.GestureRecognizers>
                 </Border>
-                    <Label HorizontalOptions="Center">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="{Binding Supports}" />
-                                <Span Text=" / "/>
-                                <Span Text="{Binding Army.ArmySetup.SupportMaximum}"  />
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                </VerticalStackLayout>
+                <Label HorizontalOptions="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding Supports}" />
+                            <Span Text=" / "/>
+                            <Span Text="{Binding Army.ArmySetup.SupportMaximum}"  />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </VerticalStackLayout>
             <VerticalStackLayout Padding="5">
-                    <Border HeightRequest="50" WidthRequest="50" StrokeShape="Ellipse">
-                        <Image Source="heavies.png" HeightRequest="50" WidthRequest="50"/>
-                        <Border.GestureRecognizers>
-                            <TapGestureRecognizer
+                <Border HeightRequest="50" WidthRequest="50" StrokeShape="Ellipse">
+                    <Image Source="heavies.png" HeightRequest="50" WidthRequest="50"/>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer
                                 Command="{Binding GotoUnitPickCommand}" 
                                 CommandParameter="Heavy"/>
-                        </Border.GestureRecognizers>
+                    </Border.GestureRecognizers>
                 </Border>
-                    <Label HorizontalOptions="Center">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="{Binding Heavies}" />
-                                <Span Text=" / "/>
-                                <Span Text="{Binding Army.ArmySetup.HeavyMaximum}"  />
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                </VerticalStackLayout>
-                    
-                    
+                <Label HorizontalOptions="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding Heavies}" />
+                            <Span Text=" / "/>
+                            <Span Text="{Binding Army.ArmySetup.HeavyMaximum}"  />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </VerticalStackLayout>
+
+
         </HorizontalStackLayout>
-        <RefreshView 
-            Grid.Row="2" 
-            Grid.ColumnSpan="2"
-            IsEnabled="False">
-            <ContentView >
+            
+        <ContentView Grid.Row="2"
+                         Grid.ColumnSpan="2">
                 <CollectionView     
                     ItemsSource="{Binding ChosenUnitModels}"
                     >
@@ -176,93 +253,72 @@
                         <Label Text="List is Empty!"/>
                     </CollectionView.EmptyView>
                     <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="model:UnitModel">
-                            <!--<SwipeView >
-                                <SwipeView.RightItems>
-                                    <SwipeItems>
-                                        <SwipeItem 
-                                            Text="Remove" 
-                                            BackgroundColor="Red"
-                                            Command="{Binding Source={RelativeSource 
-                                                    AncestorType={x:Type viewmodel:ArmyViewModel}}, 
-                                                    Path=RemoveUnitCommand}"
-                                            CommandParameter="{Binding Id}" 
-                                            />  
-                                    </SwipeItems>
-                                </SwipeView.RightItems>-->
-                                <Grid Padding="10">
-                                    <Frame 
-                                        Style="{StaticResource CardView}" 
-                                        Padding="6" 
-                                        HeightRequest="120" 
-                                        BorderColor="Red">
+                        <DataTemplate x:DataType="model:ChosenUnitModel">
+                            <Grid Padding="10" HeightRequest="150">
+                                <Frame 
+                                    Style="{StaticResource CardView}" 
+                                    Padding="6" 
+                                    BorderColor="Red">
                                     
-                                        <Grid 
-                                            RowDefinitions="*,*" 
-                                            ColumnDefinitions="60,*">
-                                                <!--Image-->
-                                            <Border
-                                                Grid.Row="0"
-                                                StrokeShape="RoundRectangle 20" 
-                                                WidthRequest="60" 
-                                                HeightRequest="60" 
-                                                VerticalOptions="Start"
-                                                >
-                                                <Image 
-                                                    Source="{Binding UnitThumb}" 
-                                                    WidthRequest="58" 
-                                                    HeightRequest="58"
-                                                    Aspect="AspectFill"
-                                                    />
-                                            </Border>
-                                            <VerticalStackLayout Grid.Column="1">
-                                            <HorizontalStackLayout HorizontalOptions="Center">
-                                                    <Label Text="*" IsVisible="{Binding IsUnique}" VerticalOptions="Center" Margin="0,0,4,0"/>
-                                                    <Label Text="{Binding Name}" FontSize="16"/>
-                                                    <Label Text="{Binding PointCost, StringFormat='{}({0})'}" VerticalOptions="Center" Margin="4,0,0,0"/>
-                                                </HorizontalStackLayout>
-                                                <Label Text="{Binding SurName}" FontAttributes="Italic" FontSize="10" HorizontalOptions="Center"/>
+                                    <Grid 
+                                        RowDefinitions="*,*" 
+                                        ColumnDefinitions="60,*">
+                                            <!--Image-->
+                                        <Border
+                                            Grid.Row="0"
+                                            StrokeShape="RoundRectangle 20" 
+                                            WidthRequest="60" 
+                                            HeightRequest="60" 
+                                            VerticalOptions="Start"
+                                            >
+                                            <Image 
+                                                Source="{Binding UnitReference.Name,StringFormat='https://image.bochesa.dk/Units/Icons/{0}.jpeg'}" 
+                                                WidthRequest="58" 
+                                                HeightRequest="58"
+                                                Aspect="AspectFill"
+                                                />
+                                        </Border>
+                                        <VerticalStackLayout Grid.Column="1">
+                                        <HorizontalStackLayout HorizontalOptions="Center">
+                                                <Label Text="*" IsVisible="{Binding UnitReference.IsUnique}" VerticalOptions="Center" Margin="0,0,4,0"/>
+                                            <Label Text="{Binding UnitReference.Name}" FontSize="16"/>
+                                            <Label Text="{Binding UnitReference.PointCost, StringFormat='{}({0})'}" VerticalOptions="Center" Margin="4,0,0,0"/>
+                                            </HorizontalStackLayout>
+                                        <Label Text="{Binding UnitReference.SurName}" FontAttributes="Italic" FontSize="10" HorizontalOptions="Center"/>
 
 
-                                            </VerticalStackLayout>
-                                            <!--Upgrade Options List row-->
-                                                <!--ItemsSource="{Binding UpgradeOptions}"-->
-                                            <CollectionView 
-                                                Grid.Row="1" 
-                                                Grid.ColumnSpan="2"
-                                                ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ArmyViewModel}},Path=chosenUpgradeModels}"
-                                                ItemsLayout="HorizontalList" 
-                                                HorizontalScrollBarVisibility="Never">
-                                                <CollectionView.ItemTemplate>
-                                                    <DataTemplate x:DataType="model:UpgradeModel">
-                                                        <Border>
-                                                            <VerticalStackLayout Padding="10">
-                                                                <Image Source="{Binding UpgradeType, StringFormat='{0}.png'}" WidthRequest="30" HeightRequest="30"/>
-                                                                <Label Text="{Binding Id}" HorizontalOptions="Center" IsVisible="False"/>
-                                                                <Label Text="{Binding Name}"/>
-                                                        </VerticalStackLayout>
-                                                        
-                                                        </Border>
-                                                    </DataTemplate>
-                                                </CollectionView.ItemTemplate>
-                                            </CollectionView>
-                                            <Button Text="Go to Upgrades" Grid.Row="1" Grid.Column="1" HorizontalOptions="End" WidthRequest="150"
-                                                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ArmyViewModel}},Path=PickUpgradeCommand}"
-                                                                CommandParameter="{Binding .}"/>
-                                        <Button Text="Remove" BackgroundColor="Red" Command="{Binding Source={RelativeSource 
-                                                    AncestorType={x:Type viewmodel:ArmyViewModel}}, 
-                                                    Path=RemoveUnitCommand}"
-                                            CommandParameter="{Binding Id}"/>
-                                    </Grid>
-                                    </Frame>
+                                        </VerticalStackLayout>
+                                        <!--Upgrade Options List row-->
+                                            <!--ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ArmyViewModel}},Path=chosenUpgradeModels}"-->
+                                        <CollectionView 
+                                            Grid.Row="1" 
+                                            Grid.ColumnSpan="2"
+                                            ItemsSource="{Binding ChosenUnitUpgrades}"
+                                            ItemsLayout="HorizontalList" 
+                                            ItemTemplate="{x:StaticResource UpgradeSelector}"
+                                            HorizontalScrollBarVisibility="Never">
+                                          
+                                        </CollectionView>
+                                        
+                                    <Button Text="Remove" 
+                                            BackgroundColor="Red" 
+                                            Command="{Binding Source={RelativeSource 
+                                                AncestorType={x:Type viewmodel:ArmyViewModel}}, 
+                                                Path=RemoveUnitCommand}"
+                                            CommandParameter="{Binding ChosenUnitId}"
+                                            HorizontalOptions="End"
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                        />
                                 </Grid>
+                                </Frame>
+                            </Grid>
                             <!--</SwipeView>-->
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
             </ContentView>
             
-        </RefreshView> <!--chosenUnit List-->
         <Button Text="Go to Unit Pick page"  Margin="10"
                 Grid.Column="0"
                     Grid.Row="3"

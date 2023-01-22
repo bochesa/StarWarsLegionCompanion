@@ -9,7 +9,7 @@ namespace UtilityLibrary.Models
         public int Id { get; set; }
         [JsonPropertyName("upgradeType")]
         public UpgradeType UpgradeType { get; set; }
-        public int Amount { get; set; }
+        public int UpgradeOptionId { get; set; }
         [JsonPropertyName("unitId")]
         public int UnitId { get; set; }
     }

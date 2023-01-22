@@ -3,7 +3,7 @@
     public class OutUpgradeOptionDTO
     {
         public string UpgradeType { get; set; }
-        public int Amount { get; set; }
+        public int UpgradeOptionId { get; set; }
     }
 
 }

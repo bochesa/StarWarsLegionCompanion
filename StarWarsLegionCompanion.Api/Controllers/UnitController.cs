@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using UtilityLibrary.Application.Handlers;
 using UtilityLibrary.Data.UnitOfWork;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,6 +15,7 @@ namespace StarWarsLegionCompanion.Api.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+    [Authorize]
     public class UnitController : SWLBaseController
     {
         private readonly IUnitOfWork uow;

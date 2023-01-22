@@ -36,7 +36,7 @@ namespace UtilityLibrary.Application.Handlers
                     IsFreeAction= item.IsFreeAction,
                     IsUnique= item.IsUnique,
                     PointCost= item.PointCost,
-                    Restriction= item.Restriction,
+                    Restrictions= item.Restrictions,
                     Text= item.Text,
                     WoundThreshold = item.WoundThreshold
                 };

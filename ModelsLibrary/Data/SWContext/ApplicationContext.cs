@@ -25,7 +25,8 @@ namespace UtilityLibrary.Data.SWContext
         public DbSet<Upgrade> Upgrades { get; set; }
         public DbSet<Weapon> Weapons { get; set; }
         public DbSet<Keyword> Keywords { get; set; }
-        public DbSet<Player> Palyers { get; set; }
+        public DbSet<Player> Players { get; set; }
+        public DbSet<Restriction> Restrictions { get; set; }
     }
 #pragma warning restore CS1591
 }

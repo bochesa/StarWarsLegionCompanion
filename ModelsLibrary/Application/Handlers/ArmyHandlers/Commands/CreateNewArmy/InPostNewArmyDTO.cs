@@ -13,5 +13,6 @@ namespace UtilityLibrary.Application.Handlers
         public int PointLimit { get; set; }
         public IEnumerable<int> ChosenCommandIds { get; set; }
         public IEnumerable<InChosenUnitDTO> ChosenUnits { get; set; }
+        public IEnumerable<InChosenUpgradeDTO> ChosenUpgrades { get; set; }
     }
 }

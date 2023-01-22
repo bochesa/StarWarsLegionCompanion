@@ -19,7 +19,7 @@ namespace UtilityLibrary.Data.Repositories
             var army = await _context.Set<Army>().Where(A => A.Id == id)
                 .Include(a => a.ChosenCommands).ThenInclude(c => c.Command)
                 .Include(a => a.ChosenUnits).ThenInclude(c => c.Unit)
-                .Include(a => a.ChosenUnits).ThenInclude(x => x.ChosenUpgrades).ThenInclude(u => u.Upgrade)
+                .Include(a => a.ChosenUpgrades).ThenInclude(u => u.Upgrade)
                 .Include(a => a.Player)
                 .SingleAsync();
             return army;
@@ -27,7 +27,6 @@ namespace UtilityLibrary.Data.Repositories
         public async Task<ChosenUnit> GetChosenUnitById(int chosenUnitId)
         {
             var chosenUnit = await _context.Set<ChosenUnit>().Where(c => c.Id == chosenUnitId)
-                .Include(c => c.ChosenUpgrades)
                 .SingleAsync();
 
             return chosenUnit;
@@ -40,15 +39,7 @@ namespace UtilityLibrary.Data.Repositories
         public async Task RemoveUnit(int ChosenUnitId)
         {
             var chosenUnit = await _context.Set<ChosenUnit>().Where(c => c.Id == ChosenUnitId)
-                .Include(x => x.ChosenUpgrades)
                 .SingleAsync();
-            if (chosenUnit.ChosenUpgrades.Count != 0)
-            {
-                foreach (var chosenUpgrade in chosenUnit.ChosenUpgrades)
-                {
-                    await RemoveUpgrade(chosenUpgrade.Id);
-                }
-            }
             _context.Set<ChosenUnit>().Remove(chosenUnit);
         }
 

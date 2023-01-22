@@ -45,6 +45,13 @@ namespace UtilityLibrary.Application.Handlers
                 armyDTO.Units = units;
             }
 
+            // If there are any chosen units in the army, they are looped through and shown with their upgrades
+            if (army.ChosenUpgrades.Count != 0)
+            {
+                ICollection<OutUpgradeDTO> upgrades = _services.GetChosenUpgradesForArmy(army.ChosenUpgrades);
+                armyDTO.Upgrades = upgrades;
+            }
+
             return armyDTO;
 
         }

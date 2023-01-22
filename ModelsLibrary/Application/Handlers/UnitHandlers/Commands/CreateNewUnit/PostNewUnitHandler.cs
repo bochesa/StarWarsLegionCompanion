@@ -40,9 +40,10 @@ namespace UtilityLibrary.Application.Handlers
                 IsDefenseRed = request.IsDefenseRed,
                 IsDefenseSurge = request.IsDefenseSurge,
                 AttackSurge = (AttackSurge)request.AttackSurge,
+                Image = request.Image,
                 Weapons = await _services.PostListOfWeapons(request.Weapons),
                 Keywords = await _services.PostListOfKeywords(request.Keywords),
-                UpgradeOptions = _services.PostListOfUpgradeOptions(request.UpgradeCategories)
+                UpgradeOptions = _services.PostListOfUpgradeOptions(request.UpgradeCategories),
 
             };
 

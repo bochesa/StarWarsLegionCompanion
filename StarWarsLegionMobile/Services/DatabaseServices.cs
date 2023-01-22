@@ -1,4 +1,5 @@
-﻿using StarWarsLegionMobile.Views;
+﻿using Microsoft.Maui.Storage;
+using StarWarsLegionMobile.Views;
 using System.Net.Http.Json;
 using UtilityLibrary.Models;
 
@@ -17,10 +18,23 @@ namespace StarWarsLegionMobile.Services
         List<UnitModel> units = new List<UnitModel>();
         List<ArmyModel> armies = new ();
 
+        public async void PostArmy(ArmyModel army)
+        {
+            var path = FileSystem.AppDataDirectory;
+            string fileName = @"path"+"armyList.json";
+
+            var jsonString = JsonSerializer.Serialize(army);
+            File.WriteAllText(fileName, jsonString);
+
+        }
+
         public async Task<List<KeywordModel>> GetKeywordsLocally()
         {
             using var stream = await FileSystem.OpenAppPackageFileAsync("keywordsdata.json");
+            //using var writer = new StreamWriter(stream);
+            //writer.
             using var reader = new StreamReader(stream);
+            
             var contents = await reader.ReadToEndAsync();
             keywords = JsonSerializer.Deserialize<List<KeywordModel>>(contents);
 

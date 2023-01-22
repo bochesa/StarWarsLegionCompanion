@@ -24,7 +24,7 @@ namespace UtilityLibrary.Application.Services
             {
                 var dto = new OutUpgradeOptionDTO
                 {
-                    Amount = upgradeOption.Amount,
+                    UpgradeOptionId = upgradeOption.UpgradeOptionId,
                     UpgradeType = Enum.GetName(typeof(UpgradeType), upgradeOption.UpgradeType)
 
                 };
@@ -111,7 +111,7 @@ namespace UtilityLibrary.Application.Services
                 {
                     var upgradeOption = new UpgradeOption
                     {
-                        Amount = upgradeOptionDto.Amount,
+                        UpgradeOptionId = upgradeOptionDto.UpgradeOptionId,
                         UpgradeType = (UpgradeType)upgradeOptionDto.UpgradeType
                     };
 
@@ -240,7 +240,6 @@ namespace UtilityLibrary.Application.Services
             {
                 var upgradeDto = new OutUpgradeDTO
                 {
-                    UpgradeId = upgrade.UpgradeId,
                     ChosenUpgradeId = upgrade.Id,
                     Name = upgrade.Upgrade.Name,
                     PointCost = upgrade.Upgrade.PointCost,
@@ -267,15 +266,41 @@ namespace UtilityLibrary.Application.Services
                     Rank = Enum.GetName(typeof(RankType), unit.Unit.Rank)
                 };
 
-                if (unit.ChosenUpgrades.Count != 0)
-                {
-                    ICollection<OutUpgradeDTO> upgrades = GetChosenUpgradesForUnit(unit.ChosenUpgrades);
-                    unitDto.Upgrades = upgrades;
-                }
+                //if (unit.ChosenUpgrades.Count != 0)
+                //{
+                //    ICollection<OutUpgradeDTO> upgrades = GetChosenUpgradesForUnit(unit.ChosenUpgrades);
+                //    unitDto.Upgrades = upgrades;
+                //}
                 units.Add(unitDto);
             }
 
             return units;
+        }
+
+        public ICollection<OutUpgradeDTO> GetChosenUpgradesForArmy(IEnumerable<ChosenUpgrade> armyChosenUpgrades)
+        {
+            List<OutUpgradeDTO> upgrades = new();
+
+            foreach (var upgrade in armyChosenUpgrades)
+            {
+                var upgradeDto = new OutUpgradeDTO
+                {
+                    ChosenUpgradeId= upgrade.Id,
+                    Name = upgrade.Upgrade.Name,
+                    PointCost = upgrade.Upgrade.PointCost,
+                    ChosenUpgradeOption = upgrade.ChosenUpgradeOption,
+                    UpgradeType = Enum.GetName(typeof(UpgradeType), upgrade.UpgradeType)
+                };
+
+                //if (unit.ChosenUpgrades.Count != 0)
+                //{
+                //    ICollection<OutUpgradeDTO> upgrades = GetChosenUpgradesForUnit(unit.ChosenUpgrades);
+                //    unitDto.Upgrades = upgrades;
+                //}
+                upgrades.Add(upgradeDto);
+            }
+
+            return upgrades;
         }
     }
 }

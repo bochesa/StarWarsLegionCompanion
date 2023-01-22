@@ -33,7 +33,8 @@ namespace UtilityLibrary.Application.Handlers
                     PointCost = item.PointCost,
                     IsUnique = item.IsUnique,
                     SurName = item.SurName,
-                    Rank = Enum.GetName(typeof(RankType), item.Rank)
+                    Rank = Enum.GetName(typeof(RankType), item.Rank),
+                    Image= item.Image
                 };
                 unitDtos.Add(unitDto);
             }

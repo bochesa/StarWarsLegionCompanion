@@ -16,7 +16,7 @@ namespace UtilityLibrary.Application.Services
         Task<ICollection<Weapon>> PostListOfWeapons(IEnumerable<InWeaponDTO> requestWeapons);
         Task<Weapon> PostWeapon(InWeaponDTO requestWeapon);
         ICollection<OutCommandDTO> GetCommandsForArmy(IEnumerable<ChosenCommand> armyChosenCommands);
-        ICollection<OutUpgradeDTO> GetChosenUpgradesForUnit(IEnumerable<ChosenUpgrade> unitChosenUpgrades);
+        ICollection<OutUpgradeDTO> GetChosenUpgradesForArmy(IEnumerable<ChosenUpgrade> unitChosenUpgrades);
         ICollection<OutUnitDTO> GetChosenUnitsForArmy(IEnumerable<ChosenUnit> armyChosenUnits);
     }
 }

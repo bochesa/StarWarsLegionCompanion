@@ -7,20 +7,8 @@ using UtilityLibrary.Models;
 
 namespace StarWarsLegionMobile.Models
 {
-    public partial class ArmyModel : Army, INotifyPropertyChanged
+    public partial class ArmyModel : Army
     {
-        private int activations;
-
-        public int Activations
-        {
-            get => activations; set
-            {
-                activations = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Activations)));
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
+        
     }
 }

@@ -48,18 +48,20 @@ namespace UtilityLibrary.Application.Handlers
                         Unit = await _uow.Units.Get(requestUnit.UnitId),
                         //ChosenUpgrades = new List<ChosenUpgrade>()
                     };
-                    foreach (var upgrade in requestUnit.ChosenUpgrades)
-                    {
-                        var newUpgrade = new ChosenUpgrade
-                        {
-                            Upgrade = await _uow.Upgrades.Get(upgrade.UpgradeId)
-                        };
-                        newChosenUnit.ChosenUpgrades.Add(newUpgrade);
-                    }
                     army.ChosenUnits.Add(newChosenUnit);
                 }
             }
-
+            if (request.ChosenUpgrades.Count() != 0)
+            {
+                foreach (var upgrade in request.ChosenUpgrades)
+                {
+                    var newUpgrade = new ChosenUpgrade
+                    {
+                        Upgrade = await _uow.Upgrades.Get(upgrade.UpgradeId)
+                    };
+                    army.ChosenUpgrades.Add(newUpgrade);
+                }
+            }
 
             await _uow.Armies.Add(army);
             int changes = await _uow.Complete();

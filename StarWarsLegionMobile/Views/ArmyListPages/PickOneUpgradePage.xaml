@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StarWarsLegionMobile.Views.PickOneUpgradePage"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:service="clr-namespace:StarWarsLegionMobile.Services"
+             xmlns:viewmodel="clr-namespace:StarWarsLegionMobile.ViewModels"
+             xmlns:model="clr-namespace:StarWarsLegionMobile.Models"
+             x:DataType="viewmodel:PickOneUpgradeViewModel"
+             Title="{Binding Title}">
+
+    <CollectionView 
+        Grid.ColumnSpan="2"
+        ItemsSource="{Binding AvailableUpgradeList}">
+        <CollectionView.GroupHeaderTemplate>
+            <DataTemplate x:DataType="model:UpgradeModel">
+                <HorizontalStackLayout>
+                    <Image Source="{Binding UpgradeType, StringFormat='{0}.png'}" WidthRequest="30" HeightRequest="30"/>
+
+                </HorizontalStackLayout>
+            </DataTemplate>
+        </CollectionView.GroupHeaderTemplate>
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="model:UpgradeModel">
+                <Grid Padding="4" 
+                          ColumnDefinitions="*"
+                          ColumnSpacing="5"
+                          RowDefinitions="*,Auto"
+                          HeightRequest="150"
+                          >
+                    <Frame Padding="6"
+                               Style="{StaticResource CardView}">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer
+                                    CommandParameter="{Binding .}"
+                                    Command="{Binding Source={RelativeSource 
+                                        AncestorType={x:Type viewmodel:PickOneUpgradeViewModel}}, 
+                                        Path=AddUpgradeCommand}"/>
+                        </Frame.GestureRecognizers>
+                        <Grid ColumnDefinitions="auto,*,30">
+                            <HorizontalStackLayout Grid.Column="0">
+                                <Image Source="{Binding Image}"
+                                                HeightRequest="120"
+                                            Aspect="AspectFill"
+                                            Margin="0,0,6,0"
+                                            />
+                            </HorizontalStackLayout>
+                            <VerticalStackLayout Grid.Column="1">
+                                <HorizontalStackLayout MaximumWidthRequest="220" HorizontalOptions="StartAndExpand">
+                                    <Label Text="*" IsVisible="{Binding IsUnique}" VerticalOptions="Center" Margin="4"/>
+                                    <Label Text="{Binding Name}" FontSize="20" />
+                                    <Label Text="{Binding PointCost, StringFormat='{}({0})'}" VerticalOptions="Center" Margin="6"/>
+                                </HorizontalStackLayout>
+                                <Label Text="{Binding Text}"/>
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Column="2">
+                                <Image Source="{Binding UpgradeIcon}" 
+                                               WidthRequest="25" 
+                                               HeightRequest="25" 
+                                               BackgroundColor="Transparent"/>
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Frame>
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>

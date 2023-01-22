@@ -25,7 +25,7 @@ namespace UtilityLibrary.Models
         public int PointCost { get; set; }
         [JsonProperty("restrictions")]
         [JsonPropertyName("restrictions")]
-        public List<string>? Restrictions { get; set; } = new List<string>();
+        public List<Restriction>? Restrictions { get; set; } = new List<Restriction>();
         [JsonProperty("text")]
         [JsonPropertyName("text")]
         public string? Text { get; set; }

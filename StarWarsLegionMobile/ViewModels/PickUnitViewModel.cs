@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Maui.Controls.Compatibility;
+using Microsoft.Maui.Layouts;
 using StarWarsLegionMobile.Messages;
 using StarWarsLegionMobile.Services;
 using StarWarsLegionMobile.Views;
@@ -34,9 +35,10 @@ namespace StarWarsLegionMobile.ViewModels
         [RelayCommand]
         async Task AddUnit(UnitModel unitModel)
         {
-            ChosenUnit chosenUnit = new ChosenUnit() { Id = 1 };
-            chosenUnit.Unit = (Unit)unitModel;
-            chosenUnit.UnitId = unitModel.Id;
+            ChosenUnitModel chosenUnit = new () { ChosenUnitId = 1 };
+            chosenUnit.UnitReference = (UnitModel)unitModel;
+
+            var options = unitModel.UpgradeOptions.ToList();
 
             var lastChosenUnit = armyModel.ChosenUnits.OrderByDescending(i=>i.Id).FirstOrDefault();
             if (lastChosenUnit != null)
@@ -46,11 +48,38 @@ namespace StarWarsLegionMobile.ViewModels
                 {
                     id++;
                 }
-                chosenUnit.Id = id;
-
+                chosenUnit.ChosenUnitId = id;
             }
 
-            armyModel.ChosenUnits.Add(chosenUnit);
+            ChosenUnit armyUnit = new();
+            armyUnit.Unit = unitModel;
+            armyUnit.UnitId = unitModel.Id;
+            armyUnit.Id = chosenUnit.ChosenUnitId;
+
+            for (int i = 0; i < options.Count(); i++)
+            {
+                //add frontend upgrade
+                ChosenUnitUpgradeModel tempUpgrade = new();
+                tempUpgrade.IsUpgraded = false;
+                tempUpgrade.UpgradeType = options[i].UpgradeType;
+                tempUpgrade.ChosenUnitId = chosenUnit.ChosenUnitId;
+                tempUpgrade.ChosenUpgradeOptionId = options[i].Id;
+                tempUpgrade.UpgradeReference = null;
+                chosenUnit.ChosenUnitUpgrades.Add(tempUpgrade);
+
+                //add backend upgrade
+                ChosenUpgrade armyUpgrade= new();
+                armyUpgrade.Upgrade = null;
+                armyUpgrade.UpgradeType = options[i].UpgradeType;
+                armyUpgrade.ChosenUnitId= chosenUnit.ChosenUnitId;
+                armyUpgrade.ChosenUpgradeOption = options[i].Id;
+                armyModel.ChosenUpgrades.Add(armyUpgrade);
+
+            };
+
+            //add backend unit
+            armyModel.ChosenUnits.Add(armyUnit);
+
             WeakReferenceMessenger.Default.Send(new UpdateArmyBuilderList(armyModel));
             await GoBack();
         }

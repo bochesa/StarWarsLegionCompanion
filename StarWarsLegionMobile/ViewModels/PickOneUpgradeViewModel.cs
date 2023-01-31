@@ -61,23 +61,27 @@ namespace StarWarsLegionMobile.ViewModels
             {
                 IsBusy = true;
                 var upgrades = await databaseServices.GetUpgradesLocally();
-                var newlist = upgrades.Where(u => u.UpgradeType == chosenUnitUpgradeModel.UpgradeType).ToList();
+                var filteredUpgradesByType = upgrades.Where(u => u.UpgradeType == ChosenUnitUpgradeModel.UpgradeType).ToList();
 
-                var faction = ArmyModel.ChosenUnits.Where(u => u.Id == chosenUnitUpgradeModel.ChosenUnitId).FirstOrDefault().Unit.Faction.ToString();
+                var faction = ArmyModel.ChosenUnits.Where(u => u.Id == ChosenUnitUpgradeModel.ChosenUnitId).FirstOrDefault().Unit.Faction.ToString();
 
-                Restriction restriction = new Restriction { RestrictionText = faction };
-                var currentUnitId = chosenUnitUpgradeModel.ChosenUnitId;
-                var currentUpgradeOptionId = chosenUnitUpgradeModel.ChosenUpgradeOptionId;
+                var currentUnitId = ChosenUnitUpgradeModel.ChosenUnitId;
+                //var currentUpgradeOptionId = ChosenUnitUpgradeModel.ChosenUpgradeOptionId;
 
                 //Get upgrade by id
-                foreach (var upgrade in newlist)
+                foreach (var upgrade in filteredUpgradesByType)
                 {
-                    bool notRestricted = upgrade.Restrictions.Contains(restriction) || upgrade.Restrictions.Count == 0;
+                    bool notRestricted = true;
+                    if (upgrade.Restrictions.Count() != 0)
+                    {
+                        var restric = upgrade.Restrictions.Where(u => u.RestrictionText == faction).FirstOrDefault();
+                        notRestricted = upgrade.Restrictions.Contains(restric);
+                    }
 
-                    var testList = armyModel.ChosenUpgrades.Where(u => u.ChosenUnitId == currentUnitId).ToList();
-                    var temp = testList.Where(u => u.Upgrade != null && u.Upgrade.Id == upgrade.Id).Count();
+                    var ChosenUpgradeOptions = armyModel.ChosenUpgrades.Where(u => u.ChosenUnitId == currentUnitId).ToList();
+                    var numberOfExcistingUpgrades = ChosenUpgradeOptions.Where(u => u.Upgrade != null && u.Upgrade.Id == upgrade.Id).Count();
 
-                    if (notRestricted && temp == 0)
+                    if (notRestricted && numberOfExcistingUpgrades == 0)
                     {
                         AvailableUpgradeList.Add(upgrade);
                     }

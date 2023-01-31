@@ -20,19 +20,15 @@ namespace StarWarsLegionMobile.Services
 
         public async void PostArmy(ArmyModel army)
         {
-            var path = FileSystem.AppDataDirectory;
-            string fileName = @"path"+"armyList.json";
 
             var jsonString = JsonSerializer.Serialize(army);
-            File.WriteAllText(fileName, jsonString);
+            await Shell.Current.DisplayAlert("Saving", $"{jsonString}", "ok så!");
 
         }
 
         public async Task<List<KeywordModel>> GetKeywordsLocally()
         {
             using var stream = await FileSystem.OpenAppPackageFileAsync("keywordsdata.json");
-            //using var writer = new StreamWriter(stream);
-            //writer.
             using var reader = new StreamReader(stream);
             
             var contents = await reader.ReadToEndAsync();

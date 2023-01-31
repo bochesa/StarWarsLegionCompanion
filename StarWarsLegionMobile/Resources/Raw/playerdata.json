@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "name": "Henrik",
+    "armies": [
+      1,2
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Mikkel",
+    "armies":  [1,2]
+  }
+]

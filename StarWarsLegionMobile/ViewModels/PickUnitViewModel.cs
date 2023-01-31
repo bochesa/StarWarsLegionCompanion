@@ -36,6 +36,7 @@ namespace StarWarsLegionMobile.ViewModels
         async Task AddUnit(UnitModel unitModel)
         {
             ChosenUnitModel chosenUnit = new () { ChosenUnitId = 1 };
+            chosenUnit.UnitThumb = unitModel.UnitThumb;
             chosenUnit.UnitReference = (UnitModel)unitModel;
 
             var options = unitModel.UpgradeOptions.ToList();

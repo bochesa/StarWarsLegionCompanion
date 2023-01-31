@@ -11,7 +11,7 @@ namespace StarWarsLegionMobile.Models
     {
         [ObservableProperty]
         int chosenUnitId;
-
+        public string UnitThumb { get; set; }
         public Unit UnitReference{ get; set; }
 
         [ObservableProperty]

@@ -15,7 +15,7 @@
 		<ApplicationTitle>StarWarsLegionMobile</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.starwarslegionmobile</ApplicationId>
+		<ApplicationId>com.Bbochesa.starwarslegioncompanion</ApplicationId>
 		<ApplicationIdGuid>6799b70f-d236-46da-9243-ca119d7ccb95</ApplicationIdGuid>
 
 		<!-- Versions -->
@@ -86,12 +86,15 @@
 	  <None Remove="Resources\Images\user.svg" />
 	  <None Remove="Resources\Raw\armylistdata.json" />
 	  <None Remove="Resources\Raw\keywordsdata.json" />
+	  <None Remove="Resources\Raw\playerdata.json" />
 	  <None Remove="Resources\Raw\unitsdata.json" />
 	  <None Remove="Resources\Raw\upgradesdata.json" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Maui" Version="3.1.0" />
+		<PackageReference Include="Auth0.Core" Version="7.17.4" />
+		<PackageReference Include="Auth0.OidcClient.Core" Version="3.2.6" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="4.0.0" />
 		<PackageReference Include="CommunityToolkit.Maui.Markup" Version="2.1.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
@@ -171,6 +174,12 @@
 	  <PackageReference Include="Auth0.OidcClient.Android">
 	    <Version>3.2.6</Version>
 	  </PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiAsset Update="Resources\Raw\playerdata.json">
+	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+	  </MauiAsset>
 	</ItemGroup>
 
 </Project>

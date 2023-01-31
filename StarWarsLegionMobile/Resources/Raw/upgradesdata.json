@@ -10,7 +10,22 @@
     "isFreeAction": false,
     "image": "https://image.bochesa.dk/upgrades/echo.png",
     "upgradeType":  10,
-    "restrictions": ["ARC Troppers", "CloneTrooper","Corps", "Republic" ]
+    "restrictions": [
+      {
+        "id": 1,
+        "restrictionText": "ARC Troppers"
+      },
+      {
+        "id": 2,
+        "restrictionText": "CloneTrooper"
+      },{
+        "id": 3,
+        "restrictionText": "Corps"
+      },{
+        "id": 4,
+        "restrictionText": "Republic"
+      }
+    ]
   },
   {
     "id": 2,
@@ -79,7 +94,15 @@
     "isFreeAction": false,
     "image": "https://image.bochesa.dk/upgrades/anger.png",
     "upgradeType": 5,
-    "restrictions": ["Empire", "Separatist" ]
+    "restrictions": [
+      {
+        "id": 1,
+        "restrictionText": "Empire"
+      },
+      {
+        "id": 2,
+        "restrictionText": "Separatist"
+      }]
   
   },
   {
@@ -94,6 +117,15 @@
     "isFreeAction": false,
     "image": "https://image.bochesa.dk/upgrades/hope.png",
     "upgradeType": 5,
-    "restrictions": ["Rebel", "Republic" ]
+    "restrictions": [
+      {
+        "id": 1,
+        "restrictionText": "Rebel"
+      },
+      {
+        "id": 2,
+        "restrictionText": "Republic"
+      }
+    ]
   }
 ]

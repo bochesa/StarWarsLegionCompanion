@@ -13,12 +13,13 @@ using UtilityLibrary.Models;
 
 namespace StarWarsLegionMobile.ViewModels
 {
-    [QueryProperty(nameof(faction), "faction")]
+    //[QueryProperty(nameof(Faction), "faction")]
+    [QueryProperty(nameof(ArmyModel), "ArmyModel")]
     public partial class ArmyViewModel : BaseViewModel, IRecipient<UpdateArmyBuilderList>, IRecipient<UpdateArmyFaction>
     {
         DatabaseServices databaseServices;
         [ObservableProperty]
-        ArmyModel army;
+        ArmyModel armyModel;
 
         [ObservableProperty]
         string armyListName;
@@ -48,10 +49,8 @@ namespace StarWarsLegionMobile.ViewModels
         public ArmyViewModel(DatabaseServices databaseServices)
         {
             this.databaseServices = databaseServices;
-            if (army is null) army = new();
            
-            armyListName = "Untitled";
-            Title = ArmyListName;
+            ArmyListName = "Untitled";
             Faction = "Neutral";
 
             WeakReferenceMessenger.Default.Register<UpdateArmyBuilderList>(this);
@@ -63,7 +62,6 @@ namespace StarWarsLegionMobile.ViewModels
             MainThread.BeginInvokeOnMainThread(() =>
             {
                 Faction = message.Value;
-                army.Faction = (FactionType)Enum.Parse(typeof(FactionType), message.Value);
             });
         }
 
@@ -71,7 +69,9 @@ namespace StarWarsLegionMobile.ViewModels
         {
             MainThread.BeginInvokeOnMainThread(() =>
             {
-                var armyChosenUpgrades = army.ChosenUpgrades;
+                ArmyListName = message.Value.Name;
+                Faction = message.Value.Faction.ToString();
+                var armyChosenUpgrades = ArmyModel.ChosenUpgrades;
                 List<ChosenUnitUpgradeModel> testList = new();
                 foreach (var test in ChosenUnitModels)
                 {
@@ -81,14 +81,15 @@ namespace StarWarsLegionMobile.ViewModels
                     }
                 }
                 ChosenUnitModels.Clear();
-                foreach (var unit in Army.ChosenUnits)
+                foreach (var unit in ArmyModel.ChosenUnits)
                 {
                     var chosenUnit = new ChosenUnitModel();
                     chosenUnit.ChosenUnitId = unit.Id;
                     chosenUnit.UnitReference = unit.Unit;
-                    if(Army.ChosenUpgrades.Count() > 0)
+                    chosenUnit.UnitThumb = $"https://image.bochesa.dk/Units/Icons/{Helper.RemoveWhitespace(unit.Unit.Name).ToLower()}.jpeg";
+                    if (ArmyModel.ChosenUpgrades.Count() > 0)
                     {
-                        var upgrades = Army.ChosenUpgrades.Where(cu => cu.ChosenUnitId == unit.Id).ToList();
+                        var upgrades = ArmyModel.ChosenUpgrades.Where(cu => cu.ChosenUnitId == unit.Id).ToList();
 
                         foreach (var upgrade in upgrades)
                         {
@@ -109,24 +110,22 @@ namespace StarWarsLegionMobile.ViewModels
 
                 }
                 
-                Commanders = chosenUnitModels.Where(u => u.UnitReference.Rank == RankType.Commander).Count();
-                Operatives = chosenUnitModels.Where(u => u.UnitReference.Rank == RankType.Operative).Count();
-                Corps = chosenUnitModels.Where(u => u.UnitReference.Rank == RankType.Corps).Count();
-                SpecialForces = chosenUnitModels.Where(u => u.UnitReference.Rank == RankType.SpecialForces).Count();
-                Supports = chosenUnitModels.Where(u => u.UnitReference.Rank == RankType.Support).Count();
-                Heavies = chosenUnitModels.Where(u => u.UnitReference.Rank == RankType.Heavy).Count();
+                Commanders = ChosenUnitModels.Where(u => u.UnitReference.Rank == RankType.Commander).Count();
+                Operatives = ChosenUnitModels.Where(u => u.UnitReference.Rank == RankType.Operative).Count();
+                Corps = ChosenUnitModels.Where(u => u.UnitReference.Rank == RankType.Corps).Count();
+                SpecialForces = ChosenUnitModels.Where(u => u.UnitReference.Rank == RankType.SpecialForces).Count();
+                Supports = ChosenUnitModels.Where(u => u.UnitReference.Rank == RankType.Support).Count();
+                Heavies = ChosenUnitModels.Where(u => u.UnitReference.Rank == RankType.Heavy).Count();
                 ArmyPoints = 0;
-                ArmyPoints += chosenUnitModels.Sum(u => u.UnitReference.PointCost);
-                foreach (var unit in chosenUnitModels)
+                ArmyPoints += ChosenUnitModels.Sum(u => u.UnitReference.PointCost);
+                foreach (var unit in ChosenUnitModels)
                 {
                     foreach (var upgrade in unit.ChosenUnitUpgrades.Where(u=>u.UpgradeReference != null))
                     {
                         ArmyPoints += upgrade.UpgradeReference.PointCost;
                     }
                 }
-                //ArmyPoints += chosenUnitModels.Sum(um => um.ChosenUpgrades.Where(u => u.Upgrade != null);
-                //ArmyPoints += army.ChosenUpgradeModels.Where(m=>m.Upgrade != null ).Sum(u =>  u.Upgrade.PointCost);
-                Activations = commanders + operatives + corps + specialForces + supports + heavies;
+                Activations = Commanders + Operatives + Corps + SpecialForces + Supports + Heavies;
             });
         }
 
@@ -134,7 +133,7 @@ namespace StarWarsLegionMobile.ViewModels
         async Task ChangeArmyListName(string input)
         {
             // set name to Army data model
-            Army.Name = input;
+            ArmyModel.Name = input;
             await Task.Delay(1);
         }
 
@@ -143,10 +142,10 @@ namespace StarWarsLegionMobile.ViewModels
         async Task PickOneUpgrade(ChosenUnitUpgradeModel chosenUnitUpgradeModel)
         {
             //set the armymodel value for reference on Pick Upgrade site.
-            var armyModel = Army;
+            var armyModel = ArmyModel;
 
             //Remove upgrade from backend List if there is alresy a value set
-            var ChosenUpgrades = Army.ChosenUpgrades.ToList();
+            var ChosenUpgrades = ArmyModel.ChosenUpgrades.ToList();
             var test = ChosenUpgrades.Find(u=>u.ChosenUnitId == chosenUnitUpgradeModel.ChosenUnitId && u.ChosenUpgradeOption == chosenUnitUpgradeModel.ChosenUpgradeOptionId);
             if(test.Upgrade != null) 
             {
@@ -175,7 +174,7 @@ namespace StarWarsLegionMobile.ViewModels
         async Task GotoUnitPick(string rankType)
         {
             if (string.IsNullOrEmpty(rankType)) return;
-            var armyModel = Army;
+            var armyModel = ArmyModel;
 
             await Shell.Current.GoToAsync($"{nameof(PickUnitPage)}", true,
                 new Dictionary<string, object>
@@ -192,21 +191,124 @@ namespace StarWarsLegionMobile.ViewModels
         [RelayCommand]
         void RemoveUnit(int id)
         {
-            var unitToRemove = army.ChosenUnits.Where(u => u.Id == id).First();
+            var unitToRemove = ArmyModel.ChosenUnits.Where(u => u.Id == id).First();
             removeUpgrades(unitToRemove);
-            army.ChosenUnits.Remove(unitToRemove);
+            ArmyModel.ChosenUnits.Remove(unitToRemove);
 
-            WeakReferenceMessenger.Default.Send(new UpdateArmyBuilderList(army));
+            WeakReferenceMessenger.Default.Send(new UpdateArmyBuilderList(ArmyModel));
+        }
+        [RelayCommand]
+        async Task CopyCurrentUnit(int id)
+        {
+
+            var unitToCopy = ArmyModel.ChosenUnits.Where(u => u.Id == id).First();
+            if (unitToCopy.Unit.IsUnique)
+            {
+                await Shell.Current.DisplayAlert("Error", "You cannot copy a Unique unit", "OK");
+                return;
+            }
+            AddUnit(id,(UnitModel)unitToCopy.Unit);
+
+            WeakReferenceMessenger.Default.Send(new UpdateArmyBuilderList(ArmyModel));
+        }
+
+        void AddUnit(int chosenUnitId, UnitModel unitModel)
+        {
+            // Get all upgrades for the unit
+            ChosenUnitModel chosenUnit = new() { ChosenUnitId = 1 };
+            chosenUnit.UnitThumb = unitModel.UnitThumb;
+            var unitModelUpgrades = ArmyModel.ChosenUpgrades.Where(u => u.ChosenUnitId == chosenUnitId).ToList();
+            
+            chosenUnit.UnitReference = (UnitModel)unitModel;
+
+            var options = unitModel.UpgradeOptions.ToList();
+
+            var lastChosenUnit = ArmyModel.ChosenUnits.OrderByDescending(i => i.Id).FirstOrDefault();
+            if (lastChosenUnit != null)
+            {
+                var id = lastChosenUnit.Id;
+                if (id > 0)
+                {
+                    id++;
+                }
+                chosenUnit.ChosenUnitId = id;
+            }
+
+            ChosenUnit armyUnit = new();
+            armyUnit.Unit = unitModel;
+            armyUnit.UnitId = unitModel.Id;
+            armyUnit.Id = chosenUnit.ChosenUnitId;
+
+            for (int i = 0; i < options.Count(); i++)
+            {
+                var upgrades = unitModelUpgrades.Where(u => u.ChosenUpgradeOption == options[i].Id);
+                bool useExsistingUpgrade = upgrades.Any();
+                //add frontend upgrade
+                if (useExsistingUpgrade)
+                {
+                    var upgrade = upgrades.First();
+                    ChosenUnitUpgradeModel upgradeModel = new ChosenUnitUpgradeModel
+                    {
+                        ChosenUnitId = armyUnit.Id,
+                        IsUpgraded = true,
+                        ChosenUpgradeOptionId = upgrade.ChosenUpgradeOption,
+                        UpgradeType = upgrade.UpgradeType,
+                        UpgradeReference = upgrade.Upgrade
+                    };
+                    chosenUnit.ChosenUnitUpgrades.Add(upgradeModel);
+                }
+                else
+                {
+                    ChosenUnitUpgradeModel tempUpgrade = new();
+                    tempUpgrade.IsUpgraded = false;
+                    tempUpgrade.UpgradeType = options[i].UpgradeType;
+                    tempUpgrade.ChosenUnitId = chosenUnit.ChosenUnitId;
+                    tempUpgrade.ChosenUpgradeOptionId = options[i].Id;
+                    tempUpgrade.UpgradeReference = null;
+                    chosenUnit.ChosenUnitUpgrades.Add(tempUpgrade);
+
+                }
+
+                //add backend upgrade
+                if (useExsistingUpgrade)
+                {
+                    var upgrade = upgrades.First();
+                    ChosenUpgrade armyUpgrade = new ChosenUpgrade
+                    {
+                        UpgradeType = upgrade.UpgradeType,
+                        ChosenUnitId = armyUnit.Id,
+                        ChosenUpgradeOption = upgrade.ChosenUpgradeOption,
+                        Upgrade = upgrade.Upgrade,
+                    };
+                    ArmyModel.ChosenUpgrades.Add(armyUpgrade);
+
+                }
+                else
+                {
+                    ChosenUpgrade armyUpgrade = new();
+                    armyUpgrade.Upgrade = null;
+                    armyUpgrade.UpgradeType = options[i].UpgradeType;
+                    armyUpgrade.ChosenUnitId = chosenUnit.ChosenUnitId;
+                    armyUpgrade.ChosenUpgradeOption = options[i].Id;
+                    ArmyModel.ChosenUpgrades.Add(armyUpgrade);
+
+                }
+
+            };
+
+            //add backend unit
+            ArmyModel.ChosenUnits.Add(armyUnit);
+
         }
 
         [RelayCommand]
         async Task RemoveOneUpgrade(ChosenUnitUpgradeModel chosenUpgradeModel)
         {
-            var upgradeToRemove = army.ChosenUpgrades.
+            var upgradeToRemove = ArmyModel.ChosenUpgrades.
                 Where(u => u.ChosenUnitId == chosenUpgradeModel.ChosenUnitId
                 && u.ChosenUpgradeOption == chosenUpgradeModel.ChosenUpgradeOptionId)
                 .FirstOrDefault();
-            army.ChosenUpgrades.Remove(upgradeToRemove);
+            ArmyModel.ChosenUpgrades.Remove(upgradeToRemove);
 
             ChosenUpgrade armyUpgrade = new();
             armyUpgrade.Upgrade = null;
@@ -214,18 +316,18 @@ namespace StarWarsLegionMobile.ViewModels
             armyUpgrade.ChosenUnitId = chosenUpgradeModel.ChosenUnitId;
             armyUpgrade.ChosenUpgradeOption = chosenUpgradeModel.ChosenUpgradeOptionId;
 
-            army.ChosenUpgrades.Add(armyUpgrade);
+            ArmyModel.ChosenUpgrades.Add(armyUpgrade);
 
-            WeakReferenceMessenger.Default.Send(new UpdateArmyBuilderList(army));
+            WeakReferenceMessenger.Default.Send(new UpdateArmyBuilderList(ArmyModel));
         }
 
         private void removeUpgrades(ChosenUnit unit)
         {
-            var upgrades = army.ChosenUpgrades.Where(u=>u.ChosenUnitId == unit.Id).ToList();
+            var upgrades = ArmyModel.ChosenUpgrades.Where(u=>u.ChosenUnitId == unit.Id).ToList();
 
             foreach (var upgrade in upgrades) 
             {
-                army.ChosenUpgrades.Remove(upgrade);
+                ArmyModel.ChosenUpgrades.Remove(upgrade);
             }
         }
 

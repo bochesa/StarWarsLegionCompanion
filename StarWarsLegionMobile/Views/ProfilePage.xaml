@@ -4,9 +4,11 @@
              x:Class="StarWarsLegionMobile.Views.ProfilePage"
              Title="My Profile Page">
     <VerticalStackLayout>
+        
         <Label 
             Text="Profile stuff here!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+        <Button Text="Login!"/>
     </VerticalStackLayout>
 </ContentPage>

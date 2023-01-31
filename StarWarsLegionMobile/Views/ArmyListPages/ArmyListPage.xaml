@@ -6,91 +6,104 @@
              xmlns:model="clr-namespace:StarWarsLegionMobile.Models"
              x:DataType="viewmodel:ArmyListViewModel"
              Title="ArmyList">
+    <Grid>
+        <ScrollView>
+            <VerticalStackLayout
+                Spacing="25"
+                Padding="20,0"
+                VerticalOptions="Start">
+                <Grid RowDefinitions="*,auto,*">
+                    <VerticalStackLayout Grid.Row="0" HorizontalOptions="Center">
+                        <Label Text="Choose a faction" FontSize="36" />
+                        <BoxView HeightRequest="20" Color="Transparent"/>
+                    </VerticalStackLayout>
+                    <FlexLayout Wrap="Wrap" Grid.Row="1"
+                            AlignItems="Center"
+                            JustifyContent="SpaceAround">
+                        <VerticalStackLayout Padding="6">
+                            <Border HeightRequest="60" WidthRequest="60" StrokeShape="Ellipse">
+                                <Image Source="empire.png" HeightRequest="60" WidthRequest="60"/>
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                        CommandParameter="Empire"
+                                        Command="{Binding CreateNewArmyCommand}"
+                                        />
+                                </Border.GestureRecognizers>
+                            </Border>
+                            <BoxView HeightRequest="10" Color="Transparent"/>
+                            <Label Text="Galactic Empire"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Padding="6">
+                            <Border HeightRequest="60" WidthRequest="60" StrokeShape="Ellipse">
+                                <Image Source="rebel.png" HeightRequest="60" WidthRequest="60"/>
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                        CommandParameter="Rebel"
+                                        Command="{Binding CreateNewArmyCommand}"
+                                        />
+                                </Border.GestureRecognizers>
+                            </Border>
+                            <BoxView HeightRequest="10" Color="Transparent"/>
+                            <Label Text="Rebel Alliance"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Padding="6">
+                            <Border HeightRequest="60" WidthRequest="60" StrokeShape="Ellipse">
+                                <Image Source="republic.png" HeightRequest="60" WidthRequest="60"/>
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                        CommandParameter="Republic"
+                                        Command="{Binding CreateNewArmyCommand}"
+                                        />
+                                </Border.GestureRecognizers>
+                            </Border>
+                            <BoxView HeightRequest="10" Color="Transparent"/>
+                            <Label Text="Galactic Republic"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Padding="6">
+                            <Border HeightRequest="60" WidthRequest="60" StrokeShape="Ellipse">
+                                <Image Source="separatist.png" HeightRequest="60" WidthRequest="60"/>
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                        CommandParameter="Separatist"
+                                        Command="{Binding CreateNewArmyCommand}"
+                                        />
+                                </Border.GestureRecognizers>
+                            </Border>
+                            <BoxView HeightRequest="10" Color="Transparent"/>
+                            <Label Text="Separatist Alliance"/>
+                        </VerticalStackLayout>
+                    </FlexLayout>
+                    <ScrollView Grid.Row="2">
+                        <CollectionView ItemsSource="{Binding Armies}">
+                            <CollectionView.EmptyView>
+                                <Label Text="No Lists found"/>
+                            </CollectionView.EmptyView>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="model:ArmyModel">
+                                    <Grid>
+                                        <Frame BorderColor="Aqua">
+                                            <HorizontalStackLayout>
+                                                <Label Text="{Binding Name}"/>
+                                                <Label Text="{Binding Faction}"/>
+                                                <Button Text="Goto" 
+                                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ArmyListViewModel}},Path=GoToArmyCommand}"
+                                                        CommandParameter="{Binding Id}"/>
 
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="20,0"
-            VerticalOptions="Start">
-            <Grid RowDefinitions="*,auto,600">
-                <VerticalStackLayout Grid.Row="0" HorizontalOptions="Center">
-                    <Label Text="Choose a faction" FontSize="36" />
-                    <BoxView HeightRequest="20" Color="Transparent"/>
-                </VerticalStackLayout>
-                <FlexLayout Wrap="Wrap" Grid.Row="1"
-                        AlignItems="Center"
-                        JustifyContent="SpaceAround">
-                    <VerticalStackLayout Padding="6">
-                        <Border HeightRequest="60" WidthRequest="60" StrokeShape="Ellipse">
-                            <Image Source="empire.png" HeightRequest="60" WidthRequest="60"/>
-                            <Border.GestureRecognizers>
-                                <TapGestureRecognizer 
-                                    CommandParameter="Empire"
-                                    Command="{Binding CreateNewArmyCommand}"
-                                    />
-                            </Border.GestureRecognizers>
-                        </Border>
-                        <BoxView HeightRequest="10" Color="Transparent"/>
-                        <Label Text="Galactic Empire"/>
-                    </VerticalStackLayout>
-                    <VerticalStackLayout Padding="6">
-                        <Border HeightRequest="60" WidthRequest="60" StrokeShape="Ellipse">
-                            <Image Source="rebel.png" HeightRequest="60" WidthRequest="60"/>
-                            <Border.GestureRecognizers>
-                                <TapGestureRecognizer 
-                                    CommandParameter="Rebel"
-                                    Command="{Binding CreateNewArmyCommand}"
-                                    />
-                            </Border.GestureRecognizers>
-                        </Border>
-                        <BoxView HeightRequest="10" Color="Transparent"/>
-                        <Label Text="Rebel Alliance"/>
-                    </VerticalStackLayout>
-                    <VerticalStackLayout Padding="6">
-                        <Border HeightRequest="60" WidthRequest="60" StrokeShape="Ellipse">
-                            <Image Source="republic.png" HeightRequest="60" WidthRequest="60"/>
-                            <Border.GestureRecognizers>
-                                <TapGestureRecognizer 
-                                    CommandParameter="Republic"
-                                    Command="{Binding CreateNewArmyCommand}"
-                                    />
-                            </Border.GestureRecognizers>
-                        </Border>
-                        <BoxView HeightRequest="10" Color="Transparent"/>
-                        <Label Text="Galactic Republic"/>
-                    </VerticalStackLayout>
-                    <VerticalStackLayout Padding="6">
-                        <Border HeightRequest="60" WidthRequest="60" StrokeShape="Ellipse">
-                            <Image Source="separatist.png" HeightRequest="60" WidthRequest="60"/>
-                            <Border.GestureRecognizers>
-                                <TapGestureRecognizer 
-                                    CommandParameter="Separatist"
-                                    Command="{Binding CreateNewArmyCommand}"
-                                    />
-                            </Border.GestureRecognizers>
-                        </Border>
-                        <BoxView HeightRequest="10" Color="Transparent"/>
-                        <Label Text="Separatist Alliance"/>
-                    </VerticalStackLayout>
-                </FlexLayout>
-                <ScrollView Grid.Row="2">
-                    <CollectionView ItemsSource="{Binding Armies}">
-                        <CollectionView.EmptyView>
-                            <Label Text="No Lists found"/>
-                        </CollectionView.EmptyView>
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate x:DataType="model:ArmyModel">
-                                <Grid>
-                                    <VerticalStackLayout>
-                                        <Label Text="{Binding Name}"/>
-                                        <Label Text="{Binding Faction}"/>
-                                    </VerticalStackLayout>
-                                </Grid>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                </ScrollView>
-            </Grid>
-        </VerticalStackLayout>
-    </ScrollView>
+                                            </HorizontalStackLayout>
+                                        </Frame>
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </ScrollView>
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+        <ActivityIndicator IsVisible="{Binding IsBusy}"
+                           IsRunning="{Binding IsBusy}"
+                           HorizontalOptions="FillAndExpand"    
+                           VerticalOptions="CenterAndExpand"
+                           Grid.ColumnSpan="2"
+                           Grid.RowSpan="2"/>
+    </Grid>
 </ContentPage>

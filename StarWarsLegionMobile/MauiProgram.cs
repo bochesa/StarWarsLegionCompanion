@@ -51,11 +51,11 @@ namespace StarWarsLegionMobile
             builder.Services.AddSingleton<KeywordsPage>();
             builder.Services.AddSingleton<UpgradesPage>();
             builder.Services.AddSingleton<UnitsPage>();
-            builder.Services.AddSingleton<ArmyListPage>();
 
             builder.Services.AddTransient<KeywordDetailsPage>();
             builder.Services.AddTransient<UpgradeDetailsPage>();
             builder.Services.AddTransient<UnitDetailsPage>();
+            builder.Services.AddTransient<ArmyListPage>();
             builder.Services.AddTransient<ArmyBuilderPage>();
             builder.Services.AddTransient<TestPage>();
             builder.Services.AddTransient<PickUnitPage>();

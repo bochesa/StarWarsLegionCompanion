@@ -1,12 +1,463 @@
 [
   {
     "id": 1,
-    "name": "Lukes Bois",
-    "faction": 1
+    "name": "Lucky Luke",
+    "Player": null,
+    "faction": 1,
+    "ArmySetup": {
+      "Id": 1,
+      "PointLimit": 800,
+      "CommanderMinimum": 1,
+      "CommanderMaximum": 2,
+      "OperativeMinimum": 0,
+      "OperativeMaximum": 2,
+      "CorpsMinimum": 3,
+      "CorpsMaximum": 6,
+      "SpecialForcesMinimum": 0,
+      "SpecialForcesMaximum": 3,
+      "SupportMinimum": 0,
+      "SupportMaximum": 3,
+      "HeavyMinimum": 0,
+      "HeavyMaximum": 2
+    },
+    "ChosenCommands": [],
+    "ChosenUnits": [
+      {
+        "Id": 1,
+        "UnitId": 2,
+        "Unit": {
+          "id": 2,
+          "name": "Luke Skywalker",
+          "surName": "Hero of the Rebellion",
+          "isUnique": true,
+          "faction": 1,
+          "rank": 1,
+          "UnitType": 0,
+          "image": "https://image.bochesa.dk/Units/rebel/lukeskywalker.png",
+          "WoundThreshold": 0,
+          "Courage": 0,
+          "Speed": 0,
+          "MinisInUnit": 0,
+          "pointCost": 160,
+          "IsDefenseRed": false,
+          "IsDefenseSurge": false,
+          "AttackSurge": 0,
+          "Keywords": [],
+          "Weapons": [],
+          "upgradeOptions": [
+            {
+              "id": 1,
+              "upgradeType": 5,
+              "UpgradeOptionId": 0,
+              "unitId": 2
+            },
+            {
+              "id": 2,
+              "upgradeType": 5,
+              "UpgradeOptionId": 0,
+              "unitId": 2
+            },
+            {
+              "id": 3,
+              "upgradeType": 6,
+              "UpgradeOptionId": 0,
+              "unitId": 2
+            }
+          ]
+        }
+      },
+      {
+        "Id": 2,
+        "UnitId": 3,
+        "Unit": {
+          "id": 3,
+          "name": "Rebel Troopers",
+          "surName": null,
+          "isUnique": false,
+          "faction": 1,
+          "rank": 3,
+          "UnitType": 0,
+          "image": "https://image.bochesa.dk/Units/rebel/rebeltroopers.png",
+          "WoundThreshold": 0,
+          "Courage": 0,
+          "Speed": 0,
+          "MinisInUnit": 0,
+          "pointCost": 40,
+          "IsDefenseRed": false,
+          "IsDefenseSurge": false,
+          "AttackSurge": 0,
+          "Keywords": [],
+          "Weapons": [],
+          "upgradeOptions": [
+            {
+              "id": 1,
+              "upgradeType": 6,
+              "UpgradeOptionId": 0,
+              "unitId": 3
+            }
+          ]
+        }
+      },
+      {
+        "Id": 3,
+        "UnitId": 3,
+        "Unit": {
+          "id": 3,
+          "name": "Rebel Troopers",
+          "surName": null,
+          "isUnique": false,
+          "faction": 1,
+          "rank": 3,
+          "UnitType": 0,
+          "image": "https://image.bochesa.dk/Units/rebel/rebeltroopers.png",
+          "WoundThreshold": 0,
+          "Courage": 0,
+          "Speed": 0,
+          "MinisInUnit": 0,
+          "pointCost": 40,
+          "IsDefenseRed": false,
+          "IsDefenseSurge": false,
+          "AttackSurge": 0,
+          "Keywords": [],
+          "Weapons": [],
+          "upgradeOptions": [
+            {
+              "id": 1,
+              "upgradeType": 6,
+              "UpgradeOptionId": 0,
+              "unitId": 3
+            }
+          ]
+        }
+      }
+    ],
+    "ChosenUpgrades": [
+      {
+        "Id": 0,
+        "ChosenUnitId": 1,
+        "UpgradeType": 5,
+        "ChosenUpgradeOption": 2,
+        "Upgrade": null
+      },
+      {
+        "Id": 0,
+        "ChosenUnitId": 1,
+        "UpgradeType": 6,
+        "ChosenUpgradeOption": 3,
+        "Upgrade": null
+      },
+      {
+        "Id": 0,
+        "ChosenUnitId": 1,
+        "UpgradeType": 5,
+        "ChosenUpgradeOption": 1,
+        "Upgrade": {
+          "id": 7,
+          "name": "Hope",
+          "isUnique": false,
+          "pointCost": 5,
+          "restrictions": [
+            {
+              "Id": 0,
+              "restrictionText": "Rebel"
+            },
+            {
+              "Id": 0,
+              "restrictionText": "Republic"
+            }
+          ],
+          "text": "You gain Inspire 1 (After your rally step, remove up to 1 suppression token from another friendly unit at range 1-2.)",
+          "woundThreshold": 0,
+          "isExhaustable": false,
+          "isAction": true,
+          "isFreeAction": false,
+          "image": "https://image.bochesa.dk/upgrades/hope.png",
+          "Reconfigure": null,
+          "upgradeType": 5,
+          "Weapon": null,
+          "Keywords": []
+        }
+      },
+      {
+        "Id": 0,
+        "ChosenUnitId": 2,
+        "UpgradeType": 6,
+        "ChosenUpgradeOption": 1,
+        "Upgrade": null
+      },
+      {
+        "Id": 0,
+        "ChosenUnitId": 3,
+        "UpgradeType": 6,
+        "ChosenUpgradeOption": 1,
+        "Upgrade": {
+          "id": 5,
+          "name": "Recon Intel",
+          "isUnique": false,
+          "pointCost": 2,
+          "restrictions": [],
+          "text": "You gain Scout 1 (After you deploy, you may perform a speed-1 move.)",
+          "woundThreshold": 0,
+          "isExhaustable": false,
+          "isAction": true,
+          "isFreeAction": false,
+          "image": "https://image.bochesa.dk/upgrades/recon_intel.png",
+          "Reconfigure": null,
+          "upgradeType": 6,
+          "Weapon": null,
+          "Keywords": []
+        }
+      }
+    ]
   },
   {
     "id": 2,
     "name": "Vaders Fist",
-    "faction": 2
+    "Player": null,
+    "faction": 2,
+    "ArmySetup": {
+      "Id": 1,
+      "PointLimit": 800,
+      "CommanderMinimum": 1,
+      "CommanderMaximum": 2,
+      "OperativeMinimum": 0,
+      "OperativeMaximum": 2,
+      "CorpsMinimum": 3,
+      "CorpsMaximum": 6,
+      "SpecialForcesMinimum": 0,
+      "SpecialForcesMaximum": 3,
+      "SupportMinimum": 0,
+      "SupportMaximum": 3,
+      "HeavyMinimum": 0,
+      "HeavyMaximum": 2
+    },
+    "ChosenCommands": [],
+    "ChosenUnits": [
+      {
+        "Id": 1,
+        "UnitId": 1,
+        "Unit": {
+          "id": 1,
+          "name": "Darth Vader",
+          "surName": "Dark lord of the Sith",
+          "isUnique": true,
+          "faction": 2,
+          "rank": 1,
+          "UnitType": 0,
+          "image": "https://image.bochesa.dk/Units/empire/darthvader.png",
+          "WoundThreshold": 0,
+          "Courage": 0,
+          "Speed": 0,
+          "MinisInUnit": 0,
+          "pointCost": 200,
+          "IsDefenseRed": false,
+          "IsDefenseSurge": false,
+          "AttackSurge": 0,
+          "Keywords": [],
+          "Weapons": [],
+          "upgradeOptions": [
+            {
+              "id": 1,
+              "upgradeType": 5,
+              "UpgradeOptionId": 0,
+              "unitId": 1
+            },
+            {
+              "id": 2,
+              "upgradeType": 5,
+              "UpgradeOptionId": 0,
+              "unitId": 1
+            },
+            {
+              "id": 3,
+              "upgradeType": 5,
+              "UpgradeOptionId": 0,
+              "unitId": 1
+            }
+          ]
+        }
+      },
+      {
+        "Id": 2,
+        "UnitId": 4,
+        "Unit": {
+          "id": 4,
+          "name": "Stormtroopers",
+          "surName": null,
+          "isUnique": false,
+          "faction": 2,
+          "rank": 3,
+          "UnitType": 0,
+          "image": "https://image.bochesa.dk/Units/empire/stormtroopers.png",
+          "WoundThreshold": 0,
+          "Courage": 0,
+          "Speed": 0,
+          "MinisInUnit": 0,
+          "pointCost": 36,
+          "IsDefenseRed": false,
+          "IsDefenseSurge": false,
+          "AttackSurge": 0,
+          "Keywords": [],
+          "Weapons": [],
+          "upgradeOptions": [
+            {
+              "id": 1,
+              "upgradeType": 6,
+              "UpgradeOptionId": 0,
+              "unitId": 4
+            }
+          ]
+        }
+      },
+      {
+        "Id": 3,
+        "UnitId": 4,
+        "Unit": {
+          "id": 4,
+          "name": "Stormtroopers",
+          "surName": null,
+          "isUnique": false,
+          "faction": 2,
+          "rank": 3,
+          "UnitType": 0,
+          "image": "https://image.bochesa.dk/Units/empire/stormtroopers.png",
+          "WoundThreshold": 0,
+          "Courage": 0,
+          "Speed": 0,
+          "MinisInUnit": 0,
+          "pointCost": 36,
+          "IsDefenseRed": false,
+          "IsDefenseSurge": false,
+          "AttackSurge": 0,
+          "Keywords": [],
+          "Weapons": [],
+          "upgradeOptions": [
+            {
+              "id": 1,
+              "upgradeType": 6,
+              "UpgradeOptionId": 0,
+              "unitId": 4
+            }
+          ]
+        }
+      },
+      {
+        "Id": 4,
+        "UnitId": 4,
+        "Unit": {
+          "id": 4,
+          "name": "Stormtroopers",
+          "surName": null,
+          "isUnique": false,
+          "faction": 2,
+          "rank": 3,
+          "UnitType": 0,
+          "image": "https://image.bochesa.dk/Units/empire/stormtroopers.png",
+          "WoundThreshold": 0,
+          "Courage": 0,
+          "Speed": 0,
+          "MinisInUnit": 0,
+          "pointCost": 36,
+          "IsDefenseRed": false,
+          "IsDefenseSurge": false,
+          "AttackSurge": 0,
+          "Keywords": [],
+          "Weapons": [],
+          "upgradeOptions": [
+            {
+              "id": 1,
+              "upgradeType": 6,
+              "UpgradeOptionId": 0,
+              "unitId": 4
+            }
+          ]
+        }
+      }
+    ],
+    "ChosenUpgrades": [
+      {
+        "Id": 0,
+        "ChosenUnitId": 1,
+        "UpgradeType": 5,
+        "ChosenUpgradeOption": 3,
+        "Upgrade": null
+      },
+      {
+        "Id": 0,
+        "ChosenUnitId": 2,
+        "UpgradeType": 6,
+        "ChosenUpgradeOption": 1,
+        "Upgrade": null
+      },
+      {
+        "Id": 0,
+        "ChosenUnitId": 1,
+        "UpgradeType": 5,
+        "ChosenUpgradeOption": 1,
+        "Upgrade": {
+          "id": 6,
+          "name": "Anger",
+          "isUnique": false,
+          "pointCost": 5,
+          "restrictions": [
+            {
+              "Id": 0,
+              "restrictionText": "Empire"
+            },
+            {
+              "Id": 0,
+              "restrictionText": "Separatist"
+            }
+          ],
+          "text": "After you suffer 1 or more wounds, gain 1 aim token.",
+          "woundThreshold": 0,
+          "isExhaustable": false,
+          "isAction": true,
+          "isFreeAction": false,
+          "image": "https://image.bochesa.dk/upgrades/anger.png",
+          "Reconfigure": null,
+          "upgradeType": 5,
+          "Weapon": null,
+          "Keywords": []
+        }
+      },
+      {
+        "Id": 0,
+        "ChosenUnitId": 1,
+        "UpgradeType": 5,
+        "ChosenUpgradeOption": 2,
+        "Upgrade": {
+          "id": 4,
+          "name": "Saber Throw",
+          "isUnique": false,
+          "pointCost": 10,
+          "restrictions": [],
+          "text": "Choose 1 of your melee weapons. Perform a ranged attack with that weapon against an enemy unit at range 1-2, using half of that weapon\u0027s dice, rounded up. This is treated as an attack action.",
+          "woundThreshold": 0,
+          "isExhaustable": false,
+          "isAction": true,
+          "isFreeAction": false,
+          "image": "https://image.bochesa.dk/upgrades/saber_throw.png",
+          "Reconfigure": null,
+          "upgradeType": 5,
+          "Weapon": null,
+          "Keywords": []
+        }
+      },
+      {
+        "Id": 0,
+        "ChosenUnitId": 3,
+        "UpgradeType": 6,
+        "ChosenUpgradeOption": 1,
+        "Upgrade": null
+      },
+      {
+        "Id": 0,
+        "ChosenUnitId": 4,
+        "UpgradeType": 6,
+        "ChosenUpgradeOption": 1,
+        "Upgrade": null
+      }
+    ]
   }
 ]

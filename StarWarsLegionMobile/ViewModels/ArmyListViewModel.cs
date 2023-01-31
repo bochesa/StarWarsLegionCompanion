@@ -26,9 +26,38 @@ namespace StarWarsLegionMobile.ViewModels
         [RelayCommand]
         async Task CreateNewArmyAsync(string faction)
         {
+            ArmyModel armyModel = new ArmyModel
+            {
+                Faction = (FactionType)Enum.Parse(typeof(FactionType), faction)
+            };
             //await Shell.Current.Navigation.PushModalAsync(new ArmyBuilderPage(viewModel));
-            await Shell.Current.GoToAsync($"///ArmyBuild/ArmyBuilderPage?faction={faction}", true);
-            WeakReferenceMessenger.Default.Send(new UpdateArmyFaction(faction));
+            await Shell.Current.GoToAsync($"///ArmyBuild/ArmyBuilderPage", true,
+                new Dictionary<string, object>
+                {
+                    {
+                        "ArmyModel", armyModel
+                    }
+                });
+
+            WeakReferenceMessenger.Default.Send(new UpdateArmyBuilderList(armyModel));
+        }
+
+        [RelayCommand]
+        async Task GoToArmy(int ArmyId)
+        {
+            ArmyModel armyModel = Armies.Where(a => a.Id == ArmyId).FirstOrDefault();
+            var faction = armyModel.Faction.ToString();
+            //await Shell.Current.Navigation.PushModalAsync(new ArmyBuilderPage(viewModel));
+            await Shell.Current.GoToAsync($"///ArmyBuild/ArmyBuilderPage", true,
+                new Dictionary<string, object>
+                {
+                    {
+                        "ArmyModel", armyModel
+                    }
+                });
+
+            WeakReferenceMessenger.Default.Send(new UpdateArmyBuilderList(armyModel));
+            //WeakReferenceMessenger.Default.Send(new UpdateArmyFaction(faction));
         }
 
         [RelayCommand]
